@@ -180,17 +180,17 @@
 
                 <TextView
                     android:id="@+id/txtTotalOrderPrice"
-                    android:layout_width="114dp"
+                    android:layout_width="74dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="149dp"
-                    android:layout_marginBottom="-8dp"
+                    android:layout_marginStart="117dp"
+                    android:layout_marginBottom="7dp"
                     android:fontFamily="@font/bungee"
                     android:gravity="center"
                     android:text="XXXX"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -232,6 +232,22 @@
                     android:text="Status:"
                     android:textColor="@color/black"
                     android:textSize="10sp" />
+
+                <Button
+                    android:id="@+id/btnPrint"
+                    android:layout_width="64dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="101dp"
+                    android:layout_marginBottom="6dp"
+                    android:backgroundTint="@drawable/button_text_color"
+                    android:fontFamily="@font/aleo_light"
+                    android:gravity="center"
+                    android:text="Print"
+                    android:textColor="@color/white"
+                    android:textSize="8sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/btnOutForDeliver"

@@ -303,22 +303,22 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                             if(snapshot.child(key2).child("name5").getValue()==null){
                                                 reff2.getRef().child("name5").removeValue();
                                             }else{
-                                                deliverModel.setName4(holder.txtN5.getText().toString());
+                                                deliverModel.setName5(holder.txtN5.getText().toString());
                                             }
                                             if(snapshot.child(key2).child("name6").getValue()==null){
                                                 reff2.getRef().child("name6").removeValue();
                                             }else{
-                                                deliverModel.setName4(holder.txtN6.getText().toString());
+                                                deliverModel.setName6(holder.txtN6.getText().toString());
                                             }
                                             if(snapshot.child(key2).child("name7").getValue()==null){
                                                 reff2.getRef().child("name7").removeValue();
                                             }else{
-                                                deliverModel.setName4(holder.txtN7.getText().toString());
+                                                deliverModel.setName7(holder.txtN7.getText().toString());
                                             }
                                             if(snapshot.child(key2).child("name8").getValue()==null){
                                                 reff2.getRef().child("name8").removeValue();
                                             }else{
-                                                deliverModel.setName4(holder.txtN8.getText().toString());
+                                                deliverModel.setName8(holder.txtN8.getText().toString());
                                             }
 
 

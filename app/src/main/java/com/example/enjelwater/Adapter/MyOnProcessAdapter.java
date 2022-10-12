@@ -1,12 +1,17 @@
 package com.example.enjelwater.Adapter;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -19,11 +24,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.enjelwater.AdminActivity;
+import com.example.enjelwater.BluetoothPrinter;
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
 import com.example.enjelwater.Listener.IDeliverLoadListener;
+import com.example.enjelwater.MainActivity;
+import com.example.enjelwater.Model.CartModel;
 import com.example.enjelwater.Model.DeliverModel;
 import com.example.enjelwater.Model.ProductModel;
 import com.example.enjelwater.R;
@@ -41,24 +53,35 @@ import org.greenrobot.eventbus.EventBus;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
+
+@RequiresApi(api = Build.VERSION_CODES.S)
 public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.MyOrderHolder> {
 
     private Context context;
     private List<DeliverModel> deliverModelList;
     Calendar calendar = Calendar.getInstance();
-    DatabaseReference reff,reff2;
+    DatabaseReference reff, reff2;
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-    long maxid=0;
+    long maxid = 0;
     DeliverModel deliverModel;
     Dialog dialog;
 
 
-    public MyOnProcessAdapter(Context context,List<DeliverModel> deliverModelList){
+    BluetoothDevice device = null;
+
+    private static final int PERMISSION_BLUETOOTH = 0;
+    private static final int PERMISSION_BLUETOOTH_ADMIN = 3;
+    private static final int PERMISSION_BLUETOOTH_CONNECT = 2;
+    private static final int PERMISSION_BLUETOOTH_SCAN = 1;
+
+
+    public MyOnProcessAdapter(Context context, List<DeliverModel> deliverModelList) {
         this.context = context;
         this.deliverModelList = deliverModelList;
 
@@ -69,22 +92,25 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
     @Override
     public MyOrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyOrderHolder(LayoutInflater.from(context)
-                .inflate(R.layout.layout_order_item,parent,false));
+                .inflate(R.layout.layout_order_item, parent, false));
+
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyOrderHolder holder, int position) {
 
-        deliverModel=new DeliverModel();
-        dialog=new Dialog(context);
+
+        deliverModel = new DeliverModel();
+        dialog = new Dialog(context);
 
 
         reff = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate);
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    maxid=(snapshot.getChildrenCount());
+                if (snapshot.exists()) {
+                    maxid = (snapshot.getChildrenCount());
                 }
 
             }
@@ -94,7 +120,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate).child(String.valueOf(maxid+1));
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate).child(String.valueOf(maxid + 1));
         reff2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -107,44 +133,44 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             }
         });
 
-        if(deliverModelList.get(position).getName1() == null){
+        if (deliverModelList.get(position).getName1() == null) {
             holder.txtN1.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN1.setText(new StringBuilder().append(deliverModelList.get(position).getName1()));
         }
-        if(deliverModelList.get(position).getName2() == null){
+        if (deliverModelList.get(position).getName2() == null) {
             holder.txtN2.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN2.setText(new StringBuilder().append(deliverModelList.get(position).getName2()));
         }
-        if(deliverModelList.get(position).getName3() == null){
+        if (deliverModelList.get(position).getName3() == null) {
             holder.txtN3.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN3.setText(new StringBuilder().append(deliverModelList.get(position).getName3()));
         }
-        if(deliverModelList.get(position).getName4() == null){
+        if (deliverModelList.get(position).getName4() == null) {
             holder.txtN4.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN4.setText(new StringBuilder().append(deliverModelList.get(position).getName4()));
         }
-        if(deliverModelList.get(position).getName5() == null){
+        if (deliverModelList.get(position).getName5() == null) {
             holder.txtN5.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN5.setText(new StringBuilder().append(deliverModelList.get(position).getName5()));
         }
-        if(deliverModelList.get(position).getName6() == null){
+        if (deliverModelList.get(position).getName6() == null) {
             holder.txtN6.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN6.setText(new StringBuilder().append(deliverModelList.get(position).getName6()));
         }
-        if(deliverModelList.get(position).getName7() == null){
+        if (deliverModelList.get(position).getName7() == null) {
             holder.txtN7.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN7.setText(new StringBuilder().append(deliverModelList.get(position).getName7()));
         }
-        if(deliverModelList.get(position).getName8() == null){
+        if (deliverModelList.get(position).getName8() == null) {
             holder.txtN8.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN8.setText(new StringBuilder().append(deliverModelList.get(position).getName8()));
         }
         holder.txtAddress.setText(new StringBuilder("Address: ").append(deliverModelList.get(position).getAddress()));
@@ -154,6 +180,44 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.txtIDNUM.setText(new StringBuilder().append(deliverModelList.get(position).getKey()));
         holder.txtPID.setText(new StringBuilder().append(deliverModelList.get(position).getPID()));
         holder.txtUID.setText(new StringBuilder().append(deliverModelList.get(position).getUID()));
+
+        holder.btnprint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // receipt divider ========================
+                String divider = String.format("%" + 32 + "s", "").replace(' ', '-');
+                if (device != null) {
+                    final BluetoothPrinter mPrinter = new BluetoothPrinter(device);
+                    mPrinter.connectPrinter(new BluetoothPrinter.PrinterConnectListener() {
+                        @Override
+                        public void onConnected() {
+
+                            mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
+                            // table format: 32 character width per line
+                            String format = "%-15s%5s%6s%6s";
+
+                            mPrinter.printText("Enjels Water\n");
+                            mPrinter.printText("Customer Name: Erl Luquias\n");
+                            mPrinter.printText(divider);
+                            // order item headers
+                            mPrinter.printText(holder.txtN1.getText().toString());
+                            // print address
+                            mPrinter.printText("Delivery Address:\nUnit 3rd Ground Floor, One Global Place, 5th Avenue corner 25th Street");
+
+                            // feed for empty lines for cutting
+                            mPrinter.feedPaper();
+                            mPrinter.finish();
+                        }
+
+                        @Override
+                        public void onFailed() {
+                        }
+                    });
+                }
+
+
+            }
+        });
 
 
         holder.btnOFD.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +232,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
                 Button btnok = dialog.findViewById(R.id.btn_okay2);
                 Button notyet = dialog.findViewById(R.id.btn_notyet);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Address;
+                TextView N1, N2, N3, N4, N5, N6, N7, N8, Address;
                 N1 = dialog.findViewById(R.id.txtName1);
                 N2 = dialog.findViewById(R.id.txtName2);
                 N3 = dialog.findViewById(R.id.txtName3);
@@ -181,44 +245,44 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
                 Address.setText(new StringBuilder("Address: ").append(deliverModelList.get(holder.getAdapterPosition()).getAddress()));
 
-                if(deliverModelList.get(holder.getAdapterPosition()).getName1() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName1() == null) {
                     N1.setVisibility(View.GONE);
-                }else{
+                } else {
                     N1.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName1()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName2() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName2() == null) {
                     N2.setVisibility(View.GONE);
-                }else{
+                } else {
                     N2.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName2()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName3() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName3() == null) {
                     N3.setVisibility(View.GONE);
-                }else{
+                } else {
                     N3.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName3()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName4() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName4() == null) {
                     N4.setVisibility(View.GONE);
-                }else{
+                } else {
                     N4.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName4()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName5() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName5() == null) {
                     N5.setVisibility(View.GONE);
-                }else{
+                } else {
                     N5.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName5()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName6() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName6() == null) {
                     N6.setVisibility(View.GONE);
-                }else{
+                } else {
                     N6.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName6()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName7() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName7() == null) {
                     N7.setVisibility(View.GONE);
-                }else{
+                } else {
                     N7.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName7()));
                 }
-                if(deliverModelList.get(holder.getAdapterPosition()).getName8() == null){
+                if (deliverModelList.get(holder.getAdapterPosition()).getName8() == null) {
                     N8.setVisibility(View.GONE);
-                }else{
+                } else {
                     N8.setText(new StringBuilder().append(deliverModelList.get(holder.getAdapterPosition()).getName8()));
                 }
 
@@ -249,47 +313,47 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                             String key = holder.txtIDNUM.getText().toString();
-                                            if(snapshot.child(key).child("name1").getValue()==null){
+                                            if (snapshot.child(key).child("name1").getValue() == null) {
                                                 reff2.getRef().child("name1").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName1(holder.txtN1.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name2").getValue()==null){
+                                            if (snapshot.child(key).child("name2").getValue() == null) {
                                                 reff2.getRef().child("name2").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName2(holder.txtN2.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name3").getValue()==null){
+                                            if (snapshot.child(key).child("name3").getValue() == null) {
                                                 reff2.getRef().child("name3").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName3(holder.txtN3.getText().toString());
                                             }
 
-                                            if(snapshot.child(key).child("name4").getValue()==null){
+                                            if (snapshot.child(key).child("name4").getValue() == null) {
                                                 reff2.getRef().child("name4").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName4(holder.txtN4.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name5").getValue()==null){
+                                            if (snapshot.child(key).child("name5").getValue() == null) {
                                                 reff2.getRef().child("name5").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName4(holder.txtN5.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name6").getValue()==null){
+                                            if (snapshot.child(key).child("name6").getValue() == null) {
                                                 reff2.getRef().child("name6").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName4(holder.txtN6.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name7").getValue()==null){
+                                            if (snapshot.child(key).child("name7").getValue() == null) {
                                                 reff2.getRef().child("name7").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName4(holder.txtN7.getText().toString());
                                             }
-                                            if(snapshot.child(key).child("name8").getValue()==null){
+                                            if (snapshot.child(key).child("name8").getValue() == null) {
                                                 reff2.getRef().child("name8").removeValue();
-                                            }else{
+                                            } else {
                                                 deliverModel.setName4(holder.txtN8.getText().toString());
                                             }
 
@@ -300,7 +364,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                             reffUsers.child("status").setValue("Finish");
                                             reff.child(String.valueOf(maxid + 1)).setValue(deliverModel);
 
-                                            snapshot.child(key).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+                                            snapshot.child(key).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                                         }
                                     }
@@ -314,7 +378,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
                                 deliverModelList.remove(holder.getAdapterPosition());
                                 notifyItemRemoved(holder.getAdapterPosition());
-                                notifyItemRangeChanged(holder.getAdapterPosition(),deliverModelList.size());
+                                notifyItemRangeChanged(holder.getAdapterPosition(), deliverModelList.size());
                                 btnok.setVisibility(View.VISIBLE);
                                 notyet.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.GONE);
@@ -333,6 +397,29 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                 dialog.show();
             }
         });
+
+        //  Request for bluetooth permission
+
+        // make sure device is already paired
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Set<BluetoothDevice> mBtDevices = btAdapter.getBondedDevices();// Get first paired device
+
+            for (BluetoothDevice bluetoothDevice : mBtDevices) {
+                if (bluetoothDevice.getName().equals("MTP-2")) {
+                    device = bluetoothDevice;
+                }
+            }
+
     }
 
 
@@ -363,7 +450,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         TextView txtN7;
         @BindView(R.id.txtName8)
         TextView txtN8;
-
+        @BindView(R.id.btnPrint)
+        Button btnprint;
         @BindView(R.id.txtAddress)
         TextView txtAddress;
         @BindView(R.id.txtTotalOrderPrice)
@@ -382,6 +470,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         CardView hide;
 
         Unbinder unbinder;
+
+
 
         public MyOrderHolder(@NonNull View itemView) {
             super(itemView);
