@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminHistoryFragment"
+    android:background="#A9EDFF">
+
+    <RelativeLayout
+        android:id="@+id/fragmentlayoutAHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/NoSales"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/bungee"
+            android:gravity="center"
+            android:text="No Sales on this Day"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/datetitle"
+            android:layout_width="102dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="Select Date:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="102dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="Select Status:"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/datePicker"
+            style="?android:spinnerStyle"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/datetitle"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/antic"
+            android:gravity="center"
+            android:onClick="openDatePicker"
+            android:text="Jan 01 2020"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="139dp"
+            android:layout_height="43dp"
+            android:layout_below="@+id/status"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32dp"
+            android:layout_toEndOf="@+id/datePicker" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragmentrecyclerAHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/datePicker" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

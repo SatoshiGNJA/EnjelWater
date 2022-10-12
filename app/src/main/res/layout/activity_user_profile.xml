@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileActivity"
+    android:id="@+id/Personal_layout"
+    android:background="@drawable/gradient_background2">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/profile_tool"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#78e4ff"
+            android:elevation="4dp"
+            android:orientation="horizontal"
+            android:weightSum="16"
+            android:theme="@style/Theme.EnjelWater"
+            app:popupTheme="@style/Theme.AppCompat.Light">
+
+            <Button
+                android:id="@+id/txt_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:background="#00000000"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+            <FrameLayout
+                android:id="@+id/personal_btnCart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="3">
+
+                <ImageView
+                    android:id="@+id/cartButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_baseline_shopping_cart_24" />
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/personal_badge"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignTop="@+id/cartButton"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/cartButton"
+                    app:nbMaxTextLength="2" />
+            </FrameLayout>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:padding="20dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_id"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/waterlogowhite"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="4dp" />
+
+            <TextView
+                android:id="@+id/profile_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/profile_id"
+                android:fontFamily="@font/bungee"
+                android:includeFontPadding="false"
+                android:text="Name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/profile_home_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_fullname"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/profile_id"
+                android:includeFontPadding="false"
+                android:text="UserName"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-100dp"
+            android:padding="20dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profile_fullname_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Full Name"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_face_24"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@drawable/customborder"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@drawable/customborder"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/profile_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Phone Number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_baseline_contact_phone_24"
+                    android:drawablePadding="10dp"
+                    android:enabled="false"
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:background="@drawable/customborder"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/profile_order"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bungee"
+                android:layout_marginBottom="10dp"
+                android:text="Refill Empty Gallon!"
+                android:textColor="@color/black"
+                app:backgroundTint="#A9EDFF"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
+            <Button
+                android:id="@+id/profile_new_order"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bungee"
+                android:layout_marginBottom="10dp"
+                android:text="New Gallon For Sale!"
+                android:textColor="@color/black"
+                app:backgroundTint="#A9EDFF"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
+            <Button
+                android:id="@+id/profile_order_history"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/bungee"
+                android:text="Order History"
+                android:textColor="@color/black"
+                app:backgroundTint="#00FF00"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

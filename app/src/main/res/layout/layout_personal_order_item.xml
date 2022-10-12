@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="12dp"
+    android:layout_margin="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/hidewhenfinish">
+
+    <LinearLayout
+        android:backgroundTint="#80FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="10dp"
+        android:background="@drawable/waterlogo">
+
+        <LinearLayout
+            android:background="@drawable/customborder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7dp"
+                    android:text="Order Date:"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:layout_alignBottom="@+id/txtProductName"
+                    android:layout_marginBottom="-30dp"
+                    android:background="@color/black" />
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex"
+                    android:layout_width="350dp"
+                    android:layout_height="164dp"
+                    android:layout_marginTop="50dp"
+                    app:flexDirection="column"
+                    app:flexWrap="nowrap"
+                    app:justifyContent="center">
+
+                    <TextView
+                        android:id="@+id/txtName1"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name1: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name2: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName3"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name3: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName4"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name4: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName5"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name5: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName6"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name6: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName7"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name7: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtName8"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        android:text="Name8: "
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </com.google.android.flexbox.FlexboxLayout>
+
+
+                <View
+                    android:id="@+id/board"
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:layout_alignBottom="@+id/flex"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="349dp"
+                    android:layout_height="42dp"
+                    android:layout_alignTop="@+id/board"
+                    android:layout_alignBottom="@+id/flex"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="-42dp"
+                    android:fontFamily="@font/aleo_light"
+                    android:gravity="start"
+                    android:text="Address"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="3dp"
+                    android:layout_alignBottom="@+id/txtAddress"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/txtTotalOrderPrice"
+                    android:layout_width="99dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="-8dp"
+                    android:layout_toEndOf="@+id/tp"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="XXXX"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@id/tp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/bungee"
+                    android:gravity="center"
+                    android:text="TotalPrice:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stats"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toEndOf="@+id/orderdate"
+                    android:gravity="center"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="10"
+                    android:shadowDy="3"
+                    android:text="Status"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="75dp"
+                    android:layout_toEndOf="@+id/txtProductName"
+                    android:gravity="center"
+                    android:text="Status:"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/orderdate"
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtProductName"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="0dp"
+                    android:text="date"
+                    android:textColor="@color/red"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/idnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="135dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btncancelorder"
+                    android:layout_width="82dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toEndOf="@+id/txtTotalOrderPrice"
+                    android:backgroundTint="@color/red"
+                    android:fontFamily="@font/aleo_light"
+                    android:gravity="center"
+                    android:text="Cancel Order"
+                    android:textColor="@color/black"
+                    android:textSize="5sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

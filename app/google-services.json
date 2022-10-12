@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1061037667145",
+    "project_id": "enjelwater",
+    "storage_bucket": "enjelwater.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061037667145:android:e0732a4f0d2f5397f4a098",
+        "android_client_info": {
+          "package_name": "com.example.enjelwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061037667145-r0gsh6n3dnj2dvdseo0urk9i45ppjafi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiwdlQkxWdMgumlX7cndMsGvUONdjoEnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1061037667145-r0gsh6n3dnj2dvdseo0urk9i45ppjafi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/button_text_color.xml" value="0.3311965811965812" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/customborder.xml" value="0.3311965811965812" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/gradient_background.xml" value="0.3311965811965812" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/gradient_background2.xml" value="0.3311965811965812" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_baseline_all_inbox_24.xml" value="0.4036458333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_baseline_face_24.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_baseline_vpn_key_24.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_menu_camera.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/roundstyle.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/text_border.xml" value="0.3311965811965812" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/font/alfa_slab_one.xml" value="0.3671875" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_admin.xml" value="0.40341880341880343" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_admin_login.xml" value="0.3875" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_cart.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_dashboard.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_drawer_base.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_forgot_password.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_new_order.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_order.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_personal_order.xml" value="0.3118181818181818" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_summary.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_thank_you.xml" value="0.3875" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_verify_phone_no.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/admin_header.xml" value="0.75" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/app_bar_dashboard.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/cancel_order_dialog.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/changepassword.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/content_dashboard.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/content_layout.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/delivery_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_admin_profile.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_fragment1.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_fragment2.xml" value="0.3734375" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_gallery.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_history.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_home.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_slideshow.xml" value="0.3875" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_cart_item.xml" value="0.3875" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_drink_item.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_history_item.xml" value="0.67" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_onprocess_item.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_order_item.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_personal_order_item.xml" value="0.75" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_summary_item.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/logout_dialog.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/main_drawer_header.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/nav_header.xml" value="0.1623931623931624" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/nav_header_dashboard.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/no_connection_dialog.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/order_history_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/out_delivery_dialog.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/place_order.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/admin_menu.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/bottom_profile_menu.xml" value="0.31794871794871793" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/dashboard.xml" value="0.215625" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/main_drawer_menu.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.39351851851851855" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

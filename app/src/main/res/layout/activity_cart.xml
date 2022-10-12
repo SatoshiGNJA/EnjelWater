@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CartActivity"
+    android:background="@drawable/gradient_background2">
+
+    <LinearLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#A9EDFF"
+        android:orientation="horizontal"
+        android:weightSum="16">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_weight="2"
+            android:src="@drawable/ic_baseline_navigate_before_24" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="11"
+            android:fontFamily="@font/bungee"
+            android:gravity="center"
+            android:text="Your Cart"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="503dp"
+        android:layout_below="@+id/panel"
+        android:layout_alignBottom="@+id/infotxt"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_cart"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/cartempty"
+        android:layout_width="197dp"
+        android:layout_height="226dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/cartempty" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/emptycarts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cartempty"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
+        android:text="Cart Is Empty"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignBottom="@id/bars"
+        android:layout_marginBottom="-3dp"
+        android:background="@color/black" />
+
+    <LinearLayout
+        android:id="@+id/bars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="#A9EDFF"
+        android:orientation="horizontal"
+        android:weightSum="16">
+
+
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/bungee"
+            android:text="Total Price: ₱0.0"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/placeorder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:enabled="false"
+            android:fontFamily="@font/bungee"
+            android:text="Check Out (0)"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:backgroundTint="#A9EDFF"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewbars"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:layout_alignTop="@id/bars"
+        android:layout_marginBottom="-3dp"
+        android:background="@color/black" />
+
+    <TextView
+        android:id="@+id/infotxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bars"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/antic"
+        android:gravity="center"
+        android:text="Hint: You will see your order(s) on top of this section"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
