@@ -362,4 +362,29 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                 });
 
     }
+    @Override
+    public void onBackPressed() {
+        dialog.setContentView(R.layout.logout_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button btnok = dialog.findViewById(R.id.btn_logout);
+        Button btnnotyet = dialog.findViewById(R.id.btn_logoutnotyet);
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(UserProfileActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+                dialog.dismiss();
+            }
+        });
+        btnnotyet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 }

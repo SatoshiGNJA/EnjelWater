@@ -38,6 +38,7 @@ import com.example.enjelwater.MainActivity;
 import com.example.enjelwater.Model.CartModel;
 import com.example.enjelwater.Model.DeliverModel;
 import com.example.enjelwater.Model.ProductModel;
+import com.example.enjelwater.OrderActivity;
 import com.example.enjelwater.R;
 import com.example.enjelwater.SummaryActivity;
 import com.example.enjelwater.ThankYouActivity;
@@ -71,14 +72,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
     long maxid = 0;
     DeliverModel deliverModel;
     Dialog dialog;
-
-
-    BluetoothDevice device = null;
-
-    private static final int PERMISSION_BLUETOOTH = 0;
-    private static final int PERMISSION_BLUETOOTH_ADMIN = 3;
-    private static final int PERMISSION_BLUETOOTH_CONNECT = 2;
-    private static final int PERMISSION_BLUETOOTH_SCAN = 1;
 
 
     public MyOnProcessAdapter(Context context, List<DeliverModel> deliverModelList) {
@@ -184,37 +177,14 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.btnprint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // receipt divider ========================
-                String divider = String.format("%" + 32 + "s", "").replace(' ', '-');
-                if (device != null) {
-                    final BluetoothPrinter mPrinter = new BluetoothPrinter(device);
-                    mPrinter.connectPrinter(new BluetoothPrinter.PrinterConnectListener() {
-                        @Override
-                        public void onConnected() {
 
-                            mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
-                            // table format: 32 character width per line
-                            String format = "%-15s%5s%6s%6s";
-
-                            mPrinter.printText("Enjels Water\n");
-                            mPrinter.printText("Customer Name: Erl Luquias\n");
-                            mPrinter.printText(divider);
-                            // order item headers
-                            mPrinter.printText(holder.txtN1.getText().toString());
-                            // print address
-                            mPrinter.printText("Delivery Address:\nUnit 3rd Ground Floor, One Global Place, 5th Avenue corner 25th Street");
-
-                            // feed for empty lines for cutting
-                            mPrinter.feedPaper();
-                            mPrinter.finish();
-                        }
-
-                        @Override
-                        public void onFailed() {
-                        }
-                    });
-                }
-
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("Name1",holder.txtN1.getText().toString());
+                intent.putExtra("Name2",holder.txtN2.getText().toString());
+                intent.putExtra("Name3",holder.txtN3.getText().toString());
+                intent.putExtra("Name4",holder.txtN4.getText().toString());
+                intent.putExtra("Name5",holder.txtN5.getText().toString());
+                context.startActivity(intent);
 
             }
         });
@@ -339,22 +309,22 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                             if (snapshot.child(key).child("name5").getValue() == null) {
                                                 reff2.getRef().child("name5").removeValue();
                                             } else {
-                                                deliverModel.setName4(holder.txtN5.getText().toString());
+                                                deliverModel.setName5(holder.txtN5.getText().toString());
                                             }
                                             if (snapshot.child(key).child("name6").getValue() == null) {
                                                 reff2.getRef().child("name6").removeValue();
                                             } else {
-                                                deliverModel.setName4(holder.txtN6.getText().toString());
+                                                deliverModel.setName6(holder.txtN6.getText().toString());
                                             }
                                             if (snapshot.child(key).child("name7").getValue() == null) {
                                                 reff2.getRef().child("name7").removeValue();
                                             } else {
-                                                deliverModel.setName4(holder.txtN7.getText().toString());
+                                                deliverModel.setName7(holder.txtN7.getText().toString());
                                             }
                                             if (snapshot.child(key).child("name8").getValue() == null) {
                                                 reff2.getRef().child("name8").removeValue();
                                             } else {
-                                                deliverModel.setName4(holder.txtN8.getText().toString());
+                                                deliverModel.setName8(holder.txtN8.getText().toString());
                                             }
 
 
@@ -397,28 +367,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                 dialog.show();
             }
         });
-
-        //  Request for bluetooth permission
-
-        // make sure device is already paired
-        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Set<BluetoothDevice> mBtDevices = btAdapter.getBondedDevices();// Get first paired device
-
-            for (BluetoothDevice bluetoothDevice : mBtDevices) {
-                if (bluetoothDevice.getName().equals("MTP-2")) {
-                    device = bluetoothDevice;
-                }
-            }
 
     }
 
