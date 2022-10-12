@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         String na3 = getIntent().getStringExtra("Name3");
         String na4 = getIntent().getStringExtra("Name4");
         String na5 = getIntent().getStringExtra("Name5");
+        String na6 = getIntent().getStringExtra("Name6");
+        String na7 = getIntent().getStringExtra("Name7");
+        String na8 = getIntent().getStringExtra("Name8");
 
         n1.setText(na1);
         n2.setText(na2);
