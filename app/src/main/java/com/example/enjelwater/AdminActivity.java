@@ -5,6 +5,7 @@ import static android.app.Notification.DEFAULT_VIBRATE;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,10 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -29,10 +26,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
+
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
+
 
 import com.example.enjelwater.databinding.ActivityAdminBinding;
 import com.google.android.material.navigation.NavigationView;
@@ -48,12 +44,12 @@ import java.util.Calendar;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityAdminBinding binding;
-    private AppBarConfiguration mAppBarConfiguration;
     Calendar calendar = Calendar.getInstance();
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     private DrawerLayout drawerLayout;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,4 +189,26 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             super.onBackPressed();
         }
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    @Override
+    protected void onResume() {
+        try {
+            int intentFragment = getIntent().getExtras().getInt("frgToLoad");
+
+            switch (intentFragment){
+                case 1:
+                    replaceFragment(new fragment1());
+                    break;
+                case 2:
+                    replaceFragment(new fragment2());
+                    break;
+            }
+        }
+        catch (Exception e){
+            System.out.println("Catch");
+        }
+        super.onResume();
+    }
+
 }

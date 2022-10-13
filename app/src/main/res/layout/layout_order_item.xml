@@ -103,6 +103,7 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtName5"
                         android:layout_width="match_parent"
@@ -114,6 +115,7 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtName6"
                         android:layout_width="match_parent"
@@ -125,6 +127,7 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtName7"
                         android:layout_width="match_parent"
@@ -136,6 +139,7 @@
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtName8"
                         android:layout_width="match_parent"
