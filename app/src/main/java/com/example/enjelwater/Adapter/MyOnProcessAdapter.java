@@ -287,7 +287,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
 
                                 DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Accepted");
-
                                 Query query = reference2.orderByKey().equalTo(currentDate);
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
