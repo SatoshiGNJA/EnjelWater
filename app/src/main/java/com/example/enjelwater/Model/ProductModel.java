@@ -9,9 +9,18 @@ public class ProductModel {
     String name1,name2,name3,name4,name5,name6,name7,name8;
     String address;
     String status;
+    String Custname;
     float TotalPrice;
 
     public ProductModel() {
+    }
+
+    public String getCustname() {
+        return Custname;
+    }
+
+    public void setCustname(String custname) {
+        Custname = custname;
     }
 
     public String getName5() {

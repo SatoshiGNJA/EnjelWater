@@ -7,9 +7,18 @@ public class DeliverModel {
     String address;
     String status;
     String PID,UID;
+    String Customer;
     float TotalPrice;
 
     public DeliverModel() {
+    }
+
+    public String getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(String customer) {
+        Customer = customer;
     }
 
     public String getPID() {

@@ -7,7 +7,7 @@
         android:title="Order" />
     <item
         android:id="@+id/deliver"
-        android:icon="@drawable/ic_baseline_check_24"
-        android:title="Accepted" />
+        android:icon="@drawable/ic_baseline_delivery_dining_24"
+        android:title="Delivered" />
 
 </menu>

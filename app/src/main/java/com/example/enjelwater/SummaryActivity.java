@@ -410,6 +410,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                             productModel.setPersonalID(String.valueOf(usermaxid + 1));
                                             productModel.setKey(String.valueOf(maxid +1));
                                             productModel.setUid(currentuser);
+                                            productModel.setCustname(FName.getText().toString().trim());
                                             reff.child(String.valueOf(maxid + 1)).child("uid").setValue(currentuser);
                                             order.child("Orders").child(currentDate).child(String.valueOf(maxid + 1)).setValue(productModel);
                                             reffUser.child(String.valueOf(usermaxid + 1)).child("uid").setValue(currentuser);

@@ -98,8 +98,6 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
                     @Override
                     public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                            sadW.setVisibility(View.VISIBLE);
-                            noOrder.setVisibility(View.VISIBLE);
 
 
 

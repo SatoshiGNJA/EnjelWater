@@ -85,7 +85,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
     @Override
     public MyOrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyOrderHolder(LayoutInflater.from(context)
-                .inflate(R.layout.layout_order_item, parent, false));
+                .inflate(R.layout.layout_onprocess_item, parent, false));
 
 
     }
@@ -168,11 +168,12 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         }
         holder.txtAddress.setText(new StringBuilder("Address: ").append(deliverModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(deliverModelList.get(position).getStatus()));
-        holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
+        holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(deliverModelList.get(position).getTotalPrice()));
         holder.txtIDNUM.setText(new StringBuilder().append(deliverModelList.get(position).getKey()));
         holder.txtPID.setText(new StringBuilder().append(deliverModelList.get(position).getPID()));
         holder.txtUID.setText(new StringBuilder().append(deliverModelList.get(position).getUID()));
+        holder.customer.setText(new StringBuilder().append(deliverModelList.get(position).getCustomer()));
 
         holder.btnprint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +188,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                 intent.putExtra("Name6",holder.txtN6.getText().toString());
                 intent.putExtra("Name7",holder.txtN7.getText().toString());
                 intent.putExtra("Name8",holder.txtN8.getText().toString());
+                intent.putExtra("CustomerN",holder.customer.getText().toString());
                 intent.putExtra("Address",holder.txtAddress.getText().toString());
                 intent.putExtra("Total",holder.txtTotalOrderP.getText().toString());
                 context.startActivity(intent);
@@ -207,7 +209,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
                 Button btnok = dialog.findViewById(R.id.btn_okay2);
                 Button notyet = dialog.findViewById(R.id.btn_notyet);
-                TextView N1, N2, N3, N4, N5, N6, N7, N8, Address;
+                TextView N1, N2, N3, N4, N5, N6, N7, N8, CustName,Address;
                 N1 = dialog.findViewById(R.id.txtName1);
                 N2 = dialog.findViewById(R.id.txtName2);
                 N3 = dialog.findViewById(R.id.txtName3);
@@ -216,8 +218,10 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                 N6 = dialog.findViewById(R.id.txtName6);
                 N7 = dialog.findViewById(R.id.txtName7);
                 N8 = dialog.findViewById(R.id.txtName8);
+                CustName = dialog.findViewById(R.id.txtCustomerName);
                 Address = dialog.findViewById(R.id.txtAddressDialog);
 
+                CustName.setText(new StringBuilder("Customer Name: ").append(deliverModelList.get(holder.getAdapterPosition()).getCustomer()));
                 Address.setText(new StringBuilder("Address: ").append(deliverModelList.get(holder.getAdapterPosition()).getAddress()));
 
                 if (deliverModelList.get(holder.getAdapterPosition()).getName1() == null) {
@@ -421,6 +425,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         Button btnOFD;
         @BindView(R.id.hidewhenfinish)
         CardView hide;
+        @BindView(R.id.txtcustnamedel)
+        TextView customer;
 
         Unbinder unbinder;
 

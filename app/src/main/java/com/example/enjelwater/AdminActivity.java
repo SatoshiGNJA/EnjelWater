@@ -28,6 +28,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import com.example.enjelwater.databinding.ActivityAdminBinding;
@@ -37,6 +38,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -46,7 +48,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private ActivityAdminBinding binding;
     Calendar calendar = Calendar.getInstance();
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+    DatabaseReference reff;
     private DrawerLayout drawerLayout;
+    long maxid = 0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.S)
@@ -69,9 +73,27 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
+        reff.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    maxid=(snapshot.getChildrenCount());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate).child("product");
+
+
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -115,6 +137,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+
             }
 
             @Override
@@ -134,6 +157,38 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
             }
         });
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+        reference1.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                replaceFragment(new fragment1());
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {

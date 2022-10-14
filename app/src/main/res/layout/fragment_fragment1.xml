@@ -22,21 +22,21 @@
             android:visibility="visible" />
 
         <TextView
-            android:fontFamily="@font/bungee"
             android:id="@+id/txtNoOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_alignBottom="@+id/sadwater"
-            android:textColor="@color/black"
+            android:fontFamily="@font/bungee"
+            android:gravity="center"
             android:text="There is still no Order at this Time"
-            android:visibility="visible"/>
+            android:textColor="@color/black"
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentrecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginBottom="50dp" />
 
     </RelativeLayout>
 </ScrollView>

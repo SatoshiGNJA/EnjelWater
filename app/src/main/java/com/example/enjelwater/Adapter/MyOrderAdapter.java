@@ -1,5 +1,6 @@
 package com.example.enjelwater.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -51,10 +52,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     private List<ProductModel> productModelList;
     private IDeliverLoadListener iDeliverLoadListener;
     Calendar calendar = Calendar.getInstance();
-    DatabaseReference reff,reff2,reff3;
+    DatabaseReference reff,reff2,reff3,reff4;
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     long maxid=0;
     DeliverModel deliverModel;
+    ProductModel productModel;
     Dialog dialog;
     String key;
 
@@ -109,6 +111,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             }
         });
         reff3 = FirebaseDatabase.getInstance().getReference();
+        reff4 = FirebaseDatabase.getInstance().getReference();
 
         if(productModelList.get(position).getName1() == null){
             holder.txtN1.setVisibility(View.GONE);
@@ -157,11 +160,198 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.txtIDNUM.setText(new StringBuilder().append(productModelList.get(position).getKey()));
         holder.txtPID.setText(new StringBuilder().append(productModelList.get(position).getPersonalID()));
         holder.txtUID.setText(new StringBuilder().append(productModelList.get(position).getUid()));
+        holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
+        holder.txtKey.setText(new StringBuilder().append(productModelList.get(position).getKey()));
 
+        if (holder.txtStat.getText().toString().equals("Pending")){
+            holder.btnProc.setVisibility(View.GONE);
+            holder.btnAccept.setVisibility(View.VISIBLE);
+        }else if(holder.txtStat.getText().toString().equals("Accepted")){
+            holder.btnProc.setVisibility(View.VISIBLE);
+            holder.btnAccept.setVisibility(View.GONE);
+            holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
+        }
 
-        holder.btnOFD.setOnClickListener(new View.OnClickListener() {
+        holder.btnProc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                dialog.setContentView(R.layout.out_delivery_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+
+                ProgressBar progressBar = dialog.findViewById(R.id.progressbarDeliver);
+
+                Button btnok = dialog.findViewById(R.id.btn_okay2);
+                Button notyet = dialog.findViewById(R.id.btn_notyet);
+                TextView N1,N2,N3,N4,N5,N6,N7,N8,Cust,Address;
+                N1 = dialog.findViewById(R.id.txtName1);
+                N2 = dialog.findViewById(R.id.txtName2);
+                N3 = dialog.findViewById(R.id.txtName3);
+                N4 = dialog.findViewById(R.id.txtName4);
+                N5 = dialog.findViewById(R.id.txtName5);
+                N6 = dialog.findViewById(R.id.txtName6);
+                N7 = dialog.findViewById(R.id.txtName7);
+                N8 = dialog.findViewById(R.id.txtName8);
+                Cust = dialog.findViewById(R.id.txtCustomerName);
+                Address = dialog.findViewById(R.id.txtAddressDialog);
+
+                Cust.setText(new StringBuilder("Customer Name: ").append(productModelList.get(holder.getAdapterPosition()).getCustname()));
+                Address.setText(new StringBuilder("Address: ").append(productModelList.get(holder.getAdapterPosition()).getAddress()));
+
+                if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
+                    N1.setVisibility(View.GONE);
+                }else{
+                    N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
+                    N2.setVisibility(View.GONE);
+                }else{
+                    N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
+                    N3.setVisibility(View.GONE);
+                }else{
+                    N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
+                    N4.setVisibility(View.GONE);
+                }else{
+                    N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
+                    N5.setVisibility(View.GONE);
+                }else{
+                    N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
+                    N6.setVisibility(View.GONE);
+                }else{
+                    N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
+                    N7.setVisibility(View.GONE);
+                }else{
+                    N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()));
+                }
+                if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
+                    N8.setVisibility(View.GONE);
+                }else{
+                    N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()));
+                }
+                btnok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new CountDownTimer(3000, 1000) {
+                            @Override
+                            public void onTick(long l) {
+                                btnok.setVisibility(View.GONE);
+                                notyet.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void onFinish() {
+
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                                Query query = reference.orderByKey().equalTo(currentDate);
+                                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                            String key2 = holder.txtIDNUM.getText().toString();
+                                            if(snapshot.child(key2).child("name1").getValue()==null){
+                                                reff2.getRef().child("name1").removeValue();
+                                            }else{
+                                                deliverModel.setName1(holder.txtN1.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name2").getValue()==null){
+                                                reff2.getRef().child("name2").removeValue();
+                                            }else{
+                                                deliverModel.setName2(holder.txtN2.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name3").getValue()==null){
+                                                reff2.getRef().child("name3").removeValue();
+                                            }else{
+                                                deliverModel.setName3(holder.txtN3.getText().toString());
+                                            }
+
+                                            if(snapshot.child(key2).child("name4").getValue()==null){
+                                                reff2.getRef().child("name4").removeValue();
+                                            }else{
+                                                deliverModel.setName4(holder.txtN4.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name5").getValue()==null){
+                                                reff2.getRef().child("name5").removeValue();
+                                            }else{
+                                                deliverModel.setName5(holder.txtN5.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name6").getValue()==null){
+                                                reff2.getRef().child("name6").removeValue();
+                                            }else{
+                                                deliverModel.setName6(holder.txtN6.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name7").getValue()==null){
+                                                reff2.getRef().child("name7").removeValue();
+                                            }else{
+                                                deliverModel.setName7(holder.txtN7.getText().toString());
+                                            }
+                                            if(snapshot.child(key2).child("name8").getValue()==null){
+                                                reff2.getRef().child("name8").removeValue();
+                                            }else{
+                                                deliverModel.setName8(holder.txtN8.getText().toString());
+                                            }
+
+
+                                            deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
+                                            deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
+                                            deliverModel.setStatus("On Process");
+                                            deliverModel.setCustomer(holder.txtName.getText().toString());
+                                            deliverModel.setPID(holder.txtPID.getText().toString());
+                                            deliverModel.setUID(holder.txtUID.getText().toString());
+                                            deliverModel.setKey(holder.txtKey.getText().toString());
+                                            reff.child(String.valueOf(maxid +1)).child("uid").setValue(holder.txtUID.getText().toString());
+                                            reff3.child("Delivered").child(currentDate).child(String.valueOf(maxid+1)).setValue(deliverModel);
+                                            snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                                productModelList.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                notifyItemRangeChanged(holder.getAdapterPosition(),productModelList.size());
+                                btnok.setVisibility(View.VISIBLE);
+                                notyet.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                dialog.dismiss();
+
+                            }
+                        }.start();
+                    }
+                });
+                notyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+
+        holder.btnAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 dialog.setContentView(R.layout.delivery_dialog);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCanceledOnTouchOutside(false);
@@ -171,7 +361,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 Button btnok = dialog.findViewById(R.id.btn_okay2);
                 Button notyet = dialog.findViewById(R.id.btn_notyet);
                 Button decline = dialog.findViewById(R.id.btn_decline);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Address,count;
+                TextView N1,N2,N3,N4,N5,N6,N7,N8,Name,Address,count;
                 N1 = dialog.findViewById(R.id.txtName1);
                 N2 = dialog.findViewById(R.id.txtName2);
                 N3 = dialog.findViewById(R.id.txtName3);
@@ -181,8 +371,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 N7 = dialog.findViewById(R.id.txtName7);
                 N8 = dialog.findViewById(R.id.txtName8);
                 count = dialog.findViewById(R.id.txtcountdown);
+                Name = dialog.findViewById(R.id.txtCustomerName);
                 Address = dialog.findViewById(R.id.txtAddressDialog);
-
+                Name.setText(new StringBuilder("Customer Name: ").append(productModelList.get(holder.getAdapterPosition()).getCustname()));
                 Address.setText(new StringBuilder("Address: ").append(productModelList.get(holder.getAdapterPosition()).getAddress()));
 
                 if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
@@ -265,6 +456,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                             @Override
                             public void onFinish() {
 
+
                                 DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
                                         .child("Users")
                                         .child(holder.txtUID.getText().toString())
@@ -276,63 +468,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                            String key2 = holder.txtIDNUM.getText().toString();
-                                            if(snapshot.child(key2).child("name1").getValue()==null){
-                                                reff2.getRef().child("name1").removeValue();
-                                            }else{
-                                                deliverModel.setName1(holder.txtN1.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name2").getValue()==null){
-                                                reff2.getRef().child("name2").removeValue();
-                                            }else{
-                                                deliverModel.setName2(holder.txtN2.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name3").getValue()==null){
-                                                reff2.getRef().child("name3").removeValue();
-                                            }else{
-                                                deliverModel.setName3(holder.txtN3.getText().toString());
-                                            }
-
-                                            if(snapshot.child(key2).child("name4").getValue()==null){
-                                                reff2.getRef().child("name4").removeValue();
-                                            }else{
-                                                deliverModel.setName4(holder.txtN4.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name5").getValue()==null){
-                                                reff2.getRef().child("name5").removeValue();
-                                            }else{
-                                                deliverModel.setName5(holder.txtN5.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name6").getValue()==null){
-                                                reff2.getRef().child("name6").removeValue();
-                                            }else{
-                                                deliverModel.setName6(holder.txtN6.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name7").getValue()==null){
-                                                reff2.getRef().child("name7").removeValue();
-                                            }else{
-                                                deliverModel.setName7(holder.txtN7.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name8").getValue()==null){
-                                                reff2.getRef().child("name8").removeValue();
-                                            }else{
-                                                deliverModel.setName8(holder.txtN8.getText().toString());
-                                            }
-
-
-                                            deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
-                                            deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
-                                            deliverModel.setStatus("Accepted");
-                                            deliverModel.setPID(holder.txtPID.getText().toString());
-                                            deliverModel.setUID(holder.txtUID.getText().toString());
-                                            reffUsers.child("status").setValue("Order Accepted");
-                                            reff.child(String.valueOf(maxid +1)).child("uid").setValue(holder.txtUID.getText().toString());
-                                            reff3.child("Accepted").child(currentDate).child(String.valueOf(maxid+1)).setValue(deliverModel);
-                                            snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
-
-                                        }
+                                                reffUsers.child("status").setValue("Order Accepted");
+                                                reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("Accepted");
 
                                     }
 
@@ -341,10 +478,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                                     }
                                 });
-
-                                productModelList.remove(holder.getAdapterPosition());
-                                notifyItemRemoved(holder.getAdapterPosition());
-                                notifyItemRangeChanged(holder.getAdapterPosition(),productModelList.size());
                                 btnok.setVisibility(View.VISIBLE);
                                 notyet.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.GONE);
@@ -361,6 +494,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                     }
                 });
                 dialog.show();
+
             }
         });
     }
@@ -404,8 +538,15 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         TextView txtPID;
         @BindView(R.id.uid)
         TextView txtUID;
-        @BindView(R.id.btnOutForDeliver)
-        Button btnOFD;
+        @BindView(R.id.key)
+        TextView txtKey;
+        @BindView(R.id.txtcustname)
+        TextView txtName;
+        @BindView(R.id.btnAccept)
+        Button btnAccept;
+        @BindView(R.id.btnProceed)
+        Button btnProc;
+
 
         Unbinder unbinder;
 
