@@ -217,10 +217,10 @@
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@drawable/button_text_color"
                     android:fontFamily="@font/aleo_light"
                     android:text="Accept!"
-                    android:textSize="10sp"
+                    android:textSize="10dp"
                     android:layout_gravity="start"
                     android:textColor="@color/white"
                     android:textStyle="bold" />

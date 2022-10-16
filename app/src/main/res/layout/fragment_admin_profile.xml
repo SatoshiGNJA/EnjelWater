@@ -99,7 +99,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:transitionName="button_tran"
-            app:backgroundTint="@color/light_blue"
+            app:backgroundTint="@color/red"
             app:cornerRadius="12dp"
             app:strokeColor="@color/black"
             app:strokeWidth="1dp" />
