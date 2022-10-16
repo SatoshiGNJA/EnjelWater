@@ -1,6 +1,11 @@
 package com.example.enjelwater;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -37,6 +42,12 @@ public class AdminProfileFragment extends Fragment {
     DatabaseReference databaseReference;
     ProgressBar progressBar;
 
+    Dialog dialog;
+
+    public static final String fileName = "login";
+
+    SharedPreferences sharedPreferences;
+
 
 
     @Nullable
@@ -50,6 +61,10 @@ public class AdminProfileFragment extends Fragment {
         progressBar = view.findViewById(R.id.admin_Progressbar);
         Drawable buttonDrawable = update.getBackground();
         buttonDrawable = DrawableCompat.wrap(buttonDrawable);
+
+        dialog=new Dialog(view.getContext());
+
+        sharedPreferences = getActivity().getSharedPreferences(fileName, Context.MODE_PRIVATE);
 
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
@@ -179,35 +194,55 @@ public class AdminProfileFragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                update.setVisibility(View.GONE);
-                progressBar.setVisibility(View.VISIBLE);
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                dialog.setContentView(R.layout.update_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                Button btnok = dialog.findViewById(R.id.btn_continue);
+                Button btnnotyet = dialog.findViewById(R.id.btn_no);
+
+                btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onClick(View view) {
+                        databaseReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Toast.makeText(getContext(),"Successfully Updated",Toast.LENGTH_LONG).show();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.clear();
+                                editor.commit();
 
-                        databaseReference.child("Admin").child("admin").child("username").setValue(adminusername.getText().toString());
-                        databaseReference.child("Admin").child("admin").child("password").setValue(adminpassword.getText().toString());
+                                databaseReference.child("Admin").child("admin").child("username").setValue(adminusername.getText().toString());
+                                databaseReference.child("Admin").child("admin").child("password").setValue(adminpassword.getText().toString());
 
-                        String adminuser = snapshot.child("Admin").child("admin").child("username").getValue(String.class);
-                        String adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
+                                String adminuser = snapshot.child("Admin").child("admin").child("username").getValue(String.class);
+                                String adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
 
-                        adminusername.setText(adminuser);
-                        adminpassword.setText(adminpass);
+                                adminusername.setText(adminuser);
+                                adminpassword.setText(adminpass);
 
-                        update.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.GONE);
+                                Intent i = new Intent(getContext(),LoginActivity.class);
+                                startActivity(i);
+                                dialog.dismiss();
 
 
 
-                    }
+                            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
                     }
                 });
+                btnnotyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
 
