@@ -1,16 +1,10 @@
 package com.example.enjelwater.Adapter;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +21,6 @@ import com.example.enjelwater.Listener.IDeliverLoadListener;
 import com.example.enjelwater.Model.DeliverModel;
 import com.example.enjelwater.Model.ProductModel;
 import com.example.enjelwater.R;
-import com.example.enjelwater.SummaryActivity;
-import com.example.enjelwater.ThankYouActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,16 +44,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     private List<ProductModel> productModelList;
     private IDeliverLoadListener iDeliverLoadListener;
     Calendar calendar = Calendar.getInstance();
-    DatabaseReference reff,reff2,reff3,reff4;
+    DatabaseReference reff, reff2, reff3, reff4;
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-    long maxid=0;
+    long maxid = 0;
     DeliverModel deliverModel;
     ProductModel productModel;
     Dialog dialog;
     String key;
 
 
-    public MyOrderAdapter(Context context,List<ProductModel> productModelList,IDeliverLoadListener iDeliverLoadListener){
+    public MyOrderAdapter(Context context, List<ProductModel> productModelList, IDeliverLoadListener iDeliverLoadListener) {
         this.context = context;
         this.productModelList = productModelList;
         this.iDeliverLoadListener = iDeliverLoadListener;
@@ -73,24 +65,24 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     @Override
     public MyOrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyOrderHolder(LayoutInflater.from(context)
-        .inflate(R.layout.layout_order_item,parent,false));
+                .inflate(R.layout.layout_order_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyOrderHolder holder, int position) {
 
-        deliverModel=new DeliverModel();
-        dialog=new Dialog(context);
+        deliverModel = new DeliverModel();
+        dialog = new Dialog(context);
 
+        productModel = productModelList.get(position);
 
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    maxid=(snapshot.getChildrenCount());
+                if (snapshot.exists()) {
+                    maxid = (snapshot.getChildrenCount());
                 }
-
             }
 
             @Override
@@ -98,7 +90,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Accepted").child(currentDate).child(String.valueOf(maxid+1));
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Accepted").child(currentDate).child(String.valueOf(maxid + 1));
         reff2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -113,397 +105,372 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         reff3 = FirebaseDatabase.getInstance().getReference();
         reff4 = FirebaseDatabase.getInstance().getReference();
 
-        if(productModelList.get(position).getName1() == null){
+        if (productModel.getName1() == null) {
             holder.txtN1.setVisibility(View.GONE);
-        }else{
-            holder.txtN1.setText(new StringBuilder().append(productModelList.get(position).getName1()));
+        } else {
+            holder.txtN1.setText(productModel.getName1());
         }
-        if(productModelList.get(position).getName2() == null){
+        if (productModel.getName2() == null) {
             holder.txtN2.setVisibility(View.GONE);
-        }else{
-            holder.txtN2.setText(new StringBuilder().append(productModelList.get(position).getName2()));
+        } else {
+            holder.txtN2.setText(productModel.getName2());
         }
-        if(productModelList.get(position).getName3() == null){
+        if (productModel.getName3() == null) {
             holder.txtN3.setVisibility(View.GONE);
-        }else{
-            holder.txtN3.setText(new StringBuilder().append(productModelList.get(position).getName3()));
+        } else {
+            holder.txtN3.setText(productModel.getName3());
         }
-        if(productModelList.get(position).getName4() == null){
+        if (productModel.getName4() == null) {
             holder.txtN4.setVisibility(View.GONE);
-        }else{
-            holder.txtN4.setText(new StringBuilder().append(productModelList.get(position).getName4()));
+        } else {
+            holder.txtN4.setText(productModel.getName4());
         }
-        if(productModelList.get(position).getName5() == null){
+        if (productModel.getName5() == null) {
             holder.txtN5.setVisibility(View.GONE);
-        }else{
-            holder.txtN5.setText(new StringBuilder().append(productModelList.get(position).getName5()));
+        } else {
+            holder.txtN5.setText(productModel.getName5());
         }
-        if(productModelList.get(position).getName6() == null){
+        if (productModel.getName6() == null) {
             holder.txtN6.setVisibility(View.GONE);
-        }else{
-            holder.txtN6.setText(new StringBuilder().append(productModelList.get(position).getName6()));
+        } else {
+            holder.txtN6.setText(productModel.getName6());
         }
-        if(productModelList.get(position).getName7() == null){
+        if (productModel.getName7() == null) {
             holder.txtN7.setVisibility(View.GONE);
-        }else{
-            holder.txtN7.setText(new StringBuilder().append(productModelList.get(position).getName7()));
+        } else {
+            holder.txtN7.setText(new StringBuilder().append(productModel.getName7()));
         }
-        if(productModelList.get(position).getName8() == null){
+        if (productModel.getName8() == null) {
             holder.txtN8.setVisibility(View.GONE);
-        }else{
-            holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()));
+        } else {
+            holder.txtN8.setText(new StringBuilder().append(productModel.getName8()));
         }
-        holder.txtAddress.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
-        holder.txtStat.setText(new StringBuilder().append(productModelList.get(position).getStatus()));
-        holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
-        holder.txtTotalOrderP.setText(new StringBuilder().append(productModelList.get(position).getTotalPrice()));
-        holder.txtIDNUM.setText(new StringBuilder().append(productModelList.get(position).getKey()));
-        holder.txtPID.setText(new StringBuilder().append(productModelList.get(position).getPersonalID()));
-        holder.txtUID.setText(new StringBuilder().append(productModelList.get(position).getUid()));
-        holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
-        holder.txtKey.setText(new StringBuilder().append(productModelList.get(position).getKey()));
+        String status = productModel.getStatus();
 
-        if (holder.txtStat.getText().toString().equals("Pending")){
+        holder.txtAddress.setText(new StringBuilder("Address: ").append(productModel.getAddress()));
+        holder.txtStat.setText(new StringBuilder().append(status.equals("Accepted") ? "On Process" : status));
+        holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
+        holder.txtTotalOrderP.setText(String.valueOf(productModel.getTotalPrice()));
+        holder.txtIDNUM.setText(productModel.getKey());
+        holder.txtPID.setText(productModel.getPersonalID());
+        holder.txtUID.setText(productModel.getUid());
+        holder.txtName.setText(productModel.getCustname());
+        holder.txtKey.setText(productModel.getKey());
+
+        if (status.equals("Pending")) {
             holder.btnProc.setVisibility(View.GONE);
             holder.btnAccept.setVisibility(View.VISIBLE);
-        }else if(holder.txtStat.getText().toString().equals("Accepted")){
+        } else if (status.equals("Accepted")) {
             holder.btnProc.setVisibility(View.VISIBLE);
             holder.btnAccept.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
         }
 
-        holder.btnProc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.btnProc.setOnClickListener(view -> {
 
-                dialog.setContentView(R.layout.out_delivery_dialog);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setCanceledOnTouchOutside(false);
+            dialog.setContentView(R.layout.out_delivery_dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCanceledOnTouchOutside(false);
 
-                ProgressBar progressBar = dialog.findViewById(R.id.progressbarDeliver);
+            ProgressBar progressBar = dialog.findViewById(R.id.progressbarDeliver);
 
-                Button btnok = dialog.findViewById(R.id.btn_okay2);
-                Button notyet = dialog.findViewById(R.id.btn_notyet);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Cust,Address;
-                N1 = dialog.findViewById(R.id.txtName1);
-                N2 = dialog.findViewById(R.id.txtName2);
-                N3 = dialog.findViewById(R.id.txtName3);
-                N4 = dialog.findViewById(R.id.txtName4);
-                N5 = dialog.findViewById(R.id.txtName5);
-                N6 = dialog.findViewById(R.id.txtName6);
-                N7 = dialog.findViewById(R.id.txtName7);
-                N8 = dialog.findViewById(R.id.txtName8);
-                Cust = dialog.findViewById(R.id.txtCustomerName);
-                Address = dialog.findViewById(R.id.txtAddressDialog);
+            Button btnok = dialog.findViewById(R.id.btn_okay2);
+            Button notyet = dialog.findViewById(R.id.btn_notyet);
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address;
+            N1 = dialog.findViewById(R.id.txtName1);
+            N2 = dialog.findViewById(R.id.txtName2);
+            N3 = dialog.findViewById(R.id.txtName3);
+            N4 = dialog.findViewById(R.id.txtName4);
+            N5 = dialog.findViewById(R.id.txtName5);
+            N6 = dialog.findViewById(R.id.txtName6);
+            N7 = dialog.findViewById(R.id.txtName7);
+            N8 = dialog.findViewById(R.id.txtName8);
+            Cust = dialog.findViewById(R.id.txtCustomerName);
+            Address = dialog.findViewById(R.id.txtAddressDialog);
 
-                Cust.setText(new StringBuilder("Customer Name: ").append(productModelList.get(holder.getAdapterPosition()).getCustname()));
-                Address.setText(new StringBuilder("Address: ").append(productModelList.get(holder.getAdapterPosition()).getAddress()));
+            Cust.setText(new StringBuilder("Customer Name: ").append(productModel.getCustname()));
+            Address.setText(new StringBuilder("Address: ").append(productModel.getAddress()));
 
-                if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
-                    N1.setVisibility(View.GONE);
-                }else{
-                    N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
-                    N2.setVisibility(View.GONE);
-                }else{
-                    N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
-                    N3.setVisibility(View.GONE);
-                }else{
-                    N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
-                    N4.setVisibility(View.GONE);
-                }else{
-                    N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
-                    N5.setVisibility(View.GONE);
-                }else{
-                    N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
-                    N6.setVisibility(View.GONE);
-                }else{
-                    N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
-                    N7.setVisibility(View.GONE);
-                }else{
-                    N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
-                    N8.setVisibility(View.GONE);
-                }else{
-                    N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()));
-                }
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        new CountDownTimer(3000, 1000) {
-                            @Override
-                            public void onTick(long l) {
-                                btnok.setVisibility(View.GONE);
-                                notyet.setVisibility(View.GONE);
-                                progressBar.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onFinish() {
-
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                                Query query = reference.orderByKey().equalTo(currentDate);
-                                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                            String key2 = holder.txtIDNUM.getText().toString();
-                                            if(snapshot.child(key2).child("name1").getValue()==null){
-                                                reff2.getRef().child("name1").removeValue();
-                                            }else{
-                                                deliverModel.setName1(holder.txtN1.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name2").getValue()==null){
-                                                reff2.getRef().child("name2").removeValue();
-                                            }else{
-                                                deliverModel.setName2(holder.txtN2.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name3").getValue()==null){
-                                                reff2.getRef().child("name3").removeValue();
-                                            }else{
-                                                deliverModel.setName3(holder.txtN3.getText().toString());
-                                            }
-
-                                            if(snapshot.child(key2).child("name4").getValue()==null){
-                                                reff2.getRef().child("name4").removeValue();
-                                            }else{
-                                                deliverModel.setName4(holder.txtN4.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name5").getValue()==null){
-                                                reff2.getRef().child("name5").removeValue();
-                                            }else{
-                                                deliverModel.setName5(holder.txtN5.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name6").getValue()==null){
-                                                reff2.getRef().child("name6").removeValue();
-                                            }else{
-                                                deliverModel.setName6(holder.txtN6.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name7").getValue()==null){
-                                                reff2.getRef().child("name7").removeValue();
-                                            }else{
-                                                deliverModel.setName7(holder.txtN7.getText().toString());
-                                            }
-                                            if(snapshot.child(key2).child("name8").getValue()==null){
-                                                reff2.getRef().child("name8").removeValue();
-                                            }else{
-                                                deliverModel.setName8(holder.txtN8.getText().toString());
-                                            }
-
-
-                                            deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
-                                            deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
-                                            deliverModel.setStatus("On Process");
-                                            deliverModel.setCustomer(holder.txtName.getText().toString());
-                                            deliverModel.setPID(holder.txtPID.getText().toString());
-                                            deliverModel.setUID(holder.txtUID.getText().toString());
-                                            deliverModel.setKey(holder.txtKey.getText().toString());
-                                            reff.child(String.valueOf(maxid +1)).child("uid").setValue(holder.txtUID.getText().toString());
-                                            reff3.child("Delivered").child(currentDate).child(String.valueOf(maxid+1)).setValue(deliverModel);
-                                            snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
-
-                                        }
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-
-                                productModelList.remove(holder.getAdapterPosition());
-                                notifyItemRemoved(holder.getAdapterPosition());
-                                notifyItemRangeChanged(holder.getAdapterPosition(),productModelList.size());
-                                btnok.setVisibility(View.VISIBLE);
-                                notyet.setVisibility(View.VISIBLE);
-                                progressBar.setVisibility(View.GONE);
-                                dialog.dismiss();
-
-                            }
-                        }.start();
-                    }
-                });
-                notyet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+            if (productModel.getName1() == null) {
+                N1.setVisibility(View.GONE);
+            } else {
+                N1.setText(new StringBuilder().append(productModel.getName1()));
             }
+            if (productModel.getName2() == null) {
+                N2.setVisibility(View.GONE);
+            } else {
+                N2.setText(new StringBuilder().append(productModel.getName2()));
+            }
+            if (productModel.getName3() == null) {
+                N3.setVisibility(View.GONE);
+            } else {
+                N3.setText(new StringBuilder().append(productModel.getName3()));
+            }
+            if (productModel.getName4() == null) {
+                N4.setVisibility(View.GONE);
+            } else {
+                N4.setText(new StringBuilder().append(productModel.getName4()));
+            }
+            if (productModel.getName5() == null) {
+                N5.setVisibility(View.GONE);
+            } else {
+                N5.setText(new StringBuilder().append(productModel.getName5()));
+            }
+            if (productModel.getName6() == null) {
+                N6.setVisibility(View.GONE);
+            } else {
+                N6.setText(new StringBuilder().append(productModel.getName6()));
+            }
+            if (productModel.getName7() == null) {
+                N7.setVisibility(View.GONE);
+            } else {
+                N7.setText(new StringBuilder().append(productModel.getName7()));
+            }
+            if (productModel.getName8() == null) {
+                N8.setVisibility(View.GONE);
+            } else {
+                N8.setText(new StringBuilder().append(productModel.getName8()));
+            }
+            btnok.setOnClickListener(view1 -> new CountDownTimer(3000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    btnok.setVisibility(View.GONE);
+                    notyet.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFinish() {
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                    Query query = reference.orderByKey().equalTo(currentDate);
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                String key2 = holder.txtIDNUM.getText().toString();
+                                if (snapshot.child(key2).child("name1").getValue() == null) {
+                                    reff2.getRef().child("name1").removeValue();
+                                } else {
+                                    deliverModel.setName1(holder.txtN1.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name2").getValue() == null) {
+                                    reff2.getRef().child("name2").removeValue();
+                                } else {
+                                    deliverModel.setName2(holder.txtN2.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name3").getValue() == null) {
+                                    reff2.getRef().child("name3").removeValue();
+                                } else {
+                                    deliverModel.setName3(holder.txtN3.getText().toString());
+                                }
+
+                                if (snapshot.child(key2).child("name4").getValue() == null) {
+                                    reff2.getRef().child("name4").removeValue();
+                                } else {
+                                    deliverModel.setName4(holder.txtN4.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name5").getValue() == null) {
+                                    reff2.getRef().child("name5").removeValue();
+                                } else {
+                                    deliverModel.setName5(holder.txtN5.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name6").getValue() == null) {
+                                    reff2.getRef().child("name6").removeValue();
+                                } else {
+                                    deliverModel.setName6(holder.txtN6.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name7").getValue() == null) {
+                                    reff2.getRef().child("name7").removeValue();
+                                } else {
+                                    deliverModel.setName7(holder.txtN7.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name8").getValue() == null) {
+                                    reff2.getRef().child("name8").removeValue();
+                                } else {
+                                    deliverModel.setName8(holder.txtN8.getText().toString());
+                                }
+
+
+                                deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
+                                deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
+                                deliverModel.setStatus("On-going Delivery");
+                                deliverModel.setCustomer(holder.txtName.getText().toString());
+                                deliverModel.setPID(holder.txtPID.getText().toString());
+                                deliverModel.setUID(holder.txtUID.getText().toString());
+                                deliverModel.setKey(holder.txtKey.getText().toString());
+                                reff.child(String.valueOf(maxid + 1)).child("uid").setValue(holder.txtUID.getText().toString());
+                                reff3.child("Delivered").child(currentDate).child(String.valueOf(maxid + 1)).setValue(deliverModel);
+                                snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    productModelList.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    notifyItemRangeChanged(holder.getAdapterPosition(), productModelList.size());
+                    btnok.setVisibility(View.VISIBLE);
+                    notyet.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    dialog.dismiss();
+
+                }
+            }.start());
+            notyet.setOnClickListener(view12 -> dialog.dismiss());
+            dialog.show();
         });
 
 
-        holder.btnAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.btnAccept.setOnClickListener(view -> {
 
-                dialog.setContentView(R.layout.delivery_dialog);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setCanceledOnTouchOutside(false);
+            dialog.setContentView(R.layout.delivery_dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCanceledOnTouchOutside(false);
 
-                ProgressBar progressBar = dialog.findViewById(R.id.progressbarDeliver);
+            ProgressBar progressBar = dialog.findViewById(R.id.progressbarDeliver);
 
-                Button btnok = dialog.findViewById(R.id.btn_okay2);
-                Button notyet = dialog.findViewById(R.id.btn_notyet);
-                Button decline = dialog.findViewById(R.id.btn_decline);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Name,Address,count;
-                N1 = dialog.findViewById(R.id.txtName1);
-                N2 = dialog.findViewById(R.id.txtName2);
-                N3 = dialog.findViewById(R.id.txtName3);
-                N4 = dialog.findViewById(R.id.txtName4);
-                N5 = dialog.findViewById(R.id.txtName5);
-                N6 = dialog.findViewById(R.id.txtName6);
-                N7 = dialog.findViewById(R.id.txtName7);
-                N8 = dialog.findViewById(R.id.txtName8);
-                count = dialog.findViewById(R.id.txtcountdown);
-                Name = dialog.findViewById(R.id.txtCustomerName);
-                Address = dialog.findViewById(R.id.txtAddressDialog);
-                Name.setText(new StringBuilder("Customer Name: ").append(productModelList.get(holder.getAdapterPosition()).getCustname()));
-                Address.setText(new StringBuilder("Address: ").append(productModelList.get(holder.getAdapterPosition()).getAddress()));
+            Button btnok = dialog.findViewById(R.id.btn_okay2);
+            Button notyet = dialog.findViewById(R.id.btn_notyet);
+            Button decline = dialog.findViewById(R.id.btn_decline);
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address, count;
+            N1 = dialog.findViewById(R.id.txtName1);
+            N2 = dialog.findViewById(R.id.txtName2);
+            N3 = dialog.findViewById(R.id.txtName3);
+            N4 = dialog.findViewById(R.id.txtName4);
+            N5 = dialog.findViewById(R.id.txtName5);
+            N6 = dialog.findViewById(R.id.txtName6);
+            N7 = dialog.findViewById(R.id.txtName7);
+            N8 = dialog.findViewById(R.id.txtName8);
+            count = dialog.findViewById(R.id.txtcountdown);
+            Name = dialog.findViewById(R.id.txtCustomerName);
+            Address = dialog.findViewById(R.id.txtAddressDialog);
+            Name.setText(new StringBuilder("Customer Name: ").append(productModel.getCustname()));
+            Address.setText(new StringBuilder("Address: ").append(productModel.getAddress()));
 
-                if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
-                    N1.setVisibility(View.GONE);
-                }else{
-                    N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
-                    N2.setVisibility(View.GONE);
-                }else{
-                    N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
-                    N3.setVisibility(View.GONE);
-                }else{
-                    N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
-                    N4.setVisibility(View.GONE);
-                }else{
-                    N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
-                    N5.setVisibility(View.GONE);
-                }else{
-                    N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
-                    N6.setVisibility(View.GONE);
-                }else{
-                    N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
-                    N7.setVisibility(View.GONE);
-                }else{
-                    N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()));
-                }
-                if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
-                    N8.setVisibility(View.GONE);
-                }else{
-                    N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()));
-                }
-                new CountDownTimer(5000, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                        count.setText("Decline will\nbe Visible in(" + millisUntilFinished / 1000+")");
-                    }
-
-                    public void onFinish() {
-                        if(progressBar.isShown()) {
-
-                            decline.setVisibility(View.GONE);
-
-                        }else{
-                            decline.setVisibility(View.VISIBLE);
-                            count.setVisibility(View.GONE);
-                        }
-                    }
-
-                }.start();
-                decline.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(context.getApplicationContext(), "You Press the Decline Button",Toast.LENGTH_LONG).show();
-                    }
-                });
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        new CountDownTimer(3000, 1000) {
-                            @Override
-                            public void onTick(long l) {
-                                btnok.setVisibility(View.GONE);
-                                notyet.setVisibility(View.GONE);
-                                count.setVisibility(View.GONE);
-                                decline.setVisibility(View.GONE);
-                                progressBar.setVisibility(View.VISIBLE);
-                            }
-
-                            @Override
-                            public void onFinish() {
-
-
-                                DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
-                                        .child("Users")
-                                        .child(holder.txtUID.getText().toString())
-                                        .child("OrderHistory")
-                                        .child(holder.txtPID.getText().toString());
-
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                                Query query = reference.orderByKey().equalTo(currentDate);
-                                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                reffUsers.child("status").setValue("Order Accepted");
-                                                reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("Accepted");
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                                btnok.setVisibility(View.VISIBLE);
-                                notyet.setVisibility(View.VISIBLE);
-                                progressBar.setVisibility(View.GONE);
-                                dialog.dismiss();
-
-                            }
-                        }.start();
-                    }
-                });
-                notyet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-
+            if (productModel.getName1() == null) {
+                N1.setVisibility(View.GONE);
+            } else {
+                N1.setText(new StringBuilder().append(productModel.getName1()));
             }
+            if (productModel.getName2() == null) {
+                N2.setVisibility(View.GONE);
+            } else {
+                N2.setText(new StringBuilder().append(productModel.getName2()));
+            }
+            if (productModel.getName3() == null) {
+                N3.setVisibility(View.GONE);
+            } else {
+                N3.setText(new StringBuilder().append(productModel.getName3()));
+            }
+            if (productModel.getName4() == null) {
+                N4.setVisibility(View.GONE);
+            } else {
+                N4.setText(new StringBuilder().append(productModel.getName4()));
+            }
+            if (productModel.getName5() == null) {
+                N5.setVisibility(View.GONE);
+            } else {
+                N5.setText(new StringBuilder().append(productModel.getName5()));
+            }
+            if (productModel.getName6() == null) {
+                N6.setVisibility(View.GONE);
+            } else {
+                N6.setText(new StringBuilder().append(productModel.getName6()));
+            }
+            if (productModel.getName7() == null) {
+                N7.setVisibility(View.GONE);
+            } else {
+                N7.setText(new StringBuilder().append(productModel.getName7()));
+            }
+            if (productModel.getName8() == null) {
+                N8.setVisibility(View.GONE);
+            } else {
+                N8.setText(new StringBuilder().append(productModel.getName8()));
+            }
+            new CountDownTimer(5000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    count.setText("Decline will\nbe Visible in(" + millisUntilFinished / 1000 + ")");
+                }
+
+                public void onFinish() {
+                    if (progressBar.isShown()) {
+
+                        decline.setVisibility(View.GONE);
+
+                    } else {
+                        decline.setVisibility(View.VISIBLE);
+                        count.setVisibility(View.GONE);
+                    }
+                }
+
+            }.start();
+            decline.setOnClickListener(view13 -> Toast.makeText(context.getApplicationContext(), "You Press the Decline Button", Toast.LENGTH_LONG).show());
+            btnok.setOnClickListener(view14 -> new CountDownTimer(3000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    btnok.setVisibility(View.GONE);
+                    notyet.setVisibility(View.GONE);
+                    count.setVisibility(View.GONE);
+                    decline.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFinish() {
+
+
+                    DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(holder.txtUID.getText().toString())
+                            .child("OrderHistory")
+                            .child(holder.txtPID.getText().toString());
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                    Query query = reference.orderByKey().equalTo(currentDate);
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            reffUsers.child("status").setValue("Order Accepted");
+                            reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("Accepted");
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    btnok.setVisibility(View.VISIBLE);
+                    notyet.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    dialog.dismiss();
+
+                }
+            }.start());
+            notyet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+
         });
     }
 
 
-
-
     @Override
     public int getItemCount() {
+
         return productModelList.size();
     }
 
@@ -552,7 +519,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
         public MyOrderHolder(@NonNull View itemView) {
             super(itemView);
-            unbinder = ButterKnife.bind(this,itemView);
+            unbinder = ButterKnife.bind(this, itemView);
         }
     }
 }

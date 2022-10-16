@@ -313,11 +313,11 @@
                     android:fontFamily="@font/aleo_light"
                     android:gravity="center"
                     android:text="Cancel Order"
-                    android:textColor="@color/black"
-                    android:textSize="5sp"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:cornerRadius="10dp"
-                    app:strokeColor="@color/black"
+                    app:strokeColor="@color/red"
                     app:strokeWidth="1dp" />
 
             </RelativeLayout>

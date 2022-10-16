@@ -9,15 +9,14 @@
     android:id="@+id/hidewhenfinish">
 
     <LinearLayout
-        android:backgroundTint="#80FFFFFF"
-        android:backgroundTintMode="src_over"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:padding="10dp"
-        android:background="@drawable/waterlogo">
+        android:background="@drawable/waterlogo"
+        android:backgroundTint="#80FFFFFF"
+        android:backgroundTintMode="src_over"
+        android:padding="10dp">
 
         <LinearLayout
-            android:background="@drawable/customborder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -36,8 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="249dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="250dp"
                     android:fontFamily="@font/bungee"
                     android:gravity="center"
                     android:text="Customer Name:"
@@ -265,7 +264,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="138dp"
+                    android:layout_marginEnd="198dp"
                     android:text="Status:"
                     android:textColor="@color/black"
                     android:textSize="10sp" />
@@ -297,7 +296,7 @@
                     android:backgroundTint="@drawable/button_text_color"
                     android:fontFamily="@font/aleo_light"
                     android:gravity="center"
-                    android:text="Proceed"
+                    android:text="Finish"
                     android:textColor="@color/white"
                     android:textSize="8sp"
                     android:textStyle="bold" />
@@ -313,7 +312,8 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/personalID"
                     android:layout_width="wrap_content"
@@ -325,7 +325,8 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/uid"
                     android:layout_width="wrap_content"
@@ -337,7 +338,7 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
