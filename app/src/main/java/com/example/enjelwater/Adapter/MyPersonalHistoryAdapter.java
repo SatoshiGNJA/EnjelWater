@@ -147,9 +147,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtOrderDate.setText(new StringBuilder().append(personalOrderModelList.get(position).getOrderdate()));
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
 
-        if (holder.txtStat.getText().toString().equals("Order Accepted")){
+        if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
-            holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
+            holder.txtStat.setTextColor(Color.parseColor("#8B8000"));
         }else if(holder.txtStat.getText().toString().equals("Finish")){
             holder.btnCORD.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
