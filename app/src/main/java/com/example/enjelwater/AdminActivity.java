@@ -20,7 +20,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -52,6 +54,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     private DrawerLayout drawerLayout;
     long maxid = 0;
 
+    SharedPreferences sharedPreferences;
+
+    public static final String fileName = "login";
+    public static final String Username = "username";
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
@@ -72,6 +80,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        sharedPreferences = getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        if(sharedPreferences.contains(Username)){
+            Toast.makeText(this, sharedPreferences.getString(Username,""), Toast.LENGTH_SHORT).show();
+        }
 
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -223,8 +236,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 replaceFragment(new AdminProfileFragment());
                 break;
             case R.id.nav_logout:
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
                 finish();
                 break;
             case R.id.nav_admin_finish:

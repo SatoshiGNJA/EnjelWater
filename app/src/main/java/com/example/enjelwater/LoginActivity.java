@@ -7,6 +7,7 @@ import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -48,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
     Dialog dialog;
     ConnectivityManager connectivityManager;
 
+    SharedPreferences sharedPreference;
+
+    public static final String fileName = "login";
+    public static final String Username = "username";
+    public static final String Password = "password";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +74,14 @@ public class LoginActivity extends AppCompatActivity {
         dialog=new Dialog(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+
+
+        sharedPreference = getSharedPreferences(fileName,Context.MODE_PRIVATE);
+        if(sharedPreference.contains(Username)){
+            Intent i = new Intent(getApplicationContext(),AdminActivity.class);
+            startActivity(i);
+        }
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,6 +278,11 @@ public class LoginActivity extends AppCompatActivity {
                     String adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
 
                     if(adminuser.equals(userEnteredUsername)&&adminpass.equals(userEnteredPassword)){
+
+                        SharedPreferences.Editor editor = sharedPreference.edit();
+                        editor.putString(Username,userEnteredUsername);
+                        editor.putString(Password,userEnteredPassword);
+                        editor.commit();
 
                         Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
 
