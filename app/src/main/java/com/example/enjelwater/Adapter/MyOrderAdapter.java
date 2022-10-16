@@ -239,6 +239,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 @Override
                 public void onFinish() {
 
+                    DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(holder.txtUID.getText().toString())
+                            .child("OrderHistory")
+                            .child(holder.txtPID.getText().toString());
+
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
                     Query query = reference.orderByKey().equalTo(currentDate);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -297,8 +303,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 deliverModel.setPID(holder.txtPID.getText().toString());
                                 deliverModel.setUID(holder.txtUID.getText().toString());
                                 deliverModel.setKey(holder.txtKey.getText().toString());
-                                reff.child(String.valueOf(maxid + 1)).child("uid").setValue(holder.txtUID.getText().toString());
-                                reff3.child("Delivered").child(currentDate).child(String.valueOf(maxid + 1)).setValue(deliverModel);
+                                reffUsers.child("status").setValue("On-going Delivery");
+                                reff3.child("Delivered").child(currentDate).child(holder.txtKey.getText().toString()).setValue(deliverModel);
                                 snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                             }
@@ -410,19 +416,10 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 }
 
             }.start();
-            decline.setOnClickListener(view13 -> Toast.makeText(context.getApplicationContext(), "You Press the Decline Button", Toast.LENGTH_LONG).show());
-            btnok.setOnClickListener(view14 -> new CountDownTimer(3000, 1000) {
+            decline.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onTick(long l) {
-                    btnok.setVisibility(View.GONE);
-                    notyet.setVisibility(View.GONE);
-                    count.setVisibility(View.GONE);
-                    decline.setVisibility(View.GONE);
-                    progressBar.setVisibility(View.VISIBLE);
-                }
+                public void onClick(View view) {
 
-                @Override
-                public void onFinish() {
                     DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
                             .child("Users")
                             .child(holder.txtUID.getText().toString())
@@ -434,8 +431,60 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            reffUsers.child("status").setValue("On Process");
-                            reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
+
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                String key2 = holder.txtIDNUM.getText().toString();
+                                if (snapshot.child(key2).child("name1").getValue() == null) {
+                                    reff2.getRef().child("name1").removeValue();
+                                } else {
+                                    deliverModel.setName1(holder.txtN1.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name2").getValue() == null) {
+                                    reff2.getRef().child("name2").removeValue();
+                                } else {
+                                    deliverModel.setName2(holder.txtN2.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name3").getValue() == null) {
+                                    reff2.getRef().child("name3").removeValue();
+                                } else {
+                                    deliverModel.setName3(holder.txtN3.getText().toString());
+                                }
+
+                                if (snapshot.child(key2).child("name4").getValue() == null) {
+                                    reff2.getRef().child("name4").removeValue();
+                                } else {
+                                    deliverModel.setName4(holder.txtN4.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name5").getValue() == null) {
+                                    reff2.getRef().child("name5").removeValue();
+                                } else {
+                                    deliverModel.setName5(holder.txtN5.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name6").getValue() == null) {
+                                    reff2.getRef().child("name6").removeValue();
+                                } else {
+                                    deliverModel.setName6(holder.txtN6.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name7").getValue() == null) {
+                                    reff2.getRef().child("name7").removeValue();
+                                } else {
+                                    deliverModel.setName7(holder.txtN7.getText().toString());
+                                }
+                                if (snapshot.child(key2).child("name8").getValue() == null) {
+                                    reff2.getRef().child("name8").removeValue();
+                                } else {
+                                    deliverModel.setName8(holder.txtN8.getText().toString());
+                                }
+                                deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
+                                deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
+                                deliverModel.setStatus("Cancel");
+                                deliverModel.setCustomer(holder.txtName.getText().toString());
+                                reffUsers.removeValue();
+                                reff.child(String.valueOf(maxid + 1)).child("uid").setValue(holder.txtUID.getText().toString());
+                                reff3.child("Cancel").child(currentDate).child(String.valueOf(maxid + 1)).setValue(deliverModel);
+                                snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+
+                            }
 
                         }
 
@@ -444,13 +493,56 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                         }
                     });
-                    btnok.setVisibility(View.VISIBLE);
-                    notyet.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
+
+                    productModelList.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    notifyItemRangeChanged(holder.getAdapterPosition(), productModelList.size());
                     dialog.dismiss();
 
+
                 }
-            }.start());
+            });
+
+            btnok.setOnClickListener(view14 -> new CountDownTimer(3000, 1000) {
+                        @Override
+                        public void onTick(long l) {
+                            btnok.setVisibility(View.GONE);
+                            notyet.setVisibility(View.GONE);
+                            count.setVisibility(View.GONE);
+                            decline.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                                    .child("Users")
+                                    .child(holder.txtUID.getText().toString())
+                                    .child("OrderHistory")
+                                    .child(holder.txtPID.getText().toString());
+
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                            Query query = reference.orderByKey().equalTo(currentDate);
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    reffUsers.child("status").setValue("On Process");
+                                    reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            btnok.setVisibility(View.VISIBLE);
+                            notyet.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.GONE);
+                            dialog.dismiss();
+
+                        }
+                    }.start());
             notyet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

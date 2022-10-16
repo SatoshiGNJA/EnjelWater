@@ -278,6 +278,19 @@
                     android:textSize="10sp"
                     android:visibility="gone" />
 
+                <TextView
+                    android:id="@+id/pid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="135dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="100sp"
+                    android:visibility="gone" />
+
                 <Button
                     android:id="@+id/btnOrderReceived"
                     android:layout_width="82dp"

@@ -7,6 +7,7 @@ public class PersonalOrderModel {
     String address;
     String status;
     String orderdate;
+    String personalID;
     float TotalPrice;
 
     public PersonalOrderModel() {
@@ -114,5 +115,13 @@ public class PersonalOrderModel {
 
     public void setTotalPrice(float totalPrice) {
         TotalPrice = totalPrice;
+    }
+
+    public String getPersonalID() {
+        return personalID;
+    }
+
+    public void setPersonalID(String personalID) {
+        this.personalID = personalID;
     }
 }

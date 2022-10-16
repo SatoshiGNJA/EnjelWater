@@ -45,7 +45,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
     private List<PersonalOrderModel> personalOrderModelList;
     Dialog dialog;
     long maxid=0;
-    DatabaseReference reff,reff2;
+    long finishmaxid = 0;
+    DatabaseReference reff,reff2,reff3,reff4,reff5;
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
     PersonalOrderModel personalOrderModel;
 
@@ -99,6 +100,20 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
+        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate).child(String.valueOf(maxid + 1));
+        reff5.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reff3 = FirebaseDatabase.getInstance().getReference();
 
         if(personalOrderModelList.get(position).getName1() == null){
             holder.txtN1.setVisibility(View.GONE);
@@ -145,17 +160,97 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(personalOrderModelList.get(position).getTotalPrice()));
         holder.txtOrderDate.setText(new StringBuilder().append(personalOrderModelList.get(position).getOrderdate()));
+        holder.txtPID.setText(new StringBuilder().append(personalOrderModelList.get(position).getPersonalID()));
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
+
 
         if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
+            holder.btnreceived.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#8B8000"));
         }else if(holder.txtStat.getText().toString().equals("Finish")){
             holder.btnCORD.setVisibility(View.GONE);
+            holder.btnreceived.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
-        }else{
-            holder.btnCORD.setVisibility(View.VISIBLE);
+        }else if(holder.txtStat.getText().toString().equals("On-going Delivery")){
+            holder.btnCORD.setVisibility(View.GONE);
+            holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
         }
+        holder.btnreceived.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(currentuser)
+                        .child("OrderHistory")
+                        .child(holder.txtPID.getText().toString());
+
+                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(currentuser).child("OrderHistory");
+                Query query = reference2.orderByKey().equalTo(holder.txtPID.getText().toString());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            if(snapshot.child("name1").getValue()==null){
+                                reff5.getRef().child("name1").removeValue();
+                            }else{
+                                personalOrderModel.setName1(holder.txtN1.getText().toString());
+                            }
+                            if(snapshot.child("name2").getValue()==null){
+                                reff5.getRef().child("name2").removeValue();
+                            }else{
+                                personalOrderModel.setName2(holder.txtN2.getText().toString());
+                            }
+                            if(snapshot.child("name3").getValue()==null){
+                                reff5.getRef().child("name3").removeValue();
+                            }else{
+                                personalOrderModel.setName3(holder.txtN3.getText().toString());
+                            }
+
+                            if(snapshot.child("name4").getValue()==null){
+                                reff5.getRef().child("name4").removeValue();
+                            }else{
+                                personalOrderModel.setName4(holder.txtN4.getText().toString());
+                            }
+                            if(snapshot.child("name5").getValue()==null){
+                                reff5.getRef().child("name5").removeValue();
+                            }else{
+                                personalOrderModel.setName5(holder.txtN5.getText().toString());
+                            }
+                            if(snapshot.child("name6").getValue()==null){
+                                reff5.getRef().child("name6").removeValue();
+                            }else{
+                                personalOrderModel.setName6(holder.txtN6.getText().toString());
+                            }
+                            if(snapshot.child("name7").getValue()==null){
+                                reff5.getRef().child("name7").removeValue();
+                            }else{
+                                personalOrderModel.setName7(holder.txtN7.getText().toString());
+                            }
+                            if(snapshot.child("name8").getValue()==null){
+                                reff5.getRef().child("name8").removeValue();
+                            }else{
+                                personalOrderModel.setName8(holder.txtN8.getText().toString());
+                            }
+
+
+                            personalOrderModel.setTotalPrice(Float.parseFloat(holder.txtTotalOrderP.getText().toString().trim()));
+                            personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
+                            personalOrderModel.setStatus("Finish");
+                            reffUsers.child("status").setValue("Finish");
+                            reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
+                            reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         holder.btnCORD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -314,7 +409,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             personalOrderModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
                                             personalOrderModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
                                             personalOrderModel.setStatus("Cancel");
-
                                             reff.child(String.valueOf(maxid + 1)).setValue(personalOrderModel);
                                             String key2 = holder.txtIDNUM.getText().toString();
                                             String value = String.valueOf(snapshot.child(key2).child("key").getValue());
@@ -392,6 +486,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         Button btnCORD;
         @BindView(R.id.btnOrderReceived)
         Button btnreceived;
+        @BindView(R.id.pid)
+        TextView txtPID;
 
 
         Unbinder unbinder;
