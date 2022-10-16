@@ -207,6 +207,8 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),UserProfileActivity.class);
+                startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
@@ -238,6 +240,8 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(),UserProfileActivity.class);
+        startActivity(intent);
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }

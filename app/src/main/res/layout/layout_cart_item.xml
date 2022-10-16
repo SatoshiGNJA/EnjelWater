@@ -30,7 +30,7 @@
             
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -93,13 +93,6 @@
                     android:textSize="20sp" />
                 
             </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/btnDelete"
-                android:src="@drawable/ic_baseline_clear_24"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
             
         </LinearLayout>
     </LinearLayout>

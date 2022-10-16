@@ -231,6 +231,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                 Intent intent = new Intent(UserProfileActivity.this,PersonalOrderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                finish();
+
 
             }
         });

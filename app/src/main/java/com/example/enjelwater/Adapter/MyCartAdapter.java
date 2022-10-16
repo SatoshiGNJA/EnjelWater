@@ -1,11 +1,15 @@
 package com.example.enjelwater.Adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +42,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
     private List<CartModel> cartModelList;
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+    Dialog dialog;
+
     public MyCartAdapter(Context context, List<CartModel> cartModelList) {
         this.context = context;
         this.cartModelList = cartModelList;
@@ -52,6 +58,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
 
     @Override
     public void onBindViewHolder(@NonNull MyCartViewHolder holder, int position) {
+        dialog = new Dialog(context);
+
         Glide.with(context)
                 .load(cartModelList.get(position).getImage())
                 .into(holder.imageView);
@@ -61,17 +69,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         holder.txtTotal.setText(new StringBuilder("₱").append(cartModelList.get(position).getTotalPrice() ));
 
         holder.btnMinus.setOnClickListener(view -> {
-            minusCartItem(holder,cartModelList.get(position));
+            minusCartItem(holder,cartModelList.get(holder.getAdapterPosition()));
         });
         holder.btnPlus.setOnClickListener(view -> {
             plusCartItem(holder,cartModelList.get(position));
-        });
-        holder.btnDelete.setOnClickListener(view -> {
-            deleteall(holder,cartModelList.get(position));
-            deleteFromFirebase(cartModelList.get(position));
-            cartModelList.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position,cartModelList.size());
         });
 
     }
@@ -98,7 +99,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
     }
 
     private void minusCartItem(MyCartViewHolder holder, CartModel cartModel) {
-        if(cartModel.getQuantity() > 1){
+        if(cartModel.getQuantity() > 0){
             cartModel.setQuantity(cartModel.getQuantity()-1);
             cartModel.setTotalPrice(cartModel.getTotalPrice());
             cartModel.setPrice(cartModel.getPrice());
@@ -108,6 +109,34 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
             holder.txtTotal.setText(new StringBuilder("₱").append(cartModel.getTotalPrice()));
             holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModel.getPrice()));
             updateFirebase(cartModel);
+            if(cartModel.getQuantity() == 0){
+                dialog.setContentView(R.layout.remove_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button remove = dialog.findViewById(R.id.btn_remove);
+                Button dontremove = dialog.findViewById(R.id.btn_dont_remove);
+
+                remove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        deleteall(holder,cartModelList.get(holder.getAdapterPosition()));
+                        deleteFromFirebase(cartModelList.get(holder.getAdapterPosition()));
+                        cartModelList.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                        notifyItemRangeChanged(holder.getAdapterPosition(),cartModelList.size());
+                        dialog.dismiss();
+                    }
+                });
+                dontremove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        plusCartItem(holder,cartModelList.get(holder.getAdapterPosition()));
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
 
         }
 
@@ -150,8 +179,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         ImageView btnMinus;
         @BindView(R.id.btnPlus)
         ImageView btnPlus;
-        @BindView(R.id.btnDelete)
-        ImageView btnDelete;
         @BindView(R.id.imageView)
         ImageView imageView;
         @BindView(R.id.txtName)
