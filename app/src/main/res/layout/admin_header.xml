@@ -25,6 +25,6 @@
         android:backgroundTint="@color/black"
         android:text="ADMIN"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/red" />
+        android:textColor="@color/white" />
 
 </LinearLayout>
