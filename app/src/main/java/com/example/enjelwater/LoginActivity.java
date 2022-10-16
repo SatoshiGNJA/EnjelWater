@@ -78,10 +78,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         sharedPreference = getSharedPreferences(fileName,Context.MODE_PRIVATE);
-        if(sharedPreference.contains(Username)){
-            Intent i = new Intent(getApplicationContext(),AdminActivity.class);
-            startActivity(i);
-        }
 
         callSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreference.edit();
                         editor.putString(Username,userEnteredUsername);
                         editor.putString(Password,userEnteredPassword);
-                        editor.commit();
+                        editor.apply();
 
                         Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
 

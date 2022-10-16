@@ -2,7 +2,9 @@ package com.example.enjelwater;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,10 +19,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -32,6 +40,12 @@ public class SplashActivity extends AppCompatActivity {
     TextView logo,slogan;
     VideoView videoView;
     MediaPlayer player;
+
+    SharedPreferences sharedPreference;
+
+    public static final String fileName = "login";
+    public static final String Username = "username";
+    public static final String Password = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,24 +99,32 @@ public class SplashActivity extends AppCompatActivity {
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-                if(firebaseUser != null) {
-                    Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        if(firebaseUser != null) {
+                            Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
-                    startActivity(i, options.toBundle());
-                    finish();
-                }else{
-                    Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
+                            startActivity(i, options.toBundle());
+                            finish();
+                        }else{
+                            sharedPreference = getSharedPreferences(fileName, Context.MODE_PRIVATE);
+                            if(sharedPreference.contains(Username)){
+                                Intent i = new Intent(getApplicationContext(),AdminActivity.class);
+                                startActivity(i);
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
 
-                    Pair[] pairs = new Pair[2];
-                    pairs[0] = new Pair<View,String>(image,"logo_image");
-                    pairs[1] = new Pair<View,String>(logo,"logo_text");
+                                Pair[] pairs = new Pair[2];
+                                pairs[0] = new Pair<View,String>(image,"logo_image");
+                                pairs[1] = new Pair<View,String>(logo,"logo_text");
 
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
-                    startActivity(intent, options.toBundle());
-                    finish();
-                }
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
+                                startActivity(intent, options.toBundle());
+                                finish();
+                            }
+                        }
             }
         },SPLASH_SCREEN);
 

@@ -82,9 +82,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
         sharedPreferences = getSharedPreferences(fileName, Context.MODE_PRIVATE);
-        if(sharedPreferences.contains(Username)){
-            Toast.makeText(this, sharedPreferences.getString(Username,""), Toast.LENGTH_SHORT).show();
-        }
 
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -239,6 +236,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(i);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
                 break;
             case R.id.nav_admin_finish:
