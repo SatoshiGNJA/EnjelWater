@@ -279,14 +279,35 @@
                     android:visibility="gone" />
 
                 <Button
+                    android:id="@+id/btnOrderReceived"
+                    android:layout_width="82dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_toEndOf="@+id/txtTotalOrderPrice"
+                    android:backgroundTint="#00FF00"
+                    android:fontFamily="@font/aleo_light"
+                    android:gravity="center"
+                    android:text="Order Received"
+                    android:textColor="@color/black"
+                    android:textSize="5sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp" />
+
+                <Button
                     android:id="@+id/btncancelorder"
                     android:layout_width="82dp"
                     android:layout_height="32dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_toEndOf="@+id/txtTotalOrderPrice"
                     android:backgroundTint="@color/red"
                     android:fontFamily="@font/aleo_light"

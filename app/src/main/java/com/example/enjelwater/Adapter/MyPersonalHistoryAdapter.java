@@ -320,7 +320,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             String value = String.valueOf(snapshot.child(key2).child("key").getValue());
                                             snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
                                             refference1.child(value).removeValue();
-                                            Toast.makeText(context.getApplicationContext(),value,Toast.LENGTH_LONG).show();
 
                                         }
 
@@ -391,6 +390,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         TextView txtIDNUM;
         @BindView(R.id.btncancelorder)
         Button btnCORD;
+        @BindView(R.id.btnOrderReceived)
+        Button btnreceived;
 
 
         Unbinder unbinder;
