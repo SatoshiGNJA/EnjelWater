@@ -267,7 +267,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="5dp"
                         android:backgroundTint="@drawable/button_print"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Print"
