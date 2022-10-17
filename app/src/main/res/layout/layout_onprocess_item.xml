@@ -237,7 +237,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/source_sans_pro"
                         android:gravity="center"
                         android:text="Total Price:"
@@ -249,8 +248,6 @@
                         android:id="@+id/txtTotalOrderPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/source_sans_pro"
                         android:gravity="center"
                         android:text="XXXX"
@@ -268,28 +265,25 @@
                     <Button
                         android:id="@+id/btnPrint"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="wrap_content"
                         android:backgroundTint="@drawable/button_print"
                         android:fontFamily="@font/source_sans_pro"
-                        android:gravity="right"
                         android:text="Print"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btnOutForDeliver"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
                         android:backgroundTint="@drawable/button_finish"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Finish"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </FrameLayout>

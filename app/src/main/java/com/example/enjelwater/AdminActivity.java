@@ -55,7 +55,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     DatabaseReference reff;
     private DrawerLayout drawerLayout;
     long maxid = 0;
-    int id = 0;
 
     SharedPreferences sharedPreferences;
 
@@ -106,6 +105,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        Toast.makeText(this, String.valueOf(maxid), Toast.LENGTH_SHORT).show();
+
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
@@ -114,7 +115,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 
-                if(snapshot.exists()){
+                if(snapshot.child(String.valueOf(maxid+1)).exists()){
                     Toast.makeText(AdminActivity.this, "exist", Toast.LENGTH_SHORT).show();
                 }else{
 

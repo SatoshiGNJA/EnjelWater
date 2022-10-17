@@ -125,9 +125,6 @@ public class MainActivity extends AppCompatActivity {
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), AdminActivity.class);
-                i.putExtra("frgToLoad", 2);
-                startActivity(i);
                 finish();
             }
         });
@@ -231,9 +228,6 @@ public class MainActivity extends AppCompatActivity {
         }
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, AdminActivity.class);
-        i.putExtra("frgToLoad", 2);
-        startActivity(i);
         finish();
         super.onBackPressed();
     }
