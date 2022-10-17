@@ -182,10 +182,20 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate);
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(currentDate);
         reference2.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
@@ -216,16 +226,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                     System.out.println(exception);
 
                 }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
 
             }
 

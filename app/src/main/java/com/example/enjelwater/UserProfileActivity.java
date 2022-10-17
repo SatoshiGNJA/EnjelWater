@@ -147,7 +147,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                     PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this,"My Notification");
-                    builder.setContentTitle("You order is now On Process");
+                    builder.setContentTitle("You order is now being On Process");
                     builder.setContentText("Go Check it OUT!");
                     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
                     builder.setSmallIcon(R.mipmap.ic_launcher_round);

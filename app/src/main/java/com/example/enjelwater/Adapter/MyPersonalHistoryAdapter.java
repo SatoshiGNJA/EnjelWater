@@ -2,6 +2,7 @@ package com.example.enjelwater.Adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
@@ -17,8 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
+import com.example.enjelwater.MainActivity;
 import com.example.enjelwater.Model.PersonalOrderModel;
 import com.example.enjelwater.Model.ProductModel;
+import com.example.enjelwater.PersonalOrderActivity;
 import com.example.enjelwater.R;
 import com.example.enjelwater.SummaryActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -180,76 +183,101 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             @Override
             public void onClick(View view) {
 
-                DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
-                        .child("Users")
-                        .child(currentuser)
-                        .child("OrderHistory")
-                        .child(holder.txtPID.getText().toString());
+                dialog.setContentView(R.layout.order_received_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
 
-                DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(currentuser).child("OrderHistory");
-                Query query = reference2.orderByKey().equalTo(holder.txtPID.getText().toString());
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                Button btnok = dialog.findViewById(R.id.btn_finish);
+                Button notyet = dialog.findViewById(R.id.btn_nope);
+
+                btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(snapshot.child("name1").getValue()==null){
-                                reff5.getRef().child("name1").removeValue();
-                            }else{
-                                personalOrderModel.setName1(holder.txtN1.getText().toString());
-                            }
-                            if(snapshot.child("name2").getValue()==null){
-                                reff5.getRef().child("name2").removeValue();
-                            }else{
-                                personalOrderModel.setName2(holder.txtN2.getText().toString());
-                            }
-                            if(snapshot.child("name3").getValue()==null){
-                                reff5.getRef().child("name3").removeValue();
-                            }else{
-                                personalOrderModel.setName3(holder.txtN3.getText().toString());
+                    public void onClick(View view) {
+
+                        DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                                .child("Users")
+                                .child(currentuser)
+                                .child("OrderHistory")
+                                .child(holder.txtPID.getText().toString());
+
+                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Users").child(currentuser).child("OrderHistory");
+                        Query query = reference2.orderByKey().equalTo(holder.txtPID.getText().toString());
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    if(snapshot.child("name1").getValue()==null){
+                                        reff5.getRef().child("name1").removeValue();
+                                    }else{
+                                        personalOrderModel.setName1(holder.txtN1.getText().toString());
+                                    }
+                                    if(snapshot.child("name2").getValue()==null){
+                                        reff5.getRef().child("name2").removeValue();
+                                    }else{
+                                        personalOrderModel.setName2(holder.txtN2.getText().toString());
+                                    }
+                                    if(snapshot.child("name3").getValue()==null){
+                                        reff5.getRef().child("name3").removeValue();
+                                    }else{
+                                        personalOrderModel.setName3(holder.txtN3.getText().toString());
+                                    }
+
+                                    if(snapshot.child("name4").getValue()==null){
+                                        reff5.getRef().child("name4").removeValue();
+                                    }else{
+                                        personalOrderModel.setName4(holder.txtN4.getText().toString());
+                                    }
+                                    if(snapshot.child("name5").getValue()==null){
+                                        reff5.getRef().child("name5").removeValue();
+                                    }else{
+                                        personalOrderModel.setName5(holder.txtN5.getText().toString());
+                                    }
+                                    if(snapshot.child("name6").getValue()==null){
+                                        reff5.getRef().child("name6").removeValue();
+                                    }else{
+                                        personalOrderModel.setName6(holder.txtN6.getText().toString());
+                                    }
+                                    if(snapshot.child("name7").getValue()==null){
+                                        reff5.getRef().child("name7").removeValue();
+                                    }else{
+                                        personalOrderModel.setName7(holder.txtN7.getText().toString());
+                                    }
+                                    if(snapshot.child("name8").getValue()==null){
+                                        reff5.getRef().child("name8").removeValue();
+                                    }else{
+                                        personalOrderModel.setName8(holder.txtN8.getText().toString());
+                                    }
+
+
+                                    personalOrderModel.setTotalPrice(Float.parseFloat(holder.txtTotalOrderP.getText().toString().trim()));
+                                    personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
+                                    personalOrderModel.setStatus("Finish");
+                                    personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
+                                    reffUsers.child("status").setValue("Finish");
+                                    reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
+                                    reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
+                                }
                             }
 
-                            if(snapshot.child("name4").getValue()==null){
-                                reff5.getRef().child("name4").removeValue();
-                            }else{
-                                personalOrderModel.setName4(holder.txtN4.getText().toString());
-                            }
-                            if(snapshot.child("name5").getValue()==null){
-                                reff5.getRef().child("name5").removeValue();
-                            }else{
-                                personalOrderModel.setName5(holder.txtN5.getText().toString());
-                            }
-                            if(snapshot.child("name6").getValue()==null){
-                                reff5.getRef().child("name6").removeValue();
-                            }else{
-                                personalOrderModel.setName6(holder.txtN6.getText().toString());
-                            }
-                            if(snapshot.child("name7").getValue()==null){
-                                reff5.getRef().child("name7").removeValue();
-                            }else{
-                                personalOrderModel.setName7(holder.txtN7.getText().toString());
-                            }
-                            if(snapshot.child("name8").getValue()==null){
-                                reff5.getRef().child("name8").removeValue();
-                            }else{
-                                personalOrderModel.setName8(holder.txtN8.getText().toString());
-                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-
-                            personalOrderModel.setTotalPrice(Float.parseFloat(holder.txtTotalOrderP.getText().toString().trim()));
-                            personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
-                            personalOrderModel.setStatus("Finish");
-                            personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
-                            reffUsers.child("status").setValue("Finish");
-                            reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
-                            reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                        personalOrderModelList.remove(holder.getAdapterPosition());
+                        notifyItemRemoved(holder.getAdapterPosition());
+                        notifyItemRangeChanged(holder.getAdapterPosition(), personalOrderModelList.size());
+                        dialog.dismiss();
 
                     }
                 });
+                notyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
 
