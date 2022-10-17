@@ -61,7 +61,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nex3z.notificationbadge.NotificationBadge;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -76,6 +78,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
     @BindView(R.id.Personal_layout)
     ScrollView pML;
 
+    Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
     TextInputLayout fullname,email,phoneNo;
     TextView fullNameLabel,HomeAddressLabel;
@@ -122,11 +126,9 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         uid = user.getUid();
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("OrderHistory");
-        Query query = reference.orderByChild("status").equalTo("On Process");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
 
-        Toast.makeText(this, query.getPath().toString(), Toast.LENGTH_SHORT).show();
-        query.addChildEventListener(new ChildEventListener() {
+        reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
@@ -163,6 +165,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
 
 
 
+
                 }catch (IllegalStateException exception){
 
                     System.out.println(exception);
@@ -172,6 +175,42 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(channel);
+                }
+
+                try{
+                    Intent resultIntent = new Intent(getApplicationContext(),PersonalOrderActivity.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this,"My Notification");
+                    builder.setContentTitle("You order is now Out For Delivery!");
+                    builder.setContentText("Go Check it OUT!");
+                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
+                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                    builder.setContentIntent(resultPendingIntent);
+                    builder.setAutoCancel(true);
+                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                    builder.setStyle(new NotificationCompat.BigTextStyle());
+                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    builder.setSound(alarmSound);
+
+                    NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
+                    manager.notify(1,builder.build());
+
+
+
+
+                }catch (IllegalStateException exception){
+
+                    System.out.println(exception);
+
+                }
 
 
             }

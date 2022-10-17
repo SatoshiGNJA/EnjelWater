@@ -105,63 +105,121 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        Toast.makeText(this, String.valueOf(maxid), Toast.LENGTH_SHORT).show();
 
 
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-        Query query = reference.orderByKey().equalTo(currentDate);
-        query.addChildEventListener(new ChildEventListener() {
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+        reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                
-                if(snapshot.child(String.valueOf(maxid+1)).exists()){
-                    Toast.makeText(AdminActivity.this, "exist", Toast.LENGTH_SHORT).show();
-                }else{
 
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                        NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                        NotificationManager manager = getSystemService(NotificationManager.class);
-                        manager.createNotificationChannel(channel);
-                    }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                            NotificationManager manager = getSystemService(NotificationManager.class);
+                            manager.createNotificationChannel(channel);
+                        }
 
-                    try{
-                        Intent resultIntent = new Intent(getApplicationContext(),AdminActivity.class);
-                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+                        try {
+                            Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                            PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this,"My Notification");
-                        builder.setContentTitle("New Order is Being Placed!");
-                        builder.setContentText("Go Check it OUT!");
-                        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
-                        builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                        builder.setContentIntent(resultPendingIntent);
-                        builder.setAutoCancel(true);
-                        builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                        builder.setStyle(new NotificationCompat.BigTextStyle());
-                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+                            NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
+                            builder.setContentTitle("New Order is Being Placed!");
+                            builder.setContentText("Go Check it OUT!");
+                            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                            builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                            builder.setContentIntent(resultPendingIntent);
+                            builder.setAutoCancel(true);
+                            builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                            builder.setStyle(new NotificationCompat.BigTextStyle());
+                            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
 
-                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                        builder.setSound(alarmSound);
+                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            builder.setSound(alarmSound);
 
-                        NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                        manager.notify(999,builder.build());
-                        replaceFragment(new fragment1());
+                            NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
+                            manager.notify(1, builder.build());
+                            replaceFragment(new fragment1());
 
 
 
-                    }catch (IllegalStateException exception){
+                        } catch (IllegalStateException exception) {
 
-                        System.out.println(exception);
+                            System.out.println(exception);
 
-                    }
+                        }
                 }
-
-            }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                replaceFragment(new fragment1());
+                try {
+                    replaceFragment(new fragment1());
+                }catch (IllegalStateException exception) {
+
+                    System.out.println(exception);
+
+                }
+
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate);
+        reference2.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(channel);
+                }
+
+                try {
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
+                    builder.setContentTitle("The Customer has received the Gallon");
+                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                    builder.setAutoCancel(true);
+                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                    builder.setStyle(new NotificationCompat.BigTextStyle());
+                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    builder.setSound(alarmSound);
+
+                    NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
+                    manager.notify(1, builder.build());
+
+
+
+                } catch (IllegalStateException exception) {
+
+                    System.out.println(exception);
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
             }
 
