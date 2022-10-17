@@ -1,348 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="12dp"
-    android:layout_margin="8dp"
+    android:id="@+id/hidewhenfinish"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/hidewhenfinish">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="5dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/waterlogo"
-        android:backgroundTint="#80FFFFFF"
-        android:backgroundTintMode="src_over"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:alpha="0.4"
+            android:src="@drawable/waterlogo_crop" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:backgroundTint="#80FFFFFF"
+            android:backgroundTintMode="src_over"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtProductName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginBottom="250dp"
-                    android:fontFamily="@font/bungee"
-                    android:gravity="center"
-                    android:text="Customer Name:"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/txtcustnamedel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="228dp"
-                    android:fontFamily="@font/bungee"
-                    android:text="Name:"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="3dp"
-                    android:layout_alignBottom="@+id/txtProductName"
-                    android:layout_marginBottom="0dp"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="3dp"
-                    android:layout_alignBottom="@+id/txtProductName"
-                    android:layout_marginBottom="-21dp"
-                    android:background="@color/black" />
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flex"
-                    android:layout_width="350dp"
-                    android:layout_height="142dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="-1dp"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="91dp"
-                    app:flexDirection="column"
-                    app:flexWrap="nowrap"
-                    app:justifyContent="center">
-
-                    <TextView
-                        android:id="@+id/txtName1"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name1: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName2"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name2: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName3"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name3: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName4"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name4: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName5"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name5: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName6"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name6: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName7"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name7: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName8"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name8: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </com.google.android.flexbox.FlexboxLayout>
-
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="3dp"
-                    android:layout_alignBottom="@+id/flex"
-                    android:layout_marginBottom="-56dp"
-                    android:background="@color/black" />
-
-                <TextView
-                    android:id="@+id/txtAddress"
-                    android:layout_width="349dp"
-                    android:layout_height="49dp"
-                    android:layout_alignBottom="@+id/flex"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="-52dp"
-                    android:fontFamily="@font/aleo_light"
-                    android:gravity="start"
-                    android:text="Address"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="3dp"
-                    android:layout_alignBottom="@+id/txtAddress"
-                    android:layout_marginBottom="48dp"
-                    android:background="@color/black" />
-
-                <TextView
-                    android:id="@+id/txtTotalOrderPrice"
-                    android:layout_width="74dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="117dp"
-                    android:layout_marginBottom="7dp"
-                    android:fontFamily="@font/bungee"
-                    android:gravity="center"
-                    android:text="XXXX"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="1dp"
-                    android:fontFamily="@font/bungee"
-                    android:gravity="center"
-                    android:text="TotalPrice:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/statusname"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center"
+                    android:layout_marginStart="190dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="end"
+                    android:padding="5dp"
                     android:text="Status"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtcustnamedel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Name:"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtName1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name1: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/statusname"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtName2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="198dp"
-                    android:text="Status:"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name2: "
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/btnPrint"
-                    android:layout_width="64dp"
-                    android:layout_height="28dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="101dp"
-                    android:layout_marginBottom="6dp"
-                    android:backgroundTint="@drawable/button_text_color"
-                    android:fontFamily="@font/aleo_light"
-                    android:gravity="center"
-                    android:text="Print"
-                    android:textColor="@color/white"
-                    android:textSize="8sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btnOutForDeliver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="9dp"
-                    android:layout_marginBottom="2dp"
-                    android:backgroundTint="@drawable/button_text_color"
-                    android:fontFamily="@font/aleo_light"
-                    android:gravity="center"
-                    android:text="Finish"
-                    android:textColor="@color/white"
-                    android:textSize="8sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/idnum"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtName3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
-                    android:text=""
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name3: "
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/personalID"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtName4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
-                    android:text=""
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name4: "
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/uid"
+                    android:id="@+id/txtName5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name5: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtName6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name6: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtName7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name7: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtName8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Name8: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
-                    android:text=""
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text="Address: "
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
+                    android:textSize="18sp" />
 
-            </RelativeLayout>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="#5C5C5C" />
 
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:gravity="center"
+                        android:text="Total Price:"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtTotalOrderPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:gravity="center"
+                        android:text="XXXX"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPrint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="@drawable/button_print"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:gravity="right"
+                        android:text="Print"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnOutForDeliver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="@drawable/button_finish"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:text="Finish"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </FrameLayout>
+            <TextView
+                android:id="@+id/idnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/personalID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
         </LinearLayout>
-    </LinearLayout>
-
+    </FrameLayout>
 </androidx.cardview.widget.CardView>
