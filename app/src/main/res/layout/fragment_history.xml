@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/datetitle"
-            android:layout_width="102dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -36,11 +36,10 @@
 
         <TextView
             android:id="@+id/status"
-            android:layout_width="102dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="Select Status:"
@@ -54,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/datetitle"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
+
             android:fontFamily="@font/antic"
             android:gravity="center"
             android:onClick="openDatePicker"
@@ -65,21 +64,59 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="139dp"
-            android:layout_height="43dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/txtTotOrder"
             android:layout_below="@+id/status"
+
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
             android:layout_toEndOf="@+id/datePicker" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_above="@+id/txtTotOrder"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/txtTotOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/datePicker"
+            android:text="Total Orders: "
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_above="@+id/txtTotSales"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/txtTotSales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTotOrder"
+            android:text="Total Sales: "
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_below="@+id/txtTotSales"
+            android:layout_marginTop="-2dp"
+            android:background="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentrecyclerAHistory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
-            android:layout_below="@+id/datePicker" />
+            android:layout_below="@+id/txtTotSales"
+            android:layout_marginBottom="50dp" />
+
 
 
     </RelativeLayout>

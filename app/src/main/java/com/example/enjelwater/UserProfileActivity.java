@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -56,6 +57,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nex3z.notificationbadge.NotificationBadge;
 
@@ -94,6 +96,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
     ICartLoadListener cartLoadListener;
 
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,9 +122,11 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         uid = user.getUid();
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("OrderHistory");
-        reference.addChildEventListener(new ChildEventListener() {
+        Query query = reference.orderByChild("status").equalTo("On Process");
+
+        Toast.makeText(this, query.getPath().toString(), Toast.LENGTH_SHORT).show();
+        query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
@@ -140,7 +145,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                     PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this,"My Notification");
-                    builder.setContentTitle("Your Order History has been Updated!");
+                    builder.setContentTitle("You order is now On Process");
                     builder.setContentText("Go Check it OUT!");
                     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
                     builder.setSmallIcon(R.mipmap.ic_launcher_round);
@@ -212,7 +217,6 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                 Intent intent = new Intent(getApplicationContext(),OrderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
             }
         });
         neworder.setOnClickListener(new View.OnClickListener() {
@@ -221,7 +225,6 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                 Intent intent = new Intent(getApplicationContext(),NewOrderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
             }
         });
         orderhistory.setOnClickListener(new View.OnClickListener() {
@@ -231,7 +234,6 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                 Intent intent = new Intent(UserProfileActivity.this,PersonalOrderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
-                finish();
 
 
             }

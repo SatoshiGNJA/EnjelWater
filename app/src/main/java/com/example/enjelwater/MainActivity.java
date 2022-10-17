@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), AdminActivity.class);
                 i.putExtra("frgToLoad", 2);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -233,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AdminActivity.class);
         i.putExtra("frgToLoad", 2);
         startActivity(i);
+        finish();
         super.onBackPressed();
     }
 }

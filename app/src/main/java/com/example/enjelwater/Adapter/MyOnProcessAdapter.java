@@ -152,8 +152,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
         holder.btnprint.setOnClickListener(view -> {
 
-            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra("Name1", holder.txtN1.getText().toString());
             intent.putExtra("Name2", holder.txtN2.getText().toString());

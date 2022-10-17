@@ -33,6 +33,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.enjelwater.Model.PersonalOrderModel;
 import com.example.enjelwater.databinding.ActivityAdminBinding;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.ChildEventListener;
@@ -40,6 +41,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
@@ -53,8 +55,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     DatabaseReference reff;
     private DrawerLayout drawerLayout;
     long maxid = 0;
+    int id = 0;
 
     SharedPreferences sharedPreferences;
+
+    PersonalOrderModel personalOrderModel;
 
     public static final String fileName = "login";
     public static final String Username = "username";
@@ -83,7 +88,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         sharedPreferences = getSharedPreferences(fileName, Context.MODE_PRIVATE);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
+        personalOrderModel = new PersonalOrderModel();
+
+        reff = FirebaseDatabase.getInstance().getReference().child("Data").child("OrderID");
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,76 +108,52 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
 
 
-
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
-        reference.addChildEventListener(new ChildEventListener() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+        Query query = reference.orderByKey().equalTo(currentDate);
+        query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                    NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager manager = getSystemService(NotificationManager.class);
-                    manager.createNotificationChannel(channel);
+                
+                if(snapshot.exists()){
+                    Toast.makeText(AdminActivity.this, "exist", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                        NotificationManager manager = getSystemService(NotificationManager.class);
+                        manager.createNotificationChannel(channel);
+                    }
+
+                    try{
+                        Intent resultIntent = new Intent(getApplicationContext(),AdminActivity.class);
+                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this,"My Notification");
+                        builder.setContentTitle("New Order is Being Placed!");
+                        builder.setContentText("Go Check it OUT!");
+                        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
+                        builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                        builder.setContentIntent(resultPendingIntent);
+                        builder.setAutoCancel(true);
+                        builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                        builder.setStyle(new NotificationCompat.BigTextStyle());
+                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                        builder.setSound(alarmSound);
+
+                        NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
+                        manager.notify(999,builder.build());
+                        replaceFragment(new fragment1());
+
+
+
+                    }catch (IllegalStateException exception){
+
+                        System.out.println(exception);
+
+                    }
                 }
-
-                try{
-                    Intent resultIntent = new Intent(getApplicationContext(),AdminActivity.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this,"My Notification");
-                    builder.setContentTitle("New Order");
-                    builder.setContentText("Go Check it OUT!");
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
-                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                    builder.setContentIntent(resultPendingIntent);
-                    builder.setAutoCancel(true);
-                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                    builder.setStyle(new NotificationCompat.BigTextStyle());
-                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    builder.setSound(alarmSound);
-
-                    NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                    manager.notify(1,builder.build());
-                    replaceFragment(new fragment1());
-
-
-
-                }catch (IllegalStateException exception){
-
-                    System.out.println(exception);
-
-                }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
-        reference1.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
             }
 
@@ -198,9 +181,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
             }
         });
-
-
-
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){

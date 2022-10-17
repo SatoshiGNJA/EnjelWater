@@ -162,7 +162,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtOrderDate.setText(new StringBuilder().append(personalOrderModelList.get(position).getOrderdate()));
         holder.txtPID.setText(new StringBuilder().append(personalOrderModelList.get(position).getPersonalID()));
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
-
+        holder.txtCustomerName.setText(new StringBuilder().append(personalOrderModelList.get(position).getCustname()));
 
         if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
@@ -238,6 +238,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                             personalOrderModel.setTotalPrice(Float.parseFloat(holder.txtTotalOrderP.getText().toString().trim()));
                             personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
                             personalOrderModel.setStatus("Finish");
+                            personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
                             reffUsers.child("status").setValue("Finish");
                             reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
                             reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
@@ -488,6 +489,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         Button btnreceived;
         @BindView(R.id.pid)
         TextView txtPID;
+        @BindView(R.id.custname)
+        TextView txtCustomerName;
 
 
         Unbinder unbinder;

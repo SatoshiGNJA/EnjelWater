@@ -85,6 +85,7 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         }else{
             holder.txtN8.setText(new StringBuilder().append(historyModelList.get(position).getName8()));
         }
+        holder.txtCustomerN.setText(new StringBuilder("Customer Name: ").append(historyModelList.get(position).getCustomerName()));
         holder.txtAddress.setText(new StringBuilder("Address: ").append(historyModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(historyModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
@@ -128,6 +129,8 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         TextView txtStat;
         @BindView(R.id.idnum)
         TextView txtIDNUM;
+        @BindView(R.id.historycustname)
+        TextView txtCustomerN;
 
 
         Unbinder unbinder;

@@ -3,6 +3,7 @@ package com.example.enjelwater.Model;
 public class PersonalOrderModel {
 
     String key;
+    String CustomerName,custname;
     String name1,name2,name3,name4,name5,name6,name7,name8;
     String address;
     String status;
@@ -11,6 +12,22 @@ public class PersonalOrderModel {
     float TotalPrice;
 
     public PersonalOrderModel() {
+    }
+
+    public String getCustomerName() {
+        return CustomerName;
+    }
+
+    public String getCustname() {
+        return custname;
+    }
+
+    public void setCustname(String custname) {
+        this.custname = custname;
+    }
+
+    public void setCustomerName(String customerName) {
+        CustomerName = customerName;
     }
 
     public String getName5() {

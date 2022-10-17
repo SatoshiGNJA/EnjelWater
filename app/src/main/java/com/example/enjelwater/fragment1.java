@@ -140,6 +140,8 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
                             }
                             productLoadListener.onProductLoadSuccess(productModels);
                         }else{
+                            sadW.setVisibility(View.VISIBLE);
+                            noOrder.setVisibility(View.VISIBLE);
                         }
                     }
 

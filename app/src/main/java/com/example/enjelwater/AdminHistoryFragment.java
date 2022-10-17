@@ -2,6 +2,7 @@ package com.example.enjelwater;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.enjelwater.Adapter.MyHistoryAdapter;
 import com.example.enjelwater.Adapter.MyOnProcessAdapter;
 import com.example.enjelwater.Listener.IHistoryLoadListener;
+import com.example.enjelwater.Model.CartModel;
 import com.example.enjelwater.Model.HistoryModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +52,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
     RecyclerView fragRecy;
     IHistoryLoadListener historyLoadListener;
     Button dateButton;
-    TextView NoSales;
+    TextView NoSales,totalord,totalsales;
     DatePickerDialog datePickerDialog;
     Spinner spin;
 
@@ -62,11 +64,12 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
         dateButton = view.findViewById(R.id.datePicker);
         NoSales = view.findViewById(R.id.NoSales);
         spin = view.findViewById(R.id.spinner);
+        totalord = view.findViewById(R.id.txtTotOrder);
+        totalsales = view.findViewById(R.id.txtTotSales);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.finishandcancel, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
         spin.setOnItemSelectedListener(this);
-
 
         dateButton.setText(getTodaysDate());
 
@@ -167,6 +170,11 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        historyModels.clear();
+                        long num = snapshot.getChildrenCount();
+                        totalord.setText("Total Orders: " + num );
+                        historyModels.clear();
+                        Double total = 0.0;
                         if(snapshot.exists())
                         {
                             for(DataSnapshot historysnapshot:snapshot.getChildren())
@@ -174,12 +182,16 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                                 HistoryModel historyModel = historysnapshot.getValue(HistoryModel.class);
                                 historyModel.setKey(historysnapshot.getKey());
                                 historyModel.setTotalPrice(historyModel.getTotalPrice());
+                                Double cost = Double.valueOf(historyModel.getTotalPrice());
+                                total = total + cost;
+                                totalsales.setText(new StringBuilder("Total Price: ₱").append(total));
                                 historyModels.add(historyModel);
                             }
                             historyLoadListener.onHistoryLoadSuccess(historyModels);
                             fragRecy.setVisibility(View.VISIBLE);
                             NoSales.setVisibility(View.GONE);
                         }else{
+                            totalsales.setText(new StringBuilder("Total Sales: ₱").append(0));
                             fragRecy.setVisibility(View.GONE);
                             NoSales.setVisibility(View.VISIBLE);
                         }
