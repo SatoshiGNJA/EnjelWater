@@ -35,14 +35,14 @@
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="225dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:gravity="end"
                     android:padding="5dp"
                     android:text="Status"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
 
@@ -68,7 +68,7 @@
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Name:"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -94,7 +94,7 @@
                     android:text="Name1: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:text="Name2: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -120,7 +120,7 @@
                     android:text="Name3: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -133,7 +133,7 @@
                     android:text="Name4: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -146,7 +146,7 @@
                     android:text="Name5: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -159,7 +159,7 @@
                     android:text="Name6: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -172,7 +172,7 @@
                     android:text="Name7: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -185,7 +185,7 @@
                     android:text="Name8: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -211,7 +211,7 @@
                     android:text="Address: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
                         android:text="Total Price:"
                         android:textAllCaps="false"
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/txtTotalOrderPrice"
@@ -252,7 +252,7 @@
                         android:gravity="center"
                         android:text="XXXX"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -266,10 +266,12 @@
                         android:id="@+id/btnPrint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
                         android:backgroundTint="@drawable/button_print"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Print"
-                        android:layout_marginStart="10dp"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -282,11 +284,13 @@
                         android:backgroundTint="@drawable/button_finish"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Finish"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </FrameLayout>
+
             <TextView
                 android:id="@+id/idnum"
                 android:layout_width="wrap_content"
@@ -299,6 +303,7 @@
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/personalID"
                 android:layout_width="wrap_content"
@@ -311,6 +316,7 @@
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 android:visibility="gone" />
+
             <TextView
                 android:id="@+id/uid"
                 android:layout_width="wrap_content"
