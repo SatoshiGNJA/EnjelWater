@@ -19,6 +19,7 @@ import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -338,8 +339,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                                         PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
-                                        builder.setContentTitle("Your Order is now On Process!");
-                                        builder.setContentText("Go Check it OUT!");
+                                        builder.setContentTitle(fullNameLabel.getText().toString());
+                                        builder.setContentText("Your Order is now On Process!");
                                         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
                                         builder.setSmallIcon(R.mipmap.ic_launcher_round);
                                         builder.setContentIntent(resultPendingIntent);
@@ -403,8 +404,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                                         PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
-                                        builder.setContentTitle("Your Order is now Out For Delivery!");
-                                        builder.setContentText("Go Check it OUT!");
+                                        builder.setContentTitle(fullNameLabel.getText().toString());
+                                        builder.setContentText("Your Order is now Out For Delivery!");
                                         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
                                         builder.setSmallIcon(R.mipmap.ic_launcher_round);
                                         builder.setContentIntent(resultPendingIntent);
@@ -463,5 +464,13 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
             }
         });
         dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
     }
 }

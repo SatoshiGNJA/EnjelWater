@@ -245,6 +245,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     protected void onResume() {
+
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
         try {
             int intentFragment = getIntent().getExtras().getInt("frgToLoad");
 
