@@ -161,7 +161,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtAddress.setText(new StringBuilder("Address: ").append(personalOrderModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(personalOrderModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
-        holder.txtTotalOrderP.setText(new StringBuilder().append(personalOrderModelList.get(position).getTotalPrice()));
+        holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",personalOrderModelList.get(position).getTotalPrice())));
         holder.txtOrderDate.setText(new StringBuilder().append(personalOrderModelList.get(position).getOrderdate()));
         holder.txtPID.setText(new StringBuilder().append(personalOrderModelList.get(position).getPersonalID()));
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
@@ -535,15 +535,5 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             super(itemView);
             unbinder = ButterKnife.bind(this,itemView);
         }
-    }
-    private void deleteFromFirebase(PersonalOrderModel personalOrderModel) {
-        FirebaseDatabase.getInstance()
-                .getReference("Users")
-                .child(currentuser)
-                .child("OrderHistory")
-                .child(personalOrderModel.getKey())
-                .removeValue()
-                .addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
-
     }
 }

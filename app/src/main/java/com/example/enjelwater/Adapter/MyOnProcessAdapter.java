@@ -144,7 +144,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.txtAddress.setText(new StringBuilder("Address: ").append(deliverModelList.get(position).getAddress()));
         holder.txtStat.setText(deliverModelList.get(position).getStatus());
         holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
-        holder.txtTotalOrderP.setText(String.valueOf(deliverModelList.get(position).getTotalPrice()));
+        holder.txtTotalOrderP.setText(String.format("%.2f",(deliverModelList.get(position).getTotalPrice())));
         holder.txtIDNUM.setText(deliverModelList.get(position).getKey());
         holder.txtPID.setText(deliverModelList.get(position).getPID());
         holder.txtUID.setText(deliverModelList.get(position).getUID());

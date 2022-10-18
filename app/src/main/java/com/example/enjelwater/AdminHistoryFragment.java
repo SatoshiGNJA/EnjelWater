@@ -184,14 +184,14 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                                 historyModel.setTotalPrice(historyModel.getTotalPrice());
                                 Double cost = Double.valueOf(historyModel.getTotalPrice());
                                 total = total + cost;
-                                totalsales.setText(new StringBuilder("Total Sales: ₱").append(total));
+                                totalsales.setText(new StringBuilder("Total Sales: ₱").append(String.format("%.2f", total)));
                                 historyModels.add(historyModel);
                             }
                             historyLoadListener.onHistoryLoadSuccess(historyModels);
                             fragRecy.setVisibility(View.VISIBLE);
                             NoSales.setVisibility(View.GONE);
                         }else{
-                            totalsales.setText(new StringBuilder("Total Sales: ₱").append(0));
+                            totalsales.setText(new StringBuilder("Total Sales: ₱").append(0.0));
                             fragRecy.setVisibility(View.GONE);
                             NoSales.setVisibility(View.VISIBLE);
                         }
