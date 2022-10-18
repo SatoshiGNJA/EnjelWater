@@ -4,6 +4,7 @@ public class PersonalOrderModel {
 
     String key;
     String CustomerName,custname;
+    String Phonenum;
     String name1,name2,name3,name4,name5,name6,name7,name8;
     String address;
     String status;
@@ -12,6 +13,14 @@ public class PersonalOrderModel {
     float TotalPrice;
 
     public PersonalOrderModel() {
+    }
+
+    public String getPhonenum() {
+        return Phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        Phonenum = phonenum;
     }
 
     public String getCustomerName() {

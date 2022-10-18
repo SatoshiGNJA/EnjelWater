@@ -128,6 +128,7 @@ public class OrderActivity extends AppCompatActivity implements IDrinkLoadListen
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),CartActivity.class);
                 startActivity(intent);
+                finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
@@ -136,10 +137,8 @@ public class OrderActivity extends AppCompatActivity implements IDrinkLoadListen
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),UserProfileActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -218,9 +217,7 @@ public class OrderActivity extends AppCompatActivity implements IDrinkLoadListen
 
     }
     public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(),UserProfileActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

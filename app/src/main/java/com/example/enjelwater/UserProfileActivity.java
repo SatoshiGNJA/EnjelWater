@@ -90,6 +90,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
     FirebaseAuth auth;
     FirebaseUser user;
 
+    PersonalOrderModel personalOrderModel;
+
     String uid;
 
     long usermaxid= 0;
@@ -119,6 +121,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         setSupportActionBar(toolbar);
 
         dialog=new Dialog(this);
+        personalOrderModel = new PersonalOrderModel();
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -126,107 +129,6 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         uid = user.getUid();
 
         databaseReference= FirebaseDatabase.getInstance().getReference();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
-
-        reference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                    NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager manager = getSystemService(NotificationManager.class);
-                    manager.createNotificationChannel(channel);
-                }
-
-                try{
-                    Intent resultIntent = new Intent(getApplicationContext(),PersonalOrderActivity.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this,"My Notification");
-                    builder.setContentTitle("You order is now being On Process");
-                    builder.setContentText("Go Check it OUT!");
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
-                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                    builder.setContentIntent(resultPendingIntent);
-                    builder.setAutoCancel(true);
-                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                    builder.setStyle(new NotificationCompat.BigTextStyle());
-                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    builder.setSound(alarmSound);
-
-                    NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
-                    manager.notify(1,builder.build());
-
-
-
-
-                }catch (IllegalStateException exception){
-
-                    System.out.println(exception);
-
-                }
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                    NotificationChannel channel = new NotificationChannel("My Notification","My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager manager = getSystemService(NotificationManager.class);
-                    manager.createNotificationChannel(channel);
-                }
-
-                try{
-                    Intent resultIntent = new Intent(getApplicationContext(),PersonalOrderActivity.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(),1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this,"My Notification");
-                    builder.setContentTitle("You order is now Out For Delivery!");
-                    builder.setContentText("Go Check it OUT!");
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher_round));
-                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                    builder.setContentIntent(resultPendingIntent);
-                    builder.setAutoCancel(true);
-                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                    builder.setStyle(new NotificationCompat.BigTextStyle());
-                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    builder.setSound(alarmSound);
-
-                    NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
-                    manager.notify(1,builder.build());
-
-
-
-
-                }catch (IllegalStateException exception){
-
-                    System.out.println(exception);
-
-                }
-
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -279,6 +181,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         });
         countCartItem();
         init();
+        OutForDeliveryNotification();
+        OnProcessNotification();
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -383,7 +287,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         FirebaseDatabase.getInstance()
                 .getReference("Cart")
                 .child(uid)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -404,6 +308,136 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                     }
                 });
 
+    }
+    private void OnProcessNotification(){
+        FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child(uid)
+                .child("OrderHistory")
+                .orderByChild("status")
+                .equalTo("On Process")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if(snapshot.exists()) {
+                            for(DataSnapshot personalsnapshot:snapshot.getChildren()) {
+                                PersonalOrderModel personalOrderModel = personalsnapshot.getValue(PersonalOrderModel.class);
+                                personalOrderModel.setKey(personalsnapshot.getKey());
+                                personalOrderModel.setTotalPrice(personalOrderModel.getTotalPrice());
+                                String value = String.valueOf(personalOrderModel.getStatus());
+                                if(value.equals("On Process")){
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                                        NotificationManager manager = getSystemService(NotificationManager.class);
+                                        manager.createNotificationChannel(channel);
+                                    }
+
+                                    try {
+                                        Intent resultIntent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
+                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
+                                        builder.setContentTitle("Your Order is now On Process!");
+                                        builder.setContentText("Go Check it OUT!");
+                                        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                                        builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                                        builder.setContentIntent(resultPendingIntent);
+                                        builder.setAutoCancel(true);
+                                        builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                                        builder.setStyle(new NotificationCompat.BigTextStyle());
+                                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                        builder.setSound(alarmSound);
+
+                                        NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
+                                        manager.notify(1, builder.build());
+
+
+
+                                    } catch (IllegalStateException exception) {
+
+                                        System.out.println(exception);
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        personalOrderLoadListener.onPersonalOrderLoadFailed(error.getMessage());
+
+                    }
+                });
+    }
+    private void OutForDeliveryNotification(){
+        FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child(uid)
+                .child("OrderHistory")
+                .orderByChild("status")
+                .equalTo("On-going Delivery")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if(snapshot.exists()) {
+                            for(DataSnapshot personalsnapshot:snapshot.getChildren()) {
+                                PersonalOrderModel personalOrderModel = personalsnapshot.getValue(PersonalOrderModel.class);
+                                personalOrderModel.setKey(personalsnapshot.getKey());
+                                personalOrderModel.setTotalPrice(personalOrderModel.getTotalPrice());
+                                String value = String.valueOf(personalOrderModel.getStatus());
+                                if(value.equals("On-going Delivery")){
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                                        NotificationManager manager = getSystemService(NotificationManager.class);
+                                        manager.createNotificationChannel(channel);
+                                    }
+
+                                    try {
+                                        Intent resultIntent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
+                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
+                                        builder.setContentTitle("Your Order is now Out For Delivery!");
+                                        builder.setContentText("Go Check it OUT!");
+                                        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                                        builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                                        builder.setContentIntent(resultPendingIntent);
+                                        builder.setAutoCancel(true);
+                                        builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                                        builder.setStyle(new NotificationCompat.BigTextStyle());
+                                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                        builder.setSound(alarmSound);
+
+                                        NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
+                                        manager.notify(1, builder.build());
+
+
+
+                                    } catch (IllegalStateException exception) {
+
+                                        System.out.println(exception);
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        personalOrderLoadListener.onPersonalOrderLoadFailed(error.getMessage());
+
+                    }
+                });
     }
     @Override
     public void onBackPressed() {

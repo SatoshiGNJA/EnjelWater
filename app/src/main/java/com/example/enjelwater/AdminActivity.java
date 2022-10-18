@@ -89,6 +89,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         personalOrderModel = new PersonalOrderModel();
 
+        FinishNotification();
+
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("OrderID");
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -182,64 +184,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(currentDate);
-        reference2.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager manager = getSystemService(NotificationManager.class);
-                    manager.createNotificationChannel(channel);
-                }
-
-                try {
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
-                    builder.setContentTitle("The Customer has received the Gallon");
-                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
-                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                    builder.setAutoCancel(true);
-                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                    builder.setStyle(new NotificationCompat.BigTextStyle());
-                    builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-
-                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    builder.setSound(alarmSound);
-
-                    NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                    manager.notify(1, builder.build());
-
-
-
-                } catch (IllegalStateException exception) {
-
-                    System.out.println(exception);
-
-                }
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()){
@@ -277,8 +221,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 editor.commit();
                 Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.nav_admin_finish:
                 replaceFragment(new AdminHistoryFragment());
@@ -317,6 +261,68 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             System.out.println("Catch");
         }
         super.onResume();
+    }
+    private void FinishNotification(){
+        FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .orderByChild("status")
+                .equalTo("Finish")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if(snapshot.exists()) {
+                            for(DataSnapshot personalsnapshot:snapshot.getChildren()) {
+                                PersonalOrderModel personalOrderModel = personalsnapshot.getValue(PersonalOrderModel.class);
+                                personalOrderModel.setKey(personalsnapshot.getKey());
+                                personalOrderModel.setTotalPrice(personalOrderModel.getTotalPrice());
+                                String value = String.valueOf(personalOrderModel.getStatus());
+                                Toast.makeText(AdminActivity.this, value, Toast.LENGTH_SHORT).show();
+                                if(value.equals("Finish")){
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                        NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                                        NotificationManager manager = getSystemService(NotificationManager.class);
+                                        manager.createNotificationChannel(channel);
+                                    }
+
+                                    try {
+                                        Intent resultIntent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
+                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                                        NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
+                                        builder.setContentTitle("Customer has Received the Gallon");
+                                        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                                        builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                                        builder.setContentIntent(resultPendingIntent);
+                                        builder.setAutoCancel(true);
+                                        builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                                        builder.setStyle(new NotificationCompat.BigTextStyle());
+                                        builder.setPriority(NotificationCompat.PRIORITY_HIGH);
+
+                                        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                        builder.setSound(alarmSound);
+
+                                        NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
+                                        manager.notify(1, builder.build());
+
+
+
+                                    } catch (IllegalStateException exception) {
+
+                                        System.out.println(exception);
+
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
 }

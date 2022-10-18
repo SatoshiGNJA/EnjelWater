@@ -91,6 +91,7 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(historyModelList.get(position).getTotalPrice()));
         holder.txtIDNUM.setText(new StringBuilder().append(historyModelList.get(position).getKey()));
+        holder.txtPhone.setText(new StringBuilder("Phone#: ").append(historyModelList.get(position).getPhonenum()));
         if(Objects.equals(historyModelList.get(position).getStatus(), "Finish")){
         }
         if(Objects.equals(historyModelList.get(position).getStatus(), "Cancel")){
@@ -131,6 +132,8 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         TextView txtIDNUM;
         @BindView(R.id.historycustname)
         TextView txtCustomerN;
+        @BindView(R.id.historyphone)
+        TextView txtPhone;
 
 
         Unbinder unbinder;

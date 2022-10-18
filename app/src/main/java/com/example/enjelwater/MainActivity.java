@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button print;
 
     TextView n1,n2,n3,n4,n5,n6,n7,n8;
-    TextView custName,address,total;
+    TextView custName,address,phone,total;
     ImageView goback;
 
     @Override
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         n8 = findViewById(R.id.n8);
         custName = findViewById(R.id.custname);
         address = findViewById(R.id.address);
+        phone = findViewById(R.id.phone);
         total = findViewById(R.id.total);
         goback =  findViewById(R.id.returnback);
         print = findViewById(R.id.btn_print);
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         String na7 = getIntent().getStringExtra("Name7");
         String na8 = getIntent().getStringExtra("Name8");
         String customer = getIntent().getStringExtra("CustomerN");
+        String ph0ne = getIntent().getStringExtra("PhoneNum");
         String addr3ss = getIntent().getStringExtra("Address");
         String t0tal = getIntent().getStringExtra("Total");
 
@@ -77,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
         n6.setText(na6);
         n7.setText(na7);
         n8.setText(na8);
-        custName.setText(customer);
+        custName.setText("Customer Name: "+ customer);
+        phone.setText("Phone#: "+ph0ne);
         address.setText(addr3ss);
         total.setText("Total: " + t0tal);
 
@@ -165,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
                             // table format: 32 character width per line
                             String format = "%-15s%5s%6s%6s";
 
-                            mPrinter.printText("Customer Name:\n"+customer+"\n");
+                            mPrinter.printText("Customer Name: \n"+customer+"\n");
+                            mPrinter.printText("Phone#: \n"+ph0ne+"\n");
                             mPrinter.printText(divider);
                             if(n1.getText().toString().equals("Name1: ")){
                                 n1.setVisibility(View.GONE);
@@ -180,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                             if(n3.getText().toString().equals("Name3: ")){
                                 n3.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("-"+na3+"\n");
+                                mPrinter.printText("- "+na3+"\n");
                             }
                             if(n4.getText().toString().equals("Name4: ")){
                                 n4.setVisibility(View.GONE);
@@ -214,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.printText(addr3ss);
                             mPrinter.feedPaper();
                             mPrinter.finish();
+                            finish();
                         }
 
                         @Override

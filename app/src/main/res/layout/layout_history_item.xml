@@ -41,7 +41,22 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="106dp"
-                    android:text="Customer Name:"
+                    android:text="Customer Name: "
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/historyphone"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginEnd="106dp"
+                    android:text="Phone#: "
                     android:textColor="@color/black"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -49,8 +64,8 @@
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/flex"
                     android:layout_width="251dp"
-                    android:layout_height="144dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginBottom="5dp"
                     app:flexDirection="column"
                     app:flexWrap="nowrap"
@@ -65,7 +80,7 @@
                         android:text="Name1: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -77,7 +92,7 @@
                         android:text="Name2: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -89,7 +104,7 @@
                         android:text="Name3: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -101,7 +116,7 @@
                         android:text="Name4: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -113,7 +128,7 @@
                         android:text="Name5: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -125,7 +140,7 @@
                         android:text="Name6: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -137,7 +152,7 @@
                         android:text="Name7: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -149,7 +164,7 @@
                         android:text="Name8: "
                         android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
                 </com.google.android.flexbox.FlexboxLayout>
 

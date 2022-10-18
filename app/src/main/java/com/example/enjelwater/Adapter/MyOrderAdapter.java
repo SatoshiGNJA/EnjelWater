@@ -152,6 +152,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.txtPID.setText(new StringBuilder().append(productModelList.get(position).getPersonalID()));
         holder.txtUID.setText(new StringBuilder().append(productModelList.get(position).getUid()));
         holder.txtKey.setText(new StringBuilder().append(productModelList.get(position).getKey()));
+        holder.txtPhone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
 
         if (holder.txtStat.getText().toString().equals("Pending")) {
             holder.btnProc.setVisibility(View.GONE);
@@ -173,7 +174,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
-            TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address;
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address,phone;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
@@ -184,9 +185,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             N8 = dialog.findViewById(R.id.txtName8);
             Cust = dialog.findViewById(R.id.txtCustomerName);
             Address = dialog.findViewById(R.id.txtAddressDialog);
+            phone = dialog.findViewById(R.id.txtPhonenumbb);
 
             Cust.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
             Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
+            phone.setText(new StringBuilder("Phone#: ").append(productModelList.get(position).getPhonenum()));
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
@@ -299,10 +302,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
                                 deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
                                 deliverModel.setStatus("On-going Delivery");
-                                deliverModel.setCustomer(holder.txtName.getText().toString());
+                                deliverModel.setCustomerName(holder.txtName.getText().toString());
                                 deliverModel.setPID(holder.txtPID.getText().toString());
                                 deliverModel.setUID(holder.txtUID.getText().toString());
                                 deliverModel.setKey(holder.txtKey.getText().toString());
+                                deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                 reffUsers.child("status").setValue("On-going Delivery");
                                 reff3.child("Delivered").child(currentDate).child(holder.txtKey.getText().toString()).setValue(deliverModel);
                                 snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
@@ -343,7 +347,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
             Button decline = dialog.findViewById(R.id.btn_decline);
-            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address, count;
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address,phone, count;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
@@ -355,8 +359,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             count = dialog.findViewById(R.id.txtcountdown);
             Name = dialog.findViewById(R.id.txtCustomerName);
             Address = dialog.findViewById(R.id.txtAddressDialog);
+            phone = dialog.findViewById(R.id.txtPhoneDialog);
             Name.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
             Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
+            phone.setText(new StringBuilder("Phone#: ").append(productModelList.get(position).getPhonenum()));
+
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
@@ -478,7 +485,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
                                 deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
                                 deliverModel.setStatus("Cancel");
-                                deliverModel.setCustomer(holder.txtName.getText().toString());
+                                deliverModel.setCustomerName(holder.txtName.getText().toString());
+                                deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                 reffUsers.removeValue();
                                 reff.child(String.valueOf(maxid + 1)).child("uid").setValue(holder.txtUID.getText().toString());
                                 reff3.child("Cancel").child(currentDate).child(String.valueOf(maxid + 1)).setValue(deliverModel);
@@ -596,6 +604,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         TextView txtKey;
         @BindView(R.id.txtcustname)
         TextView txtName;
+        @BindView(R.id.txtphone)
+        TextView txtPhone;
         @BindView(R.id.btnAccept)
         Button btnAccept;
         @BindView(R.id.btnProceed)

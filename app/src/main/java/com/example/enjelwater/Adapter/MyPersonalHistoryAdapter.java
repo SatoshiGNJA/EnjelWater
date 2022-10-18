@@ -166,6 +166,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtPID.setText(new StringBuilder().append(personalOrderModelList.get(position).getPersonalID()));
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
         holder.txtCustomerName.setText(new StringBuilder().append(personalOrderModelList.get(position).getCustname()));
+        holder.txtPhone.setText(new StringBuilder().append(personalOrderModelList.get(position).getPhonenum()));
+
 
         if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
@@ -253,6 +255,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
                                     personalOrderModel.setStatus("Finish");
                                     personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
+                                    personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
                                     reffUsers.child("status").setValue("Finish");
                                     reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
                                     reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
@@ -280,6 +283,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                 dialog.show();
             }
         });
+
 
         holder.btnCORD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -438,6 +442,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             personalOrderModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
                                             personalOrderModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
                                             personalOrderModel.setStatus("Cancel");
+                                            personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
+                                            personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
                                             reff.child(String.valueOf(maxid + 1)).setValue(personalOrderModel);
                                             String key2 = holder.txtIDNUM.getText().toString();
                                             String value = String.valueOf(snapshot.child(key2).child("key").getValue());
@@ -519,6 +525,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         TextView txtPID;
         @BindView(R.id.custname)
         TextView txtCustomerName;
+        @BindView(R.id.phonenome)
+        TextView txtPhone;
 
 
         Unbinder unbinder;

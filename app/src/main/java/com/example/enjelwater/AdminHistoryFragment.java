@@ -184,7 +184,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                                 historyModel.setTotalPrice(historyModel.getTotalPrice());
                                 Double cost = Double.valueOf(historyModel.getTotalPrice());
                                 total = total + cost;
-                                totalsales.setText(new StringBuilder("Total Price: ₱").append(total));
+                                totalsales.setText(new StringBuilder("Total Sales: ₱").append(total));
                                 historyModels.add(historyModel);
                             }
                             historyLoadListener.onHistoryLoadSuccess(historyModels);

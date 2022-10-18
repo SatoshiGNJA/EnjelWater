@@ -55,6 +55,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
     TextView TotalPrice;
     @BindView(R.id.checkoutName)
     TextView FName;
+    @BindView(R.id.txtphonenumber)
+    TextView phone;
 
     ProgressBar progressbbar;
 
@@ -106,10 +108,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         btnBackSum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CartActivity.class);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         databaseReference= FirebaseDatabase.getInstance().getReference();
@@ -410,6 +410,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                             productModel.setPersonalID(String.valueOf(usermaxid + 1));
                                             productModel.setKey(String.valueOf(maxid +1));
                                             productModel.setUid(currentuser);
+                                            productModel.setPhonenum(phone.getText().toString().trim());
                                             productModel.setCustname(FName.getText().toString().trim());
                                             reff.child(String.valueOf(maxid + 1)).child("uid").setValue(currentuser);
                                             order.child("Orders").child(currentDate).child(String.valueOf(maxid + 1)).setValue(productModel);
@@ -449,7 +450,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         loadSummaryFromFirebase();
         init();
         TotalPrice();
-        Name();
+        NameandPhone();
     }
 
     private void loadSummaryFromFirebase(){
@@ -522,7 +523,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                     }
                 });
     }
-    public void Name(){
+    public void NameandPhone(){
         databaseReference= FirebaseDatabase.getInstance().getReference();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -530,8 +531,10 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String profFull = snapshot.child("Users").child(currentuser).child("name").getValue(String.class);
+                String profPhone = snapshot.child("Users").child(currentuser).child("phoneNo").getValue(String.class);
 
                 FName.setText(profFull);
+                phone.setText(profPhone);
 
             }
 
@@ -547,10 +550,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         if(progressbbar.isShown()){
             Toast.makeText(SummaryActivity.this,"Please Wait You Order is still in Process!",Toast.LENGTH_SHORT).show();
         }else{
-            Intent intent = new Intent(getApplicationContext(),CartActivity.class);
-            startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
     }

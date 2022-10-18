@@ -30,12 +30,8 @@ public class ThankYouActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
-                Intent i = new Intent(ThankYouActivity.this,UserProfileActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
             }
         }.start();

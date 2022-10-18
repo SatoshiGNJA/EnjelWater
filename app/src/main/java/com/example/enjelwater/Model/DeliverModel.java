@@ -7,18 +7,27 @@ public class DeliverModel {
     String address;
     String status;
     String PID,UID;
-    String Customer;
+    String CustomerName;
+    String phonenum;
     float TotalPrice;
 
     public DeliverModel() {
     }
 
-    public String getCustomer() {
-        return Customer;
+    public String getPhonenum() {
+        return phonenum;
     }
 
-    public void setCustomer(String customer) {
-        Customer = customer;
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
+    }
+
+    public String getCustomerName() {
+        return CustomerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        CustomerName = customerName;
     }
 
     public String getPID() {

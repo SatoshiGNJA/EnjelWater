@@ -3,6 +3,7 @@ package com.example.enjelwater.Model;
 public class HistoryModel {
 
     String CustomerName;
+    String Phonenum;
     String key;
     String name1,name2,name3,name4,name5,name6,name7,name8;
     String address;
@@ -14,6 +15,14 @@ public class HistoryModel {
 
     public String getCustomerName() {
         return CustomerName;
+    }
+
+    public String getPhonenum() {
+        return Phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        Phonenum = phonenum;
     }
 
     public void setCustomerName(String customerName) {

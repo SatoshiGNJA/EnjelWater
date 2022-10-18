@@ -10,9 +10,18 @@ public class ProductModel {
     String address;
     String status;
     String Custname;
+    String phonenum;
     float TotalPrice;
 
     public ProductModel() {
+    }
+
+    public String getPhonenum() {
+        return phonenum;
+    }
+
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
     }
 
     public String getCustname() {

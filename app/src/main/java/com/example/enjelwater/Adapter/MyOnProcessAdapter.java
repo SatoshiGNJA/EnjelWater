@@ -148,7 +148,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.txtIDNUM.setText(deliverModelList.get(position).getKey());
         holder.txtPID.setText(deliverModelList.get(position).getPID());
         holder.txtUID.setText(deliverModelList.get(position).getUID());
-        holder.customer.setText(deliverModelList.get(position).getCustomer());
+        holder.customer.setText(deliverModelList.get(position).getCustomerName());
+        holder.phone.setText(deliverModelList.get(position).getPhonenum());
 
         holder.btnprint.setOnClickListener(view -> {
 
@@ -162,6 +163,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             intent.putExtra("Name7", holder.txtN7.getText().toString());
             intent.putExtra("Name8", holder.txtN8.getText().toString());
             intent.putExtra("CustomerN", holder.customer.getText().toString());
+            intent.putExtra("PhoneNum", holder.phone.getText().toString());
             intent.putExtra("Address", holder.txtAddress.getText().toString());
             intent.putExtra("Total", holder.txtTotalOrderP.getText().toString());
             context.startActivity(intent);
@@ -242,6 +244,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
                                     deliverModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
                                     deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
+                                    deliverModel.setCustomerName(holder.customer.getText().toString().trim());
+                                    deliverModel.setPhonenum(holder.phone.getText().toString().trim());
                                     deliverModel.setStatus("Finish");
                                     reffUsers.child("status").setValue("Finish");
                                     reff3.child("Finish").child(currentDate).child(holder.txtIDNUM.getText().toString()).setValue(deliverModel);
@@ -319,6 +323,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         CardView hide;
         @BindView(R.id.txtcustnamedel)
         TextView customer;
+        @BindView(R.id.txtphonedel)
+        TextView phone;
 
         Unbinder unbinder;
 
