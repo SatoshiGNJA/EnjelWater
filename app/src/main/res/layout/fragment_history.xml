@@ -1,123 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminHistoryFragment"
-    android:background="#A9EDFF">
+    android:background="#A9EDFF"
+    android:orientation="vertical"
+    tools:context=".AdminHistoryFragment">
 
-    <RelativeLayout
-        android:id="@+id/fragmentlayoutAHistory"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/NoSales"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/bungee"
-            android:gravity="center"
-            android:text="No Sales on this Day"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/datetitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/source_sans_pro"
             android:gravity="center"
-            android:text="Select Date:"
+            android:text="Filter:"
             android:textColor="@color/black"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:gravity="center"
-            android:text="Select Status:"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/datePicker"
             style="?android:spinnerStyle"
-            android:layout_width="202dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/datetitle"
-            android:layout_alignParentStart="true"
-
-            android:fontFamily="@font/antic"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/source_sans_pro"
             android:gravity="center"
             android:onClick="openDatePicker"
+            android:spinnerMode="dropdown"
             android:text="Jan 01 2020"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/txtTotOrder"
-            android:layout_below="@+id/status"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:textAlignment="center" />
 
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/datePicker" />
+    </LinearLayout>
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:layout_above="@+id/txtTotOrder"
-            android:background="@color/black" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="#5C5C5C" />
 
-        <TextView
-            android:id="@+id/txtTotOrder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/datePicker"
-            android:text="Total Orders: "
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:layout_above="@+id/txtTotSales"
-            android:background="@color/black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/txtTotSales"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtTotOrder"
-            android:text="Total Sales: "
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:text="Total Sales:"
             android:textColor="@color/black"
-            android:textSize="25dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
-        <View
+        <TextView
+            android:id="@+id/txtTotOrder"
             android:layout_width="wrap_content"
-            android:layout_height="3dp"
-            android:layout_below="@+id/txtTotSales"
-            android:layout_marginTop="-2dp"
-            android:background="@color/black" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:text="Total Orders:"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="0dp"
+        android:background="#5C5C5C" />
+
+    <RelativeLayout
+        android:id="@+id/fragmentlayoutAHistory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragmentrecyclerAHistory"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/txtTotSales"
-            android:layout_marginBottom="50dp" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_marginBottom="50dp">
 
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/NoSales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:fontFamily="@font/bungee"
+            android:gravity="center"
+            android:text="No Sales on this Day"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
 
 
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

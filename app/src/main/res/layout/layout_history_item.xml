@@ -1,287 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="12dp"
-    android:layout_margin="8dp"
+    android:id="@+id/hidewhenfinish"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/hidewhenfinish">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="12dp">
 
-    <LinearLayout
-        android:backgroundTint="#80FFFFFF"
-        android:backgroundTintMode="src_over"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:padding="10dp"
-        android:background="@drawable/waterlogo">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:alpha="0.4"
+            android:src="@drawable/waterlogo_crop" />
 
         <LinearLayout
-            android:background="@drawable/customborder"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:weightSum="5">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/historycustname"
-                    android:layout_width="245dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginEnd="106dp"
-                    android:text="Customer Name: "
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Customer Name:"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/historyphone"
-                    android:layout_width="245dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="19dp"
-                    android:layout_marginEnd="106dp"
-                    android:text="Phone#: "
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flex"
-                    android:layout_width="251dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="5dp"
-                    app:flexDirection="column"
-                    app:flexWrap="nowrap"
-                    app:justifyContent="center">
-
-                    <TextView
-                        android:id="@+id/txtName1"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name1: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName2"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name2: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName3"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name3: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName4"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name4: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName5"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name5: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName6"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name6: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName7"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name7: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtName8"
-                        android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        android:text="Name8: "
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-                </com.google.android.flexbox.FlexboxLayout>
-
-
-                <TextView
-                    android:id="@+id/txtAddress"
-                    android:layout_width="101dp"
-                    android:layout_height="96dp"
-                    android:layout_alignBottom="@+id/flex"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="250dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="-2dp"
-                    android:fontFamily="@font/aleo_light"
-                    android:gravity="start"
-                    android:text="Address"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtTotalOrderPrice"
-                    android:layout_width="101dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="250dp"
-                    android:layout_marginBottom="96dp"
-                    android:fontFamily="@font/bungee"
-                    android:text="XXXX"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black"
-                    android:textSize="8sp" />
 
                 <TextView
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/statusname"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="46dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="14dp"
-                    android:gravity="center"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="Status"
                     android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/historyphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Cellphone Number: "
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/statusname"
+                    android:id="@+id/txtAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="74dp"
-                    android:text="Status:"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Address"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="101dp"
+                    android:id="@+id/txtName1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="250dp"
-                    android:layout_marginBottom="106dp"
-                    android:fontFamily="@font/bungee"
-                    android:gravity="center"
-                    android:text="TotalPrice:"
-                    android:textAlignment="textStart"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name1: "
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="10sp" />
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name2: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name3: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name4: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name5: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name6: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name7: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtName8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:paddingTop="5dp"
+                    android:text="Name8: "
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="200dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="center"
+                    android:text="Total Price:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtTotalOrderPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="XXXX"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/idnum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/personalID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/uid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="135dp"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="10sp"
-                    android:visibility="gone"/>
-
-            </RelativeLayout>
-
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
+    </FrameLayout>
 </androidx.cardview.widget.CardView>
