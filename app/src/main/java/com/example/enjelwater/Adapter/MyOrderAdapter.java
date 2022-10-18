@@ -88,18 +88,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Accepted").child(currentDate).child(String.valueOf(maxid + 1));
-        reff2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         reff3 = FirebaseDatabase.getInstance().getReference();
         reff4 = FirebaseDatabase.getInstance().getReference();
 
@@ -164,7 +152,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
         }
 
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(currentDate).child(holder.txtIDNUM.getText().toString());
+
         holder.btnProc.setOnClickListener(view -> {
+
+            Toast.makeText(context, holder.txtKey.getText().toString(), Toast.LENGTH_SHORT).show();
 
             dialog.setContentView(R.layout.out_delivery_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -248,78 +240,80 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                             .child("OrderHistory")
                             .child(holder.txtPID.getText().toString());
 
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                    Query query = reference.orderByKey().equalTo(currentDate);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try {
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                        Query query = reference.orderByKey().equalTo(currentDate);
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    String key2 = holder.txtIDNUM.getText().toString();
+                                    if (snapshot.child(key2).child("name1").getValue() == null) {
+                                        reff2.getRef().child("name1").removeValue();
+                                    } else {
+                                        deliverModel.setName1(holder.txtN1.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name2").getValue() == null) {
+                                        reff2.getRef().child("name2").removeValue();
+                                    } else {
+                                        deliverModel.setName2(holder.txtN2.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name3").getValue() == null) {
+                                        reff2.getRef().child("name3").removeValue();
+                                    } else {
+                                        deliverModel.setName3(holder.txtN3.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name4").getValue() == null) {
+                                        reff2.getRef().child("name4").removeValue();
+                                    } else {
+                                        deliverModel.setName4(holder.txtN4.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name5").getValue() == null) {
+                                        reff2.getRef().child("name5").removeValue();
+                                    } else {
+                                        deliverModel.setName5(holder.txtN5.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name6").getValue() == null) {
+                                        reff2.getRef().child("name6").removeValue();
+                                    } else {
+                                        deliverModel.setName6(holder.txtN6.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name7").getValue() == null) {
+                                        reff2.getRef().child("name7").removeValue();
+                                    } else {
+                                        deliverModel.setName7(holder.txtN7.getText().toString());
+                                    }
+                                    if (snapshot.child(key2).child("name8").getValue() == null) {
+                                        reff2.getRef().child("name8").removeValue();
+                                    } else {
+                                        deliverModel.setName8(holder.txtN8.getText().toString());
+                                    }
 
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                String key2 = holder.txtIDNUM.getText().toString();
-                                if (snapshot.child(key2).child("name1").getValue() == null) {
-                                    reff2.getRef().child("name1").removeValue();
-                                } else {
-                                    deliverModel.setName1(holder.txtN1.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name2").getValue() == null) {
-                                    reff2.getRef().child("name2").removeValue();
-                                } else {
-                                    deliverModel.setName2(holder.txtN2.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name3").getValue() == null) {
-                                    reff2.getRef().child("name3").removeValue();
-                                } else {
-                                    deliverModel.setName3(holder.txtN3.getText().toString());
-                                }
 
-                                if (snapshot.child(key2).child("name4").getValue() == null) {
-                                    reff2.getRef().child("name4").removeValue();
-                                } else {
-                                    deliverModel.setName4(holder.txtN4.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name5").getValue() == null) {
-                                    reff2.getRef().child("name5").removeValue();
-                                } else {
-                                    deliverModel.setName5(holder.txtN5.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name6").getValue() == null) {
-                                    reff2.getRef().child("name6").removeValue();
-                                } else {
-                                    deliverModel.setName6(holder.txtN6.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name7").getValue() == null) {
-                                    reff2.getRef().child("name7").removeValue();
-                                } else {
-                                    deliverModel.setName7(holder.txtN7.getText().toString());
-                                }
-                                if (snapshot.child(key2).child("name8").getValue() == null) {
-                                    reff2.getRef().child("name8").removeValue();
-                                } else {
-                                    deliverModel.setName8(holder.txtN8.getText().toString());
-                                }
+                                    deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
+                                    deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
+                                    deliverModel.setStatus("On-going Delivery");
+                                    deliverModel.setCustomerName(holder.txtName.getText().toString());
+                                    deliverModel.setPID(holder.txtPID.getText().toString());
+                                    deliverModel.setUID(holder.txtUID.getText().toString());
+                                    deliverModel.setKey(holder.txtKey.getText().toString());
+                                    deliverModel.setPhonenum(holder.txtPhone.getText().toString());
+                                    reffUsers.child("status").setValue("On-going Delivery");
+                                    reff3.child("Delivered").child(currentDate).child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
-
-                                deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
-                                deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
-                                deliverModel.setStatus("On-going Delivery");
-                                deliverModel.setCustomerName(holder.txtName.getText().toString());
-                                deliverModel.setPID(holder.txtPID.getText().toString());
-                                deliverModel.setUID(holder.txtUID.getText().toString());
-                                deliverModel.setKey(holder.txtKey.getText().toString());
-                                deliverModel.setPhonenum(holder.txtPhone.getText().toString());
-                                reffUsers.child("status").setValue("On-going Delivery");
-                                reff3.child("Delivered").child(currentDate).child(holder.txtKey.getText().toString()).setValue(deliverModel);
-                                snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+                                }
 
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                            }
+                        });
+                    }catch (Exception exception){
+                        System.out.println(exception);
+                    }
 
                     productModelList.remove(holder.getAdapterPosition());
                     notifyItemRemoved(holder.getAdapterPosition());
@@ -433,9 +427,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                             .child("OrderHistory")
                             .child(holder.txtPID.getText().toString());
 
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
                     Query query = reference.orderByKey().equalTo(currentDate);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

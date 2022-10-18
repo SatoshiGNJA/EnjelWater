@@ -187,6 +187,14 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                try {
+                    replaceFragment(new fragment1());
+                }catch (IllegalStateException exception) {
+
+                    System.out.println(exception);
+
+                }
+
             }
 
             @Override
@@ -218,6 +226,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
                     NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
                     manager.notify(1, builder.build());
+                    replaceFragment(new fragment2());
 
 
 

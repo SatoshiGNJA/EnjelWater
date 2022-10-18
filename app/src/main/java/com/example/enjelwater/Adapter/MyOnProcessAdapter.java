@@ -72,33 +72,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         deliverModel=new DeliverModel();
         dialog = new Dialog(context);
 
-
-        reff = FirebaseDatabase.getInstance().getReference().child("Data").child("FinishID");
-        reff.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    maxid = (snapshot.getChildrenCount());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate).child(String.valueOf(maxid + 1));
-        reff2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         reff3 = FirebaseDatabase.getInstance().getReference();
 
         if(deliverModelList.get(position).getName1() == null){
@@ -151,6 +124,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.customer.setText(deliverModelList.get(position).getCustomerName());
         holder.phone.setText(deliverModelList.get(position).getPhonenum());
 
+
         holder.btnprint.setOnClickListener(view -> {
 
             Intent intent = new Intent(context, MainActivity.class);
@@ -190,79 +164,87 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                 .child(holder.txtUID.getText().toString())
                                 .child("OrderHistory")
                                 .child(holder.txtPID.getText().toString());
+                        reff2 = FirebaseDatabase.getInstance().getReference()
+                                .child("Finish")
+                                .child(currentDate)
+                                .child(holder.txtIDNUM.getText().toString());
 
 
-                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Delivered");
-                        Query query = reference2.orderByKey().equalTo(currentDate);
-                        query.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                    String key = holder.txtIDNUM.getText().toString();
-                                    if(snapshot.child(key).child("name1").getValue()==null){
-                                        reff2.getRef().child("name1").removeValue();
-                                    }else{
-                                        deliverModel.setName1(holder.txtN1.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name2").getValue()==null){
-                                        reff2.getRef().child("name2").removeValue();
-                                    }else{
-                                        deliverModel.setName2(holder.txtN2.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name3").getValue()==null){
-                                        reff2.getRef().child("name3").removeValue();
-                                    }else{
-                                        deliverModel.setName3(holder.txtN3.getText().toString());
-                                    }
+                        try{
+                            DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Delivered");
+                            Query query = reference2.orderByKey().equalTo(currentDate);
+                            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        String key = holder.txtIDNUM.getText().toString();
+                                        if(snapshot.child(key).child("name1").getValue()==null){
+                                            reff2.getRef().child("name1").removeValue();
+                                        }else{
+                                            deliverModel.setName1(holder.txtN1.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name2").getValue()==null){
+                                            reff2.getRef().child("name2").removeValue();
+                                        }else{
+                                            deliverModel.setName2(holder.txtN2.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name3").getValue()==null){
+                                            reff2.getRef().child("name3").removeValue();
+                                        }else{
+                                            deliverModel.setName3(holder.txtN3.getText().toString());
+                                        }
 
-                                    if(snapshot.child(key).child("name4").getValue()==null){
-                                        reff2.getRef().child("name4").removeValue();
-                                    }else{
-                                        deliverModel.setName4(holder.txtN4.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name5").getValue()==null){
-                                        reff2.getRef().child("name5").removeValue();
-                                    }else{
-                                        deliverModel.setName5(holder.txtN5.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name6").getValue()==null){
-                                        reff2.getRef().child("name6").removeValue();
-                                    }else{
-                                        deliverModel.setName6(holder.txtN6.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name7").getValue()==null){
-                                        reff2.getRef().child("name7").removeValue();
-                                    }else{
-                                        deliverModel.setName7(holder.txtN7.getText().toString());
-                                    }
-                                    if(snapshot.child(key).child("name8").getValue()==null){
-                                        reff2.getRef().child("name8").removeValue();
-                                    }else{
-                                        deliverModel.setName8(holder.txtN8.getText().toString());
-                                    }
+                                        if(snapshot.child(key).child("name4").getValue()==null){
+                                            reff2.getRef().child("name4").removeValue();
+                                        }else{
+                                            deliverModel.setName4(holder.txtN4.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name5").getValue()==null){
+                                            reff2.getRef().child("name5").removeValue();
+                                        }else{
+                                            deliverModel.setName5(holder.txtN5.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name6").getValue()==null){
+                                            reff2.getRef().child("name6").removeValue();
+                                        }else{
+                                            deliverModel.setName6(holder.txtN6.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name7").getValue()==null){
+                                            reff2.getRef().child("name7").removeValue();
+                                        }else{
+                                            deliverModel.setName7(holder.txtN7.getText().toString());
+                                        }
+                                        if(snapshot.child(key).child("name8").getValue()==null){
+                                            reff2.getRef().child("name8").removeValue();
+                                        }else{
+                                            deliverModel.setName8(holder.txtN8.getText().toString());
+                                        }
 
 
-                                    deliverModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
-                                    deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
-                                    deliverModel.setCustomerName(holder.customer.getText().toString().trim());
-                                    deliverModel.setPhonenum(holder.phone.getText().toString().trim());
-                                    deliverModel.setStatus("Finish");
-                                    reffUsers.child("status").setValue("Finish");
-                                    reff3.child("Finish").child(currentDate).child(holder.txtIDNUM.getText().toString()).setValue(deliverModel);
-
-                                    snapshot.child(key).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+                                        deliverModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
+                                        deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
+                                        deliverModel.setCustomerName(holder.customer.getText().toString().trim());
+                                        deliverModel.setPhonenum(holder.phone.getText().toString().trim());
+                                        deliverModel.setStatus("Finish");
+                                        reffUsers.child("status").setValue("Finish");
+                                        reff2.setValue(deliverModel);
+                                        snapshot.child(key).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
-                        deliverModelList.remove(holder.getAdapterPosition());
-                        notifyItemRemoved(holder.getAdapterPosition());
-                        notifyItemRangeChanged(holder.getAdapterPosition(), deliverModelList.size());
-                        dialog.dismiss();
+                                }
+                            });
+                            deliverModelList.remove(holder.getAdapterPosition());
+                            notifyItemRemoved(holder.getAdapterPosition());
+                            notifyItemRangeChanged(holder.getAdapterPosition(), deliverModelList.size());
+                            dialog.dismiss();
+
+                        }catch (Exception exception){
+                            System.out.println("catch");
+                        }
 
                     }
                 });

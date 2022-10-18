@@ -103,7 +103,22 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
-        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate).child(String.valueOf(maxid + 1));
+        reff4 = FirebaseDatabase.getInstance().getReference().child("Data").child("FinishID");
+        reff4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    finishmaxid=(snapshot.getChildrenCount());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate);
         reff5.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
