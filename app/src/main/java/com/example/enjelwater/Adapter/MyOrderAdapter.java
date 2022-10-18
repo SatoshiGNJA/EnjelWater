@@ -156,8 +156,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
         holder.btnProc.setOnClickListener(view -> {
 
-            Toast.makeText(context, holder.txtKey.getText().toString(), Toast.LENGTH_SHORT).show();
-
             dialog.setContentView(R.layout.out_delivery_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setCanceledOnTouchOutside(false);
@@ -427,9 +425,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                             .child("OrderHistory")
                             .child(holder.txtPID.getText().toString());
 
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
                     Query query = reference.orderByKey().equalTo(currentDate);
-                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

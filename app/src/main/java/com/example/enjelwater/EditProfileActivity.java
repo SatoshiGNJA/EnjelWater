@@ -199,12 +199,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                databaseReference.addValueEventListener(new ValueEventListener() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        Toast.makeText(getApplicationContext(),"Successfully Updated",Toast.LENGTH_LONG).show();
-                        closeKeyBoard();
 
                         databaseReference.child("Users").child(uid).child("name").setValue(editFull.getText().toString());
                         databaseReference.child("Users").child(uid).child("homeaddress").setValue(editAddress.getText().toString());
@@ -214,6 +212,8 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         editFull.setText(fullname);
                         editAddress.setText(address);
+                        Toast.makeText(getApplicationContext(),"Successfully Updated",Toast.LENGTH_SHORT).show();
+                        closeKeyBoard();
 
                     }
 

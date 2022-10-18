@@ -108,6 +108,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         btnBackSum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CartActivity.class);
+                startActivity(intent);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
@@ -550,6 +552,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         if(progressbbar.isShown()){
             Toast.makeText(SummaryActivity.this,"Please Wait You Order is still in Process!",Toast.LENGTH_SHORT).show();
         }else{
+            Intent intent = new Intent(getApplicationContext(),CartActivity.class);
+            startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }

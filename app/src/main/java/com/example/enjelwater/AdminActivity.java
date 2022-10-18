@@ -167,6 +167,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+                try {
+                    replaceFragment(new fragment1());
+                }catch (IllegalStateException exception) {
+
+                    System.out.println(exception);
+
+                }
 
             }
 
@@ -212,10 +219,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 }
 
                 try {
+                    Intent resultIntent = new Intent(getApplicationContext(), AdminHistoryFragment.class);
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
                     builder.setContentTitle("The Customer has received the Gallon");
                     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
                     builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                    builder.setContentIntent(resultPendingIntent);
                     builder.setAutoCancel(true);
                     builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
                     builder.setStyle(new NotificationCompat.BigTextStyle());

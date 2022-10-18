@@ -217,8 +217,8 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
     }

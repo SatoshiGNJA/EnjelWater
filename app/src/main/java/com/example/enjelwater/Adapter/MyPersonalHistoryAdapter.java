@@ -282,6 +282,11 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
                             }
                         });
+                        Intent intent = new Intent(context, PersonalOrderActivity.class);
+                        ((PersonalOrderActivity)context).finish();
+                        ((PersonalOrderActivity) context).overridePendingTransition(0,0);
+                        context.startActivity(intent);
+                        ((PersonalOrderActivity) context).overridePendingTransition(0,0);
                         personalOrderModelList.remove(holder.getAdapterPosition());
                         notifyItemRemoved(holder.getAdapterPosition());
                         notifyItemRangeChanged(holder.getAdapterPosition(), personalOrderModelList.size());
@@ -463,6 +468,11 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             String key2 = holder.txtIDNUM.getText().toString();
                                             String value = String.valueOf(snapshot.child(key2).child("key").getValue());
                                             snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid ->  EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+                                            Intent intent = new Intent(context, PersonalOrderActivity.class);
+                                            ((PersonalOrderActivity)context).finish();
+                                            ((PersonalOrderActivity) context).overridePendingTransition(0,0);
+                                            context.startActivity(intent);
+                                            ((PersonalOrderActivity) context).overridePendingTransition(0,0);
                                             refference1.child(value).removeValue();
 
                                         }
