@@ -74,12 +74,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         deliverModel = new DeliverModel();
         dialog = new Dialog(context);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Data").child("AcceptedID");
+        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(currentDate);
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    maxid = (snapshot.getChildrenCount());
+                if(snapshot.exists()){
+                    maxid=(snapshot.getChildrenCount());
                 }
             }
 
@@ -179,7 +179,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Cust.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
             Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
-            phone.setText(new StringBuilder("Phone#: ").append(productModelList.get(position).getPhonenum()));
+            phone.setText(new StringBuilder("Cellphone Number: ").append(productModelList.get(position).getPhonenum()));
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
@@ -354,7 +354,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             phone = dialog.findViewById(R.id.txtPhoneDialog);
             Name.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
             Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
-            phone.setText(new StringBuilder("Phone#: ").append(productModelList.get(position).getPhonenum()));
+            phone.setText(new StringBuilder("Cellphone Number: ").append(productModelList.get(position).getPhonenum()));
 
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
@@ -480,8 +480,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 deliverModel.setCustomerName(holder.txtName.getText().toString());
                                 deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                 reffUsers.removeValue();
-                                reff.child(String.valueOf(maxid + 1)).child("uid").setValue(holder.txtUID.getText().toString());
-                                reff3.child("Cancel").child(currentDate).child(String.valueOf(maxid + 1)).setValue(deliverModel);
+                                reff.child(String.valueOf(maxid + 1)).setValue(deliverModel);
                                 snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                             }
