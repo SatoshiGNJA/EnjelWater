@@ -108,12 +108,12 @@ public class AdminProfileFragment extends Fragment {
 
                         if(adminuser.equals(user)&&adminpass.equals(pass)){
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.RED);
+                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
                             update.setBackground(finalButtonDrawable);
                         }else if(adminusername.getText().toString().isEmpty()||adminpassword.getText().toString().isEmpty()){
 
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.RED);
+                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
                             update.setBackground(finalButtonDrawable);
 
                         }else{
@@ -158,12 +158,12 @@ public class AdminProfileFragment extends Fragment {
                         if(adminuser.equals(user)&&adminpass.equals(pass)){
                             update.setEnabled(false);
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.RED);
+                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
                             update.setBackground(finalButtonDrawable);
                         }else if(adminusername.getText().toString().isEmpty()||adminpassword.getText().toString().isEmpty()){
 
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.RED);
+                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
                             update.setBackground(finalButtonDrawable);
 
                         }else{

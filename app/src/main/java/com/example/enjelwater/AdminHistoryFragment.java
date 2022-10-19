@@ -2,7 +2,9 @@ package com.example.enjelwater;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -56,6 +59,10 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
     DatePickerDialog datePickerDialog;
     Spinner spin;
 
+    ImageButton pdfdownload;
+
+    Dialog dialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +73,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
         spin = view.findViewById(R.id.spinner);
         totalord = view.findViewById(R.id.txtTotOrder);
         totalsales = view.findViewById(R.id.txtTotSales);
+        pdfdownload = view.findViewById(R.id.btn_pdf);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.finishandcancel, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
@@ -73,12 +81,43 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
 
         dateButton.setText(getTodaysDate());
 
+        dialog=new Dialog(view.getContext());
+
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 datePickerDialog.show();
 
+            }
+        });
+        pdfdownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.setContentView(R.layout.pdf_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnok = dialog.findViewById(R.id.btn_download);
+                Button notyet = dialog.findViewById(R.id.btn_nope);
+                TextView date = dialog.findViewById(R.id.dates);
+
+                date.setText("Date: "+ dateButton.getText().toString().trim());
+
+                btnok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "PDF has been downloaded", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                notyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
 
