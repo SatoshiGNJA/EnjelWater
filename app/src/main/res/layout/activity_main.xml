@@ -31,7 +31,7 @@
             android:layout_weight="11"
             android:fontFamily="@font/bungee"
             android:gravity="center"
-            android:text="Invoice"
+            android:text="Delivery Invoice"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -46,7 +46,8 @@
         android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Customer Name: "
+        android:fontFamily="@font/source_sans_pro"
+        android:text=""
         android:textSize="20dp"
         android:textColor="@color/black"/>
 
@@ -64,7 +65,8 @@
         android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Address: "
+        android:fontFamily="@font/source_sans_pro"
+        android:text=""
         android:textSize="20dp"
         android:textColor="@color/black"/>
 
@@ -82,7 +84,8 @@
         android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Phone#: "
+        android:fontFamily="@font/source_sans_pro"
+        android:text=""
         android:textSize="20dp"
         android:textColor="@color/black"/>
 

@@ -28,7 +28,7 @@
             android:layout_alignBottom="@+id/sadwater"
             android:fontFamily="@font/bungee"
             android:gravity="center"
-            android:text="There is still no Order at this Time"
+            android:text="There  no order at this moment"
             android:textColor="@color/black"
             android:visibility="visible" />
 

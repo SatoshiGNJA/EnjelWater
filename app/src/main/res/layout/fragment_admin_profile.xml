@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/gradient_background2">
+    android:background="@drawable/gradient_background2"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/bungee"
+        android:gravity="center"
+        android:text="Admin Information"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/align_username"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:hint="Admin Username">
+        android:hint="Username"
+        android:textAlignment="textStart">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/admin_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/customborder"
-            android:drawableLeft="@drawable/ic_baseline_face_24"
+            android:drawableStart="@drawable/profile_small"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/source_sans_pro"
             android:inputType="text"
             android:textColor="@color/black"
+            android:textSize="15sp"
+
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -32,55 +48,32 @@
         android:id="@+id/align_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/align_username"
-        android:layout_marginTop="25dp"
         android:layout_marginStart="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        app:passwordToggleEnabled="true"
+        android:hint="Password"
         app:errorIconDrawable="@null"
-        android:hint="Password">
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/admin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/customborder"
+            android:drawableStart="@drawable/password"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/source_sans_pro"
             android:inputType="textPassword"
             android:textColor="@color/black"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <TextView
-        android:id="@+id/txtAdmin"
-        android:layout_width="350dp"
-        android:layout_height="96dp"
-        android:layout_alignBottom="@+id/align_username"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="278dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="74dp"
-        android:fontFamily="@font/bungee"
-        android:gravity="center"
-        android:text="Admin Information"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-
     <FrameLayout
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/align_password"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="19dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
 
         <ProgressBar
             android:id="@+id/admin_Progressbar"
@@ -91,20 +84,22 @@
 
         <Button
             android:id="@+id/admin_btn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:text="Update"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:fontFamily="@font/source_sans_pro"
             android:textStyle="bold"
+            android:textSize="15sp"
             android:transitionName="button_tran"
-            app:backgroundTint="@color/light_blue"
+            app:backgroundTint="@color/blue"
             app:cornerRadius="12dp"
-            app:strokeColor="@color/black"
+            app:strokeColor="@color/blue"
             app:strokeWidth="1dp" />
 
 
     </FrameLayout>
 
-</RelativeLayout>
+</LinearLayout>

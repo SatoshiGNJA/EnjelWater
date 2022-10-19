@@ -14,16 +14,20 @@
         android:layout_height="73dp"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher_round"
-        app:civ_border_color="@color/black"
+        app:civ_border_color="@color/blue"
         app:civ_border_width="4dp" />
 
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:background="@drawable/customborder"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/blue"
+        android:fontFamily="@font/source_sans_pro"
+        android:textSize="20sp"
         android:text="ADMIN"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white" />
 

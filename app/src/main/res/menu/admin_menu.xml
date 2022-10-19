@@ -6,12 +6,12 @@
     <group android:checkableBehavior="none" >
         <item
             android:id="@+id/nav_admin_prof"
-            android:icon="@drawable/ic_baseline_face_24"
+            android:icon="@drawable/profile"
             android:title="Admin Profile" />
         <item
             android:id="@+id/nav_admin_finish"
-            android:icon="@drawable/prepare"
-            android:title="Finish/Cancel Order Reports" />
+            android:icon="@drawable/report"
+            android:title="Transaction History" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
