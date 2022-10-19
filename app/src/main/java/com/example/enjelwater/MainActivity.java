@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
         n6.setText(na6);
         n7.setText(na7);
         n8.setText(na8);
-        custName.setText("Customer Name: "+ customer);
-        phone.setText("Phone#: "+ph0ne);
+        custName.setText(customer);
+        phone.setText(ph0ne);
         address.setText(addr3ss);
-        total.setText("Total: " + t0tal);
+        total.setText(t0tal);
 
         if(n1.getText().toString().equals("Name1: ")){
             n1.setVisibility(View.GONE);

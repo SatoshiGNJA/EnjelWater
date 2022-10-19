@@ -132,7 +132,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()));
         }
         holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
-        holder.txtAddress.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
+        holder.txtAddress.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(productModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",productModelList.get(position).getTotalPrice())));
