@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -121,8 +122,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
                         try {
                             Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
-                            PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+                            resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                            resultIntent.putExtra("fragment1", "MyFragment");
+                            PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
                             builder.setContentTitle("New Order is Being Placed!");
                             builder.setContentText("Go Check it OUT!");
@@ -133,10 +135,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                             builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
                             builder.setStyle(new NotificationCompat.BigTextStyle());
                             builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-
                             Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                             builder.setSound(alarmSound);
-
                             NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
                             manager.notify(1, builder.build());
                             replaceFragment(new fragment1());
@@ -219,13 +219,15 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 }
 
                 try {
-                    Intent resultIntent = new Intent(getApplicationContext(), AdminHistoryFragment.class);
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                    resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    resultIntent.putExtra("adminfrag", "MyFragment");
+                    PendingIntent pendingIntent=PendingIntent.getActivity(AdminActivity.this,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
                     builder.setContentTitle("The Customer has received the Gallon");
                     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
                     builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                    builder.setContentIntent(resultPendingIntent);
+                    builder.setContentIntent(pendingIntent);
                     builder.setAutoCancel(true);
                     builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
                     builder.setStyle(new NotificationCompat.BigTextStyle());
@@ -235,7 +237,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                     builder.setSound(alarmSound);
 
                     NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                    manager.notify(1, builder.build());
+                    manager.notify(0, builder.build());
                     replaceFragment(new fragment2());
 
 
@@ -321,21 +323,25 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onResume() {
         try {
-            int intentFragment = getIntent().getExtras().getInt("frgToLoad");
 
-            switch (intentFragment){
-                case 1:
-                    replaceFragment(new fragment1());
-                    break;
-                case 2:
-                    replaceFragment(new fragment2());
-                    break;
-            }
+            onNewIntent(getIntent());
+
         }
         catch (Exception e){
             System.out.println("Catch");
         }
         super.onResume();
     }
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (extras.containsKey("adminfrag")) {
+                replaceFragment(new AdminHistoryFragment());
+            }else if(extras.containsKey("fragment1")){
+                replaceFragment(new fragment1());
+            }
+        }
+    }
 }

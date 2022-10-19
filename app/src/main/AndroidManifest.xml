@@ -30,6 +30,7 @@
         <activity
             android:name=".AdminActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:label=""
             android:theme="@style/Theme.EnjelWater.NoActionBar" />
         <activity
@@ -60,6 +61,7 @@
         <activity
             android:name=".UserProfileActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:label=""
             android:theme="@style/Theme.EnjelWater.NoActionBar" />
         <activity
@@ -72,7 +74,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:parentActivityName=".AdminActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.EnjelWater.NoActionBar"
             android:label=""/>
         <activity

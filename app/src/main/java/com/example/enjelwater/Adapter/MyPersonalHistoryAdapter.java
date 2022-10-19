@@ -77,7 +77,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         dialog=new Dialog(context);
 
         reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(currentDate);
-        reff.addListenerForSingleValueEvent(new ValueEventListener() {
+        reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){

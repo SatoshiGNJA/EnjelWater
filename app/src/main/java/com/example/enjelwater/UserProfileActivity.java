@@ -172,7 +172,6 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
         orderhistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(UserProfileActivity.this,PersonalOrderActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
@@ -336,8 +335,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
 
                                     try {
                                         Intent resultIntent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
-                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
                                         builder.setContentTitle(fullNameLabel.getText().toString());
                                         builder.setContentText("Your Order is now On Process!");
@@ -353,7 +351,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                                         builder.setSound(alarmSound);
 
                                         NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
-                                        manager.notify(1, builder.build());
+                                        manager.notify(0, builder.build());
 
 
 
@@ -401,8 +399,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
 
                                     try {
                                         Intent resultIntent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
-                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+                                        PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                                         NotificationCompat.Builder builder = new NotificationCompat.Builder(UserProfileActivity.this, "My Notification");
                                         builder.setContentTitle(fullNameLabel.getText().toString());
                                         builder.setContentText("Your Order is now Out For Delivery!");
@@ -418,7 +415,7 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
                                         builder.setSound(alarmSound);
 
                                         NotificationManagerCompat manager = NotificationManagerCompat.from(UserProfileActivity.this);
-                                        manager.notify(1, builder.build());
+                                        manager.notify(0, builder.build());
 
 
 

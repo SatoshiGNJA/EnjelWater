@@ -190,7 +190,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
             }
         });
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("OrderID");
-        reff.addListenerForSingleValueEvent(new ValueEventListener() {
+        reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -205,7 +205,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
             }
         });
         reffUser = FirebaseDatabase.getInstance().getReference().child("Data").child("CustomerOrderID");
-        reffUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        reffUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -430,8 +430,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                 });
                                 Intent intent = new Intent(getApplicationContext(),ThankYouActivity.class);
                                 startActivity(intent);
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                                 finish();
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                             }
                         }.start();
