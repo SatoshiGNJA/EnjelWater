@@ -65,37 +65,40 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Name:"
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:textSize="15sp" />
 
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_marginBottom="0dp"
-                android:background="#5C5C5C" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
+                 <TextView
                     android:id="@+id/txtphonedel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Phone#:"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
+                    android:text=""
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
             </LinearLayout>
+
 
 
             <View
@@ -103,6 +106,7 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="0dp"
                 android:background="#5C5C5C" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,33 +223,6 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="0dp"
                 android:background="#5C5C5C" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:gravity="start"
-                    android:text="Address: "
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="0dp"
-                    android:background="#5C5C5C" />
-
-
-            </LinearLayout>
 
 
             <FrameLayout

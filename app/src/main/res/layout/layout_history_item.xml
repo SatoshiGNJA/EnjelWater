@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:alpha="0.4"
             android:src="@drawable/waterlogo_crop" />
 
@@ -32,26 +33,26 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/historycustname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Customer Name:"
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Status"
                     android:textColor="@color/black"
@@ -59,45 +60,29 @@
                     android:textStyle="bold"
                     android:visibility="gone" />
 
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="0dp"
-                android:background="#5C5C5C" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="vertical">
-
-                <TextView
+                 <TextView
                     android:id="@+id/historyphone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Cellphone Number: "
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtAddress"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Address"
+                    android:text=""
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"/>
+
             </LinearLayout>
 
             <View
@@ -124,7 +109,8 @@
                     android:text="Name1: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName2"
@@ -138,7 +124,8 @@
                     android:text="Name2: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName3"
@@ -152,7 +139,8 @@
                     android:text="Name3: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName4"
@@ -166,7 +154,9 @@
                     android:text="Name4: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
 
                 <TextView
                     android:id="@+id/txtName5"
@@ -180,7 +170,8 @@
                     android:text="Name5: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName6"
@@ -194,7 +185,8 @@
                     android:text="Name6: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName7"
@@ -208,7 +200,8 @@
                     android:text="Name7: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName8"
@@ -222,7 +215,8 @@
                     android:text="Name8: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
@@ -251,7 +245,7 @@
                     android:fontFamily="@font/source_sans_pro"
                     android:text="XXXX"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blue"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 

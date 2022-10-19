@@ -59,10 +59,9 @@
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="left"
                 android:paddingStart="10dp"
-                android:text="Name:"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,10 +75,9 @@
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="left"
                 android:paddingStart="10dp"
-                android:text="Address:"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,10 +91,9 @@
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="left"
                 android:paddingStart="10dp"
-                android:text="Phone#:"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="15sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +135,8 @@
                     android:text="Name1: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName2"
@@ -151,7 +149,8 @@
                     android:text="Name2:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName3"
@@ -164,7 +163,8 @@
                     android:text="Name3:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName4"
@@ -177,7 +177,8 @@
                     android:text="Name4:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName5"
@@ -190,7 +191,8 @@
                     android:text="Name5:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName6"
@@ -203,7 +205,8 @@
                     android:text="Name6:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName7"
@@ -216,7 +219,8 @@
                     android:text="Name7:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txtName8"
@@ -229,7 +233,8 @@
                     android:text="Name8:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                     android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
