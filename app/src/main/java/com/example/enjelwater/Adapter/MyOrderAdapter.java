@@ -177,9 +177,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Address = dialog.findViewById(R.id.txtAddressDialog);
             phone = dialog.findViewById(R.id.txtPhonenumbb);
 
-            Cust.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
-            Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
-            phone.setText(new StringBuilder("Cellphone Number: ").append(productModelList.get(position).getPhonenum()));
+            Cust.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
+            Address.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
+            phone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
@@ -352,9 +352,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Name = dialog.findViewById(R.id.txtCustomerName);
             Address = dialog.findViewById(R.id.txtAddressDialog);
             phone = dialog.findViewById(R.id.txtPhoneDialog);
-            Name.setText(new StringBuilder("Customer Name: ").append(productModelList.get(position).getCustname()));
-            Address.setText(new StringBuilder("Address: ").append(productModelList.get(position).getAddress()));
-            phone.setText(new StringBuilder("Cellphone Number: ").append(productModelList.get(position).getPhonenum()));
+            Name.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
+            Address.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
+            phone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
 
 
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
