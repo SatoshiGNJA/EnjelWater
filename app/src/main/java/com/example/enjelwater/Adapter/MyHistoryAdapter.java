@@ -85,13 +85,13 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         }else{
             holder.txtN8.setText(new StringBuilder().append(historyModelList.get(position).getName8()));
         }
-        holder.txtCustomerN.setText(new StringBuilder("Customer Name: ").append(historyModelList.get(position).getCustomerName()));
-        holder.txtAddress.setText(new StringBuilder("Address: ").append(historyModelList.get(position).getAddress()));
+        holder.txtCustomerN.setText(new StringBuilder().append(historyModelList.get(position).getCustomerName()));
+        holder.txtAddress.setText(new StringBuilder().append(historyModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(historyModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",historyModelList.get(position).getTotalPrice())));
         holder.txtIDNUM.setText(new StringBuilder().append(historyModelList.get(position).getKey()));
-        holder.txtPhone.setText(new StringBuilder("Cellphone Number: ").append(historyModelList.get(position).getPhonenum()));
+        holder.txtPhone.setText(new StringBuilder().append(historyModelList.get(position).getPhonenum()));
         if(Objects.equals(historyModelList.get(position).getStatus(), "Finish")){
         }
         if(Objects.equals(historyModelList.get(position).getStatus(), "Cancel")){

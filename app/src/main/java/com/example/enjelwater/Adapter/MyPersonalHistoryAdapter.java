@@ -173,7 +173,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         }else{
             holder.txtN8.setText(new StringBuilder().append(personalOrderModelList.get(position).getName8()));
         }
-        holder.txtAddress.setText(new StringBuilder("Address: ").append(personalOrderModelList.get(position).getAddress()));
+        holder.txtAddress.setText(new StringBuilder().append(personalOrderModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(personalOrderModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
         holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",personalOrderModelList.get(position).getTotalPrice())));
