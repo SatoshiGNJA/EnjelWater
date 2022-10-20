@@ -16,39 +16,39 @@
         android:layout_height="wrap_content">
 
 
-    <LinearLayout
-        android:id="@+id/panels"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="#A9EDFF"
-        android:orientation="horizontal"
-        android:weightSum="16">
+        <LinearLayout
+            android:id="@+id/panels"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="#A9EDFF"
+            android:orientation="horizontal"
+            android:weightSum="16">
 
-        <ImageView
-            android:id="@+id/btnBackSum"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:layout_weight="2"
-            android:src="@drawable/ic_baseline_navigate_before_24" />
+            <ImageView
+                android:id="@+id/btnBackSum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_weight="2"
+                android:src="@drawable/ic_baseline_navigate_before_24" />
 
-        <TextView
-            android:id="@+id/txtSummary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="11"
-            android:layout_marginStart="40dp"
-            android:fontFamily="@font/bungee"
-            android:gravity="center"
-            android:text="Check Out"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/txtSummary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="11"
+                android:layout_marginStart="40dp"
+                android:fontFamily="@font/bungee"
+                android:gravity="center"
+                android:text="Check Out"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
         <LinearLayout
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                     android:layout_marginStart="15dp"
+                    android:layout_marginStart="15dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="09#########"
                     android:textColor="@color/black"
@@ -164,11 +164,11 @@
                 android:background="@color/black" />
 
 
-               <LinearLayout
+            <LinearLayout
                 android:id="@+id/barsz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                   android:background="#A9EDFF"
+                android:background="#A9EDFF"
                 android:orientation="horizontal">
 
 
