@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="12dp"
     android:layout_margin="8dp"
     android:layout_width="wrap_content"
@@ -17,13 +17,14 @@
         
         <ImageView
             android:id="@+id/imageView"
-            android:src="@drawable/waterlogo"
+            android:src="@drawable/waterlogo_crop"
             android:layout_width="150dp"
             android:layout_height="150dp"/>
         <TextView
             android:id="@+id/txtPrice"
             android:text="Php20"
             android:textSize="30sp"
+            android:fontFamily="@font/source_sans_pro"
             android:textStyle="bold"
             android:layout_gravity="start"
             android:layout_width="wrap_content"
@@ -31,6 +32,7 @@
         <TextView
             android:id="@+id/txtName"
             android:text="Name of Drink"
+            android:fontFamily="@font/source_sans_pro"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_gravity="start"

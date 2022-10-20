@@ -45,7 +45,7 @@ public class MySummaryAdapter extends RecyclerView.Adapter<MySummaryAdapter.MySu
                 .into(holder.imageView);
         holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModelList.get(position).getPrice()));
         holder.txtName.setText(new StringBuilder().append(cartModelList.get(position).getName()));
-        holder.txtQuantity.setText(new StringBuilder("Quantity: ").append(cartModelList.get(position).getQuantity() ));
+        holder.txtQuantity.setText(new StringBuilder("x").append(cartModelList.get(position).getQuantity() ));
         holder.txtTotal.setText(new StringBuilder("₱").append(cartModelList.get(position).getTotalPrice() ));
     }
 

@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="11"
+            android:layout_marginStart="40dp"
             android:fontFamily="@font/bungee"
             android:gravity="center"
             android:text="Check Out"
@@ -56,21 +57,12 @@
             android:layout_marginTop="55dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/antic"
-                android:text="Summary of Order"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
                 android:layout_alignTop="@id/bars"
-                android:layout_marginBottom="-3dp"
-                android:background="@color/black" />
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#5C5C5C"
+                android:layout_marginBottom="-3dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,8 +74,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/antic"
-                    android:text="Name: "
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -92,20 +84,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:fontFamily="@font/bungee"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="FULL NAME"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
 
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
                 android:layout_alignTop="@id/bars"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="#5C5C5C"
                 android:layout_marginBottom="-3dp"
-                android:background="@color/black" />
+
+                 />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -116,42 +113,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/antic"
-                    android:text="Phone Number: "
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text=""
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtphonenumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:fontFamily="@font/bungee"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="09#########"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
 
 
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
                 android:layout_alignTop="@id/bars"
-                android:layout_marginBottom="-3dp"
-                android:background="@color/black" />
-
-            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/antic"
-                android:text="Products: "
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
+                android:layout_height="1dp"
+                android:background="#5C5C5C"
+                android:layout_marginBottom="-3dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_summary"
@@ -161,9 +149,8 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="3dp"
-
-                android:background="@color/black" />
+                android:layout_height="1dp"
+                android:background="#5C5C5C" />
 
             <RadioGroup
                 android:id="@+id/radio_group"
@@ -211,7 +198,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/black" />
 
 
@@ -222,14 +209,22 @@
                 android:background="#A9EDFF"
                 android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                android:layout_marginStart="130dp"
+                android:orientation="vertical">
 
-                <TextView
+                 <TextView
                     android:id="@+id/totalpricetext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/bungee"
-                    android:text="Total Price: "
+                    android:layout_gravity="right"
+                    android:layout_marginStart="10dp"
+                     android:layout_marginTop="3dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Total Payment"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -237,29 +232,33 @@
                     android:id="@+id/txtTotalPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/bungee"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="########"
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
+                    android:textColor=" #FD673A"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
 
                 <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    >
 
                     <Button
                         android:id="@+id/checkout"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:enabled="false"
-                        android:fontFamily="@font/bungee"
+                        android:fontFamily="@font/source_sans_pro"
                         android:gravity="center"
-                        android:textSize="10dp"
+                        android:textSize="15sp"
                         android:text="Place Order"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginEnd="40dp"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:transitionName="button_tran"
