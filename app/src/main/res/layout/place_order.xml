@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,9 +15,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
             <ImageView
@@ -25,178 +26,159 @@
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/box" />
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/bungee"
                 android:gravity="center"
                 android:text="Proceed to Place Order?"
                 android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewNet" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtPlaceAddress"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:fontFamily="@font/antic"
+                android:fontFamily="@font/source_sans_pro"
                 android:gravity="left"
                 android:padding="5dp"
                 android:text="Address:"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                android:textSize="15sp" />
 
             <View
                 android:id="@+id/viewm"
                 android:layout_width="wrap_content"
-                android:layout_height="3dp"
-                android:background="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtPlaceAddress" />
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C"
+                android:layout_margin="5dp" />
 
-            <com.google.android.flexbox.FlexboxLayout
+            <LinearLayout
                 android:id="@+id/flex"
-                android:layout_width="350dp"
-                android:layout_height="142dp"
-                app:flexDirection="column"
-                app:flexWrap="nowrap"
-                app:justifyContent="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewm">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/Name1"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-
                     android:text="Name1: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"  />
 
                 <TextView
                     android:id="@+id/Name2"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name2: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Name3"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name3: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                   android:textSize="15sp"
+                android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/Name4"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name4: "
-                    android:textAllCaps="true"
+                    android:text="Name4:"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/Name5"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name5: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                android:textStyle="bold"  />
+
                 <TextView
                     android:id="@+id/Name6"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name6: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                android:textStyle="bold"  />
+
                 <TextView
                     android:id="@+id/Name7"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name7: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                   android:textSize="15sp"
+                android:textStyle="bold"  />
+
                 <TextView
                     android:id="@+id/Name8"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
                     android:text="Name8: "
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </com.google.android.flexbox.FlexboxLayout>
+                    android:textSize="15sp"
+                android:textStyle="bold"  />
+            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/frameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/flex"
-                app:layout_constraintVertical_bias="0.021">
+                android:layout_marginBottom="8dp">
 
                 <Button
                     android:id="@+id/btnNO"
                     android:layout_width="115dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="40dp"
-                    android:backgroundTint="@drawable/button_text_color"
-                    android:fontFamily="@font/aleo_light"
-                    android:text="No!"
-                    android:textColor="@color/white"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="40dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="No"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -206,10 +188,10 @@
                     android:id="@+id/btnOK"
                     android:layout_width="110dp"
                     android:layout_height="50dp"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="40dp"
                     android:backgroundTint="@color/green"
-                    android:fontFamily="@font/aleo_light"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="Okay!"
                     android:textColor="@color/white"
                     android:textStyle="bold"
@@ -224,13 +206,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
-
-
             </FrameLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
