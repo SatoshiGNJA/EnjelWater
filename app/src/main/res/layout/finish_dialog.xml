@@ -37,7 +37,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_check_24" />
+                    app:srcCompat="@drawable/done" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -68,11 +68,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginEnd="45dp"
-                    android:backgroundTint="@drawable/button_yes"
-                    android:fontFamily="@font/aleo_light"
+                    android:backgroundTint="@drawable/button_accept"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="Confirm"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,10 +86,10 @@
                     android:layout_gravity="start"
                     android:layout_marginStart="45dp"
                     android:background="@android:color/transparent"
-                    android:fontFamily="@font/aleo_light"
+                    android:fontFamily="@font/source_sans_pro"
                     android:text="Not Yet"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
