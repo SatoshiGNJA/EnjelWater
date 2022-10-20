@@ -186,15 +186,15 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
             holder.btnreceived.setVisibility(View.GONE);
-            holder.txtStat.setTextColor(Color.parseColor("#8B8000"));
+            holder.txtStat.setTextColor(Color.parseColor("#edb009"));
         }else if(holder.txtStat.getText().toString().equals("Finish")){
             holder.btnCORD.setVisibility(View.GONE);
             holder.btnreceived.setVisibility(View.GONE);
-            holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
+            holder.txtStat.setTextColor(Color.parseColor("#4CAF50"));
         }else if(holder.txtStat.getText().toString().equals("On-going Delivery")){
             holder.btnCORD.setVisibility(View.GONE);
             holder.btnreceived.setVisibility(View.VISIBLE);
-            holder.txtStat.setTextColor(Color.parseColor("#00FF00"));
+            holder.txtStat.setTextColor(Color.parseColor("#FF018786"));
         }
         holder.btnreceived.setOnClickListener(new View.OnClickListener() {
             @Override
