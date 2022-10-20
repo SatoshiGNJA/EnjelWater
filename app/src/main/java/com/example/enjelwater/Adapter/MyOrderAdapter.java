@@ -93,41 +93,49 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         if(productModelList.get(position).getName1() == null){
             holder.txtN1.setVisibility(View.GONE);
         }else{
+            holder.txtN1.setVisibility(View.VISIBLE);
             holder.txtN1.setText(new StringBuilder().append(productModelList.get(position).getName1()));
         }
         if(productModelList.get(position).getName2() == null){
             holder.txtN2.setVisibility(View.GONE);
         }else{
+            holder.txtN2.setVisibility(View.VISIBLE);
             holder.txtN2.setText(new StringBuilder().append(productModelList.get(position).getName2()));
         }
         if(productModelList.get(position).getName3() == null){
             holder.txtN3.setVisibility(View.GONE);
         }else{
+            holder.txtN3.setVisibility(View.VISIBLE);
             holder.txtN3.setText(new StringBuilder().append(productModelList.get(position).getName3()));
         }
         if(productModelList.get(position).getName4() == null){
             holder.txtN4.setVisibility(View.GONE);
         }else{
+            holder.txtN4.setVisibility(View.VISIBLE);
             holder.txtN4.setText(new StringBuilder().append(productModelList.get(position).getName4()));
         }
         if(productModelList.get(position).getName5() == null){
             holder.txtN5.setVisibility(View.GONE);
         }else{
+            holder.txtN5.setVisibility(View.VISIBLE);
             holder.txtN5.setText(new StringBuilder().append(productModelList.get(position).getName5()));
         }
         if(productModelList.get(position).getName6() == null){
             holder.txtN6.setVisibility(View.GONE);
         }else{
+            holder.txtN6.setVisibility(View.VISIBLE);
             holder.txtN6.setText(new StringBuilder().append(productModelList.get(position).getName6()));
         }
         if(productModelList.get(position).getName7() == null){
             holder.txtN7.setVisibility(View.GONE);
         }else{
+            holder.txtN7.setVisibility(View.VISIBLE);
             holder.txtN7.setText(new StringBuilder().append(productModelList.get(position).getName7()));
         }
         if(productModelList.get(position).getName8() == null){
             holder.txtN8.setVisibility(View.GONE);
         }else{
+            holder.txtN8.setVisibility(View.VISIBLE);
             holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()));
         }
         holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
