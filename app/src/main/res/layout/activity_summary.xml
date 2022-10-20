@@ -167,10 +167,8 @@
                <LinearLayout
                 android:id="@+id/barsz"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:background="#A9EDFF"
+                android:layout_height="wrap_content"
+                   android:background="#A9EDFF"
                 android:orientation="horizontal">
 
 
@@ -196,23 +194,20 @@
                     android:textSize="18sp" />
 
                 <FrameLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_gravity="center">
+                    android:paddingEnd="20dp"
+                    android:layout_gravity="end" >
 
                     <Button
                         android:id="@+id/checkout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="end"
                         android:enabled="false"
                         android:fontFamily="@font/source_sans_pro"
-                        android:gravity="center"
                         android:textSize="15sp"
                         android:text="Place Order"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginEnd="40dp"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:transitionName="button_tran"
