@@ -236,7 +236,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String val = email.getEditText().getText().toString();
                                     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                                     if(!val.matches(emailPattern)) {
-                                        email.setError("Invalid Email Address");
+                                        email.setError("Invalid Data Input");
+                                        password.setError("Invalid Data Input");
                                     }else{
                                         boolean check = !task.getResult().getSignInMethods().isEmpty();
 

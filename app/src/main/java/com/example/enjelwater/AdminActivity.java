@@ -51,8 +51,6 @@ import java.util.Calendar;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityAdminBinding binding;
-    Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     DatabaseReference reff;
     private DrawerLayout drawerLayout;
     long maxid = 0;
@@ -109,45 +107,48 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
 
 
-        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(getTodaysDate());
         reference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
-                            NotificationManager manager = getSystemService(NotificationManager.class);
-                            manager.createNotificationChannel(channel);
-                        }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel("My Notification", "My Notification", NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager manager = getSystemService(NotificationManager.class);
+                    manager.createNotificationChannel(channel);
+                }
 
-                        try {
-                            Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
-                            resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                            resultIntent.putExtra("fragment1", "MyFragment");
-                            PendingIntent resultPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
-                            builder.setContentTitle("New Order is Being Placed!");
-                            builder.setContentText("Go Check it OUT!");
-                            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
-                            builder.setSmallIcon(R.mipmap.ic_launcher_round);
-                            builder.setContentIntent(resultPendingIntent);
-                            builder.setAutoCancel(true);
-                            builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
-                            builder.setStyle(new NotificationCompat.BigTextStyle());
-                            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-                            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                            builder.setSound(alarmSound);
-                            NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                            manager.notify(1, builder.build());
-                            replaceFragment(new fragment1());
+                try {
+                    Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                    resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    resultIntent.putExtra("adminfrag", "MyFragment");
+                    PendingIntent pendingIntent=PendingIntent.getActivity(AdminActivity.this,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
+                    builder.setContentTitle("New Order has been Placed");
+                    builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
+                    builder.setSmallIcon(R.mipmap.ic_launcher_round);
+                    builder.setContentIntent(pendingIntent);
+                    builder.setAutoCancel(true);
+                    builder.setDefaults(DEFAULT_SOUND | DEFAULT_VIBRATE);
+                    builder.setStyle(new NotificationCompat.BigTextStyle());
 
+                    Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    builder.setSound(alarmSound);
+
+                    NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
+                    manager.notify(1, builder.build());
 
 
-                        } catch (IllegalStateException exception) {
 
-                            System.out.println(exception);
+                } catch (IllegalStateException exception) {
 
-                        }
+                    System.out.println(exception);
+
+                }
+
+
+
+
                 }
 
             @Override
@@ -167,18 +168,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                try {
-                    replaceFragment(new fragment1());
-                }catch (IllegalStateException exception) {
-
-                    System.out.println(exception);
-
-                }
 
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
 
 
             }
@@ -189,7 +184,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(currentDate);
+        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(getTodaysDate());
         reference2.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -222,7 +217,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                     Intent resultIntent = new Intent(getApplicationContext(), AdminActivity.class);
                     resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     resultIntent.putExtra("adminfrag", "MyFragment");
-                    PendingIntent pendingIntent=PendingIntent.getActivity(AdminActivity.this,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pendingIntent=PendingIntent.getActivity(AdminActivity.this,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(AdminActivity.this, "My Notification");
                     builder.setContentTitle("The Customer has received the Gallon");
                     builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
@@ -237,7 +232,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                     builder.setSound(alarmSound);
 
                     NotificationManagerCompat manager = NotificationManagerCompat.from(AdminActivity.this);
-                    manager.notify(0, builder.build());
+                    manager.notify(1, builder.build());
                     replaceFragment(new fragment2());
 
 
@@ -297,6 +292,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 editor.clear();
                 editor.commit();
                 Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                stopService(new Intent(getApplicationContext(),LoginActivity.class));
+                NotificationManager manager = getSystemService(NotificationManager.class);
+                manager.cancelAll();
                 startActivity(i);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -343,5 +341,55 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 replaceFragment(new fragment1());
             }
         }
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
+
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+        super.onDestroy();
     }
 }

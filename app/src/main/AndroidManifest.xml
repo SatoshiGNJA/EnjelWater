@@ -31,6 +31,7 @@
             android:name=".AdminActivity"
             android:exported="false"
             android:launchMode="singleTop"
+            android:clearTaskOnLaunch="true"
             android:label=""
             android:theme="@style/Theme.EnjelWater.NoActionBar" />
         <activity

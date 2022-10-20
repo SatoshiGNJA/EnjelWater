@@ -45,7 +45,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     private IDeliverLoadListener iDeliverLoadListener;
     Calendar calendar = Calendar.getInstance();
     DatabaseReference reff, reff2, reff3, reff4;
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     long maxid = 0;
     DeliverModel deliverModel;
     ProductModel productModel;
@@ -74,7 +73,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         deliverModel = new DeliverModel();
         dialog = new Dialog(context);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(currentDate);
+        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(getTodaysDate());
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -152,7 +151,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
         }
 
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(currentDate).child(holder.txtIDNUM.getText().toString());
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(getTodaysDate()).child(holder.txtIDNUM.getText().toString());
 
         holder.btnProc.setOnClickListener(view -> {
 
@@ -240,7 +239,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                     try {
                         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                        Query query = reference.orderByKey().equalTo(currentDate);
+                        Query query = reference.orderByKey().equalTo(getTodaysDate());
                         query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -297,7 +296,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     deliverModel.setKey(holder.txtKey.getText().toString());
                                     deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                     reffUsers.child("status").setValue("On-going Delivery");
-                                    reff3.child("Delivered").child(currentDate).child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    reff3.child("Delivered").child(getTodaysDate()).child(holder.txtKey.getText().toString()).setValue(deliverModel);
                                     snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                                 }
@@ -426,7 +425,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                             .child(holder.txtPID.getText().toString());
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                    Query query = reference.orderByKey().equalTo(currentDate);
+                    Query query = reference.orderByKey().equalTo(getTodaysDate());
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -521,12 +520,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     .child(holder.txtPID.getText().toString());
 
                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                            Query query = reference.orderByKey().equalTo(currentDate);
+                            Query query = reference.orderByKey().equalTo(getTodaysDate());
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     reffUsers.child("status").setValue("On Process");
-                                    reff4.child("Orders").child(currentDate).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
+                                    reff4.child("Orders").child(getTodaysDate()).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
 
                                 }
 
@@ -609,5 +608,48 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             super(itemView);
             unbinder = ButterKnife.bind(this, itemView);
         }
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
+
     }
 }

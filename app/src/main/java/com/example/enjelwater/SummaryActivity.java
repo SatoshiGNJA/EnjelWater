@@ -88,8 +88,6 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
         progressbbar = findViewById(R.id.placeprogress);
         FName = findViewById(R.id.checkoutName);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -219,7 +217,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate).child(String.valueOf(maxid));
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Orders").child(getTodaysDate()).child(String.valueOf(maxid));
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -415,10 +413,10 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                             productModel.setPhonenum(phone.getText().toString().trim());
                                             productModel.setCustname(FName.getText().toString().trim());
                                             reff.child(String.valueOf(maxid + 1)).child("uid").setValue(currentuser);
-                                            order.child("Orders").child(currentDate).child(String.valueOf(maxid + 1)).setValue(productModel);
+                                            order.child("Orders").child(getTodaysDate()).child(String.valueOf(maxid + 1)).setValue(productModel);
                                             reffUser.child(String.valueOf(usermaxid + 1)).child("uid").setValue(currentuser);
                                             order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).setValue(productModel);
-                                            order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).child("orderdate").setValue(currentDate);
+                                            order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).child("orderdate").setValue(getTodaysDate());
                                             snapshot.getRef().removeValue();
 
                                         }
@@ -557,6 +555,49 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
+
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
 
     }
 }

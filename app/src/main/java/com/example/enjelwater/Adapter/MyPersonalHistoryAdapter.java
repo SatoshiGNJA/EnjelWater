@@ -54,7 +54,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
     PersonalOrderModel personalOrderModel;
 
     Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
     public MyPersonalHistoryAdapter(Context context, List<PersonalOrderModel> personalOrderModelList){
         this.context = context;
@@ -76,7 +75,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         personalOrderModel=new PersonalOrderModel();
         dialog=new Dialog(context);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(currentDate);
+        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(getTodaysDate());
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,7 +90,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(currentDate).child(String.valueOf(maxid+1));
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(getTodaysDate()).child(String.valueOf(maxid+1));
         reff2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,7 +117,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
-        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(currentDate);
+        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(getTodaysDate());
         reff5.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -403,7 +402,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                             @Override
                             public void onFinish() {
 
-                                DatabaseReference refference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+                                DatabaseReference refference1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(getTodaysDate());
 
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser);
                                 Query query = reference.orderByKey().equalTo("OrderHistory");
@@ -560,5 +559,48 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             super(itemView);
             unbinder = ButterKnife.bind(this,itemView);
         }
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
+
     }
 }

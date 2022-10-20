@@ -46,7 +46,6 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
     private List<DeliverModel> deliverModelList;
     Calendar calendar = Calendar.getInstance();
     DatabaseReference reff, reff2,reff3;
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     long maxid = 0;
     DeliverModel deliverModel;
     Dialog dialog;
@@ -167,13 +166,13 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                 .child(holder.txtPID.getText().toString());
                         reff2 = FirebaseDatabase.getInstance().getReference()
                                 .child("Finish")
-                                .child(currentDate)
+                                .child(getTodaysDate())
                                 .child(holder.txtIDNUM.getText().toString());
 
 
                         try{
                             DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Delivered");
-                            Query query = reference2.orderByKey().equalTo(currentDate);
+                            Query query = reference2.orderByKey().equalTo(getTodaysDate());
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -315,5 +314,48 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             super(itemView);
             unbinder = ButterKnife.bind(this, itemView);
         }
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
+
     }
 }
