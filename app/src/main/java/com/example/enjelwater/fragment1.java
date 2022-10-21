@@ -61,8 +61,6 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
     TextView noOrder;
     IProductLoadListener productLoadListener;
     IDeliverLoadListener deliverLoadListener;
-    Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     long maxid=0;
 
     @Override
@@ -73,7 +71,7 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
 
         loadOrderFromFirebase();
         init();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(currentDate);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders").child(getTodaysDate());
         reference.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -125,7 +123,7 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
         List<ProductModel> productModels = new ArrayList<>();
         FirebaseDatabase.getInstance()
                 .getReference("Orders")
-                .child(currentDate)
+                .child(getTodaysDate())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -184,6 +182,49 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
 
     @Override
     public void onDeliverLoadFailed(String message) {
+
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
 
     }
 }

@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="279dp"
-        android:layout_height="556dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:scaleType="fitCenter"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
         android:fontFamily="@font/anton"
-        android:text="Water Delivery"
+        android:text="Water Ordering and Delivery"
         android:shadowColor="@color/black"
         android:shadowRadius="1"
         android:shadowDy="30"

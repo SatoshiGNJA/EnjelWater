@@ -1,11 +1,23 @@
 package com.example.enjelwater;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +34,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +53,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,6 +80,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
 
     Dialog dialog;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,6 +100,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
         dateButton.setText(getTodaysDate());
 
         dialog=new Dialog(view.getContext());
+
 
 
         dateButton.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +126,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(view.getContext(), "PDF has been downloaded", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(view.getContext(),GeneratePDFActivity.class));
                         dialog.dismiss();
                     }
                 });
@@ -277,4 +296,5 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

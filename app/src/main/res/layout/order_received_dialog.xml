@@ -58,8 +58,8 @@
 
                 <Button
                     android:id="@+id/btn_finish"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginEnd="40dp"
                     android:backgroundTint="@drawable/button_accept"
@@ -75,8 +75,8 @@
 
                 <Button
                     android:id="@+id/btn_nope"
-                    android:layout_width="115dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="40dp"
                     android:background="@android:color/transparent"

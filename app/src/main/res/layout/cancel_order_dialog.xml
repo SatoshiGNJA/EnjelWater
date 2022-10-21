@@ -59,7 +59,7 @@
             <LinearLayout
                 android:id="@+id/flex"
                 android:layout_width="350dp"
-                android:layout_height="142dp"
+                android:layout_height="wrap_content"
                 app:flexDirection="column"
                 app:flexWrap="nowrap"
                 android:orientation="vertical"

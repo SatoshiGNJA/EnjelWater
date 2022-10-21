@@ -55,8 +55,6 @@ public class fragment2 extends Fragment implements IDeliverLoadListener {
     @BindView(R.id.fragmentrecycler2)
     RecyclerView fragRecy;
     IDeliverLoadListener deliverLoadListener;
-    Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +72,7 @@ public class fragment2 extends Fragment implements IDeliverLoadListener {
         List<DeliverModel> deliverModels = new ArrayList<>();
         FirebaseDatabase.getInstance()
                 .getReference("Delivered")
-                .child(currentDate)
+                .child(getTodaysDate())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -124,6 +122,49 @@ public class fragment2 extends Fragment implements IDeliverLoadListener {
     public void onDeliverLoadFailed(String message) {
 
         Snackbar.make(fragML,message,Snackbar.LENGTH_LONG).show();
+
+    }
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month,year);
+
+    }
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+    private String getMonthFormat(int month) {
+        if(month == 1)
+            return "Jan";
+        if(month == 2)
+            return "Feb";
+        if(month == 3)
+            return "Mar";
+        if(month == 4)
+            return "Apr";
+        if(month == 5)
+            return "May";
+        if(month == 6)
+            return "Jun";
+        if(month == 7)
+            return "Jul";
+        if(month == 8)
+            return "Aug";
+        if(month == 9)
+            return "Sep";
+        if(month == 10)
+            return "Oct";
+        if(month == 11)
+            return "Nov";
+        if(month == 12)
+            return "Dec";
+
+        return "Jan";
 
     }
 }
