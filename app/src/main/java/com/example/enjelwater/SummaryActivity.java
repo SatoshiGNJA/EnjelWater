@@ -252,56 +252,56 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                         }else{
                             name1 = snapshot.child("01").child("name").getValue(String.class);
                             quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
-                            N1.setText(name1+" "+ quantity1 +" Piece(s)");
+                            N1.setText(name1+" x " + quantity1);
                         }
                         if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
                             N2.setVisibility(View.GONE);
                         }else{
                             name2 = snapshot.child("02").child("name").getValue(String.class);
                             quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
-                            N2.setText(name2+" "+ quantity2 +" Piece(s)");
+                            N2.setText(name2+" x " + quantity2);
                         }
                         if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
                             N3.setVisibility(View.GONE);
                         }else{
                             name3 = snapshot.child("03").child("name").getValue(String.class);
                             quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
-                            N3.setText(name3+" "+ quantity3 +" Piece(s)");
+                            N3.setText(name3+" x " + quantity3);
                         }
                         if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
                             N4.setVisibility(View.GONE);
                         }else{
                             name4 = snapshot.child("04").child("name").getValue(String.class);
                             quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
-                            N4.setText(name4+" "+ quantity4 +" Piece(s)");
+                            N4.setText(name4+" x " + quantity4);
                         }
                         if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
                             N5.setVisibility(View.GONE);
                         }else{
                             name5 = snapshot.child("05").child("name").getValue(String.class);
                             quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
-                            N5.setText(name5+" "+ quantity5 +" Piece(s)");
+                            N5.setText(name5+" x " + quantity5);
                         }
                         if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
                             N6.setVisibility(View.GONE);
                         }else{
                             name6 = snapshot.child("06").child("name").getValue(String.class);
                             quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
-                            N6.setText(name6+" "+ quantity6 +" Piece(s)");
+                            N6.setText(name6+" x " + quantity6);
                         }
                         if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
                             N7.setVisibility(View.GONE);
                         }else{
                             name7 = snapshot.child("07").child("name").getValue(String.class);
                             quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                            N7.setText(name7+" "+ quantity7 +" Piece(s)");
+                            N7.setText(name7+" x " + quantity7);
                         }
                         if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
                             N8.setVisibility(View.GONE);
                         }else{
                             name8 = snapshot.child("08").child("name").getValue(String.class);
                             quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
-                            N8.setText(name8+" "+ quantity8 +" Piece(s)");
+                            N8.setText(name8+" x " + quantity8);
                         }
 
 
@@ -350,56 +350,56 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                             }else{
                                                 name1 = snapshot.child("01").child("name").getValue(String.class);
                                                 quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
-                                                productModel.setName1(name1+" "+ quantity1 +" Piece(s)");
+                                                productModel.setName1(name1+" x " + quantity1);
                                             }
                                             if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
                                                 reff2.getRef().child("name2").removeValue();
                                             }else{
                                                 name2 = snapshot.child("02").child("name").getValue(String.class);
                                                 quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
-                                                productModel.setName2(name2+" "+ quantity2 +" Piece(s)");
+                                                productModel.setName2(name2+" x " + quantity2);
                                             }
                                             if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
                                                 reff2.getRef().child("name3").removeValue();
                                             }else{
                                                 name3 = snapshot.child("03").child("name").getValue(String.class);
                                                 quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
-                                                productModel.setName3(name3+" "+ quantity3 +" Piece(s)");
+                                                productModel.setName3(name3+" x " + quantity3);
                                             }
                                             if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
                                                 reff2.getRef().child("name4").removeValue();
                                             }else{
                                                 name4 = snapshot.child("04").child("name").getValue(String.class);
                                                 quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
-                                                productModel.setName4(name4+" "+ quantity4 +" Piece(s)");
+                                                productModel.setName4(name4+" x " + quantity4);
                                             }
                                             if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
                                                 reff2.getRef().child("name5").removeValue();
                                             }else{
                                                 name5 = snapshot.child("05").child("name").getValue(String.class);
                                                 quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
-                                                productModel.setName5(name5+" "+ quantity5 +" Piece(s)");
+                                                productModel.setName5(name5+" x " + quantity5);
                                             }
                                             if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
                                                 reff2.getRef().child("name6").removeValue();
                                             }else{
                                                 name6 = snapshot.child("06").child("name").getValue(String.class);
                                                 quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
-                                                productModel.setName6(name6+" "+ quantity6 +" Piece(s)");
+                                                productModel.setName6(name6+" x " + quantity6);
                                             }
                                             if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
                                                 reff2.getRef().child("name4").removeValue();
                                             }else{
                                                 name7 = snapshot.child("07").child("name").getValue(String.class);
                                                 quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                                                productModel.setName7(name7+" "+ quantity7 +" Piece(s)");
+                                                productModel.setName7(name7+" x " + quantity7);
                                             }
                                             if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
                                                 reff2.getRef().child("name4").removeValue();
                                             }else{
                                                 name8 = snapshot.child("08").child("name").getValue(String.class);
                                                 quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
-                                                productModel.setName8(name8+" "+ quantity8 +" Piece(s)");
+                                                productModel.setName8(name8+" x " + quantity8);
                                             }
 
 

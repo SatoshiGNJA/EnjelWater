@@ -126,7 +126,9 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(view.getContext(),GeneratePDFActivity.class));
+                        Intent intent = new Intent(getContext(), GeneratePDFActivity.class);
+                        intent.putExtra("Date", dateButton.getText().toString().trim());
+                        startActivity(intent);
                         dialog.dismiss();
                     }
                 });
