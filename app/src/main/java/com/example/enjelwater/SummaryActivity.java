@@ -458,23 +458,6 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         init();
         TotalPrice();
         NameandPhone();
-
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while(true) {
-                        sleep(1000);
-                        NotificationManager manager = getSystemService(NotificationManager.class);
-                        manager.cancelAll();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        thread.start();
     }
 
     private void loadSummaryFromFirebase(){
