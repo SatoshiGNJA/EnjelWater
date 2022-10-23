@@ -23,7 +23,10 @@
         android:theme="@style/Theme.EnjelWater">
         <activity
             android:name=".GeneratePDFActivity"
-            android:exported="false">
+            android:parentActivityName=".AdminActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:exported="false"
+            android:label="">
         </activity>
         <activity
             android:name=".EditProfileActivity"

@@ -75,62 +75,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         personalOrderModel=new PersonalOrderModel();
         dialog=new Dialog(context);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString());
-        reff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    maxid=(snapshot.getChildrenCount());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString()).child(String.valueOf(maxid+1));
-        reff2.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        reff4 = FirebaseDatabase.getInstance().getReference().child("Data").child("FinishID");
-        reff4.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    finishmaxid=(snapshot.getChildrenCount());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(holder.txtOrderDate.getText().toString());
-        reff5.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        reff3 = FirebaseDatabase.getInstance().getReference();
 
         if(personalOrderModelList.get(position).getName1() == null){
             holder.txtN1.setVisibility(View.GONE);
@@ -229,6 +173,63 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             holder.btnreceived.setVisibility(View.VISIBLE);
             holder.txtStat.setTextColor(Color.parseColor("#FF018786"));
         }
+
+        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString());
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    maxid=(snapshot.getChildrenCount());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString()).child(String.valueOf(maxid+1));
+        reff2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        reff4 = FirebaseDatabase.getInstance().getReference().child("Data").child("FinishID");
+        reff4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    finishmaxid=(snapshot.getChildrenCount());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(holder.txtOrderDate.getText().toString());
+        reff5.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        reff3 = FirebaseDatabase.getInstance().getReference();
         holder.btnreceived.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

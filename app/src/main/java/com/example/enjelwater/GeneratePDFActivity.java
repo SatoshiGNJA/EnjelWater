@@ -225,8 +225,8 @@ public class GeneratePDFActivity extends AppCompatActivity {
         canvas.drawText("Alkaline Water - NEW",200,1650,paint);
         canvas.drawText("Slim Gallon",200,1700,paint);
         canvas.drawText("₱235",700,1650,paint);
-        canvas.drawText(qty7.getText().toString(),900,1650,paint);
-        canvas.drawText(total7.getText().toString(),1000,1650,paint);
+        canvas.drawText(qty8.getText().toString(),900,1650,paint);
+        canvas.drawText(total8.getText().toString(),1000,1650,paint);
         paint.setTextAlign(Paint.Align.LEFT);
 
         canvas.drawText("Total: ",850,1800,paint);

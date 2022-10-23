@@ -58,6 +58,7 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
     ImageView goback;
     IPersonalOrderLoadListener personalOrderLoadListener;
 
+
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @Override
@@ -83,8 +84,45 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
                 startActivity(intent);
             }
         });
+
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User").child(currentuser);
+        reff.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                Intent intent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
+                finish();
+                ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
+                startActivity(intent);
+                ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         init();
         loadPersonalOrderFromFirebase();
+
+
 
     }
     @Override
