@@ -341,11 +341,12 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     deliverModel.setStatus("On-going Delivery");
                                     deliverModel.setCustomerName(holder.txtName.getText().toString());
                                     deliverModel.setPID(holder.txtPID.getText().toString());
+                                    deliverModel.setOrderdate(getTodaysDate());
                                     deliverModel.setUID(holder.txtUID.getText().toString());
                                     deliverModel.setKey(holder.txtKey.getText().toString());
                                     deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                     reffUsers.child("status").setValue("On-going Delivery");
-                                    reff3.child("Delivered").child(getTodaysDate()).child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    reff3.child("Delivered").child(holder.txtKey.getText().toString()).setValue(deliverModel);
                                     snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                                 }
@@ -540,6 +541,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
                                 deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
                                 deliverModel.setStatus("Cancel");
+                                deliverModel.setOrderdate(getTodaysDate());
                                 deliverModel.setCustomerName(holder.txtName.getText().toString());
                                 deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                 reffUsers.removeValue();

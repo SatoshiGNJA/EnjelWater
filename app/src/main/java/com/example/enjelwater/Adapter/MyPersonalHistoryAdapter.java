@@ -75,7 +75,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         personalOrderModel=new PersonalOrderModel();
         dialog=new Dialog(context);
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(getTodaysDate());
+        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString());
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -90,7 +90,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
-        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(getTodaysDate()).child(String.valueOf(maxid+1));
+        reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString()).child(String.valueOf(maxid+1));
         reff2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,7 +117,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
             }
         });
-        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(getTodaysDate());
+        reff5= FirebaseDatabase.getInstance().getReference().child("Finish").child(holder.txtOrderDate.getText().toString());
         reff5.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -318,11 +318,12 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     personalOrderModel.setTotalPrice(Float.parseFloat(holder.txtTotalOrderP.getText().toString().trim()));
                                     personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
                                     personalOrderModel.setStatus("Finish");
+                                    personalOrderModel.setOrderdate(getTodaysDate());
                                     personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
                                     personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
                                     reffUsers.child("status").setValue("Finish");
                                     reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
-                                    reff3.child("Delivered").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).removeValue();
+                                    reff3.child("Delivered").child(holder.txtIDNUM.getText().toString()).removeValue();
                                 }
                             }
 
@@ -526,6 +527,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             personalOrderModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
                                             personalOrderModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
                                             personalOrderModel.setStatus("Cancel");
+                                            personalOrderModel.setOrderdate(holder.txtOrderDate.getText().toString());
                                             personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
                                             personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
                                             reff.child(String.valueOf(maxid + 1)).setValue(personalOrderModel);

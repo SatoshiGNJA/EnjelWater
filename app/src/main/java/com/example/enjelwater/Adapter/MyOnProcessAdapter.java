@@ -130,6 +130,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.txtUID.setText(deliverModelList.get(position).getUID());
         holder.customer.setText(deliverModelList.get(position).getCustomerName());
         holder.phone.setText(deliverModelList.get(position).getPhonenum());
+        holder.date.setText(deliverModelList.get(position).getOrderdate());
 
         String name1 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName1()));
         String qty1 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty1()));
@@ -197,13 +198,13 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                 .child(holder.txtPID.getText().toString());
                         reff2 = FirebaseDatabase.getInstance().getReference()
                                 .child("Finish")
-                                .child(getTodaysDate())
+                                .child(holder.date.getText().toString())
                                 .child(holder.txtIDNUM.getText().toString());
 
 
                         try{
-                            DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Delivered");
-                            Query query = reference2.orderByKey().equalTo(getTodaysDate());
+                            DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
+                            Query query = reference2.orderByKey().equalTo("Delivered");
                             query.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -354,6 +355,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         TextView customer;
         @BindView(R.id.txtphonedel)
         TextView phone;
+        @BindView(R.id.orderdate)
+        TextView date;
 
         Unbinder unbinder;
 

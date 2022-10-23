@@ -10,11 +10,20 @@ public class ProductModel {
     int qty1,qty2,qty3,qty4,qty5,qty6,qty7,qty8;
     String address;
     String status;
+    String orderdate;
     String Custname;
     String phonenum;
     float TotalPrice;
 
     public ProductModel() {
+    }
+
+    public String getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(String orderdate) {
+        this.orderdate = orderdate;
     }
 
     public int getQty1() {

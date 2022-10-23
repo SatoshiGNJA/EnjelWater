@@ -240,7 +240,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
 
-            Toast.makeText(GeneratePDFActivity.this, "PDF Invoice Downloaded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GeneratePDFActivity.this, "PDF Sales has Been Generated", Toast.LENGTH_SHORT).show();
             finish();
         } catch (IOException e) {
 

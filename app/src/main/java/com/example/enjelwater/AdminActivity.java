@@ -202,7 +202,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
-        DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference().child("Delivered").child(getTodaysDate());
+        DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference().child("Delivered");
         reference3.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
