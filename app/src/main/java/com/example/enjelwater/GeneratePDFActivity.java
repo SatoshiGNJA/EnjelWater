@@ -1,6 +1,7 @@
 package com.example.enjelwater;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +12,7 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -105,6 +107,20 @@ public class GeneratePDFActivity extends AppCompatActivity {
             System.out.println("Permission Granted!");
         } else {
             reperm();
+        }
+
+        if (Build.VERSION.SDK_INT >= 30){
+            if (!Environment.isExternalStorageManager()){
+                Intent getpermission = new Intent();
+                getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivity(getpermission);
+            }else{
+                if (checkPermission()) {
+                    System.out.println("Permission Granted!");
+                } else {
+                    reperm();
+                }
+            }
         }
 
         generatePDFbtn.setOnClickListener(new View.OnClickListener() {

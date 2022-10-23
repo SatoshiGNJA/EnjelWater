@@ -53,6 +53,8 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.mikhaellopez:circularimageview:4.3.0'
 
+    implementation 'com.itextpdf:itextpdf:5.5.10'
+
     //Butter Knife
     implementation 'com.jakewharton:butterknife:10.2.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
