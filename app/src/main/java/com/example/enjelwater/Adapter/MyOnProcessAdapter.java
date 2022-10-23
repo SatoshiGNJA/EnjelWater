@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -78,49 +77,49 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             holder.txtN1.setVisibility(View.GONE);
         }else{
             holder.txtN1.setVisibility(View.VISIBLE);
-            holder.txtN1.setText(new StringBuilder().append(deliverModelList.get(position).getName1()));
+            holder.txtN1.setText(new StringBuilder().append(deliverModelList.get(position).getName1()).append(" x ").append(deliverModelList.get(position).getQty1()));
         }
         if(deliverModelList.get(position).getName2() == null){
             holder.txtN2.setVisibility(View.GONE);
         }else{
             holder.txtN2.setVisibility(View.VISIBLE);
-            holder.txtN2.setText(new StringBuilder().append(deliverModelList.get(position).getName2()));
+            holder.txtN2.setText(new StringBuilder().append(deliverModelList.get(position).getName2()).append(" x ").append(deliverModelList.get(position).getQty2()));
         }
         if(deliverModelList.get(position).getName3() == null){
             holder.txtN3.setVisibility(View.GONE);
         }else{
             holder.txtN3.setVisibility(View.VISIBLE);
-            holder.txtN3.setText(new StringBuilder().append(deliverModelList.get(position).getName3()));
+            holder.txtN3.setText(new StringBuilder().append(deliverModelList.get(position).getName3()).append(" x ").append(deliverModelList.get(position).getQty3()));
         }
         if(deliverModelList.get(position).getName4() == null){
             holder.txtN4.setVisibility(View.GONE);
         }else{
             holder.txtN4.setVisibility(View.VISIBLE);
-            holder.txtN4.setText(new StringBuilder().append(deliverModelList.get(position).getName4()));
+            holder.txtN4.setText(new StringBuilder().append(deliverModelList.get(position).getName4()).append(" x ").append(deliverModelList.get(position).getQty4()));
         }
         if(deliverModelList.get(position).getName5() == null){
             holder.txtN5.setVisibility(View.GONE);
         }else{
             holder.txtN5.setVisibility(View.VISIBLE);
-            holder.txtN5.setText(new StringBuilder().append(deliverModelList.get(position).getName5()));
+            holder.txtN5.setText(new StringBuilder().append(deliverModelList.get(position).getName5()).append(" x ").append(deliverModelList.get(position).getQty5()));
         }
         if(deliverModelList.get(position).getName6() == null){
             holder.txtN6.setVisibility(View.GONE);
         }else{
             holder.txtN6.setVisibility(View.VISIBLE);
-            holder.txtN6.setText(new StringBuilder().append(deliverModelList.get(position).getName6()));
+            holder.txtN6.setText(new StringBuilder().append(deliverModelList.get(position).getName6()).append(" x ").append(deliverModelList.get(position).getQty6()));
         }
         if(deliverModelList.get(position).getName7() == null){
             holder.txtN7.setVisibility(View.GONE);
         }else{
             holder.txtN7.setVisibility(View.VISIBLE);
-            holder.txtN7.setText(new StringBuilder().append(deliverModelList.get(position).getName7()));
+            holder.txtN7.setText(new StringBuilder().append(deliverModelList.get(position).getName7()).append(" x ").append(deliverModelList.get(position).getQty7()));
         }
         if(deliverModelList.get(position).getName8() == null){
             holder.txtN8.setVisibility(View.GONE);
         }else{
             holder.txtN8.setVisibility(View.VISIBLE);
-            holder.txtN8.setText(new StringBuilder().append(deliverModelList.get(position).getName8()));
+            holder.txtN8.setText(new StringBuilder().append(deliverModelList.get(position).getName8()).append(" x ").append(deliverModelList.get(position).getQty8()));
         }
         holder.txtAddress.setText(new StringBuilder().append(deliverModelList.get(position).getAddress()));
         holder.txtStat.setText(deliverModelList.get(position).getStatus());
@@ -131,6 +130,30 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.txtUID.setText(deliverModelList.get(position).getUID());
         holder.customer.setText(deliverModelList.get(position).getCustomerName());
         holder.phone.setText(deliverModelList.get(position).getPhonenum());
+
+        String name1 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName1()));
+        String qty1 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty1()));
+
+        String name2 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName2()));
+        String qty2 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty2()));
+
+        String name3 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName3()));
+        String qty3 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty3()));
+
+        String name4 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName4()));
+        String qty4 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty4()));
+
+        String name5 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName5()));
+        String qty5 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty5()));
+
+        String name6 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName6()));
+        String qty6 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty6()));
+
+        String name7 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName7()));
+        String qty7 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty7()));
+
+        String name8 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName8()));
+        String qty8 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty8()));
 
 
         holder.btnprint.setOnClickListener(view -> {
@@ -188,44 +211,60 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         String key = holder.txtIDNUM.getText().toString();
                                         if(snapshot.child(key).child("name1").getValue()==null){
                                             reff2.getRef().child("name1").removeValue();
+                                            reff2.getRef().child("qty1").removeValue();
                                         }else{
-                                            deliverModel.setName1(holder.txtN1.getText().toString());
+                                            deliverModel.setName1(name1);
+                                            deliverModel.setQty1(Integer.parseInt(qty1));
                                         }
                                         if(snapshot.child(key).child("name2").getValue()==null){
                                             reff2.getRef().child("name2").removeValue();
+                                            reff2.getRef().child("qty2").removeValue();
                                         }else{
-                                            deliverModel.setName2(holder.txtN2.getText().toString());
+                                            deliverModel.setName2(name2);
+                                            deliverModel.setQty2(Integer.parseInt(qty2));
                                         }
                                         if(snapshot.child(key).child("name3").getValue()==null){
                                             reff2.getRef().child("name3").removeValue();
+                                            reff2.getRef().child("qty3").removeValue();
                                         }else{
-                                            deliverModel.setName3(holder.txtN3.getText().toString());
+                                            deliverModel.setName3(name3);
+                                            deliverModel.setQty3(Integer.parseInt(qty3));
                                         }
 
                                         if(snapshot.child(key).child("name4").getValue()==null){
                                             reff2.getRef().child("name4").removeValue();
+                                            reff2.getRef().child("qty4").removeValue();
                                         }else{
-                                            deliverModel.setName4(holder.txtN4.getText().toString());
+                                            deliverModel.setName4(name4);
+                                            deliverModel.setQty4(Integer.parseInt(qty4));
                                         }
                                         if(snapshot.child(key).child("name5").getValue()==null){
                                             reff2.getRef().child("name5").removeValue();
+                                            reff2.getRef().child("qty5").removeValue();
                                         }else{
-                                            deliverModel.setName5(holder.txtN5.getText().toString());
+                                            deliverModel.setName5(name5);
+                                            deliverModel.setQty5(Integer.parseInt(qty5));
                                         }
                                         if(snapshot.child(key).child("name6").getValue()==null){
                                             reff2.getRef().child("name6").removeValue();
+                                            reff2.getRef().child("qty6").removeValue();
                                         }else{
-                                            deliverModel.setName6(holder.txtN6.getText().toString());
+                                            deliverModel.setName6(name6);
+                                            deliverModel.setQty6(Integer.parseInt(qty6));
                                         }
                                         if(snapshot.child(key).child("name7").getValue()==null){
                                             reff2.getRef().child("name7").removeValue();
+                                            reff2.getRef().child("qty7").removeValue();
                                         }else{
-                                            deliverModel.setName7(holder.txtN7.getText().toString());
+                                            deliverModel.setName7(name7);
+                                            deliverModel.setQty7(Integer.parseInt(qty7));
                                         }
                                         if(snapshot.child(key).child("name8").getValue()==null){
                                             reff2.getRef().child("name8").removeValue();
+                                            reff2.getRef().child("qty8").removeValue();
                                         }else{
-                                            deliverModel.setName8(holder.txtN8.getText().toString());
+                                            deliverModel.setName8(name8);
+                                            deliverModel.setQty8(Integer.parseInt(qty8));
                                         }
 
 

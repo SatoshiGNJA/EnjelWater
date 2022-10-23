@@ -49,49 +49,49 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
             holder.txtN1.setVisibility(View.GONE);
         }else{
             holder.txtN1.setVisibility(View.VISIBLE);
-            holder.txtN1.setText(new StringBuilder().append(historyModelList.get(position).getName1()));
+            holder.txtN1.setText(new StringBuilder().append(historyModelList.get(position).getName1()).append(" x ").append(historyModelList.get(position).getQty1()));
         }
         if(historyModelList.get(position).getName2() == null){
             holder.txtN2.setVisibility(View.GONE);
         }else{
             holder.txtN2.setVisibility(View.VISIBLE);
-            holder.txtN2.setText(new StringBuilder().append(historyModelList.get(position).getName2()));
+            holder.txtN2.setText(new StringBuilder().append(historyModelList.get(position).getName2()).append(" x ").append(historyModelList.get(position).getQty2()));
         }
         if(historyModelList.get(position).getName3() == null){
             holder.txtN3.setVisibility(View.GONE);
         }else{
             holder.txtN3.setVisibility(View.VISIBLE);
-            holder.txtN3.setText(new StringBuilder().append(historyModelList.get(position).getName3()));
+            holder.txtN3.setText(new StringBuilder().append(historyModelList.get(position).getName3()).append(" x ").append(historyModelList.get(position).getQty3()));
         }
         if(historyModelList.get(position).getName4() == null){
             holder.txtN4.setVisibility(View.GONE);
         }else{
             holder.txtN4.setVisibility(View.VISIBLE);
-            holder.txtN4.setText(new StringBuilder().append(historyModelList.get(position).getName4()));
+            holder.txtN4.setText(new StringBuilder().append(historyModelList.get(position).getName4()).append(" x ").append(historyModelList.get(position).getQty4()));
         }
         if(historyModelList.get(position).getName5() == null){
             holder.txtN5.setVisibility(View.GONE);
         }else{
             holder.txtN5.setVisibility(View.VISIBLE);
-            holder.txtN5.setText(new StringBuilder().append(historyModelList.get(position).getName5()));
+            holder.txtN5.setText(new StringBuilder().append(historyModelList.get(position).getName5()).append(" x ").append(historyModelList.get(position).getQty5()));
         }
         if(historyModelList.get(position).getName6() == null){
             holder.txtN6.setVisibility(View.GONE);
         }else{
             holder.txtN6.setVisibility(View.VISIBLE);
-            holder.txtN6.setText(new StringBuilder().append(historyModelList.get(position).getName6()));
+            holder.txtN6.setText(new StringBuilder().append(historyModelList.get(position).getName6()).append(" x ").append(historyModelList.get(position).getQty6()));
         }
         if(historyModelList.get(position).getName7() == null){
             holder.txtN7.setVisibility(View.GONE);
         }else{
             holder.txtN7.setVisibility(View.VISIBLE);
-            holder.txtN7.setText(new StringBuilder().append(historyModelList.get(position).getName7()));
+            holder.txtN7.setText(new StringBuilder().append(historyModelList.get(position).getName7()).append(" x ").append(historyModelList.get(position).getQty7()));
         }
         if(historyModelList.get(position).getName8() == null){
             holder.txtN8.setVisibility(View.GONE);
         }else{
             holder.txtN8.setVisibility(View.VISIBLE);
-            holder.txtN8.setText(new StringBuilder().append(historyModelList.get(position).getName8()));
+            holder.txtN8.setText(new StringBuilder().append(historyModelList.get(position).getName8()).append(" x ").append(historyModelList.get(position).getQty8()));
         }
         holder.txtCustomerN.setText(new StringBuilder().append(historyModelList.get(position).getCustomerName()));
         holder.txtAddress.setText(new StringBuilder().append(historyModelList.get(position).getAddress()));

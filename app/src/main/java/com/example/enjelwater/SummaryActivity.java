@@ -294,7 +294,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                         }else{
                             name7 = snapshot.child("07").child("name").getValue(String.class);
                             quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                            N7.setText(name7+" x " + quantity7);
+                            N7.setText(name7+" x " + quantity7 );
                         }
                         if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
                             N8.setVisibility(View.GONE);
@@ -347,59 +347,75 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
 
                                             if(snapshot.child("01").child("quantity").getValue()==null&&snapshot.child("01").child("name").getValue()==null){
                                                 reff2.getRef().child("name1").removeValue();
+                                                reff2.getRef().child("qty1").removeValue();
                                             }else{
                                                 name1 = snapshot.child("01").child("name").getValue(String.class);
                                                 quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
-                                                productModel.setName1(name1+" x " + quantity1);
+                                                productModel.setName1(name1);
+                                                productModel.setQty1(quantity1);
                                             }
                                             if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
                                                 reff2.getRef().child("name2").removeValue();
+                                                reff2.getRef().child("qty2").removeValue();
                                             }else{
                                                 name2 = snapshot.child("02").child("name").getValue(String.class);
                                                 quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
-                                                productModel.setName2(name2+" x " + quantity2);
+                                                productModel.setName2(name2);
+                                                productModel.setQty2(quantity2);
                                             }
                                             if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
                                                 reff2.getRef().child("name3").removeValue();
+                                                reff2.getRef().child("qty3").removeValue();
                                             }else{
                                                 name3 = snapshot.child("03").child("name").getValue(String.class);
                                                 quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
-                                                productModel.setName3(name3+" x " + quantity3);
+                                                productModel.setName3(name3);
+                                                productModel.setQty3(quantity3);
                                             }
                                             if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
                                                 reff2.getRef().child("name4").removeValue();
+                                                reff2.getRef().child("qty4").removeValue();
                                             }else{
                                                 name4 = snapshot.child("04").child("name").getValue(String.class);
                                                 quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
-                                                productModel.setName4(name4+" x " + quantity4);
+                                                productModel.setName4(name4);
+                                                productModel.setQty4(quantity4);
                                             }
                                             if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
                                                 reff2.getRef().child("name5").removeValue();
+                                                reff2.getRef().child("qty5").removeValue();
                                             }else{
                                                 name5 = snapshot.child("05").child("name").getValue(String.class);
                                                 quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
-                                                productModel.setName5(name5+" x " + quantity5);
+                                                productModel.setName5(name5);
+                                                productModel.setQty5(quantity5);
                                             }
                                             if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
                                                 reff2.getRef().child("name6").removeValue();
+                                                reff2.getRef().child("qty6").removeValue();
                                             }else{
                                                 name6 = snapshot.child("06").child("name").getValue(String.class);
                                                 quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
-                                                productModel.setName6(name6+" x " + quantity6);
+                                                productModel.setName6(name6);
+                                                productModel.setQty6(quantity6);
                                             }
                                             if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
-                                                reff2.getRef().child("name4").removeValue();
+                                                reff2.getRef().child("name7").removeValue();
+                                                reff2.getRef().child("qty7").removeValue();
                                             }else{
                                                 name7 = snapshot.child("07").child("name").getValue(String.class);
                                                 quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                                                productModel.setName7(name7+" x " + quantity7);
+                                                productModel.setName7(name7);
+                                                productModel.setQty7(quantity7);
                                             }
                                             if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
-                                                reff2.getRef().child("name4").removeValue();
+                                                reff2.getRef().child("name8").removeValue();
+                                                reff2.getRef().child("qty8").removeValue();
                                             }else{
                                                 name8 = snapshot.child("08").child("name").getValue(String.class);
                                                 quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
-                                                productModel.setName8(name8+" x " + quantity8);
+                                                productModel.setName8(name8);
+                                                productModel.setQty8(quantity8);
                                             }
 
 

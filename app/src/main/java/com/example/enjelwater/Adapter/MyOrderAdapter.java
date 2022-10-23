@@ -94,49 +94,49 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             holder.txtN1.setVisibility(View.GONE);
         }else{
             holder.txtN1.setVisibility(View.VISIBLE);
-            holder.txtN1.setText(new StringBuilder().append(productModelList.get(position).getName1()));
+            holder.txtN1.setText(new StringBuilder().append(productModelList.get(position).getName1()).append(" x ").append(productModelList.get(position).getQty1()));
         }
         if(productModelList.get(position).getName2() == null){
             holder.txtN2.setVisibility(View.GONE);
         }else{
             holder.txtN2.setVisibility(View.VISIBLE);
-            holder.txtN2.setText(new StringBuilder().append(productModelList.get(position).getName2()));
+            holder.txtN2.setText(new StringBuilder().append(productModelList.get(position).getName2()).append(" x ").append(productModelList.get(position).getQty2()));
         }
         if(productModelList.get(position).getName3() == null){
             holder.txtN3.setVisibility(View.GONE);
         }else{
             holder.txtN3.setVisibility(View.VISIBLE);
-            holder.txtN3.setText(new StringBuilder().append(productModelList.get(position).getName3()));
+            holder.txtN3.setText(new StringBuilder().append(productModelList.get(position).getName3()).append(" x ").append(productModelList.get(position).getQty3()));
         }
         if(productModelList.get(position).getName4() == null){
             holder.txtN4.setVisibility(View.GONE);
         }else{
             holder.txtN4.setVisibility(View.VISIBLE);
-            holder.txtN4.setText(new StringBuilder().append(productModelList.get(position).getName4()));
+            holder.txtN4.setText(new StringBuilder().append(productModelList.get(position).getName4()).append(" x ").append(productModelList.get(position).getQty4()));
         }
         if(productModelList.get(position).getName5() == null){
             holder.txtN5.setVisibility(View.GONE);
         }else{
             holder.txtN5.setVisibility(View.VISIBLE);
-            holder.txtN5.setText(new StringBuilder().append(productModelList.get(position).getName5()));
+            holder.txtN5.setText(new StringBuilder().append(productModelList.get(position).getName5()).append(" x ").append(productModelList.get(position).getQty5()));
         }
         if(productModelList.get(position).getName6() == null){
             holder.txtN6.setVisibility(View.GONE);
         }else{
             holder.txtN6.setVisibility(View.VISIBLE);
-            holder.txtN6.setText(new StringBuilder().append(productModelList.get(position).getName6()));
+            holder.txtN6.setText(new StringBuilder().append(productModelList.get(position).getName6()).append(" x ").append(productModelList.get(position).getQty6()));
         }
         if(productModelList.get(position).getName7() == null){
             holder.txtN7.setVisibility(View.GONE);
         }else{
             holder.txtN7.setVisibility(View.VISIBLE);
-            holder.txtN7.setText(new StringBuilder().append(productModelList.get(position).getName7()));
+            holder.txtN7.setText(new StringBuilder().append(productModelList.get(position).getName7()).append(" x ").append(productModelList.get(position).getQty7()));
         }
         if(productModelList.get(position).getName8() == null){
             holder.txtN8.setVisibility(View.GONE);
         }else{
             holder.txtN8.setVisibility(View.VISIBLE);
-            holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()));
+            holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()).append(" x ").append(productModelList.get(position).getQty8()));
         }
         holder.txtName.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
         holder.txtAddress.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
@@ -148,6 +148,31 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.txtUID.setText(new StringBuilder().append(productModelList.get(position).getUid()));
         holder.txtKey.setText(new StringBuilder().append(productModelList.get(position).getKey()));
         holder.txtPhone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
+
+        String name1 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName1()));
+        String qty1 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty1()));
+
+        String name2 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName2()));
+        String qty2 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty2()));
+
+        String name3 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName3()));
+        String qty3 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty3()));
+
+        String name4 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName4()));
+        String qty4 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty4()));
+
+        String name5 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName5()));
+        String qty5 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty5()));
+
+        String name6 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName6()));
+        String qty6 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty6()));
+
+        String name7 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName7()));
+        String qty7 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty7()));
+
+        String name8 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName8()));
+        String qty8 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty8()));
+
 
         if (holder.txtStat.getText().toString().equals("Pending")) {
             holder.btnProc.setVisibility(View.GONE);
@@ -191,42 +216,42 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
             }else{
-                N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()));
+                N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()).append(" x ").append(productModelList.get(position).getQty1()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
                 N2.setVisibility(View.GONE);
             }else{
-                N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()));
+                N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()).append(" x ").append(productModelList.get(position).getQty2()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
                 N3.setVisibility(View.GONE);
             }else{
-                N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()));
+                N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()).append(" x ").append(productModelList.get(position).getQty3()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
                 N4.setVisibility(View.GONE);
             }else{
-                N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()));
+                N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()).append(" x ").append(productModelList.get(position).getQty4()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
                 N5.setVisibility(View.GONE);
             }else{
-                N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()));
+                N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()).append(" x ").append(productModelList.get(position).getQty5()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
                 N6.setVisibility(View.GONE);
             }else{
-                N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()));
+                N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()).append(" x ").append(productModelList.get(position).getQty6()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
                 N7.setVisibility(View.GONE);
             }else{
-                N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()));
+                N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()).append(" x ").append(productModelList.get(position).getQty7()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
                 N8.setVisibility(View.GONE);
             }else{
-                N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()));
+                N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x ").append(productModelList.get(position).getQty8()));
             }
             btnok.setOnClickListener(view1 -> new CountDownTimer(3000, 1000) {
                 @Override
@@ -255,43 +280,59 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     String key2 = holder.txtIDNUM.getText().toString();
                                     if (snapshot.child(key2).child("name1").getValue() == null) {
                                         reff2.getRef().child("name1").removeValue();
+                                        reff2.getRef().child("qty1").removeValue();
                                     } else {
-                                        deliverModel.setName1(holder.txtN1.getText().toString());
+                                        deliverModel.setName1(name1);
+                                        deliverModel.setQty1(Integer.parseInt(qty1));
                                     }
                                     if (snapshot.child(key2).child("name2").getValue() == null) {
                                         reff2.getRef().child("name2").removeValue();
+                                        reff2.getRef().child("qty2").removeValue();
                                     } else {
-                                        deliverModel.setName2(holder.txtN2.getText().toString());
+                                        deliverModel.setName2(name2);
+                                        deliverModel.setQty2(Integer.parseInt(qty2));
                                     }
                                     if (snapshot.child(key2).child("name3").getValue() == null) {
                                         reff2.getRef().child("name3").removeValue();
+                                        reff2.getRef().child("qty3").removeValue();
                                     } else {
-                                        deliverModel.setName3(holder.txtN3.getText().toString());
+                                        deliverModel.setName3(name3);
+                                        deliverModel.setQty3(Integer.parseInt(qty3));
                                     }
                                     if (snapshot.child(key2).child("name4").getValue() == null) {
                                         reff2.getRef().child("name4").removeValue();
+                                        reff2.getRef().child("qty4").removeValue();
                                     } else {
-                                        deliverModel.setName4(holder.txtN4.getText().toString());
+                                        deliverModel.setName4(name4);
+                                        deliverModel.setQty4(Integer.parseInt(qty4));
                                     }
                                     if (snapshot.child(key2).child("name5").getValue() == null) {
                                         reff2.getRef().child("name5").removeValue();
+                                        reff2.getRef().child("qty5").removeValue();
                                     } else {
-                                        deliverModel.setName5(holder.txtN5.getText().toString());
+                                        deliverModel.setName5(name5);
+                                        deliverModel.setQty5(Integer.parseInt(qty5));
                                     }
                                     if (snapshot.child(key2).child("name6").getValue() == null) {
                                         reff2.getRef().child("name6").removeValue();
+                                        reff2.getRef().child("qty6").removeValue();
                                     } else {
-                                        deliverModel.setName6(holder.txtN6.getText().toString());
+                                        deliverModel.setName6(name6);
+                                        deliverModel.setQty6(Integer.parseInt(qty6));
                                     }
                                     if (snapshot.child(key2).child("name7").getValue() == null) {
                                         reff2.getRef().child("name7").removeValue();
+                                        reff2.getRef().child("qty7").removeValue();
                                     } else {
-                                        deliverModel.setName7(holder.txtN7.getText().toString());
+                                        deliverModel.setName7(name7);
+                                        deliverModel.setQty7(Integer.parseInt(qty7));
                                     }
                                     if (snapshot.child(key2).child("name8").getValue() == null) {
                                         reff2.getRef().child("name8").removeValue();
+                                        reff2.getRef().child("qty8").removeValue();
                                     } else {
-                                        deliverModel.setName8(holder.txtN8.getText().toString());
+                                        deliverModel.setName8(name8);
+                                        deliverModel.setQty8(Integer.parseInt(qty8));
                                     }
 
 
@@ -367,42 +408,42 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
                 N1.setVisibility(View.GONE);
             }else{
-                N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()));
+                N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()).append(" x ").append(productModelList.get(position).getQty1()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
                 N2.setVisibility(View.GONE);
             }else{
-                N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()));
+                N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()).append(" x ").append(productModelList.get(position).getQty2()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
                 N3.setVisibility(View.GONE);
             }else{
-                N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()));
+                N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()).append(" x ").append(productModelList.get(position).getQty3()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
                 N4.setVisibility(View.GONE);
             }else{
-                N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()));
+                N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()).append(" x ").append(productModelList.get(position).getQty4()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
                 N5.setVisibility(View.GONE);
             }else{
-                N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()));
+                N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()).append(" x ").append(productModelList.get(position).getQty5()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
                 N6.setVisibility(View.GONE);
             }else{
-                N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()));
+                N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()).append(" x ").append(productModelList.get(position).getQty6()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
                 N7.setVisibility(View.GONE);
             }else{
-                N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()));
+                N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()).append(" x ").append(productModelList.get(position).getQty7()));
             }
             if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
                 N8.setVisibility(View.GONE);
             }else{
-                N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()));
+                N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x ").append(productModelList.get(position).getQty8()));
             }
             new CountDownTimer(5000, 1000) {
 
@@ -442,44 +483,59 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                 String key2 = holder.txtIDNUM.getText().toString();
                                 if (snapshot.child(key2).child("name1").getValue() == null) {
                                     reff2.getRef().child("name1").removeValue();
+                                    reff2.getRef().child("qty1").removeValue();
                                 } else {
-                                    deliverModel.setName1(holder.txtN1.getText().toString());
+                                    deliverModel.setName1(name1);
+                                    deliverModel.setQty1(Integer.parseInt(qty1));
                                 }
                                 if (snapshot.child(key2).child("name2").getValue() == null) {
                                     reff2.getRef().child("name2").removeValue();
+                                    reff2.getRef().child("qty2").removeValue();
                                 } else {
-                                    deliverModel.setName2(holder.txtN2.getText().toString());
+                                    deliverModel.setName2(name2);
+                                    deliverModel.setQty2(Integer.parseInt(qty2));
                                 }
                                 if (snapshot.child(key2).child("name3").getValue() == null) {
                                     reff2.getRef().child("name3").removeValue();
+                                    reff2.getRef().child("qty3").removeValue();
                                 } else {
-                                    deliverModel.setName3(holder.txtN3.getText().toString());
+                                    deliverModel.setName3(name3);
+                                    deliverModel.setQty3(Integer.parseInt(qty3));
                                 }
-
                                 if (snapshot.child(key2).child("name4").getValue() == null) {
                                     reff2.getRef().child("name4").removeValue();
+                                    reff2.getRef().child("qty4").removeValue();
                                 } else {
-                                    deliverModel.setName4(holder.txtN4.getText().toString());
+                                    deliverModel.setName4(name4);
+                                    deliverModel.setQty4(Integer.parseInt(qty4));
                                 }
                                 if (snapshot.child(key2).child("name5").getValue() == null) {
                                     reff2.getRef().child("name5").removeValue();
+                                    reff2.getRef().child("qty5").removeValue();
                                 } else {
-                                    deliverModel.setName5(holder.txtN5.getText().toString());
+                                    deliverModel.setName5(name5);
+                                    deliverModel.setQty5(Integer.parseInt(qty5));
                                 }
                                 if (snapshot.child(key2).child("name6").getValue() == null) {
                                     reff2.getRef().child("name6").removeValue();
+                                    reff2.getRef().child("qty6").removeValue();
                                 } else {
-                                    deliverModel.setName6(holder.txtN6.getText().toString());
+                                    deliverModel.setName6(name6);
+                                    deliverModel.setQty6(Integer.parseInt(qty6));
                                 }
                                 if (snapshot.child(key2).child("name7").getValue() == null) {
                                     reff2.getRef().child("name7").removeValue();
+                                    reff2.getRef().child("qty7").removeValue();
                                 } else {
-                                    deliverModel.setName7(holder.txtN7.getText().toString());
+                                    deliverModel.setName7(name7);
+                                    deliverModel.setQty7(Integer.parseInt(qty7));
                                 }
                                 if (snapshot.child(key2).child("name8").getValue() == null) {
                                     reff2.getRef().child("name8").removeValue();
+                                    reff2.getRef().child("qty8").removeValue();
                                 } else {
-                                    deliverModel.setName8(holder.txtN8.getText().toString());
+                                    deliverModel.setName8(name8);
+                                    deliverModel.setQty8(Integer.parseInt(qty8));
                                 }
                                 deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
                                 deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
