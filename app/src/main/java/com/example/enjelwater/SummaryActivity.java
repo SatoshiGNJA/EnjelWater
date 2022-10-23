@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -457,6 +458,23 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         init();
         TotalPrice();
         NameandPhone();
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while(true) {
+                        sleep(1000);
+                        NotificationManager manager = getSystemService(NotificationManager.class);
+                        manager.cancelAll();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
     }
 
     private void loadSummaryFromFirebase(){
@@ -605,5 +623,12 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
 
         return "Jan";
 
+    }
+
+    @Override
+    protected void onResume() {
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.cancelAll();
+        super.onResume();
     }
 }
