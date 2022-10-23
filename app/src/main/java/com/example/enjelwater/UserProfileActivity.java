@@ -468,8 +468,5 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
     @Override
     protected void onResume() {
         super.onResume();
-
-        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancelAll();
     }
 }

@@ -23,7 +23,7 @@
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/font/alfa_slab_one.xml" value="0.3671875" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_admin.xml" value="0.40341880341880343" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_admin_login.xml" value="0.3875" />
-        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_cart.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_cart.xml" value="0.25" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_dashboard.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_drawer_base.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
@@ -36,7 +36,7 @@
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_personal_order.xml" value="0.3118181818181818" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_splash.xml" value="0.33" />
-        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_summary.xml" value="0.17" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_summary.xml" value="0.33" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_thank_you.xml" value="0.3875" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/activity_verify_phone_no.xml" value="0.215625" />
@@ -56,7 +56,7 @@
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_home.xml" value="0.215625" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/fragment_slideshow.xml" value="0.3875" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_cart_item.xml" value="0.3875" />
-        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_drink_item.xml" value="0.5" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_drink_item.xml" value="0.22" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_history_item.xml" value="0.67" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_onprocess_item.xml" value="0.67" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/layout_order_item.xml" value="0.8251986379114642" />

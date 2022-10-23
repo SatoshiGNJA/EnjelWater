@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.enjelwater.Adapter.MyCartAdapter;
 import com.example.enjelwater.Adapter.MyPersonalHistoryAdapter;
@@ -86,7 +87,7 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
             }
         });
 
-        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("User").child(currentuser);
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(currentuser).child("OrderHistory");
         reff.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -95,15 +96,7 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                Intent intent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
-                stopService(new Intent(getApplicationContext(),PersonalOrderActivity.class));
-                finish();
-                ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
-                startActivity(intent);
-                ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
-                NotificationManager manager = getSystemService(NotificationManager.class);
-                manager.cancelAll();
+                recreate();
             }
 
             @Override
@@ -190,5 +183,12 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
 
         Snackbar.make(personalLayout,message,Snackbar.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    protected void onResume() {
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.cancelAll();
+        super.onResume();
     }
 }

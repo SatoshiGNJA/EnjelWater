@@ -38,22 +38,26 @@
 
                 <TextView
                     android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="start"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Name"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:gravity="bottom"
-                    android:text="Price: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:fontFamily="@font/source_sans_pro"
+                    android:gravity="end"
+                    android:text="Price: "
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -62,7 +66,8 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
                      >
 
                     <ImageView
@@ -90,7 +95,8 @@
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
-             <TextView
+
+                <TextView
                     android:id="@+id/txtTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,8 +105,8 @@
                     android:layout_alignParentBottom="true"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Php1"
-                    android:visibility="invisible"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
 
             </RelativeLayout>

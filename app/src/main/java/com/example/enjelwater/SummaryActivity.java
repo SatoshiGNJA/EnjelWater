@@ -122,6 +122,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                     DeliveryAdd.getText().clear();
                     DeliveryAdd.setText(profHomeAddress);
                     DeliveryAdd.setEnabled(false);
+                    DeliveryAdd.setError(null);
                 }
 
             }
@@ -146,6 +147,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                         DeliveryAdd.getText().clear();
                         DeliveryAdd.setText(profHomeAddress);
                         DeliveryAdd.setEnabled(false);
+                        DeliveryAdd.setError(null);
 
                     }
 
@@ -167,26 +169,6 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
             }
         });
 
-
-
-        DeliveryAdd.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String AddressInput = DeliveryAdd.getText().toString().trim();
-
-                btnCheckOut.setEnabled(!AddressInput.isEmpty());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
         reff = FirebaseDatabase.getInstance().getReference().child("Data").child("OrderID");
         reff.addValueEventListener(new ValueEventListener() {
             @Override
@@ -221,245 +203,252 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.setContentView(R.layout.place_order);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                Button btnok = dialog.findViewById(R.id.btnOK);
-                Button notyet = dialog.findViewById(R.id.btnNO);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Address;
-                N1 = dialog.findViewById(R.id.Name1);
-                N2 = dialog.findViewById(R.id.Name2);
-                N3 = dialog.findViewById(R.id.Name3);
-                N4 = dialog.findViewById(R.id.Name4);
-                N5 = dialog.findViewById(R.id.Name5);
-                N6 = dialog.findViewById(R.id.Name6);
-                N7 = dialog.findViewById(R.id.Name7);
-                N8 = dialog.findViewById(R.id.Name8);
-                Address = dialog.findViewById(R.id.txtPlaceAddress);
+                if (DeliveryAdd.getText().toString().isEmpty()){
+                    DeliveryAdd.setError("Field cannot be empty");
+                }else {
+                    DeliveryAdd.setError(null);
+                    dialog.setContentView(R.layout.place_order);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                Address.setText("Address: " +DeliveryAdd.getText().toString());
+                    Button btnok = dialog.findViewById(R.id.btnOK);
+                    Button notyet = dialog.findViewById(R.id.btnNO);
+                    TextView N1,N2,N3,N4,N5,N6,N7,N8,Address;
+                    N1 = dialog.findViewById(R.id.Name1);
+                    N2 = dialog.findViewById(R.id.Name2);
+                    N3 = dialog.findViewById(R.id.Name3);
+                    N4 = dialog.findViewById(R.id.Name4);
+                    N5 = dialog.findViewById(R.id.Name5);
+                    N6 = dialog.findViewById(R.id.Name6);
+                    N7 = dialog.findViewById(R.id.Name7);
+                    N8 = dialog.findViewById(R.id.Name8);
+                    Address = dialog.findViewById(R.id.txtPlaceAddress);
 
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Cart").child(currentuser);
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Address.setText("Address: " +DeliveryAdd.getText().toString());
 
-                        String name1,name2,name3,name4,name5,name6,name7,name8;
-                        int quantity1,quantity2,quantity3,quantity4,quantity5,quantity6,quantity7,quantity8;
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Cart").child(currentuser);
+                    reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        if(snapshot.child("01").child("quantity").getValue()==null&&snapshot.child("01").child("name").getValue()==null){
-                            N1.setVisibility(View.GONE);
-                        }else{
-                            name1 = snapshot.child("01").child("name").getValue(String.class);
-                            quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
-                            N1.setText(name1+" x " + quantity1);
-                        }
-                        if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
-                            N2.setVisibility(View.GONE);
-                        }else{
-                            name2 = snapshot.child("02").child("name").getValue(String.class);
-                            quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
-                            N2.setText(name2+" x " + quantity2);
-                        }
-                        if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
-                            N3.setVisibility(View.GONE);
-                        }else{
-                            name3 = snapshot.child("03").child("name").getValue(String.class);
-                            quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
-                            N3.setText(name3+" x " + quantity3);
-                        }
-                        if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
-                            N4.setVisibility(View.GONE);
-                        }else{
-                            name4 = snapshot.child("04").child("name").getValue(String.class);
-                            quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
-                            N4.setText(name4+" x " + quantity4);
-                        }
-                        if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
-                            N5.setVisibility(View.GONE);
-                        }else{
-                            name5 = snapshot.child("05").child("name").getValue(String.class);
-                            quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
-                            N5.setText(name5+" x " + quantity5);
-                        }
-                        if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
-                            N6.setVisibility(View.GONE);
-                        }else{
-                            name6 = snapshot.child("06").child("name").getValue(String.class);
-                            quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
-                            N6.setText(name6+" x " + quantity6);
-                        }
-                        if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
-                            N7.setVisibility(View.GONE);
-                        }else{
-                            name7 = snapshot.child("07").child("name").getValue(String.class);
-                            quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                            N7.setText(name7+" x " + quantity7 );
-                        }
-                        if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
-                            N8.setVisibility(View.GONE);
-                        }else{
-                            name8 = snapshot.child("08").child("name").getValue(String.class);
-                            quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
-                            N8.setText(name8+" x " + quantity8);
-                        }
+                            String name1,name2,name3,name4,name5,name6,name7,name8;
+                            int quantity1,quantity2,quantity3,quantity4,quantity5,quantity6,quantity7,quantity8;
 
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        new CountDownTimer(3000, 1000) {
-                            @Override
-                            public void onTick(long l) {
-                                dialog.dismiss();
-                                btnCheckOut.setVisibility(View.GONE);
-                                progressbbar.setVisibility(View.VISIBLE);
-                                DeliveryAdd.setEnabled(false);
-                                radioone.setEnabled(false);
-                                radiotwo.setEnabled(false);
-                                btnBackSum.setEnabled(false);
+                            if(snapshot.child("01").child("quantity").getValue()==null&&snapshot.child("01").child("name").getValue()==null){
+                                N1.setVisibility(View.GONE);
+                            }else{
+                                name1 = snapshot.child("01").child("name").getValue(String.class);
+                                quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
+                                N1.setText(name1+" x " + quantity1);
+                            }
+                            if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
+                                N2.setVisibility(View.GONE);
+                            }else{
+                                name2 = snapshot.child("02").child("name").getValue(String.class);
+                                quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
+                                N2.setText(name2+" x " + quantity2);
+                            }
+                            if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
+                                N3.setVisibility(View.GONE);
+                            }else{
+                                name3 = snapshot.child("03").child("name").getValue(String.class);
+                                quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
+                                N3.setText(name3+" x " + quantity3);
+                            }
+                            if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
+                                N4.setVisibility(View.GONE);
+                            }else{
+                                name4 = snapshot.child("04").child("name").getValue(String.class);
+                                quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
+                                N4.setText(name4+" x " + quantity4);
+                            }
+                            if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
+                                N5.setVisibility(View.GONE);
+                            }else{
+                                name5 = snapshot.child("05").child("name").getValue(String.class);
+                                quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
+                                N5.setText(name5+" x " + quantity5);
+                            }
+                            if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
+                                N6.setVisibility(View.GONE);
+                            }else{
+                                name6 = snapshot.child("06").child("name").getValue(String.class);
+                                quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
+                                N6.setText(name6+" x " + quantity6);
+                            }
+                            if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
+                                N7.setVisibility(View.GONE);
+                            }else{
+                                name7 = snapshot.child("07").child("name").getValue(String.class);
+                                quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
+                                N7.setText(name7+" x " + quantity7 );
+                            }
+                            if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
+                                N8.setVisibility(View.GONE);
+                            }else{
+                                name8 = snapshot.child("08").child("name").getValue(String.class);
+                                quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
+                                N8.setText(name8+" x " + quantity8);
                             }
 
-                            @Override
-                            public void onFinish() {
-                                DatabaseReference order = FirebaseDatabase.getInstance().getReference();
-
-                                Toast.makeText(SummaryActivity.this,"Successfully Order",Toast.LENGTH_LONG).show();
-                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Cart");
-                                Query query = reference.orderByKey().equalTo(currentuser);
-                                query.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-                                        for(DataSnapshot snapshot : datasnapshot.getChildren()){
-
-                                            String name1,name2,name3,name4,name5,name6,name7,name8;
-                                            int quantity1,quantity2,quantity3,quantity4,quantity5,quantity6,quantity7,quantity8;
-
-                                            if(snapshot.child("01").child("quantity").getValue()==null&&snapshot.child("01").child("name").getValue()==null){
-                                                reff2.getRef().child("name1").removeValue();
-                                                reff2.getRef().child("qty1").removeValue();
-                                            }else{
-                                                name1 = snapshot.child("01").child("name").getValue(String.class);
-                                                quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
-                                                productModel.setName1(name1);
-                                                productModel.setQty1(quantity1);
-                                            }
-                                            if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
-                                                reff2.getRef().child("name2").removeValue();
-                                                reff2.getRef().child("qty2").removeValue();
-                                            }else{
-                                                name2 = snapshot.child("02").child("name").getValue(String.class);
-                                                quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
-                                                productModel.setName2(name2);
-                                                productModel.setQty2(quantity2);
-                                            }
-                                            if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
-                                                reff2.getRef().child("name3").removeValue();
-                                                reff2.getRef().child("qty3").removeValue();
-                                            }else{
-                                                name3 = snapshot.child("03").child("name").getValue(String.class);
-                                                quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
-                                                productModel.setName3(name3);
-                                                productModel.setQty3(quantity3);
-                                            }
-                                            if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
-                                                reff2.getRef().child("name4").removeValue();
-                                                reff2.getRef().child("qty4").removeValue();
-                                            }else{
-                                                name4 = snapshot.child("04").child("name").getValue(String.class);
-                                                quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
-                                                productModel.setName4(name4);
-                                                productModel.setQty4(quantity4);
-                                            }
-                                            if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
-                                                reff2.getRef().child("name5").removeValue();
-                                                reff2.getRef().child("qty5").removeValue();
-                                            }else{
-                                                name5 = snapshot.child("05").child("name").getValue(String.class);
-                                                quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
-                                                productModel.setName5(name5);
-                                                productModel.setQty5(quantity5);
-                                            }
-                                            if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
-                                                reff2.getRef().child("name6").removeValue();
-                                                reff2.getRef().child("qty6").removeValue();
-                                            }else{
-                                                name6 = snapshot.child("06").child("name").getValue(String.class);
-                                                quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
-                                                productModel.setName6(name6);
-                                                productModel.setQty6(quantity6);
-                                            }
-                                            if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
-                                                reff2.getRef().child("name7").removeValue();
-                                                reff2.getRef().child("qty7").removeValue();
-                                            }else{
-                                                name7 = snapshot.child("07").child("name").getValue(String.class);
-                                                quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
-                                                productModel.setName7(name7);
-                                                productModel.setQty7(quantity7);
-                                            }
-                                            if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
-                                                reff2.getRef().child("name8").removeValue();
-                                                reff2.getRef().child("qty8").removeValue();
-                                            }else{
-                                                name8 = snapshot.child("08").child("name").getValue(String.class);
-                                                quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
-                                                productModel.setName8(name8);
-                                                productModel.setQty8(quantity8);
-                                            }
 
 
-                                            float total = Float.parseFloat(TotalPrice.getText().toString());
-                                            productModel.setAddress(DeliveryAdd.getText().toString().trim());
-                                            productModel.setTotalPrice(total);
-                                            productModel.setStatus("Pending");
-                                            productModel.setPersonalID(String.valueOf(usermaxid + 1));
-                                            productModel.setKey(String.valueOf(maxid +1));
-                                            productModel.setUid(currentuser);
-                                            productModel.setOrderdate(getTodaysDate());
-                                            productModel.setPhonenum(phone.getText().toString().trim());
-                                            productModel.setCustname(FName.getText().toString().trim());
-                                            reff.child(String.valueOf(maxid + 1)).child("uid").setValue(currentuser);
-                                            order.child("Orders").child(getTodaysDate()).child(String.valueOf(maxid + 1)).setValue(productModel);
-                                            reffUser.child(String.valueOf(usermaxid + 1)).child("uid").setValue(currentuser);
-                                            order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).setValue(productModel);
-                                            order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).child("orderdate").setValue(getTodaysDate());
-                                            snapshot.getRef().removeValue();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+
+                    });
+                    btnok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            new CountDownTimer(3000, 1000) {
+                                @Override
+                                public void onTick(long l) {
+                                    dialog.dismiss();
+                                    btnCheckOut.setVisibility(View.GONE);
+                                    progressbbar.setVisibility(View.VISIBLE);
+                                    DeliveryAdd.setEnabled(false);
+                                    radioone.setEnabled(false);
+                                    radiotwo.setEnabled(false);
+                                    btnBackSum.setEnabled(false);
+                                }
+
+                                @Override
+                                public void onFinish() {
+                                    DatabaseReference order = FirebaseDatabase.getInstance().getReference();
+
+                                    Toast.makeText(SummaryActivity.this,"Successfully Order",Toast.LENGTH_LONG).show();
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Cart");
+                                    Query query = reference.orderByKey().equalTo(currentuser);
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                                            for(DataSnapshot snapshot : datasnapshot.getChildren()){
+
+                                                String name1,name2,name3,name4,name5,name6,name7,name8;
+                                                int quantity1,quantity2,quantity3,quantity4,quantity5,quantity6,quantity7,quantity8;
+
+                                                if(snapshot.child("01").child("quantity").getValue()==null&&snapshot.child("01").child("name").getValue()==null){
+                                                    reff2.getRef().child("name1").removeValue();
+                                                    reff2.getRef().child("qty1").removeValue();
+                                                }else{
+                                                    name1 = snapshot.child("01").child("name").getValue(String.class);
+                                                    quantity1 = Integer.parseInt(snapshot.child("01").child("quantity").getValue().toString());
+                                                    productModel.setName1(name1);
+                                                    productModel.setQty1(quantity1);
+                                                }
+                                                if(snapshot.child("02").child("quantity").getValue()==null&&snapshot.child("02").child("name").getValue()==null){
+                                                    reff2.getRef().child("name2").removeValue();
+                                                    reff2.getRef().child("qty2").removeValue();
+                                                }else{
+                                                    name2 = snapshot.child("02").child("name").getValue(String.class);
+                                                    quantity2 = Integer.parseInt(snapshot.child("02").child("quantity").getValue().toString());
+                                                    productModel.setName2(name2);
+                                                    productModel.setQty2(quantity2);
+                                                }
+                                                if(snapshot.child("03").child("quantity").getValue()==null&&snapshot.child("03").child("name").getValue()==null){
+                                                    reff2.getRef().child("name3").removeValue();
+                                                    reff2.getRef().child("qty3").removeValue();
+                                                }else{
+                                                    name3 = snapshot.child("03").child("name").getValue(String.class);
+                                                    quantity3 = Integer.parseInt(snapshot.child("03").child("quantity").getValue().toString());
+                                                    productModel.setName3(name3);
+                                                    productModel.setQty3(quantity3);
+                                                }
+                                                if(snapshot.child("04").child("quantity").getValue()==null&&snapshot.child("04").child("name").getValue()==null){
+                                                    reff2.getRef().child("name4").removeValue();
+                                                    reff2.getRef().child("qty4").removeValue();
+                                                }else{
+                                                    name4 = snapshot.child("04").child("name").getValue(String.class);
+                                                    quantity4 = Integer.parseInt(snapshot.child("04").child("quantity").getValue().toString());
+                                                    productModel.setName4(name4);
+                                                    productModel.setQty4(quantity4);
+                                                }
+                                                if(snapshot.child("05").child("quantity").getValue()==null&&snapshot.child("05").child("name").getValue()==null){
+                                                    reff2.getRef().child("name5").removeValue();
+                                                    reff2.getRef().child("qty5").removeValue();
+                                                }else{
+                                                    name5 = snapshot.child("05").child("name").getValue(String.class);
+                                                    quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
+                                                    productModel.setName5(name5);
+                                                    productModel.setQty5(quantity5);
+                                                }
+                                                if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
+                                                    reff2.getRef().child("name6").removeValue();
+                                                    reff2.getRef().child("qty6").removeValue();
+                                                }else{
+                                                    name6 = snapshot.child("06").child("name").getValue(String.class);
+                                                    quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
+                                                    productModel.setName6(name6);
+                                                    productModel.setQty6(quantity6);
+                                                }
+                                                if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
+                                                    reff2.getRef().child("name7").removeValue();
+                                                    reff2.getRef().child("qty7").removeValue();
+                                                }else{
+                                                    name7 = snapshot.child("07").child("name").getValue(String.class);
+                                                    quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
+                                                    productModel.setName7(name7);
+                                                    productModel.setQty7(quantity7);
+                                                }
+                                                if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
+                                                    reff2.getRef().child("name8").removeValue();
+                                                    reff2.getRef().child("qty8").removeValue();
+                                                }else{
+                                                    name8 = snapshot.child("08").child("name").getValue(String.class);
+                                                    quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
+                                                    productModel.setName8(name8);
+                                                    productModel.setQty8(quantity8);
+                                                }
+
+
+                                                float total = Float.parseFloat(TotalPrice.getText().toString());
+                                                productModel.setAddress(DeliveryAdd.getText().toString().trim());
+                                                productModel.setTotalPrice(total);
+                                                productModel.setStatus("Pending");
+                                                productModel.setPersonalID(String.valueOf(usermaxid + 1));
+                                                productModel.setKey(String.valueOf(maxid +1));
+                                                productModel.setUid(currentuser);
+                                                productModel.setOrderdate(getTodaysDate());
+                                                productModel.setPhonenum(phone.getText().toString().trim());
+                                                productModel.setCustname(FName.getText().toString().trim());
+                                                reff.child(String.valueOf(maxid + 1)).child("uid").setValue(currentuser);
+                                                order.child("Orders").child(getTodaysDate()).child(String.valueOf(maxid + 1)).setValue(productModel);
+                                                reffUser.child(String.valueOf(usermaxid + 1)).child("uid").setValue(currentuser);
+                                                order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).setValue(productModel);
+                                                order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).child("orderdate").setValue(getTodaysDate());
+                                                snapshot.getRef().removeValue();
+
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
 
                                         }
-                                    }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    });
+                                    Intent intent = new Intent(getApplicationContext(),ThankYouActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-                                    }
-                                });
-                                Intent intent = new Intent(getApplicationContext(),ThankYouActivity.class);
-                                startActivity(intent);
-                                finish();
-                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                }
+                            }.start();
 
-                            }
-                        }.start();
-
-                    }
-                });
-                notyet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+                        }
+                    });
+                    notyet.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+                }
             }
         });
         btnCheckOut.setVisibility(View.VISIBLE);

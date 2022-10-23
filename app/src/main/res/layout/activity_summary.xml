@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView class="androidx.appcompat.app.AlertController$RecycleListView" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,13 +13,16 @@
     <RelativeLayout
         android:id="@+id/mainLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:id="@+id/panels"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:background="#A9EDFF"
             android:orientation="horizontal"
             android:weightSum="16">
@@ -37,8 +40,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="11"
                 android:layout_marginStart="40dp"
+                android:layout_weight="11"
                 android:fontFamily="@font/bungee"
                 android:gravity="center"
                 android:text="Check Out"
@@ -47,191 +50,191 @@
                 android:textStyle="bold" />
 
 
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewss"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@+id/panels"
+            android:background="#5C5C5C" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/viewss"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/checkoutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="FULL NAME"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtphonenumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="09#########"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/viewview"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/linear"
+            android:layout_marginBottom="-3dp"
+            android:background="#5C5C5C" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_summary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-            android:orientation="vertical">
+            android:layout_above="@+id/radio_group"
+            android:layout_alignTop="@+id/viewview"
+            android:padding="20dp" />
 
-            <View
-                android:layout_alignTop="@id/bars"
+        <View
+            android:id="@+id/viewviews"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@+id/recycler_summary"
+            android:background="#5C5C5C" />
+
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textlay"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio1"
                 android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#5C5C5C"
-                android:layout_marginBottom="-3dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:text="Home Address"
+                android:textColor="@color/black" />
 
-            <LinearLayout
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="Custom Address"
+                android:textColor="@color/black" />
+
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textlay"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/barsz"
+            android:layout_gravity="center"
+            android:layout_marginBottom="100dp"
+            android:hint="Delivery Address"
+            app:errorIconDrawable="@null">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/DAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/checkoutName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="FULL NAME"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/txtphonenumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginStart="15dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="09#########"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+        <View
+            android:id="@+id/views22s"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_above="@+id/barsz"
+            android:background="#5C5C5C" />
+
+        <LinearLayout
+            android:id="@+id/barsz"
+            android:backgroundTint="#A9EDFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/table_border"
+            android:orientation="horizontal">
 
 
-            </LinearLayout>
-
-            <View
-                android:layout_alignTop="@id/bars"
+            <TextView
+                android:id="@+id/totalpricetext"
                 android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#5C5C5C"
-                android:layout_marginBottom="-3dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_summary"
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:padding="20dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:background="#5C5C5C" />
-
-            <RadioGroup
-                android:id="@+id/radio_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radio1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="25dp"
-                    android:text="Home Address"
-                    android:textColor="@color/black" />
-
-                <RadioButton
-                    android:id="@+id/radio2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:text="Custom Address"
-                    android:textColor="@color/black" />
-
-            </RadioGroup>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="371dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:hint="Delivery Address"
-                app:errorIconDrawable="@null">
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="Total Price: "
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/DAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <View
+            <TextView
+                android:id="@+id/txtTotalPlace"
                 android:layout_width="wrap_content"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/black" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/source_sans_pro"
+                android:text="########"
+                android:textColor="#FD673A"
+                android:textSize="18sp" />
 
-
-            <LinearLayout
-                android:id="@+id/barsz"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#A9EDFF"
-                android:orientation="horizontal">
+                android:layout_gravity="end"
+                android:paddingEnd="20dp">
 
-
-                <TextView
-                    android:id="@+id/totalpricetext"
+                <Button
+                    android:id="@+id/checkout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="20dp"
+                    android:layout_gravity="end"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Total Price: "
+                    android:text="Place Order"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:transitionName="button_tran"
+                    app:backgroundTint="#A9EDFF"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp" />
 
-                <TextView
-                    android:id="@+id/txtTotalPlace"
+                <ProgressBar
+                    android:id="@+id/placeprogress"
+                    style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="########"
-                    android:textColor="#FD673A"
-                    android:textSize="18sp" />
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="20dp"
-                    android:layout_gravity="end" >
-
-                    <Button
-                        android:id="@+id/checkout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:enabled="false"
-                        android:fontFamily="@font/source_sans_pro"
-                        android:textSize="15sp"
-                        android:text="Place Order"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:transitionName="button_tran"
-                        app:backgroundTint="#A9EDFF"
-                        app:strokeColor="@color/black"
-                        app:strokeWidth="1dp" />
-
-                    <ProgressBar
-                        android:id="@+id/placeprogress"
-                        style="?android:attr/progressBarStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone" />
+                    android:visibility="gone" />
 
 
-                </FrameLayout>
-
-            </LinearLayout>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="3dp"
-                android:background="@color/black" />
-
+            </FrameLayout>
 
         </LinearLayout>
 
