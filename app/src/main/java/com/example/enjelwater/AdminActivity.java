@@ -304,9 +304,8 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 editor.clear();
                 editor.commit();
                 Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-                stopService(new Intent(getApplicationContext(),LoginActivity.class));
-                NotificationManager manager = getSystemService(NotificationManager.class);
-                manager.cancelAll();
+                NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                nMgr.cancelAll();
                 startActivity(i);
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

@@ -449,6 +449,8 @@ public class UserProfileActivity extends AppCompatActivity implements IPersonalO
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(UserProfileActivity.this,LoginActivity.class);
+                NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                nMgr.cancelAll();
                 startActivity(intent);
                 finish();
                 dialog.dismiss();

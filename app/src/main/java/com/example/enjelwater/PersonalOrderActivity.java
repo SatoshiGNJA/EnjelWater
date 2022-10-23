@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
@@ -96,11 +97,13 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 Intent intent = new Intent(getApplicationContext(), PersonalOrderActivity.class);
+                stopService(new Intent(getApplicationContext(),PersonalOrderActivity.class));
                 finish();
                 ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
                 startActivity(intent);
                 ((PersonalOrderActivity) getApplicationContext()).overridePendingTransition(0,0);
-
+                NotificationManager manager = getSystemService(NotificationManager.class);
+                manager.cancelAll();
             }
 
             @Override
