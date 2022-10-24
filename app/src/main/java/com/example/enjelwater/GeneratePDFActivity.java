@@ -1,13 +1,16 @@
 package com.example.enjelwater;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,6 +62,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
     TextView qty8,total8;
 
     TextView overall;
+    Dialog dialog;
 
     Bitmap bmp, scaledbmp;
 
@@ -102,6 +106,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
         String dates = getIntent().getStringExtra("Date");
 
         date.setText(dates);
+
 
         if (checkPermission()) {
             System.out.println("Permission Granted!");

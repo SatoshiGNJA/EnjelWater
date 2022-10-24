@@ -102,18 +102,20 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="150dp"
+            android:orientation="vertical"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center_vertical">
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_pdf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pdf"
-                android:background="@drawable/button_pdf"/>
+                android:textColor="@color/purple_700"
+                android:textSize="15sp"
+                android:text="View Sales"
+                android:background="@android:color/transparent"/>
 
 
         </LinearLayout>

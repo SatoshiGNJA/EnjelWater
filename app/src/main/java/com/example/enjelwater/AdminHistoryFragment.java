@@ -76,7 +76,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
     DatePickerDialog datePickerDialog;
     Spinner spin;
 
-    ImageButton pdfdownload;
+    Button pdfdownload;
 
     Dialog dialog;
 
@@ -113,32 +113,9 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
         pdfdownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.setContentView(R.layout.pdf_dialog);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.setCanceledOnTouchOutside(false);
-
-                Button btnok = dialog.findViewById(R.id.btn_download);
-                Button notyet = dialog.findViewById(R.id.btn_nope);
-                TextView date = dialog.findViewById(R.id.dates);
-
-                date.setText("Date: "+ dateButton.getText().toString().trim());
-
-                btnok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getContext(), GeneratePDFActivity.class);
-                        intent.putExtra("Date", dateButton.getText().toString().trim());
-                        startActivity(intent);
-                        dialog.dismiss();
-                    }
-                });
-                notyet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+                Intent intent = new Intent(getContext(), GeneratePDFActivity.class);
+                intent.putExtra("Date", dateButton.getText().toString().trim());
+                startActivity(intent);
             }
         });
 
