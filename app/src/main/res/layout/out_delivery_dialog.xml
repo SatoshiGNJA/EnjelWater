@@ -258,7 +258,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Not Yet!"
+                    android:text="Not Yet"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />

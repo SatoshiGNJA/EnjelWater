@@ -376,10 +376,10 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                 N6 = dialog.findViewById(R.id.txtCName6);
                 N7 = dialog.findViewById(R.id.txtCName7);
                 N8 = dialog.findViewById(R.id.txtCName8);
-                count = dialog.findViewById(R.id.txtcancelcount);
+           //     count = dialog.findViewById(R.id.txtcancelcount);
                 Address = dialog.findViewById(R.id.txtCancelAddress);
 
-                Address.setText(new StringBuilder("Address: ").append(personalOrderModelList.get(holder.getAdapterPosition()).getAddress()));
+                Address.setText(new StringBuilder("").append(personalOrderModelList.get(holder.getAdapterPosition()).getAddress()));
 
                 if(personalOrderModelList.get(holder.getAdapterPosition()).getName1() == null){
                     N1.setVisibility(View.GONE);
@@ -424,7 +424,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                 new CountDownTimer(3000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
-                        count.setText("Cancel Button\nwill be Visible in(" + millisUntilFinished / 1000+")");
+                        //count.setText("Cancel Button\nwill be Visible in(" + millisUntilFinished / 1000+")");
                     }
 
                     public void onFinish() {
@@ -434,7 +434,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
                         }else{
                             btnok.setVisibility(View.VISIBLE);
-                            count.setVisibility(View.GONE);
+                          //  count.setVisibility(View.GONE);
                         }
                     }
 
@@ -447,7 +447,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                             public void onTick(long l) {
                                 btnok.setVisibility(View.GONE);
                                 notyet.setVisibility(View.GONE);
-                                count.setVisibility(View.GONE);
+                                //count.setVisibility(View.GONE);
                                 progressBar.setVisibility(View.VISIBLE);
                             }
 

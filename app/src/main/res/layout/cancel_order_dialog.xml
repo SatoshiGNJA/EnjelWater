@@ -23,7 +23,7 @@
             <ImageView
                 android:id="@+id/imageViewNet"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
+                android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:src="@drawable/cancel" />
 
@@ -32,20 +32,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:fontFamily="@font/bungee"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/source_sans_pro"
                 android:gravity="center"
-                android:text="Cancel this Order?"
-                android:textColor="@color/red"
+                android:text="Are you sure, you want to cancel your order?"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtCancelAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/source_sans_pro"
-                android:text="Address:"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <View
@@ -58,8 +60,11 @@
 
             <LinearLayout
                 android:id="@+id/flex"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
                 app:flexDirection="column"
                 app:flexWrap="nowrap"
                 android:orientation="vertical"
@@ -69,97 +74,82 @@
                     android:id="@+id/txtCName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name1: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name2: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name3: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name4: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name5: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name6: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txtCName7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name7: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/txtCName8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:text="Name8: "
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <FrameLayout
@@ -176,23 +166,12 @@
                     android:layout_marginStart="50dp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="No!"
+                    android:text="No"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtcancelcount"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="30dp"
-                    android:gravity="center"
-                    android:text="Cancel Button\nwill be Visible in(3)"
-                    android:textAllCaps="true"
-                    android:textColor="@color/red"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+
 
                 <Button
                     android:id="@+id/btn_cancel"
@@ -202,11 +181,11 @@
                     android:layout_marginEnd="40dp"
                     android:backgroundTint="@drawable/button_cancel"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Cancel"
+                    android:text="YES"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                   />
 
 
                 <ProgressBar
