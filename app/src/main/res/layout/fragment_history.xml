@@ -106,7 +106,7 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_gravity="center_vertical">
+            android:gravity="end">
 
             <Button
                 android:id="@+id/btn_pdf"
@@ -114,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple_700"
                 android:textSize="15sp"
+                android:layout_gravity="center_vertical"
                 android:text="View Sales"
                 android:background="@android:color/transparent"/>
 

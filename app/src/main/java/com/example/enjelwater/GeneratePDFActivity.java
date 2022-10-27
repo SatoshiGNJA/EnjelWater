@@ -131,6 +131,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
         generatePDFbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 generatePDF();
             }
         });
@@ -262,7 +263,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
 
-            Toast.makeText(GeneratePDFActivity.this, "PDF Sales has Been Generated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(GeneratePDFActivity.this, "PDF successfully downloaded", Toast.LENGTH_SHORT).show();
             finish();
         } catch (IOException e) {
 

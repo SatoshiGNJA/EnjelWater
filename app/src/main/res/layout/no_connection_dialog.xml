@@ -42,7 +42,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:srcCompat="@drawable/nointernet" />
+                app:srcCompat="@drawable/nowifi" />
 
             <TextView
 
@@ -63,9 +63,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@drawable/button_text_color"
+                android:backgroundTint="@color/blue"
                 android:fontFamily="@font/aleo_light"
-                android:text="Okay!"
+                android:text="Okay"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

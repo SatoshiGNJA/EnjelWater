@@ -187,7 +187,7 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
 
     @Override
     protected void onResume() {
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
         NotificationManager manager = getSystemService(NotificationManager.class);
         manager.cancelAll();
         super.onResume();
