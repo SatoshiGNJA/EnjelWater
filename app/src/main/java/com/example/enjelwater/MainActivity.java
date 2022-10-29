@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         String na6 = getIntent().getStringExtra("Name6");
         String na7 = getIntent().getStringExtra("Name7");
         String na8 = getIntent().getStringExtra("Name8");
+
         String customer = getIntent().getStringExtra("CustomerN");
         String ph0ne = getIntent().getStringExtra("PhoneNum");
         String addr3ss = getIntent().getStringExtra("Address");
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String divider = String.format("%" + 32 + "s", "").replace(' ', '-');
+                String divider = String.format("%" + 32 + "s", "").replace(' ', '*');
                 if (device != null) {
                     final BluetoothPrinter mPrinter = new BluetoothPrinter(device);
                     mPrinter.connectPrinter(new BluetoothPrinter.PrinterConnectListener() {
@@ -167,55 +168,61 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
                             // table format: 32 character width per line
                             String format = "%-15s%5s%6s%6s";
-
-                            mPrinter.printText("Customer Name: \n"+customer+"\n");
-                            mPrinter.printText("Phone#: \n"+ph0ne+"\n");
+                            mPrinter.printText("          ENJEL WATERS          \n");
+                            mPrinter.printText("     Block 5, Bistrol Street    \n");
+                            mPrinter.printText("       Lagro, Quezon City       \n");
+                            mPrinter.printText("     09272574029/09194540889    \n");
+                            mPrinter.printText("\n");
+                            mPrinter.printText("\n");
+                            mPrinter.printText("CUSTOMER NAME: \n"+customer+"\n");
+                            mPrinter.printText("CELLPHONE NUMBER: \n"+ph0ne+"\n");
+                            mPrinter.printText("ADDRESS: \n"+addr3ss+"\n");
                             mPrinter.printText(divider);
                             if(n1.getText().toString().equals("Name1: ")){
                                 n1.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na1+"\n");
+                                mPrinter.printText("* "+na1+"\n");
                             }
                             if(n2.getText().toString().equals("Name2: ")){
                                 n2.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na2+"\n");
+                                mPrinter.printText("* "+na2+"\n");
                             }
                             if(n3.getText().toString().equals("Name3: ")){
                                 n3.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na3+"\n");
+                                mPrinter.printText("* "+na3+"\n");
                             }
                             if(n4.getText().toString().equals("Name4: ")){
                                 n4.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na4+"\n");
+                                mPrinter.printText("* "+na4+"\n");
                             }
                             if(n5.getText().toString().equals("Name5: ")){
                                 n5.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na5+"\n");
+                                mPrinter.printText("* "+na5+"\n");
                             }
                             if(n6.getText().toString().equals("Name6: ")){
                                 n6.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na6+"\n");
+                                mPrinter.printText("* "+na6+"\n");
                             }
                             if(n7.getText().toString().equals("Name7: ")){
                                 n7.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na7+"\n");
+                                mPrinter.printText("* "+na7+"\n");
                             }
                             if(n8.getText().toString().equals("Name8: ")){
                                 n8.setVisibility(View.GONE);
                             }else{
-                                mPrinter.printText("- "+na8+"\n");
+                                mPrinter.printText("* "+na8+"\n");
                             }
                             mPrinter.printText(divider);
-                            mPrinter.printText("Total: " + t0tal);
+                            mPrinter.printText("Total amount to be paid: " + t0tal);
                             mPrinter.addNewLine();
-                            mPrinter.printText(divider);
-                            mPrinter.printText(addr3ss);
+                            //mPrinter.printText(divider);
+
                             mPrinter.feedPaper();
                             mPrinter.finish();
                             finish();

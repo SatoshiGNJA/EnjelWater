@@ -38,9 +38,9 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-
     </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/custname"
@@ -51,7 +51,19 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/source_sans_pro"
-        android:text=""
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/source_sans_pro"
+        android:text="Phone"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -63,22 +75,10 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/source_sans_pro"
-        android:text=""
+        android:text="Address"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/source_sans_pro"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp" />
 
     <View
         android:layout_width="wrap_content"
@@ -189,16 +189,20 @@
         android:layout_height="1dp"
         android:background="#5C5C5C" />
 
-    <TextView
+         <TextView
         android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+             android:textAlignment="textStart"
         android:fontFamily="@font/source_sans_pro"
-        android:text="Total Price: "
-        android:textColor="@color/black"
+        android:text="00"
+             android:textStyle="bold"
+        android:textColor="#FF9800"
         android:textSize="30dp" />
+
+
 
     <View
         android:layout_width="wrap_content"

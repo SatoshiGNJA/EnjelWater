@@ -100,7 +100,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name1: "
+                android:text="Name1:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -113,7 +113,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name2: "
+                android:text="Name2:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -126,7 +126,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name3: "
+                android:text="Name3:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -139,7 +139,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name4: "
+                android:text="Name4:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -152,7 +152,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name5: "
+                android:text="Name5:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -178,7 +178,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name7: "
+                android:text="Name7:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -191,7 +191,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="start"
-                android:text="Name8: "
+                android:text="Name8:"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -219,19 +219,6 @@
                     android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/txtcountdown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:gravity="center"
-                    android:text="Decline will\nbe Visible in(5)"
-                    android:textAllCaps="true"
-                    android:textColor="@color/red"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
                 <Button
                     android:id="@+id/btn_decline"
                     android:layout_width="wrap_content"
@@ -242,7 +229,7 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/btn_okay2"

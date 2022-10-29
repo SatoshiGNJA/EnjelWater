@@ -62,7 +62,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="No."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="Qty"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="1."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -133,7 +133,7 @@
                     android:id="@+id/qty1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -156,7 +156,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="2."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -181,7 +181,7 @@
                     android:id="@+id/qty2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -204,7 +204,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="3."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -229,7 +229,7 @@
                     android:id="@+id/qty3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -252,7 +252,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="4."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -277,7 +277,7 @@
                     android:id="@+id/qty4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -300,7 +300,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="5."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -325,7 +325,7 @@
                     android:id="@+id/qty5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -348,7 +348,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="6."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -373,7 +373,7 @@
                     android:id="@+id/qty6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -396,7 +396,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="7."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -421,7 +421,7 @@
                     android:id="@+id/qty7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -442,7 +442,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="8."
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -467,7 +467,7 @@
                     android:id="@+id/qty8"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
@@ -509,21 +509,23 @@
                     android:textSize="10dp" />
 
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Total"
+                    android:text="Total Sales:"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:textSize="10dp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/overalltotal"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="00.00"
-                    android:textColor="@color/black"
-                    android:textSize="10dp" />
+                    android:layout_weight="1"
+                    android:text=" 00.00"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/blue"
+                    android:textSize="15sp" />
 
             </TableRow>
 

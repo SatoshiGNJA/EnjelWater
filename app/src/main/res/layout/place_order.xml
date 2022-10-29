@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name1: "
+                    android:text="Name1:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name2: "
+                    android:text="Name2:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name3: "
+                    android:text="Name3:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                    android:textSize="15sp" />
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name5: "
+                    android:text="Name5:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name6: "
+                    android:text="Name6:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name7: "
+                    android:text="Name7:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                    android:textSize="15sp" />
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:gravity="start"
-                    android:text="Name8: "
+                    android:text="Name8:"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
