@@ -108,19 +108,7 @@ public class AdminProfileFragment extends Fragment {
 
                         if(adminuser.equals(user)&&adminpass.equals(pass)){
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
-                            update.setBackground(finalButtonDrawable);
-                        }else if(adminusername.getText().toString().isEmpty()||adminpassword.getText().toString().isEmpty()){
-
-                            update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
-                            update.setBackground(finalButtonDrawable);
-
-                        }else{
-                            update.setEnabled(true);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.GREEN);
-                            update.setBackground(finalButtonDrawable);
-                        }
+                        }else update.setEnabled(!adminusername.getText().toString().isEmpty() && !adminpassword.getText().toString().isEmpty());
 
 
                     }
@@ -157,20 +145,7 @@ public class AdminProfileFragment extends Fragment {
 
                         if(adminuser.equals(user)&&adminpass.equals(pass)){
                             update.setEnabled(false);
-                            update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
-                            update.setBackground(finalButtonDrawable);
-                        }else if(adminusername.getText().toString().isEmpty()||adminpassword.getText().toString().isEmpty()){
-
-                            update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1,(Color.parseColor("#009CFF")));
-                            update.setBackground(finalButtonDrawable);
-
-                        }else{
-                            update.setEnabled(true);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.GREEN);
-                            update.setBackground(finalButtonDrawable);
-                        }
+                        }else update.setEnabled(!adminusername.getText().toString().isEmpty() && !adminpassword.getText().toString().isEmpty());
 
 
                     }

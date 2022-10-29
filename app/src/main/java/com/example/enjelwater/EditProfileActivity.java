@@ -116,19 +116,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         if(fullname.equals(full)&&address.equals(add)){
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.parseColor("#009CFF"));
-                            update.setBackground(finalButtonDrawable);
-                        }else if(editFull.getText().toString().isEmpty()||editAddress.getText().toString().isEmpty()){
-
-                            update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.parseColor("#009CFF"));
-                            update.setBackground(finalButtonDrawable);
-
-                        }else{
-                            update.setEnabled(true);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.GREEN);
-                            update.setBackground(finalButtonDrawable);
-                        }
+                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty());
 
 
                     }
@@ -165,19 +153,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         if(fullname.equals(full)&&address.equals(add)){
                             update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.parseColor("#009CFF"));
-                            update.setBackground(finalButtonDrawable);
-                        }else if(editFull.getText().toString().isEmpty()||editAddress.getText().toString().isEmpty()){
-
-                            update.setEnabled(false);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.parseColor("#009CFF"));
-                            update.setBackground(finalButtonDrawable);
-
-                        }else{
-                            update.setEnabled(true);
-                            DrawableCompat.setTint(finalButtonDrawable1, Color.GREEN);
-                            update.setBackground(finalButtonDrawable);
-                        }
+                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty());
 
 
                     }
