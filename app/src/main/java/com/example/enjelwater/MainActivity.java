@@ -169,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
                             // table format: 32 character width per line
                             String format = "%-15s%5s%6s%6s";
                             mPrinter.printText("          ENJEL WATERS          \n");
-                            mPrinter.printText("     Block 5, Bistrol Street    \n");
-                            mPrinter.printText("       Lagro, Quezon City       \n");
+                            mPrinter.printText(" Block 52 Lot 1, Bristol Street \n");
+                            mPrinter.printText("   North Fairview, Quezon City  \n");
                             mPrinter.printText("     09272574029/09194540889    \n");
                             mPrinter.printText("\n");
                             mPrinter.printText("\n");
