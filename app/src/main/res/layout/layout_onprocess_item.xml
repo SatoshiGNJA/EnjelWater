@@ -30,14 +30,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtProductName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="Order Date:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/orderdate"
@@ -45,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="date"
-                    android:textColor="@color/red"
+                    android:textColor="@color/blue"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
