@@ -43,6 +43,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -88,6 +89,14 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
+
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("KK:mm aaa");
+        dateTime = simpleDateFormat.format(calendar.getTime());
 
         progressbbar = findViewById(R.id.placeprogress);
         FName = findViewById(R.id.checkoutName);
@@ -204,7 +213,6 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (DeliveryAdd.getText().toString().isEmpty()){
                     DeliveryAdd.setError("Field cannot be empty");
                 }else {
@@ -415,6 +423,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                 productModel.setPersonalID(String.valueOf(usermaxid + 1));
                                                 productModel.setKey(String.valueOf(maxid +1));
                                                 productModel.setUid(currentuser);
+                                                productModel.setOrdertime(dateTime);
                                                 productModel.setOrderdate(getTodaysDate());
                                                 productModel.setPhonenum(phone.getText().toString().trim());
                                                 productModel.setCustname(FName.getText().toString().trim());

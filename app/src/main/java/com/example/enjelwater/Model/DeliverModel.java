@@ -10,10 +10,19 @@ public class DeliverModel {
     String PID,UID;
     String CustomerName;
     String orderdate;
+    String ordertime;
     String phonenum;
     float TotalPrice;
 
     public DeliverModel() {
+    }
+
+    public String getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(String ordertime) {
+        this.ordertime = ordertime;
     }
 
     public String getOrderdate() {

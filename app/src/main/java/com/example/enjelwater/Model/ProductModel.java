@@ -11,11 +11,20 @@ public class ProductModel {
     String address;
     String status;
     String orderdate;
+    String ordertime;
     String Custname;
     String phonenum;
     float TotalPrice;
 
     public ProductModel() {
+    }
+
+    public String getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(String ordertime) {
+        this.ordertime = ordertime;
     }
 
     public String getOrderdate() {

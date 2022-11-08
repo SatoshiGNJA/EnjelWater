@@ -149,6 +149,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.txtKey.setText(new StringBuilder().append(productModelList.get(position).getKey()));
         holder.txtPhone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
         holder.date.setText(new StringBuilder().append(productModelList.get(position).getOrderdate()));
+        holder.time.setText(new StringBuilder().append(productModelList.get(position).getOrdertime()));
 
         String name1 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName1()));
         String qty1 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty1()));
@@ -671,6 +672,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         Button btnProc;
         @BindView(R.id.orderdate)
         TextView date;
+        @BindView(R.id.ordertime)
+        TextView time;
 
 
         Unbinder unbinder;
