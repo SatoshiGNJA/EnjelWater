@@ -180,6 +180,14 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/flex"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#5C5C5C" />
+
     <TextView
         android:id="@+id/orderdate"
         android:layout_width="wrap_content"

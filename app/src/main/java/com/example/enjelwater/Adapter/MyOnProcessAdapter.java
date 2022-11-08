@@ -172,6 +172,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             intent.putExtra("PhoneNum", holder.phone.getText().toString());
             intent.putExtra("Address", holder.txtAddress.getText().toString());
             intent.putExtra("Total", holder.txtTotalOrderP.getText().toString());
+            intent.putExtra("Date", holder.date.getText().toString());
             context.startActivity(intent);
 
         });

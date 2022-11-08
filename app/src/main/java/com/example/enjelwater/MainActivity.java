@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button print;
 
     TextView n1, n2, n3, n4, n5, n6, n7, n8;
-    TextView custName, address, phone, total;
+    TextView custName, address, phone, total, orderdate;
     ImageView goback;
 
     @Override
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         total = findViewById(R.id.total);
         goback = findViewById(R.id.returnback);
         print = findViewById(R.id.btn_print);
+        orderdate = findViewById(R.id.orderdate);
 
         String na1 = getIntent().getStringExtra("Name1");
         String na2 = getIntent().getStringExtra("Name2");
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         String ph0ne = getIntent().getStringExtra("PhoneNum");
         String addr3ss = getIntent().getStringExtra("Address");
         String t0tal = getIntent().getStringExtra("Total");
+        String date = getIntent().getStringExtra("Date");
 
         n1.setText(na1);
         n2.setText(na2);
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         phone.setText(ph0ne);
         address.setText(addr3ss);
         total.setText(t0tal);
+        orderdate.setText(date);
+
 
         if (n1.getText().toString().equals("Name1: ")) {
             n1.setVisibility(View.GONE);
@@ -172,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.printText(" Block 52 Lot 1, Bristol Street \n");
                             mPrinter.printText("   North Fairview, Quezon City  \n");
                             mPrinter.printText("     09272574029/09194540889    \n");
-                            // order date
+                            mPrinter.printText("DATE:"+ orderdate);
                             mPrinter.printText("\n");
                             mPrinter.printText("\n");
                             mPrinter.printText("CUSTOMER NAME: \n" + customer + "\n");
