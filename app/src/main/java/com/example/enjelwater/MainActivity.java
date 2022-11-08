@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button print;
 
-    TextView n1,n2,n3,n4,n5,n6,n7,n8;
-    TextView custName,address,phone,total;
+    TextView n1, n2, n3, n4, n5, n6, n7, n8;
+    TextView custName, address, phone, total;
     ImageView goback;
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         address = findViewById(R.id.address);
         phone = findViewById(R.id.phone);
         total = findViewById(R.id.total);
-        goback =  findViewById(R.id.returnback);
+        goback = findViewById(R.id.returnback);
         print = findViewById(R.id.btn_print);
 
         String na1 = getIntent().getStringExtra("Name1");
@@ -85,44 +85,44 @@ public class MainActivity extends AppCompatActivity {
         address.setText(addr3ss);
         total.setText(t0tal);
 
-        if(n1.getText().toString().equals("Name1: ")){
+        if (n1.getText().toString().equals("Name1: ")) {
             n1.setVisibility(View.GONE);
-        }else{
+        } else {
             n1.setText(na1);
         }
-        if(n2.getText().toString().equals("Name2: ")){
+        if (n2.getText().toString().equals("Name2: ")) {
             n2.setVisibility(View.GONE);
-        }else{
+        } else {
             n2.setText(na2);
         }
-        if(n3.getText().toString().equals("Name3: ")){
+        if (n3.getText().toString().equals("Name3: ")) {
             n3.setVisibility(View.GONE);
-        }else{
+        } else {
             n3.setText(na3);
         }
-        if(n4.getText().toString().equals("Name4: ")){
+        if (n4.getText().toString().equals("Name4: ")) {
             n4.setVisibility(View.GONE);
-        }else{
+        } else {
             n4.setText(na4);
         }
-        if(n5.getText().toString().equals("Name5: ")){
+        if (n5.getText().toString().equals("Name5: ")) {
             n5.setVisibility(View.GONE);
-        }else{
+        } else {
             n5.setText(na5);
         }
-        if(n6.getText().toString().equals("Name6: ")){
+        if (n6.getText().toString().equals("Name6: ")) {
             n6.setVisibility(View.GONE);
-        }else{
+        } else {
             n6.setText(na6);
         }
-        if(n7.getText().toString().equals("Name7: ")){
+        if (n7.getText().toString().equals("Name7: ")) {
             n7.setVisibility(View.GONE);
-        }else{
+        } else {
             n7.setText(na7);
         }
-        if(n8.getText().toString().equals("Name8: ")){
+        if (n8.getText().toString().equals("Name8: ")) {
             n8.setVisibility(View.GONE);
-        }else{
+        } else {
             n8.setText(na8);
         }
 
@@ -172,51 +172,52 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.printText(" Block 52 Lot 1, Bristol Street \n");
                             mPrinter.printText("   North Fairview, Quezon City  \n");
                             mPrinter.printText("     09272574029/09194540889    \n");
+                            // order date
                             mPrinter.printText("\n");
                             mPrinter.printText("\n");
-                            mPrinter.printText("CUSTOMER NAME: \n"+customer+"\n");
-                            mPrinter.printText("CELLPHONE NUMBER: \n"+ph0ne+"\n");
-                            mPrinter.printText("ADDRESS: \n"+addr3ss+"\n");
+                            mPrinter.printText("CUSTOMER NAME: \n" + customer + "\n");
+                            mPrinter.printText("CELLPHONE NUMBER: \n" + ph0ne + "\n");
+                            mPrinter.printText("ADDRESS: \n" + addr3ss + "\n");
                             mPrinter.printText(divider);
-                            if(n1.getText().toString().equals("Name1: ")){
+                            if (n1.getText().toString().equals("Name1: ")) {
                                 n1.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na1+"\n");
+                            } else {
+                                mPrinter.printText("* " + na1 + "\n");
                             }
-                            if(n2.getText().toString().equals("Name2: ")){
+                            if (n2.getText().toString().equals("Name2: ")) {
                                 n2.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na2+"\n");
+                            } else {
+                                mPrinter.printText("* " + na2 + "\n");
                             }
-                            if(n3.getText().toString().equals("Name3: ")){
+                            if (n3.getText().toString().equals("Name3: ")) {
                                 n3.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na3+"\n");
+                            } else {
+                                mPrinter.printText("* " + na3 + "\n");
                             }
-                            if(n4.getText().toString().equals("Name4: ")){
+                            if (n4.getText().toString().equals("Name4: ")) {
                                 n4.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na4+"\n");
+                            } else {
+                                mPrinter.printText("* " + na4 + "\n");
                             }
-                            if(n5.getText().toString().equals("Name5: ")){
+                            if (n5.getText().toString().equals("Name5: ")) {
                                 n5.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na5+"\n");
+                            } else {
+                                mPrinter.printText("* " + na5 + "\n");
                             }
-                            if(n6.getText().toString().equals("Name6: ")){
+                            if (n6.getText().toString().equals("Name6: ")) {
                                 n6.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na6+"\n");
+                            } else {
+                                mPrinter.printText("* " + na6 + "\n");
                             }
-                            if(n7.getText().toString().equals("Name7: ")){
+                            if (n7.getText().toString().equals("Name7: ")) {
                                 n7.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na7+"\n");
+                            } else {
+                                mPrinter.printText("* " + na7 + "\n");
                             }
-                            if(n8.getText().toString().equals("Name8: ")){
+                            if (n8.getText().toString().equals("Name8: ")) {
                                 n8.setVisibility(View.GONE);
-                            }else{
-                                mPrinter.printText("* "+na8+"\n");
+                            } else {
+                                mPrinter.printText("* " + na8 + "\n");
                             }
                             mPrinter.printText(divider);
                             mPrinter.printText("Total amount to be paid: " + t0tal);
@@ -237,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        }
+    }
+
     @Override
     public void onBackPressed() {
         finish();

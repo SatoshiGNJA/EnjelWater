@@ -34,12 +34,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtStatus"
+                 <TextView
+                    android:id="@+id/txtProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginStart="270dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Order Date:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/orderdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="date"
+                    android:textColor="@color/red"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_marginStart="100dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:padding="5dp"
@@ -71,18 +90,20 @@
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="15sp" />
-                 <TextView
+
+                <TextView
                     android:id="@+id/txtphone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                     android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="15sp" />
-                   <TextView
+
+                <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

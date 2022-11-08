@@ -41,7 +41,6 @@
     </LinearLayout>
 
 
-
     <TextView
         android:id="@+id/custname"
         android:layout_width="match_parent"
@@ -82,10 +81,10 @@
 
     <View
         android:layout_width="wrap_content"
+        android:layout_height="1dp"
         android:layout_alignBottom="@+id/flex"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_height="1dp"
         android:background="#5C5C5C" />
 
 
@@ -181,35 +180,44 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
+    <TextView
+        android:id="@+id/orderdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="date"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <View
         android:layout_width="wrap_content"
+        android:layout_height="1dp"
         android:layout_alignBottom="@+id/flex"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_height="1dp"
         android:background="#5C5C5C" />
 
-         <TextView
+    <TextView
         android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-             android:textAlignment="textStart"
         android:fontFamily="@font/source_sans_pro"
         android:text="00"
-             android:textStyle="bold"
+        android:textAlignment="textStart"
         android:textColor="#FF9800"
-        android:textSize="30dp" />
-
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
 
     <View
         android:layout_width="wrap_content"
+        android:layout_height="1dp"
         android:layout_alignBottom="@+id/flex"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="0dp"
-        android:layout_height="1dp"
         android:background="#5C5C5C" />
 
     <Button
@@ -221,8 +229,8 @@
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/source_sans_pro"
         android:text="Print Receipt"
-        android:textSize="15sp"
         android:textColor="@color/black"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:transitionName="button_tran"
         app:backgroundTint="#A9EDFF"
