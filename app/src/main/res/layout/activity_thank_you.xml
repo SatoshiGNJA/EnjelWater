@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThankYouActivity"
-    android:orientation="vertical"
     android:background="#fff"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ThankYouActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/bungee"
         android:text="Order Successful"
-        android:layout_marginBottom="50dp"
         android:textColor="#000000"
-        android:textSize="40sp"/>
+        android:textSize="40sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="35dp">
+        android:layout_marginBottom="35dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="178dp"
@@ -39,6 +39,21 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Please be mindful that our closing time is 8:00 PM">
+
+        </TextView>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -48,11 +63,12 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="40sp" />
+
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:fontFamily="@font/antic"
         android:text="This will redirect you to the Order Screen (5)"
         android:textColor="#000000"

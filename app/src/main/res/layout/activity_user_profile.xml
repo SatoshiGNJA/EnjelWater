@@ -8,13 +8,10 @@
     android:id="@+id/Personal_layout"
     android:background="@drawable/gradient_background2">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/profile_tool"
@@ -60,10 +57,7 @@
                     android:layout_toRightOf="@+id/cartButton"
                     app:nbMaxTextLength="2" />
             </FrameLayout>
-
-
         </androidx.appcompat.widget.Toolbar>
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -101,8 +95,6 @@
                 android:includeFontPadding="false"
                 android:text="UserName"
                 android:textSize="14sp" />
-
-
         </RelativeLayout>
 
         <LinearLayout
@@ -110,7 +102,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-100dp"
             android:padding="20dp"/>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="OPEN HOURS: 8:00AM - 8:00 PM"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,15 +118,12 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/profile_fullname_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Full Name"
-                >
+                android:hint="Full Name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -219,10 +216,6 @@
                 app:cornerRadius="12dp"
                 app:strokeColor="@color/black"
                 app:strokeWidth="1dp" />
-
-
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>
