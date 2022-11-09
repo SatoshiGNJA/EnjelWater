@@ -8,8 +8,12 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -507,6 +511,32 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                 Button btnok = dialog.findViewById(R.id.btn_confirm_cancel);
                 Button notyet = dialog.findViewById(R.id.btn_notyet_cancel);
+                RadioGroup reason = dialog.findViewById(R.id.rg_reason);
+                RadioButton notsupport = dialog.findViewById(R.id.rb_locationNotSupported);
+                RadioButton others = dialog.findViewById(R.id.rb_Other);
+
+                EditText specify = dialog.findViewById(R.id.specifyhere);
+
+                reason.check(R.id.rb_locationNotSupported);
+                if(notsupport.isChecked()){
+                    specify.setVisibility(View.GONE);
+                }
+
+                notsupport.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        specify.setVisibility(View.GONE);
+                        InputMethodManager imm = (InputMethodManager) view.getContext()
+                                .getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                });
+                others.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        specify.setVisibility(View.VISIBLE);
+                    }
+                });
 
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override

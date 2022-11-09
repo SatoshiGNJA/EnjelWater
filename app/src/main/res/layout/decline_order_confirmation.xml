@@ -71,6 +71,12 @@
                     android:textSize="15sp"
                     android:text="Other" />
             </RadioGroup>
+            <EditText
+                android:id="@+id/specifyhere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Specify Here"
+                android:textColor="@color/black"/>
 
             <View
                 android:id="@+id/viewm"
