@@ -182,6 +182,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             holder.txtStat.setTextColor(Color.parseColor("#8B8000"));
         } else if (holder.txtStat.getText().toString().equals("On Process")) {
             holder.btnProc.setVisibility(View.VISIBLE);
+            holder.btnDecline.setVisibility(View.GONE);
             holder.btnAccept.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#FFA500"));
         }
@@ -389,7 +390,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
-            Button decline = dialog.findViewById(R.id.btn_decline);
             TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address,phone, count;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
@@ -448,136 +448,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             }else{
                 N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x").append(productModelList.get(position).getQty8()));
             }
-
-//            new CountDownTimer(5000, 1000) {
-//
-//                public void onTick(long millisUntilFinished) {
-//                   // count.setText("Decline will\nbe Visible in(" + millisUntilFinished / 1000 + ")");
-//                }
-//
-//                public void onFinish() {
-//                    if (progressBar.isShown()) {
-//
-//                        decline.setVisibility(View.GONE);
-//
-//                    } else {
-//                        decline.setVisibility(View.VISIBLE);
-//                     //   count.setVisibility(View.GONE);
-//                    }
-//                }
-//
-//            }.start();
-
-            decline.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
-                            .child("Users")
-                            .child(holder.txtUID.getText().toString())
-                            .child("OrderHistory")
-                            .child(holder.txtPID.getText().toString());
-
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                    Query query = reference.orderByKey().equalTo(getTodaysDate());
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                String key2 = holder.txtIDNUM.getText().toString();
-                                if (snapshot.child(key2).child("name1").getValue() == null) {
-                                    reff2.getRef().child("name1").removeValue();
-                                    reff2.getRef().child("qty1").removeValue();
-                                } else {
-                                    deliverModel.setName1(name1);
-                                    deliverModel.setQty1(Integer.parseInt(qty1));
-                                }
-                                if (snapshot.child(key2).child("name2").getValue() == null) {
-                                    reff2.getRef().child("name2").removeValue();
-                                    reff2.getRef().child("qty2").removeValue();
-                                } else {
-                                    deliverModel.setName2(name2);
-                                    deliverModel.setQty2(Integer.parseInt(qty2));
-                                }
-                                if (snapshot.child(key2).child("name3").getValue() == null) {
-                                    reff2.getRef().child("name3").removeValue();
-                                    reff2.getRef().child("qty3").removeValue();
-                                } else {
-                                    deliverModel.setName3(name3);
-                                    deliverModel.setQty3(Integer.parseInt(qty3));
-                                }
-                                if (snapshot.child(key2).child("name4").getValue() == null) {
-                                    reff2.getRef().child("name4").removeValue();
-                                    reff2.getRef().child("qty4").removeValue();
-                                } else {
-                                    deliverModel.setName4(name4);
-                                    deliverModel.setQty4(Integer.parseInt(qty4));
-                                }
-                                if (snapshot.child(key2).child("name5").getValue() == null) {
-                                    reff2.getRef().child("name5").removeValue();
-                                    reff2.getRef().child("qty5").removeValue();
-                                } else {
-                                    deliverModel.setName5(name5);
-                                    deliverModel.setQty5(Integer.parseInt(qty5));
-                                }
-                                if (snapshot.child(key2).child("name6").getValue() == null) {
-                                    reff2.getRef().child("name6").removeValue();
-                                    reff2.getRef().child("qty6").removeValue();
-                                } else {
-                                    deliverModel.setName6(name6);
-                                    deliverModel.setQty6(Integer.parseInt(qty6));
-                                }
-                                if (snapshot.child(key2).child("name7").getValue() == null) {
-                                    reff2.getRef().child("name7").removeValue();
-                                    reff2.getRef().child("qty7").removeValue();
-                                } else {
-                                    deliverModel.setName7(name7);
-                                    deliverModel.setQty7(Integer.parseInt(qty7));
-                                }
-                                if (snapshot.child(key2).child("name8").getValue() == null) {
-                                    reff2.getRef().child("name8").removeValue();
-                                    reff2.getRef().child("qty8").removeValue();
-                                } else {
-                                    deliverModel.setName8(name8);
-                                    deliverModel.setQty8(Integer.parseInt(qty8));
-                                }
-                                deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
-                                deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
-                                deliverModel.setStatus("Cancel");
-                                deliverModel.setOrderdate(getTodaysDate());
-                                deliverModel.setCustomerName(holder.txtName.getText().toString());
-                                deliverModel.setPhonenum(holder.txtPhone.getText().toString());
-                                reffUsers.removeValue();
-                                reff.child(String.valueOf(maxid + 1)).setValue(deliverModel);
-                                snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
-
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    productModelList.remove(holder.getAdapterPosition());
-                    notifyItemRemoved(holder.getAdapterPosition());
-                    notifyItemRangeChanged(holder.getAdapterPosition(), productModelList.size());
-                    dialog.dismiss();
-
-
-                }
-            });
-
             btnok.setOnClickListener(view14 -> new CountDownTimer(3000, 1000) {
                         @Override
                         public void onTick(long l) {
                             btnok.setVisibility(View.GONE);
                             notyet.setVisibility(View.GONE);
-                            //count.setVisibility(View.GONE);
-                            decline.setVisibility(View.GONE);
                             progressBar.setVisibility(View.VISIBLE);
                         }
 
@@ -619,6 +494,152 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             });
             dialog.show();
 
+        });
+        holder.btnDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.setContentView(R.layout.decline_order_confirmation);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+
+                ProgressBar progressBar = dialog.findViewById(R.id.progress_decline);
+
+                Button btnok = dialog.findViewById(R.id.btn_confirm_cancel);
+                Button notyet = dialog.findViewById(R.id.btn_notyet_cancel);
+
+                btnok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        new CountDownTimer(3000, 1000)
+                        {
+                            public void onTick(long millisUntilFinished)
+                            {
+                                btnok.setVisibility(View.GONE);
+                                notyet.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.VISIBLE);
+                            }
+
+                            public void onFinish()
+                            {
+
+                                DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                                        .child("Users")
+                                        .child(holder.txtUID.getText().toString())
+                                        .child("OrderHistory")
+                                        .child(holder.txtPID.getText().toString());
+
+                                try {
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                                    Query query = reference.orderByKey().equalTo(getTodaysDate());
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                String key2 = holder.txtIDNUM.getText().toString();
+                                                if (snapshot.child(key2).child("name1").getValue() == null) {
+                                                    reff2.getRef().child("name1").removeValue();
+                                                    reff2.getRef().child("qty1").removeValue();
+                                                } else {
+                                                    deliverModel.setName1(name1);
+                                                    deliverModel.setQty1(Integer.parseInt(qty1));
+                                                }
+                                                if (snapshot.child(key2).child("name2").getValue() == null) {
+                                                    reff2.getRef().child("name2").removeValue();
+                                                    reff2.getRef().child("qty2").removeValue();
+                                                } else {
+                                                    deliverModel.setName2(name2);
+                                                    deliverModel.setQty2(Integer.parseInt(qty2));
+                                                }
+                                                if (snapshot.child(key2).child("name3").getValue() == null) {
+                                                    reff2.getRef().child("name3").removeValue();
+                                                    reff2.getRef().child("qty3").removeValue();
+                                                } else {
+                                                    deliverModel.setName3(name3);
+                                                    deliverModel.setQty3(Integer.parseInt(qty3));
+                                                }
+                                                if (snapshot.child(key2).child("name4").getValue() == null) {
+                                                    reff2.getRef().child("name4").removeValue();
+                                                    reff2.getRef().child("qty4").removeValue();
+                                                } else {
+                                                    deliverModel.setName4(name4);
+                                                    deliverModel.setQty4(Integer.parseInt(qty4));
+                                                }
+                                                if (snapshot.child(key2).child("name5").getValue() == null) {
+                                                    reff2.getRef().child("name5").removeValue();
+                                                    reff2.getRef().child("qty5").removeValue();
+                                                } else {
+                                                    deliverModel.setName5(name5);
+                                                    deliverModel.setQty5(Integer.parseInt(qty5));
+                                                }
+                                                if (snapshot.child(key2).child("name6").getValue() == null) {
+                                                    reff2.getRef().child("name6").removeValue();
+                                                    reff2.getRef().child("qty6").removeValue();
+                                                } else {
+                                                    deliverModel.setName6(name6);
+                                                    deliverModel.setQty6(Integer.parseInt(qty6));
+                                                }
+                                                if (snapshot.child(key2).child("name7").getValue() == null) {
+                                                    reff2.getRef().child("name7").removeValue();
+                                                    reff2.getRef().child("qty7").removeValue();
+                                                } else {
+                                                    deliverModel.setName7(name7);
+                                                    deliverModel.setQty7(Integer.parseInt(qty7));
+                                                }
+                                                if (snapshot.child(key2).child("name8").getValue() == null) {
+                                                    reff2.getRef().child("name8").removeValue();
+                                                    reff2.getRef().child("qty8").removeValue();
+                                                } else {
+                                                    deliverModel.setName8(name8);
+                                                    deliverModel.setQty8(Integer.parseInt(qty8));
+                                                }
+
+
+                                                deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
+                                                deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
+                                                deliverModel.setStatus("Cancelled");
+                                                deliverModel.setCustomerName(holder.txtName.getText().toString());
+                                                deliverModel.setOrderdate(getTodaysDate());
+                                                deliverModel.setUID(holder.txtUID.getText().toString());
+                                                deliverModel.setPhonenum(holder.txtPhone.getText().toString());
+                                                reffUsers.child("status").setValue("Cancelled");
+                                                reff.child(String.valueOf(maxid + 1)).setValue(deliverModel);
+                                                snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
+
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }catch (Exception exception){
+                                    System.out.println(exception);
+                                }
+
+                                productModelList.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                notifyItemRangeChanged(holder.getAdapterPosition(), productModelList.size());
+                                btnok.setVisibility(View.VISIBLE);
+                                notyet.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                dialog.dismiss();
+                            }
+                        }.start();
+
+                    }
+                });
+                notyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+
+            }
         });
     }
 
@@ -670,6 +691,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         Button btnAccept;
         @BindView(R.id.btnProceed)
         Button btnProc;
+        @BindView(R.id.btn_decline)
+        Button btnDecline;
         @BindView(R.id.orderdate)
         TextView date;
         @BindView(R.id.ordertime)

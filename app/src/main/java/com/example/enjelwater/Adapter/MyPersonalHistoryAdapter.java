@@ -172,23 +172,12 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             holder.btnCORD.setVisibility(View.GONE);
             holder.btnreceived.setVisibility(View.VISIBLE);
             holder.txtStat.setTextColor(Color.parseColor("#FF018786"));
+        }else if(holder.txtStat.getText().toString().equals("Cancelled")){
+            holder.btnCORD.setVisibility(View.GONE);
+            holder.btnreceived.setVisibility(View.GONE);
+            holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
         }
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString());
-        reff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    maxid=(snapshot.getChildrenCount());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         reff2 = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString()).child(String.valueOf(maxid+1));
         reff2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -355,10 +344,26 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             }
         });
 
+        Toast.makeText(context, holder.txtOrderDate.getText().toString(), Toast.LENGTH_SHORT).show();
 
         holder.btnCORD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                reff = FirebaseDatabase.getInstance().getReference().child("Cancel").child(holder.txtOrderDate.getText().toString());
+                reff.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            maxid=(snapshot.getChildrenCount());
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 dialog.setContentView(R.layout.cancel_order_dialog);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCanceledOnTouchOutside(false);
@@ -367,7 +372,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
                 Button btnok = dialog.findViewById(R.id.btn_cancel);
                 Button notyet = dialog.findViewById(R.id.btn_dont_cancel);
-                TextView N1,N2,N3,N4,N5,N6,N7,N8,Address,count;
+                TextView N1,N2,N3,N4,N5,N6,N7,N8,Address;
                 N1 = dialog.findViewById(R.id.txtCName1);
                 N2 = dialog.findViewById(R.id.txtCName2);
                 N3 = dialog.findViewById(R.id.txtCName3);
@@ -376,10 +381,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                 N6 = dialog.findViewById(R.id.txtCName6);
                 N7 = dialog.findViewById(R.id.txtCName7);
                 N8 = dialog.findViewById(R.id.txtCName8);
-           //     count = dialog.findViewById(R.id.txtcancelcount);
                 Address = dialog.findViewById(R.id.txtCancelAddress);
 
-                Address.setText(new StringBuilder("").append(personalOrderModelList.get(holder.getAdapterPosition()).getAddress()));
+                Address.setText(new StringBuilder().append(personalOrderModelList.get(holder.getAdapterPosition()).getAddress()));
 
                 if(personalOrderModelList.get(holder.getAdapterPosition()).getName1() == null){
                     N1.setVisibility(View.GONE);
@@ -421,24 +425,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                 }else{
                     N8.setText(new StringBuilder().append(personalOrderModelList.get(holder.getAdapterPosition()).getName8()));
                 }
-                new CountDownTimer(3000, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                        //count.setText("Cancel Button\nwill be Visible in(" + millisUntilFinished / 1000+")");
-                    }
-
-                    public void onFinish() {
-                        if(progressBar.isShown()) {
-
-                            btnok.setVisibility(View.GONE);
-
-                        }else{
-                            btnok.setVisibility(View.VISIBLE);
-                          //  count.setVisibility(View.GONE);
-                        }
-                    }
-
-                }.start();
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -447,7 +433,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                             public void onTick(long l) {
                                 btnok.setVisibility(View.GONE);
                                 notyet.setVisibility(View.GONE);
-                                //count.setVisibility(View.GONE);
                                 progressBar.setVisibility(View.VISIBLE);
                             }
 
@@ -522,12 +507,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                                 personalOrderModel.setQty8(Integer.parseInt(qty8));
                                             }
 
-
-
-
                                             personalOrderModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));
                                             personalOrderModel.setTotalPrice(Float.parseFloat((snapshot.child(key).child("totalPrice").getValue().toString())));
-                                            personalOrderModel.setStatus("Cancel");
+                                            personalOrderModel.setStatus("Cancelled");
                                             personalOrderModel.setOrderdate(holder.txtOrderDate.getText().toString());
                                             personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
                                             personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
