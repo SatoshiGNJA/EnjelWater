@@ -35,14 +35,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                 <TextView
-                    android:id="@+id/txtProductName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="Order Date"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/orderdate"
@@ -50,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="date"
-                    android:textColor="@color/red"
+                    android:textColor="@color/blue"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -74,13 +66,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="Order Time "
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/ordertime"
@@ -88,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="time"
-                    android:textColor="@color/red"
+                    android:textColor="@color/blue"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -314,10 +299,22 @@
                     android:orientation="horizontal">
 
                     <Button
+                    android:id="@+id/btn_decline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/red"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="Decline"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                    <Button
                         android:id="@+id/btnAccept"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:backgroundTint="@drawable/button_accept"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Accept"

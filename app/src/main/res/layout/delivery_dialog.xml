@@ -212,10 +212,10 @@
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Not Yet"
+                    android:text="CANCEL"
                     android:layout_marginEnd="15dp"
                     android:textColor="@color/black"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
 
@@ -229,7 +229,7 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/btn_okay2"
@@ -237,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@drawable/button_accept"
                     android:fontFamily="@font/source_sans_pro"
-                    android:text="Accept"
+                    android:text="CONFIRM"
                     android:layout_marginStart="15dp"
                     android:textColor="@color/white"
                     android:textSize="15sp"
