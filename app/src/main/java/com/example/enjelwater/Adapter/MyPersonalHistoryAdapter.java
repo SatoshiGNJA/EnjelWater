@@ -344,8 +344,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
             }
         });
 
-        Toast.makeText(context, holder.txtOrderDate.getText().toString(), Toast.LENGTH_SHORT).show();
-
         holder.btnCORD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
