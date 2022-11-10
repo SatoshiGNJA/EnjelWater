@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VerifyPhoneNoActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="150dp"
@@ -22,8 +23,7 @@
         android:layout_height="wrap_content"
         android:padding="50dp"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:background="#16d0ff">
+        android:layout_marginTop="50dp">
 
         <EditText
             android:id="@+id/verification_code_entered_by_user"
@@ -36,14 +36,16 @@
             android:layout_height="wrap_content"
             android:text="Verify"
             android:textColor="@color/black"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            app:backgroundTint="#A9EDFF"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1dp"
+            app:cornerRadius="12dp"/>
         <ProgressBar
-            android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
+            android:id="@+id/verify_progress_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:visibility="gone"/>
 
 
     </LinearLayout>

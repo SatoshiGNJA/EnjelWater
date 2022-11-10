@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    TextInputEditText editFull,editAddress;
+    TextInputEditText editFull,editAddress,editphone;
     Button update,changepassword;
     ImageView back;
 
@@ -56,6 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         editFull = findViewById(R.id.editname);
         editAddress = findViewById(R.id.editAddress);
+        editphone = findViewById(R.id.editPhone);
         update = findViewById(R.id.btnupdateprof);
         changepassword = findViewById(R.id.btnchangepass);
         back = findViewById(R.id.btnbackEP);
@@ -84,9 +85,11 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 String fullname = snapshot.child("Users").child(uid).child("name").getValue(String.class);
                 String address = snapshot.child("Users").child(uid).child("homeaddress").getValue(String.class);
+                String phonenum = snapshot.child("Users").child(uid).child("phoneNo").getValue(String.class);
 
                 editFull.setText(fullname);
                 editAddress.setText(address);
+                editphone.setText(phonenum);
 
             }
 
@@ -111,12 +114,14 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         String fullname = snapshot.child("Users").child(uid).child("name").getValue(String.class);
                         String address = snapshot.child("Users").child(uid).child("homeaddress").getValue(String.class);
+                        String phonenum = snapshot.child("Users").child(uid).child("phoneNo").getValue(String.class);
                         String full = editFull.getText().toString();
                         String add = editAddress.getText().toString();
+                        String phon = editphone.getText().toString();
 
-                        if(fullname.equals(full)&&address.equals(add)){
+                        if(fullname.equals(full)&&address.equals(add)&&phonenum.equals(phon)){
                             update.setEnabled(false);
-                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty());
+                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty() && !editphone.getText().toString().isEmpty());
 
 
                     }
@@ -148,12 +153,56 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         String fullname = snapshot.child("Users").child(uid).child("name").getValue(String.class);
                         String address = snapshot.child("Users").child(uid).child("homeaddress").getValue(String.class);
+                        String phonenum = snapshot.child("Users").child(uid).child("phoneNo").getValue(String.class);
                         String full = editFull.getText().toString();
                         String add = editAddress.getText().toString();
+                        String phon = editphone.getText().toString();
 
-                        if(fullname.equals(full)&&address.equals(add)){
+                        if(fullname.equals(full)&&address.equals(add)&&phonenum.equals(phon)){
                             update.setEnabled(false);
-                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty());
+                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty() && !editphone.getText().toString().isEmpty());
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        editphone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        String fullname = snapshot.child("Users").child(uid).child("name").getValue(String.class);
+                        String address = snapshot.child("Users").child(uid).child("homeaddress").getValue(String.class);
+                        String phonenum = snapshot.child("Users").child(uid).child("phoneNo").getValue(String.class);
+                        String full = editFull.getText().toString();
+                        String add = editAddress.getText().toString();
+                        String phon = editphone.getText().toString();
+
+                        if(fullname.equals(full)&&address.equals(add)&&phonenum.equals(phon)){
+                            update.setEnabled(false);
+                        }else update.setEnabled(!editFull.getText().toString().isEmpty() && !editAddress.getText().toString().isEmpty() && !editphone.getText().toString().isEmpty());
+
 
 
                     }
@@ -175,6 +224,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -182,12 +232,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
                         databaseReference.child("Users").child(uid).child("name").setValue(editFull.getText().toString());
                         databaseReference.child("Users").child(uid).child("homeaddress").setValue(editAddress.getText().toString());
+                        databaseReference.child("Users").child(uid).child("phoneNo").setValue(editphone.getText().toString());
+
 
                         String fullname = snapshot.child("Users").child(uid).child("name").getValue(String.class);
                         String address = snapshot.child("Users").child(uid).child("homeaddress").getValue(String.class);
+                        String phonenum = snapshot.child("Users").child(uid).child("phoneNo").getValue(String.class);
 
                         editFull.setText(fullname);
                         editAddress.setText(address);
+                        editphone.setText(phonenum);
                         Toast.makeText(getApplicationContext(),"Successfully Updated",Toast.LENGTH_SHORT).show();
                         closeKeyBoard();
 
