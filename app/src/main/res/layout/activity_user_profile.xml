@@ -108,7 +108,7 @@
             android:fontFamily="@font/source_sans_pro"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="OPEN HOURS: 8:00AM - 8:00 PM"
+            android:text="OPEN HOURS: 8:00AM - 7:00 PM"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 

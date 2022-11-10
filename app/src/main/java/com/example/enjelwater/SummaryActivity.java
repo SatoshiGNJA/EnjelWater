@@ -95,7 +95,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
         SimpleDateFormat simpleDateFormat;
 
         calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("KK:mm aaa");
+        simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
         dateTime = simpleDateFormat.format(calendar.getTime());
 
         progressbbar = findViewById(R.id.placeprogress);

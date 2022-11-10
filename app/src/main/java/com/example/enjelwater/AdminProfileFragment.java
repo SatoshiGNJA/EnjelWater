@@ -178,26 +178,22 @@ public class AdminProfileFragment extends Fragment {
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        databaseReference.addValueEventListener(new ValueEventListener() {
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.clear();
-                                editor.commit();
-
-                                databaseReference.child("Admin").child("admin").child("username").setValue(adminusername.getText().toString());
-                                databaseReference.child("Admin").child("admin").child("password").setValue(adminpassword.getText().toString());
-
-                                String adminuser = snapshot.child("Admin").child("admin").child("username").getValue(String.class);
-                                String adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
-
-                                adminusername.setText(adminuser);
-                                adminpassword.setText(adminpass);
-
-                                Intent i = new Intent(getContext(),LoginActivity.class);
-                                startActivity(i);
-                                dialog.dismiss();
+                                try{
+                                    databaseReference.child("Admin").child("admin").child("username").setValue(adminusername.getText().toString());
+                                    databaseReference.child("Admin").child("admin").child("password").setValue(adminpassword.getText().toString());
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.clear();
+                                    editor.commit();
+                                    Intent i = new Intent(view.getContext(),LoginActivity.class);
+                                    startActivity(i);
+                                    getActivity().finish();
+                                    dialog.dismiss();
+                                }catch (Exception e){
+                                    System.out.println(e);
+                                }
 
 
 
