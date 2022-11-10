@@ -11,6 +11,7 @@ public class PersonalOrderModel {
     String status;
     String orderdate;
     String personalID;
+    String cancel_reason;
     float TotalPrice;
 
     public PersonalOrderModel() {
@@ -214,5 +215,13 @@ public class PersonalOrderModel {
 
     public void setPersonalID(String personalID) {
         this.personalID = personalID;
+    }
+
+    public String getCancel_reason() {
+        return cancel_reason;
+    }
+
+    public void setCancel_reason(String cancel_reason) {
+        this.cancel_reason = cancel_reason;
     }
 }

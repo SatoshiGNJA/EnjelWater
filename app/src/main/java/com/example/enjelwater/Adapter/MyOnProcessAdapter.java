@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
 import com.example.enjelwater.MainActivity;
 import com.example.enjelwater.Model.DeliverModel;
+import com.example.enjelwater.Model.Notification;
 import com.example.enjelwater.PersonalOrderActivity;
 import com.example.enjelwater.R;
 import com.google.firebase.database.DataSnapshot;
@@ -277,6 +278,13 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         deliverModel.setStatus("Finish");
                                         reffUsers.child("status").setValue("Finish");
                                         reff2.setValue(deliverModel);
+                                        FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(holder.txtUID.getText().toString())
+                                                        .child("Notifications")
+                                                        .push().setValue(new Notification(
+                                                                "Order Completed",
+                                                                "Your order has been completed"
+                                                        ));
                                         snapshot.child(key).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
                                     }
                                 }

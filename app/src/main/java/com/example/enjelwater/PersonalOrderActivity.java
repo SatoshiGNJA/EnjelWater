@@ -60,8 +60,8 @@ public class PersonalOrderActivity extends AppCompatActivity implements IPersona
     ImageView goback;
     IPersonalOrderLoadListener personalOrderLoadListener;
 
-
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

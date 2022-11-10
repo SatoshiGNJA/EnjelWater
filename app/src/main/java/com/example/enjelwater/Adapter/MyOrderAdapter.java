@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
 import com.example.enjelwater.Listener.IDeliverLoadListener;
 import com.example.enjelwater.Model.DeliverModel;
+import com.example.enjelwater.Model.Notification;
 import com.example.enjelwater.Model.ProductModel;
 import com.example.enjelwater.R;
 import com.google.firebase.database.DataSnapshot;
@@ -44,9 +45,6 @@ import butterknife.Unbinder;
 
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderHolder> {
 
-    private Context context;
-    private List<ProductModel> productModelList;
-    private IDeliverLoadListener iDeliverLoadListener;
     Calendar calendar = Calendar.getInstance();
     DatabaseReference reff, reff2, reff3, reff4;
     long maxid = 0;
@@ -54,6 +52,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     ProductModel productModel;
     Dialog dialog;
     String key;
+    private Context context;
+    private List<ProductModel> productModelList;
+    private IDeliverLoadListener iDeliverLoadListener;
 
 
     public MyOrderAdapter(Context context, List<ProductModel> productModelList, IDeliverLoadListener iDeliverLoadListener) {
@@ -81,8 +82,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    maxid=(snapshot.getChildrenCount());
+                if (snapshot.exists()) {
+                    maxid = (snapshot.getChildrenCount());
                 }
             }
 
@@ -94,51 +95,51 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         reff3 = FirebaseDatabase.getInstance().getReference();
         reff4 = FirebaseDatabase.getInstance().getReference();
 
-        if(productModelList.get(position).getName1() == null){
+        if (productModelList.get(position).getName1() == null) {
             holder.txtN1.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN1.setVisibility(View.VISIBLE);
             holder.txtN1.setText(new StringBuilder().append(productModelList.get(position).getName1()).append(" x").append(productModelList.get(position).getQty1()));
         }
-        if(productModelList.get(position).getName2() == null){
+        if (productModelList.get(position).getName2() == null) {
             holder.txtN2.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN2.setVisibility(View.VISIBLE);
             holder.txtN2.setText(new StringBuilder().append(productModelList.get(position).getName2()).append(" x").append(productModelList.get(position).getQty2()));
         }
-        if(productModelList.get(position).getName3() == null){
+        if (productModelList.get(position).getName3() == null) {
             holder.txtN3.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN3.setVisibility(View.VISIBLE);
             holder.txtN3.setText(new StringBuilder().append(productModelList.get(position).getName3()).append(" x").append(productModelList.get(position).getQty3()));
         }
-        if(productModelList.get(position).getName4() == null){
+        if (productModelList.get(position).getName4() == null) {
             holder.txtN4.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN4.setVisibility(View.VISIBLE);
             holder.txtN4.setText(new StringBuilder().append(productModelList.get(position).getName4()).append(" x").append(productModelList.get(position).getQty4()));
         }
-        if(productModelList.get(position).getName5() == null){
+        if (productModelList.get(position).getName5() == null) {
             holder.txtN5.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN5.setVisibility(View.VISIBLE);
             holder.txtN5.setText(new StringBuilder().append(productModelList.get(position).getName5()).append(" x").append(productModelList.get(position).getQty5()));
         }
-        if(productModelList.get(position).getName6() == null){
+        if (productModelList.get(position).getName6() == null) {
             holder.txtN6.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN6.setVisibility(View.VISIBLE);
             holder.txtN6.setText(new StringBuilder().append(productModelList.get(position).getName6()).append(" x").append(productModelList.get(position).getQty6()));
         }
-        if(productModelList.get(position).getName7() == null){
+        if (productModelList.get(position).getName7() == null) {
             holder.txtN7.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN7.setVisibility(View.VISIBLE);
             holder.txtN7.setText(new StringBuilder().append(productModelList.get(position).getName7()).append(" x").append(productModelList.get(position).getQty7()));
         }
-        if(productModelList.get(position).getName8() == null){
+        if (productModelList.get(position).getName8() == null) {
             holder.txtN8.setVisibility(View.GONE);
-        }else{
+        } else {
             holder.txtN8.setVisibility(View.VISIBLE);
             holder.txtN8.setText(new StringBuilder().append(productModelList.get(position).getName8()).append(" x").append(productModelList.get(position).getQty8()));
         }
@@ -146,7 +147,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.txtAddress.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
         holder.txtStat.setText(new StringBuilder().append(productModelList.get(position).getStatus()));
         holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
-        holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",productModelList.get(position).getTotalPrice())));
+        holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f", productModelList.get(position).getTotalPrice())));
         holder.txtIDNUM.setText(new StringBuilder().append(productModelList.get(position).getKey()));
         holder.txtPID.setText(new StringBuilder().append(productModelList.get(position).getPersonalID()));
         holder.txtUID.setText(new StringBuilder().append(productModelList.get(position).getUid()));
@@ -156,28 +157,28 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         holder.time.setText(new StringBuilder().append(productModelList.get(position).getOrdertime()));
 
         String name1 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName1()));
-        String qty1 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty1()));
+        String qty1 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty1()));
 
         String name2 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName2()));
-        String qty2 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty2()));
+        String qty2 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty2()));
 
         String name3 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName3()));
-        String qty3 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty3()));
+        String qty3 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty3()));
 
         String name4 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName4()));
-        String qty4 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty4()));
+        String qty4 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty4()));
 
         String name5 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName5()));
-        String qty5 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty5()));
+        String qty5 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty5()));
 
         String name6 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName6()));
-        String qty6 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty6()));
+        String qty6 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty6()));
 
         String name7 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName7()));
-        String qty7 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty7()));
+        String qty7 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty7()));
 
         String name8 = String.valueOf(new StringBuilder().append(productModelList.get(position).getName8()));
-        String qty8 =  String.valueOf(new StringBuilder().append(productModelList.get(position).getQty8()));
+        String qty8 = String.valueOf(new StringBuilder().append(productModelList.get(position).getQty8()));
 
 
         if (holder.txtStat.getText().toString().equals("Pending")) {
@@ -203,7 +204,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
-            TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address,phone;
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address, phone;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
@@ -220,44 +221,44 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Address.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
             phone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
 
-            if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName1() == null) {
                 N1.setVisibility(View.GONE);
-            }else{
+            } else {
                 N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()).append(" x").append(productModelList.get(position).getQty1()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName2() == null) {
                 N2.setVisibility(View.GONE);
-            }else{
+            } else {
                 N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()).append(" x").append(productModelList.get(position).getQty2()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName3() == null) {
                 N3.setVisibility(View.GONE);
-            }else{
+            } else {
                 N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()).append(" x").append(productModelList.get(position).getQty3()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName4() == null) {
                 N4.setVisibility(View.GONE);
-            }else{
+            } else {
                 N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()).append(" x").append(productModelList.get(position).getQty4()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName5() == null) {
                 N5.setVisibility(View.GONE);
-            }else{
+            } else {
                 N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()).append(" x").append(productModelList.get(position).getQty5()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName6() == null) {
                 N6.setVisibility(View.GONE);
-            }else{
+            } else {
                 N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()).append(" x").append(productModelList.get(position).getQty6()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName7() == null) {
                 N7.setVisibility(View.GONE);
-            }else{
+            } else {
                 N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()).append(" x").append(productModelList.get(position).getQty7()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName8() == null) {
                 N8.setVisibility(View.GONE);
-            }else{
+            } else {
                 N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x").append(productModelList.get(position).getQty8()));
             }
             btnok.setOnClickListener(view1 -> new CountDownTimer(3000, 1000) {
@@ -354,6 +355,13 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                     reffUsers.child("status").setValue("On-going Delivery");
                                     reff3.child("Delivered").child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                     FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(holder.txtUID.getText().toString())
+                                                        .child("Notifications")
+                                                        .push().setValue(new Notification(
+                                                                "Order Status",
+                                                                "Your order is now out for delivery"
+                                                        ));
                                     snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
                                 }
@@ -365,7 +373,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                             }
                         });
-                    }catch (Exception exception){
+                    } catch (Exception exception) {
                         System.out.println(exception);
                     }
 
@@ -394,7 +402,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
-            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address,phone, count;
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address, phone, count;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
@@ -403,7 +411,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             N6 = dialog.findViewById(R.id.txtName6);
             N7 = dialog.findViewById(R.id.txtName7);
             N8 = dialog.findViewById(R.id.txtName8);
-           // count = dialog.findViewById(R.id.txtcountdown);
+            // count = dialog.findViewById(R.id.txtcountdown);
             Name = dialog.findViewById(R.id.txtCustomerName);
             Address = dialog.findViewById(R.id.txtAddressDialog);
             phone = dialog.findViewById(R.id.txtPhoneDialog);
@@ -412,84 +420,90 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             phone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
 
 
-            if(productModelList.get(holder.getAdapterPosition()).getName1() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName1() == null) {
                 N1.setVisibility(View.GONE);
-            }else{
+            } else {
                 N1.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName1()).append(" x").append(productModelList.get(position).getQty1()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName2() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName2() == null) {
                 N2.setVisibility(View.GONE);
-            }else{
+            } else {
                 N2.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName2()).append(" x").append(productModelList.get(position).getQty2()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName3() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName3() == null) {
                 N3.setVisibility(View.GONE);
-            }else{
+            } else {
                 N3.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName3()).append(" x").append(productModelList.get(position).getQty3()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName4() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName4() == null) {
                 N4.setVisibility(View.GONE);
-            }else{
+            } else {
                 N4.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName4()).append(" x").append(productModelList.get(position).getQty4()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName5() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName5() == null) {
                 N5.setVisibility(View.GONE);
-            }else{
+            } else {
                 N5.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName5()).append(" x").append(productModelList.get(position).getQty5()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName6() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName6() == null) {
                 N6.setVisibility(View.GONE);
-            }else{
+            } else {
                 N6.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName6()).append(" x").append(productModelList.get(position).getQty6()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName7() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName7() == null) {
                 N7.setVisibility(View.GONE);
-            }else{
+            } else {
                 N7.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName7()).append(" x").append(productModelList.get(position).getQty7()));
             }
-            if(productModelList.get(holder.getAdapterPosition()).getName8() == null){
+            if (productModelList.get(holder.getAdapterPosition()).getName8() == null) {
                 N8.setVisibility(View.GONE);
-            }else{
+            } else {
                 N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x").append(productModelList.get(position).getQty8()));
             }
             btnok.setOnClickListener(view14 -> new CountDownTimer(3000, 1000) {
+                @Override
+                public void onTick(long l) {
+                    btnok.setVisibility(View.GONE);
+                    notyet.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFinish() {
+                    DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(holder.txtUID.getText().toString())
+                            .child("OrderHistory")
+                            .child(holder.txtPID.getText().toString());
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
+                    Query query = reference.orderByKey().equalTo(getTodaysDate());
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onTick(long l) {
-                            btnok.setVisibility(View.GONE);
-                            notyet.setVisibility(View.GONE);
-                            progressBar.setVisibility(View.VISIBLE);
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            reffUsers.child("status").setValue("On Process");
+                            reff4.child("Orders").child(getTodaysDate()).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(holder.txtUID.getText().toString())
+                                                        .child("Notifications")
+                                                        .push().setValue(new Notification(
+                                                                "Order Status",
+                                                                "Your order is now on process"
+                                                        ));
                         }
 
                         @Override
-                        public void onFinish() {
-                            DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
-                                    .child("Users")
-                                    .child(holder.txtUID.getText().toString())
-                                    .child("OrderHistory")
-                                    .child(holder.txtPID.getText().toString());
-
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Orders");
-                            Query query = reference.orderByKey().equalTo(getTodaysDate());
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    reffUsers.child("status").setValue("On Process");
-                                    reff4.child("Orders").child(getTodaysDate()).child(holder.txtKey.getText().toString().trim()).child("status").setValue("On Process");
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-                            btnok.setVisibility(View.VISIBLE);
-                            notyet.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            dialog.dismiss();
+                        public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                    }.start());
+                    });
+                    btnok.setVisibility(View.VISIBLE);
+                    notyet.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    dialog.dismiss();
+
+                }
+            }.start());
             notyet.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -511,6 +525,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                 Button btnok = dialog.findViewById(R.id.btn_confirm_cancel);
                 Button notyet = dialog.findViewById(R.id.btn_notyet_cancel);
+
+
                 RadioGroup reason = dialog.findViewById(R.id.rg_reason);
                 RadioButton notsupport = dialog.findViewById(R.id.rb_locationNotSupported);
                 RadioButton others = dialog.findViewById(R.id.rb_Other);
@@ -518,7 +534,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 EditText specify = dialog.findViewById(R.id.specifyhere);
 
                 reason.check(R.id.rb_locationNotSupported);
-                if(notsupport.isChecked()){
+                if (notsupport.isChecked()) {
                     specify.setVisibility(View.GONE);
                 }
 
@@ -541,17 +557,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        new CountDownTimer(3000, 1000)
-                        {
-                            public void onTick(long millisUntilFinished)
-                            {
+                        RadioButton rb = dialog.findViewById(reason.getCheckedRadioButtonId());
+                        String reason = rb.getText().toString();
+                        new CountDownTimer(3000, 1000) {
+                            public void onTick(long millisUntilFinished) {
                                 btnok.setVisibility(View.GONE);
                                 notyet.setVisibility(View.GONE);
                                 progressBar.setVisibility(View.VISIBLE);
                             }
 
-                            public void onFinish()
-                            {
+                            public void onFinish() {
 
                                 DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
                                         .child("Users")
@@ -633,6 +648,21 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                 deliverModel.setUID(holder.txtUID.getText().toString());
                                                 deliverModel.setPhonenum(holder.txtPhone.getText().toString());
                                                 reffUsers.child("status").setValue("Cancelled");
+
+                                                if (notsupport.isChecked()) {
+                                                    reffUsers.child("cancel_reason").setValue(reason);
+                                                } else {
+                                                    reffUsers.child("cancel_reason").setValue(specify.getText().toString());
+                                                }
+
+                                                FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(holder.txtUID.getText().toString())
+                                                        .child("Notifications")
+                                                        .push().setValue(new Notification(
+                                                                "Your order has been cancelled!",
+                                                                notsupport.isChecked() ? reason : specify.getText().toString()
+                                                        ));
+
                                                 reff.child(String.valueOf(maxid + 1)).setValue(deliverModel);
                                                 snapshot.child(key2).getRef().removeValue().addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
 
@@ -645,7 +675,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
                                         }
                                     });
-                                }catch (Exception exception){
+                                } catch (Exception exception) {
                                     System.out.println(exception);
                                 }
 
@@ -680,6 +710,51 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
         return productModelList.size();
     }
 
+    private String getTodaysDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+
+    }
+
+    private String makeDateString(int day, int month, int year) {
+
+        return day + " " + getMonthFormat(month) + " " + year;
+    }
+
+    private String getMonthFormat(int month) {
+        if (month == 1)
+            return "Jan";
+        if (month == 2)
+            return "Feb";
+        if (month == 3)
+            return "Mar";
+        if (month == 4)
+            return "Apr";
+        if (month == 5)
+            return "May";
+        if (month == 6)
+            return "Jun";
+        if (month == 7)
+            return "Jul";
+        if (month == 8)
+            return "Aug";
+        if (month == 9)
+            return "Sep";
+        if (month == 10)
+            return "Oct";
+        if (month == 11)
+            return "Nov";
+        if (month == 12)
+            return "Dec";
+
+        return "Jan";
+
+    }
 
     public class MyOrderHolder extends RecyclerView.ViewHolder {
 
@@ -735,48 +810,5 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             super(itemView);
             unbinder = ButterKnife.bind(this, itemView);
         }
-    }
-    private String getTodaysDate() {
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month+1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month,year);
-
-    }
-    private String makeDateString(int day, int month, int year) {
-
-        return day + " " + getMonthFormat(month) + " " + year;
-    }
-    private String getMonthFormat(int month) {
-        if(month == 1)
-            return "Jan";
-        if(month == 2)
-            return "Feb";
-        if(month == 3)
-            return "Mar";
-        if(month == 4)
-            return "Apr";
-        if(month == 5)
-            return "May";
-        if(month == 6)
-            return "Jun";
-        if(month == 7)
-            return "Jul";
-        if(month == 8)
-            return "Aug";
-        if(month == 9)
-            return "Sep";
-        if(month == 10)
-            return "Oct";
-        if(month == 11)
-            return "Nov";
-        if(month == 12)
-            return "Dec";
-
-        return "Jan";
-
     }
 }

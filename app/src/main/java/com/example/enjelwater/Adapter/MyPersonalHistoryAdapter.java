@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
 import com.example.enjelwater.MainActivity;
+import com.example.enjelwater.Model.Notification;
 import com.example.enjelwater.Model.PersonalOrderModel;
 import com.example.enjelwater.Model.ProductModel;
 import com.example.enjelwater.PersonalOrderActivity;
@@ -160,7 +161,11 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
 
 
-        if (holder.txtStat.getText().toString().equals("On Process")){
+        if (holder.txtStat.getText().toString().equals("Pending")){
+            holder.btnCORD.setVisibility(View.VISIBLE);
+            holder.btnreceived.setVisibility(View.GONE);
+            holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
+        }else if (holder.txtStat.getText().toString().equals("On Process")){
             holder.btnCORD.setVisibility(View.GONE);
             holder.btnreceived.setVisibility(View.GONE);
             holder.txtStat.setTextColor(Color.parseColor("#edb009"));
@@ -314,6 +319,13 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     reffUsers.child("status").setValue("Finish");
                                     reff3.child("Finish").child(holder.txtOrderDate.getText().toString().trim()).child(holder.txtIDNUM.getText().toString()).setValue(personalOrderModel);
                                     reff3.child("Delivered").child(holder.txtIDNUM.getText().toString()).removeValue();
+                                     FirebaseDatabase.getInstance().getReference("Users")
+                                                        .child(currentuser)
+                                                        .child("Notifications")
+                                                        .push().setValue(new Notification(
+                                                                "Order Status",
+                                                                "Order Completed"
+                                                        ));
                                 }
                             }
 

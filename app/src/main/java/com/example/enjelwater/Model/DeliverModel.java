@@ -12,6 +12,7 @@ public class DeliverModel {
     String orderdate;
     String ordertime;
     String phonenum;
+    String cancel_reason;
     float TotalPrice;
 
     public DeliverModel() {
@@ -223,6 +224,14 @@ public class DeliverModel {
 
     public void setTotalPrice(float totalPrice) {
         TotalPrice = totalPrice;
+    }
+
+    public String getCancel_reason() {
+        return cancel_reason;
+    }
+
+    public void setCancel_reason(String cancel_reason) {
+        this.cancel_reason = cancel_reason;
     }
 }
 

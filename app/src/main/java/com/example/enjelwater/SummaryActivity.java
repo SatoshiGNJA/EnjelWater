@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.enjelwater.Adapter.MySummaryAdapter;
 import com.example.enjelwater.Listener.ICartLoadListener;
 import com.example.enjelwater.Model.CartModel;
+import com.example.enjelwater.Model.Notification;
 import com.example.enjelwater.Model.ProductModel;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -432,6 +433,13 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                 reffUser.child(String.valueOf(usermaxid + 1)).child("uid").setValue(currentuser);
                                                 order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).setValue(productModel);
                                                 order.child("Users").child(currentuser).child("OrderHistory").child(String.valueOf(usermaxid + 1)).child("orderdate").setValue(getTodaysDate());
+                                                // FirebaseDatabase.getInstance().getReference("Users")
+                                                //        .child(currentuser)
+                                                //        .child("Notifications")
+                                                 //       .push().setValue(new Notification(
+                                                //                "Order Placed",
+                                                //                "New order has been placed"
+                                                //        ));
                                                 snapshot.getRef().removeValue();
 
                                             }

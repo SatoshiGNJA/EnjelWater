@@ -75,7 +75,9 @@
                 android:id="@+id/specifyhere"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Specify Here"
+                android:fontFamily="@font/source_sans_pro"
+                android:textSize="15sp"
+                android:hint="specify here"
                 android:textColor="@color/black"/>
 
             <View
