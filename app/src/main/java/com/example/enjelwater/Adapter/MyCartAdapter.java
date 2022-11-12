@@ -73,11 +73,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
             minusCartItem(holder,cartModelList.get(holder.getAdapterPosition()));
         });
         holder.btnPlus.setOnClickListener(view -> {
-            try{
-                plusCartItem(holder,cartModelList.get(position));
-            }catch (Exception e){
-                System.out.println(e);
-            }
+            plusCartItem(holder,cartModelList.get(position));
         });
         holder.btndelete.setOnClickListener(view -> {
             dialog.setContentView(R.layout.remove_dialog);
@@ -95,6 +91,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
                     cartModelList.remove(holder.getAdapterPosition());
                     notifyItemRemoved(holder.getAdapterPosition());
                     notifyItemRangeChanged(holder.getAdapterPosition(),cartModelList.size());
+                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -155,6 +152,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
                         cartModelList.remove(holder.getAdapterPosition());
                         notifyItemRemoved(holder.getAdapterPosition());
                         notifyItemRangeChanged(holder.getAdapterPosition(),cartModelList.size());
+                        notifyDataSetChanged();
                         dialog.dismiss();
                     }
                 });
@@ -180,7 +178,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
 
             holder.txtQuantity.setText(new StringBuilder().append(cartModel.getQuantity()));
             holder.txtTotal.setText(new StringBuilder("₱").append(cartModel.getTotalPrice()));
-            holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModel.getPrice()));
             updateFirebase(cartModel);
 
         }
