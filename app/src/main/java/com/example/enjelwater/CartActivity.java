@@ -153,7 +153,7 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
                                 CartModel cartModel = ds.getValue(CartModel.class);
                                 Double cost = Double.valueOf(cartModel.getTotalPrice());
                                 total = total + cost;
-                                txtTotal.setText(new StringBuilder("Total Price: ₱").append(total));
+                                txtTotal.setText(new StringBuilder("Total Price: ₱").append(String.format("%.2f", total)));
                                 placeorders.setEnabled(total != 0.0);
                             }
                     }

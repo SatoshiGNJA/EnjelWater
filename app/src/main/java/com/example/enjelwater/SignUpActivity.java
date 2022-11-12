@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     Button callLogin,register_btn;
     ImageView image;
     TextView logoText,sloganText;
-    TextInputLayout regName,regHomeAddress,regemail,regPhoneNo,regpassword;
+    TextInputLayout regName,regHomeAddress,regemail,regPhoneNo,regpassword,regRetypePass;
     ProgressBar progressBar;
 
     FirebaseDatabase rootNode;
@@ -61,6 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
         regHomeAddress = findViewById(R.id.username);
         regPhoneNo = findViewById(R.id.phoneNo);
         regpassword = findViewById(R.id.password);
+        regRetypePass = findViewById(R.id.retype_password);
         register_btn = findViewById(R.id.register_btn);
         progressBar = findViewById(R.id.progressBar2);
         mAuth = FirebaseAuth.getInstance();
@@ -176,6 +177,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Boolean validatePassword(){
         String val = regpassword.getEditText().getText().toString();
+        String retype = regRetypePass.getEditText().getText().toString();
         String passwordval = "^" +
                 "(?=.*[a-zA-Z])" +
                 "(?=\\S+$)" +
@@ -188,11 +190,19 @@ public class SignUpActivity extends AppCompatActivity {
         else if(!val.matches(passwordval)){
             regpassword.setError("Password is too weak");
             return false;
+        }else if(!val.matches(retype)){
+            regpassword.setError(null);
+            regpassword.setErrorEnabled(false);
+            regRetypePass.setError("Password not Matched!");
+            return false;
         }else{
             regpassword.setError(null);
             regpassword.setErrorEnabled(false);
+            regRetypePass.setError(null);
+            regRetypePass.setErrorEnabled(false);
             return true;
         }
+
     }
 
     private void openNoConnectionDialog() {

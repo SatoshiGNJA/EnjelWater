@@ -43,7 +43,7 @@ public class MySummaryAdapter extends RecyclerView.Adapter<MySummaryAdapter.MySu
         Glide.with(context)
                 .load(cartModelList.get(position).getImage())
                 .into(holder.imageView);
-        holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModelList.get(position).getPrice()));
+        holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModelList.get(position).getPrice()).append(".00"));
         holder.txtName.setText(new StringBuilder().append(cartModelList.get(position).getName()));
         holder.txtQuantity.setText(new StringBuilder("x").append(cartModelList.get(position).getQuantity() ));
         holder.txtTotal.setText(new StringBuilder("₱").append(cartModelList.get(position).getTotalPrice() ));

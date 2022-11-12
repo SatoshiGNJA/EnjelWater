@@ -537,7 +537,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                             CartModel cartModel = ds.getValue(CartModel.class);
                             Double cost = Double.valueOf(cartModel.getTotalPrice());
                             total = total + cost;
-                            TotalPrice.setText(new StringBuilder().append(total));
+                            TotalPrice.setText(new StringBuilder().append(String.format("%.2f", total)));
                         }
                     }
 

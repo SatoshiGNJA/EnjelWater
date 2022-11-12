@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.example.enjelwater.CartActivity;
 import com.example.enjelwater.EventBus.MyUpdateCartEvent;
 import com.example.enjelwater.Model.CartModel;
 import com.example.enjelwater.R;
@@ -63,7 +64,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         Glide.with(context)
                 .load(cartModelList.get(position).getImage())
                 .into(holder.imageView);
-        holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModelList.get(position).getPrice()));
+        holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModelList.get(position).getPrice()).append(".00"));
         holder.txtName.setText(new StringBuilder().append(cartModelList.get(position).getName()));
         holder.txtQuantity.setText(new StringBuilder().append(cartModelList.get(position).getQuantity() ));
         holder.txtTotal.setText(new StringBuilder("₱").append(cartModelList.get(position).getTotalPrice() ));
@@ -72,7 +73,38 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
             minusCartItem(holder,cartModelList.get(holder.getAdapterPosition()));
         });
         holder.btnPlus.setOnClickListener(view -> {
-            plusCartItem(holder,cartModelList.get(position));
+            try{
+                plusCartItem(holder,cartModelList.get(position));
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        });
+        holder.btndelete.setOnClickListener(view -> {
+            dialog.setContentView(R.layout.remove_dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setCanceledOnTouchOutside(false);
+
+            Button remove = dialog.findViewById(R.id.btn_remove);
+            Button dontremove = dialog.findViewById(R.id.btn_dont_remove);
+
+            remove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    deleteall(holder,cartModelList.get(holder.getAdapterPosition()));
+                    deleteFromFirebase(cartModelList.get(holder.getAdapterPosition()));
+                    cartModelList.remove(holder.getAdapterPosition());
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    notifyItemRangeChanged(holder.getAdapterPosition(),cartModelList.size());
+                    dialog.dismiss();
+                }
+            });
+            dontremove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         });
 
     }
@@ -94,7 +126,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         cartModel.setTotalPrice(cartModel.getQuantity()*Float.parseFloat(cartModel.getPrice()));
         holder.txtQuantity.setText(new StringBuilder().append(cartModel.getQuantity()));
         holder.txtTotal.setText(new StringBuilder("₱").append(cartModel.getTotalPrice()));
-        holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModel.getPrice()));
         updateFirebase(cartModel);
     }
 
@@ -107,7 +138,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
 
             holder.txtQuantity.setText(new StringBuilder().append(cartModel.getQuantity()));
             holder.txtTotal.setText(new StringBuilder("₱").append(cartModel.getTotalPrice()));
-            holder.txtPrice.setText(new StringBuilder("Price: ₱").append(cartModel.getPrice()));
             updateFirebase(cartModel);
             if(cartModel.getQuantity() == 0){
                 dialog.setContentView(R.layout.remove_dialog);
@@ -189,6 +219,8 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         TextView txtQuantity;
         @BindView(R.id.txtTotal)
         TextView txtTotal;
+        @BindView(R.id.delete_all)
+        ImageView btndelete;
 
         Unbinder unbinder;
 

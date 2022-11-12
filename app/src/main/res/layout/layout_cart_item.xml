@@ -42,12 +42,20 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
                     android:layout_gravity="start"
+                    android:layout_toStartOf="@+id/delete_all"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Name"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/delete_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_clear_24" />
 
                 <TextView
                     android:id="@+id/txtPrice"
