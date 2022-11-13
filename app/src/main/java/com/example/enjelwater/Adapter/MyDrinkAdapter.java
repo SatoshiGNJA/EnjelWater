@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,9 +63,23 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
                 .into(holder.imageView);
         holder.txtPrice.setText(new StringBuilder("₱").append(drinkModelList.get(position).getPrice()).append(".00"));
         holder.txtName.setText(new StringBuilder().append(drinkModelList.get(position).getName()));
+        holder.txtStock.setText(new StringBuilder("Stock(s):").append(drinkModelList.get(position).getStocks()));
+
+        if(drinkModelList.get(holder.getAdapterPosition()).getStocks()==null){
+            holder.txtStock.setVisibility(View.GONE);
+        }else{
+            holder.txtStock.setVisibility(View.VISIBLE);
+            if(drinkModelList.get(holder.getAdapterPosition()).getStocks().equals("0")){
+                holder.txtStock.setText("No STOCKS");
+            }
+        }
 
         holder.setListener((view, adapterPosition) -> {
-            addToCart(drinkModelList.get(position));
+            if (drinkModelList.get(holder.getAdapterPosition()).getStocks().equals("0")){
+                Toast.makeText(context, "OUT OF STOCK!", Toast.LENGTH_SHORT).show();
+            }else{
+                addToCart(drinkModelList.get(position));
+            }
 
         });
 
@@ -79,8 +94,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        if(snapshot.exists())
-                        {
+                        if(snapshot.exists()) {
                             CartModel cartModel = snapshot.getValue(CartModel.class);
                             cartModel.setQuantity(cartModel.getQuantity()+1);
                             Map<String,Object> updateData = new HashMap<>();
@@ -95,9 +109,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
                             .addOnFailureListener(e -> iCartLoadListener.onCartLoadFailed(e.getMessage()));
 
 
-                        }
-                        else
-                            {
+                        }else{
                             CartModel cartModel = new CartModel();
                             cartModel.setName(drinkModel.getName());
                             cartModel.setImage(drinkModel.getImage());
@@ -138,6 +150,8 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
         TextView txtName;
         @BindView(R.id.txtPrice)
         TextView txtPrice;
+        @BindView(R.id.txtStock)
+        TextView txtStock;
 
         IRecyclerViewClickListener listener;
 

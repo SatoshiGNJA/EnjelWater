@@ -30,6 +30,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/txtStock"
+            android:text="Stock"
+            android:textSize="20sp"
+            android:fontFamily="@font/source_sans_pro"
+            android:textStyle="bold"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
             android:id="@+id/txtName"
             android:text="Name of Drink"
             android:fontFamily="@font/source_sans_pro"

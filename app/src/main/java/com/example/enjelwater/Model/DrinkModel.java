@@ -2,9 +2,17 @@ package com.example.enjelwater.Model;
 
 public class DrinkModel {
 
-     String key,name,image,price;
+     String key,name,image,price,stocks;
 
     public DrinkModel() {
+    }
+
+    public String getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(String stocks) {
+        this.stocks = stocks;
     }
 
     public String getKey() {

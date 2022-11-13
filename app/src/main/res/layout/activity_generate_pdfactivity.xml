@@ -5,44 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GeneratePDFActivity"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true"
     android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="133dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/header_pdf" />
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/header_pdf" />
 
-    <TextView
-        android:id="@+id/totals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:gravity="center"
-        android:text="Total Sales"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:typeface="monospace" />
+        <TextView
+            android:id="@+id/totals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:gravity="center"
+            android:text="Total Sales"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
 
-    <TextView
-        android:id="@+id/dates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/totals"
-        android:gravity="center"
-        android:text="Date"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:typeface="normal" />
+        <TextView
+            android:id="@+id/dates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/totals"
+            android:gravity="center"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:typeface="normal" />
 
         <TableLayout
             android:id="@+id/table"
@@ -102,6 +104,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table1"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -125,7 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱25"
+                    android:text="₱25.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -150,6 +153,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table2"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -173,7 +177,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱35"
+                    android:text="₱35.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -198,6 +202,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table3"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -221,7 +226,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱25"
+                    android:text="₱25.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -246,6 +251,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table4"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -269,7 +275,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱35"
+                    android:text="₱35.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -294,6 +300,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table5"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -317,7 +324,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱225"
+                    android:text="₱225.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -342,6 +349,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table6"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -365,7 +373,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱235"
+                    android:text="₱235.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -390,6 +398,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/table7"
                 android:layout_marginBottom="10dp"
                 android:background="@color/white">
 
@@ -413,7 +422,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱225"
+                    android:text="₱225.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -437,7 +446,9 @@
 
             </TableRow>
 
-            <TableRow android:background="@color/white">
+            <TableRow
+                android:id="@+id/table8"
+                android:background="@color/white">
 
                 <TextView
                     android:layout_width="0dp"
@@ -459,7 +470,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="₱235"
+                    android:text="₱235.00"
                     android:textColor="@color/black"
                     android:textSize="10dp" />
 
@@ -531,27 +542,107 @@
 
         </TableLayout>
 
-    <View
-        android:id="@+id/viewm"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_below="@+id/table"
-        android:background="#5C5C5C" />
+        <View
+            android:id="@+id/viewm"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@+id/table"
+            android:background="#5C5C5C" />
 
         <Button
             android:id="@+id/pdfdownload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/viewm"
+            android:layout_above="@+id/filter"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/black"
             android:backgroundTint="@color/light_blue"
-            android:text="Generate PDF" />
+            android:text="Generate PDF"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/layout2"
+            android:text="Filter:"
+            android:textSize="20dp"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/layout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnShowAll"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:text="Show All" />
+
+            <Button
+                android:id="@+id/btnMineral"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:text="Show Mineral\nWater" />
+
+            <Button
+                android:id="@+id/btnAlkaline"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:text="Show Alkaline\nWater" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btnRefill"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"
+                android:text="Show Refill Gallon\nWater" />
+
+            <Button
+                android:id="@+id/btnNew"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:text="Show New Gallon\nWater" />
+
+
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>

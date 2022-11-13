@@ -98,6 +98,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="1234567890"
                 android:maxLength="11"
                 android:inputType="phone"/>
 
@@ -123,7 +124,7 @@
             android:id="@+id/retype_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Retype Password"
+            android:hint="Re-Type Password"
             app:passwordToggleEnabled="true"
             app:errorIconDrawable="@null"
             android:transitionName="password_tran"

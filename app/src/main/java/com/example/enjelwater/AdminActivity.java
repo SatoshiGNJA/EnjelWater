@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.example.enjelwater.Adapter.MyPriceMaintenanceAdapter;
 import com.example.enjelwater.Model.PersonalOrderModel;
 import com.example.enjelwater.databinding.ActivityAdminBinding;
 import com.google.android.material.navigation.NavigationView;
@@ -202,6 +203,69 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        DatabaseReference Drinks = FirebaseDatabase.getInstance().getReference().child("Drink");
+        Drinks.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try{
+                    replaceFragment(new AdminProductPriceFragment());
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        DatabaseReference NewDrinks = FirebaseDatabase.getInstance().getReference().child("NewDrink");
+        NewDrinks.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try{
+                    replaceFragment(new AdminProductPriceFragment());
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference().child("Delivered");
         reference3.addChildEventListener(new ChildEventListener() {
             @Override
@@ -312,6 +376,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 break;
             case R.id.nav_admin_finish:
                 replaceFragment(new AdminHistoryFragment());
+                break;
+            case R.id.nav_product_price:
+                replaceFragment(new AdminProductPriceFragment());
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

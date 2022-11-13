@@ -45,10 +45,12 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
     private Context context;
     private List<DeliverModel> deliverModelList;
     Calendar calendar = Calendar.getInstance();
-    DatabaseReference reff, reff2,reff3;
+    DatabaseReference reff, reff2,reff3,NewDrink;
     long maxid = 0;
     DeliverModel deliverModel;
     Dialog dialog;
+
+    String stock5,stock6,stock7,stock8;
 
 
     public MyOnProcessAdapter(Context context, List<DeliverModel> deliverModelList) {
@@ -157,6 +159,22 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         String name8 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName8()));
         String qty8 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty8()));
 
+        NewDrink = FirebaseDatabase.getInstance().getReference("NewDrink");
+        NewDrink.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                stock5 = snapshot.child("05").child("stocks").getValue(String.class);
+                stock6 = snapshot.child("06").child("stocks").getValue(String.class);
+                stock7 = snapshot.child("07").child("stocks").getValue(String.class);
+                stock8 = snapshot.child("08").child("stocks").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         holder.btnprint.setOnClickListener(view -> {
 
@@ -204,6 +222,7 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                 .child(holder.txtIDNUM.getText().toString());
 
 
+
                         try{
                             DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference();
                             Query query = reference2.orderByKey().equalTo("Delivered");
@@ -247,6 +266,10 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         }else{
                                             deliverModel.setName5(name5);
                                             deliverModel.setQty5(Integer.parseInt(qty5));
+                                            int st5 = Integer.parseInt(stock5);
+                                            String UpdatedStock = String.valueOf(st5-Integer.parseInt(qty5));
+                                            NewDrink.child("05").child("stocks").setValue(UpdatedStock);
+
                                         }
                                         if(snapshot.child(key).child("name6").getValue()==null){
                                             reff2.getRef().child("name6").removeValue();
@@ -254,6 +277,9 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         }else{
                                             deliverModel.setName6(name6);
                                             deliverModel.setQty6(Integer.parseInt(qty6));
+                                            int st6 = Integer.parseInt(stock6);
+                                            String UpdatedStock = String.valueOf(st6-Integer.parseInt(qty6));
+                                            NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                         }
                                         if(snapshot.child(key).child("name7").getValue()==null){
                                             reff2.getRef().child("name7").removeValue();
@@ -261,6 +287,9 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         }else{
                                             deliverModel.setName7(name7);
                                             deliverModel.setQty7(Integer.parseInt(qty7));
+                                            int st7 = Integer.parseInt(stock7);
+                                            String UpdatedStock = String.valueOf(st7-Integer.parseInt(qty7));
+                                            NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                         }
                                         if(snapshot.child(key).child("name8").getValue()==null){
                                             reff2.getRef().child("name8").removeValue();
@@ -268,6 +297,9 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         }else{
                                             deliverModel.setName8(name8);
                                             deliverModel.setQty8(Integer.parseInt(qty8));
+                                            int st8 = Integer.parseInt(stock8);
+                                            String UpdatedStock = String.valueOf(st8-Integer.parseInt(qty8));
+                                            NewDrink.child("08").child("stocks").setValue(UpdatedStock);
                                         }
 
 
@@ -373,48 +405,5 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
             super(itemView);
             unbinder = ButterKnife.bind(this, itemView);
         }
-    }
-    private String getTodaysDate() {
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month+1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month,year);
-
-    }
-    private String makeDateString(int day, int month, int year) {
-
-        return day + " " + getMonthFormat(month) + " " + year;
-    }
-    private String getMonthFormat(int month) {
-        if(month == 1)
-            return "Jan";
-        if(month == 2)
-            return "Feb";
-        if(month == 3)
-            return "Mar";
-        if(month == 4)
-            return "Apr";
-        if(month == 5)
-            return "May";
-        if(month == 6)
-            return "Jun";
-        if(month == 7)
-            return "Jul";
-        if(month == 8)
-            return "Aug";
-        if(month == 9)
-            return "Sep";
-        if(month == 10)
-            return "Oct";
-        if(month == 11)
-            return "Nov";
-        if(month == 12)
-            return "Dec";
-
-        return "Jan";
-
     }
 }

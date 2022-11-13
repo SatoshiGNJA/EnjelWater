@@ -61,7 +61,6 @@ public class fragment1 extends Fragment implements IProductLoadListener, IDelive
     TextView noOrder;
     IProductLoadListener productLoadListener;
     IDeliverLoadListener deliverLoadListener;
-    long maxid=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

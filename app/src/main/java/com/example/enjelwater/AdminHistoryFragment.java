@@ -228,7 +228,7 @@ public class AdminHistoryFragment extends Fragment implements IHistoryLoadListen
                             fragRecy.setVisibility(View.VISIBLE);
                             NoSales.setVisibility(View.GONE);
                         }else{
-                            totalsales.setText(new StringBuilder("Total Sales: ₱").append(0.0));
+                            totalsales.setText(new StringBuilder("Total Sales: ₱0.00"));
                             fragRecy.setVisibility(View.GONE);
                             NoSales.setVisibility(View.VISIBLE);
                         }

@@ -18,6 +18,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,10 @@ public class GeneratePDFActivity extends AppCompatActivity {
     TextView qty7,total7;
     TextView qty8,total8;
 
+    Button Min,Alk,Ref,New,Show;
+
+    TableRow tb1,tb2,tb3,tb4,tb5,tb6,tb7,tb8;
+
     TextView overall;
     Dialog dialog;
 
@@ -100,6 +105,19 @@ public class GeneratePDFActivity extends AppCompatActivity {
         qty8 = findViewById(R.id.qty8);
         total8 = findViewById(R.id.total8);
         overall = findViewById(R.id.overalltotal);
+        Min = findViewById(R.id.btnMineral);
+        Alk = findViewById(R.id.btnAlkaline);
+        Ref = findViewById(R.id.btnRefill);
+        Show = findViewById(R.id.btnShowAll);
+        New = findViewById(R.id.btnNew);
+        tb1 = findViewById(R.id.table1);
+        tb2 = findViewById(R.id.table2);
+        tb3 = findViewById(R.id.table3);
+        tb4 = findViewById(R.id.table4);
+        tb5 = findViewById(R.id.table5);
+        tb6 = findViewById(R.id.table6);
+        tb7 = findViewById(R.id.table7);
+        tb8 = findViewById(R.id.table8);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.header_pdf);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 1200, 518, false);
 
@@ -147,6 +165,496 @@ public class GeneratePDFActivity extends AppCompatActivity {
         TotalSales();
 
 
+        Min.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tb2.setVisibility(View.GONE);
+                tb4.setVisibility(View.GONE);
+                tb6.setVisibility(View.GONE);
+                tb8.setVisibility(View.GONE);
+                tb1.setVisibility(View.VISIBLE);
+                tb3.setVisibility(View.VISIBLE);
+                tb5.setVisibility(View.VISIBLE);
+                tb7.setVisibility(View.VISIBLE);
+                double total = 0;
+                if(tb1.isShown()){
+                    String t1 = String.valueOf(total1.getText());
+                    t1 = t1.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt1 =  Double.parseDouble(t1);
+                        total = total +tt1;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(tb2.isShown()){
+                    String t2 = String.valueOf(total2.getText());
+                    t2 = t2.replaceAll("[^\\d.]", "");
+                    double tt2 =  Double.parseDouble(t2);
+                    total = total +tt2;
+                }
+                if(tb3.isShown()){
+                    String t3 = String.valueOf(total3.getText());
+                    t3 = t3.replaceAll("[^\\d.]", "");
+                    try{
+                        double tt3 =  Double.parseDouble(t3);
+                        total = total +tt3;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb4.isShown()){
+                    String t4 = String.valueOf(total4.getText());
+                    t4 = t4.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt4 = Double.parseDouble(t4);
+                        total = total +tt4;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb5.isShown()){
+                    String t5 = String.valueOf(total5.getText());
+                    t5 = t5.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt5 =  Double.parseDouble(t5);
+                        total = total +tt5;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb6.isShown()){
+                    String t6 = String.valueOf(total6.getText());
+                    t6 = t6.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt6 =  Double.parseDouble(t6);
+                        total = total +tt6;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb7.isShown()){
+                    String t7 = String.valueOf(total7.getText());
+                    t7 = t7.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt7 = Double.parseDouble(t7);
+                        total = total +tt7;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb8.isShown()){
+                    String t8 = String.valueOf(total8.getText());
+                    t8 = t8.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt8 = Double.parseDouble(t8);
+                        total = total +tt8;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                overall.setText("₱"+String.format("%.2f",total));
+            }
+        });
+        Alk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tb1.setVisibility(View.GONE);
+                tb3.setVisibility(View.GONE);
+                tb5.setVisibility(View.GONE);
+                tb7.setVisibility(View.GONE);
+                tb2.setVisibility(View.VISIBLE);
+                tb4.setVisibility(View.VISIBLE);
+                tb6.setVisibility(View.VISIBLE);
+                tb8.setVisibility(View.VISIBLE);
+                double total = 0;
+                if(tb1.isShown()){
+                    String t1 = String.valueOf(total1.getText());
+                    t1 = t1.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt1 =  Double.parseDouble(t1);
+                        total = total +tt1;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(tb2.isShown()){
+                    String t2 = String.valueOf(total2.getText());
+                    t2 = t2.replaceAll("[^\\d.]", "");
+                    double tt2 =  Double.parseDouble(t2);
+                    total = total +tt2;
+                }
+                if(tb3.isShown()){
+                    String t3 = String.valueOf(total3.getText());
+                    t3 = t3.replaceAll("[^\\d.]", "");
+                    try{
+                        double tt3 =  Double.parseDouble(t3);
+                        total = total +tt3;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb4.isShown()){
+                    String t4 = String.valueOf(total4.getText());
+                    t4 = t4.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt4 = Double.parseDouble(t4);
+                        total = total +tt4;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb5.isShown()){
+                    String t5 = String.valueOf(total5.getText());
+                    t5 = t5.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt5 =  Double.parseDouble(t5);
+                        total = total +tt5;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb6.isShown()){
+                    String t6 = String.valueOf(total6.getText());
+                    t6 = t6.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt6 =  Double.parseDouble(t6);
+                        total = total +tt6;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb7.isShown()){
+                    String t7 = String.valueOf(total7.getText());
+                    t7 = t7.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt7 = Double.parseDouble(t7);
+                        total = total +tt7;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb8.isShown()){
+                    String t8 = String.valueOf(total8.getText());
+                    t8 = t8.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt8 = Double.parseDouble(t8);
+                        total = total +tt8;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                overall.setText("₱"+String.format("%.2f",total));
+            }
+        });
+        Ref.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tb1.setVisibility(View.VISIBLE);
+                tb2.setVisibility(View.VISIBLE);
+                tb3.setVisibility(View.VISIBLE);
+                tb4.setVisibility(View.VISIBLE);
+                tb5.setVisibility(View.GONE);
+                tb6.setVisibility(View.GONE);
+                tb7.setVisibility(View.GONE);
+                tb8.setVisibility(View.GONE);
+                double total = 0;
+                if(tb1.isShown()){
+                    String t1 = String.valueOf(total1.getText());
+                    t1 = t1.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt1 =  Double.parseDouble(t1);
+                        total = total +tt1;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(tb2.isShown()){
+                    String t2 = String.valueOf(total2.getText());
+                    t2 = t2.replaceAll("[^\\d.]", "");
+                    double tt2 =  Double.parseDouble(t2);
+                    total = total +tt2;
+                }
+                if(tb3.isShown()){
+                    String t3 = String.valueOf(total3.getText());
+                    t3 = t3.replaceAll("[^\\d.]", "");
+                    try{
+                        double tt3 =  Double.parseDouble(t3);
+                        total = total +tt3;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb4.isShown()){
+                    String t4 = String.valueOf(total4.getText());
+                    t4 = t4.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt4 = Double.parseDouble(t4);
+                        total = total +tt4;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb5.isShown()){
+                    String t5 = String.valueOf(total5.getText());
+                    t5 = t5.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt5 =  Double.parseDouble(t5);
+                        total = total +tt5;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb6.isShown()){
+                    String t6 = String.valueOf(total6.getText());
+                    t6 = t6.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt6 =  Double.parseDouble(t6);
+                        total = total +tt6;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb7.isShown()){
+                    String t7 = String.valueOf(total7.getText());
+                    t7 = t7.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt7 = Double.parseDouble(t7);
+                        total = total +tt7;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb8.isShown()){
+                    String t8 = String.valueOf(total8.getText());
+                    t8 = t8.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt8 = Double.parseDouble(t8);
+                        total = total +tt8;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                overall.setText("₱"+String.format("%.2f",total));
+            }
+        });
+        New.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tb1.setVisibility(View.GONE);
+                tb2.setVisibility(View.GONE);
+                tb3.setVisibility(View.GONE);
+                tb4.setVisibility(View.GONE);
+                tb5.setVisibility(View.VISIBLE);
+                tb6.setVisibility(View.VISIBLE);
+                tb7.setVisibility(View.VISIBLE);
+                tb8.setVisibility(View.VISIBLE);
+                double total = 0;
+                if(tb1.isShown()){
+                    String t1 = String.valueOf(total1.getText());
+                    t1 = t1.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt1 =  Double.parseDouble(t1);
+                        total = total +tt1;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(tb2.isShown()){
+                    String t2 = String.valueOf(total2.getText());
+                    t2 = t2.replaceAll("[^\\d.]", "");
+                    double tt2 =  Double.parseDouble(t2);
+                    total = total +tt2;
+                }
+                if(tb3.isShown()){
+                    String t3 = String.valueOf(total3.getText());
+                    t3 = t3.replaceAll("[^\\d.]", "");
+                    try{
+                        double tt3 =  Double.parseDouble(t3);
+                        total = total +tt3;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb4.isShown()){
+                    String t4 = String.valueOf(total4.getText());
+                    t4 = t4.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt4 = Double.parseDouble(t4);
+                        total = total +tt4;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb5.isShown()){
+                    String t5 = String.valueOf(total5.getText());
+                    t5 = t5.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt5 =  Double.parseDouble(t5);
+                        total = total +tt5;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb6.isShown()){
+                    String t6 = String.valueOf(total6.getText());
+                    t6 = t6.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt6 =  Double.parseDouble(t6);
+                        total = total +tt6;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb7.isShown()){
+                    String t7 = String.valueOf(total7.getText());
+                    t7 = t7.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt7 = Double.parseDouble(t7);
+                        total = total +tt7;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb8.isShown()){
+                    String t8 = String.valueOf(total8.getText());
+                    t8 = t8.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt8 = Double.parseDouble(t8);
+                        total = total +tt8;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                overall.setText("₱"+String.format("%.2f",total));
+            }
+        });
+        Show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tb1.setVisibility(View.VISIBLE);
+                tb2.setVisibility(View.VISIBLE);
+                tb3.setVisibility(View.VISIBLE);
+                tb4.setVisibility(View.VISIBLE);
+                tb5.setVisibility(View.VISIBLE);
+                tb6.setVisibility(View.VISIBLE);
+                tb7.setVisibility(View.VISIBLE);
+                tb8.setVisibility(View.VISIBLE);
+                double total = 0;
+                if(tb1.isShown()){
+                    String t1 = String.valueOf(total1.getText());
+                    t1 = t1.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt1 =  Double.parseDouble(t1);
+                        total = total +tt1;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(tb2.isShown()){
+                    String t2 = String.valueOf(total2.getText());
+                    t2 = t2.replaceAll("[^\\d.]", "");
+                    double tt2 =  Double.parseDouble(t2);
+                    total = total +tt2;
+                }
+                if(tb3.isShown()){
+                    String t3 = String.valueOf(total3.getText());
+                    t3 = t3.replaceAll("[^\\d.]", "");
+                    try{
+                        double tt3 =  Double.parseDouble(t3);
+                        total = total +tt3;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb4.isShown()){
+                    String t4 = String.valueOf(total4.getText());
+                    t4 = t4.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt4 = Double.parseDouble(t4);
+                        total = total +tt4;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb5.isShown()){
+                    String t5 = String.valueOf(total5.getText());
+                    t5 = t5.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt5 =  Double.parseDouble(t5);
+                        total = total +tt5;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb6.isShown()){
+                    String t6 = String.valueOf(total6.getText());
+                    t6 = t6.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt6 =  Double.parseDouble(t6);
+                        total = total +tt6;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb7.isShown()){
+                    String t7 = String.valueOf(total7.getText());
+                    t7 = t7.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt7 = Double.parseDouble(t7);
+                        total = total +tt7;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                if(tb8.isShown()){
+                    String t8 = String.valueOf(total8.getText());
+                    t8 = t8.replaceAll("[^\\d.]", "");
+                    try {
+                        double tt8 = Double.parseDouble(t8);
+                        total = total +tt8;
+                    }catch (NumberFormatException nfe){
+                        Toast.makeText(GeneratePDFActivity.this, nfe.toString().trim(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+                overall.setText("₱"+String.format("%.2f",total));
+            }
+        });
     }
 
     private void generatePDF() {
@@ -188,69 +696,86 @@ public class GeneratePDFActivity extends AppCompatActivity {
         canvas.drawLine(880,790,880,840,paint);
         canvas.drawLine(980,790,980,840,paint);
 
-        canvas.drawText("1.",40,950,paint);
-        canvas.drawText("Mineral Water - REFILL",200,950,paint);
-        canvas.drawText("Round Gallon",200,1000,paint);
-        canvas.drawText("₱25",700,950,paint);
-        canvas.drawText(qty1.getText().toString(),900,950,paint);
-        canvas.drawText(total1.getText().toString(),1000,950,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb1.isShown()){
+            canvas.drawText("1.",40,950,paint);
+            canvas.drawText("Mineral Water - REFILL",200,950,paint);
+            canvas.drawText("Round Gallon",200,1000,paint);
+            canvas.drawText("₱25",700,950,paint);
+            canvas.drawText(qty1.getText().toString(),900,950,paint);
+            canvas.drawText(total1.getText().toString(),1000,950,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("2.",40,1050,paint);
-        canvas.drawText("Alkaline Water - REFILL",200,1050,paint);
-        canvas.drawText("Round Gallon",200,1100,paint);
-        canvas.drawText("₱35",700,1050,paint);
-        canvas.drawText(qty2.getText().toString(),900,1050,paint);
-        canvas.drawText(total2.getText().toString(),1000,1050,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb2.isShown()){
+            canvas.drawText("2.",40,1050,paint);
+            canvas.drawText("Alkaline Water - REFILL",200,1050,paint);
+            canvas.drawText("Round Gallon",200,1100,paint);
+            canvas.drawText("₱35",700,1050,paint);
+            canvas.drawText(qty2.getText().toString(),900,1050,paint);
+            canvas.drawText(total2.getText().toString(),1000,1050,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("3.",40,1150,paint);
-        canvas.drawText("Mineral Water - REFILL",200,1150,paint);
-        canvas.drawText("Slim Gallon",200,1200,paint);
-        canvas.drawText("₱25",700,1150,paint);
-        canvas.drawText(qty3.getText().toString(),900,1150,paint);
-        canvas.drawText(total3.getText().toString(),1000,1150,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb3.isShown()){
+            canvas.drawText("3.",40,1150,paint);
+            canvas.drawText("Mineral Water - REFILL",200,1150,paint);
+            canvas.drawText("Slim Gallon",200,1200,paint);
+            canvas.drawText("₱25",700,1150,paint);
+            canvas.drawText(qty3.getText().toString(),900,1150,paint);
+            canvas.drawText(total3.getText().toString(),1000,1150,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("4.",40,1250,paint);
-        canvas.drawText("Alkaline Water - REFILL",200,1250,paint);
-        canvas.drawText("Slim Gallon",200,1300,paint);
-        canvas.drawText("₱35",700,1250,paint);
-        canvas.drawText(qty4.getText().toString(),900,1250,paint);
-        canvas.drawText(total4.getText().toString(),1000,1250,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb4.isShown()){
+            canvas.drawText("4.",40,1250,paint);
+            canvas.drawText("Alkaline Water - REFILL",200,1250,paint);
+            canvas.drawText("Slim Gallon",200,1300,paint);
+            canvas.drawText("₱35",700,1250,paint);
+            canvas.drawText(qty4.getText().toString(),900,1250,paint);
+            canvas.drawText(total4.getText().toString(),1000,1250,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("5.",40,1350,paint);
-        canvas.drawText("Mineral Water - NEW",200,1350,paint);
-        canvas.drawText("Round Gallon",200,1400,paint);
-        canvas.drawText("₱225",700,1350,paint);
-        canvas.drawText(qty5.getText().toString(),900,1350,paint);
-        canvas.drawText(total5.getText().toString(),1000,1350,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb5.isShown()){
+            canvas.drawText("5.",40,1350,paint);
+            canvas.drawText("Mineral Water - NEW",200,1350,paint);
+            canvas.drawText("Round Gallon",200,1400,paint);
+            canvas.drawText("₱225",700,1350,paint);
+            canvas.drawText(qty5.getText().toString(),900,1350,paint);
+            canvas.drawText(total5.getText().toString(),1000,1350,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("6.",40,1450,paint);
-        canvas.drawText("Alkaline Water - NEW",200,1450,paint);
-        canvas.drawText("Round Gallon",200,1500,paint);
-        canvas.drawText("₱235",700,1450,paint);
-        canvas.drawText(qty6.getText().toString(),900,1450,paint);
-        canvas.drawText(total6.getText().toString(),1000,1450,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb6.isShown()){
+            canvas.drawText("6.",40,1450,paint);
+            canvas.drawText("Alkaline Water - NEW",200,1450,paint);
+            canvas.drawText("Round Gallon",200,1500,paint);
+            canvas.drawText("₱235",700,1450,paint);
+            canvas.drawText(qty6.getText().toString(),900,1450,paint);
+            canvas.drawText(total6.getText().toString(),1000,1450,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("7.",40,1550,paint);
-        canvas.drawText("Mineral Water - NEW",200,1550,paint);
-        canvas.drawText("Slim Gallon",200,1600,paint);
-        canvas.drawText("₱225",700,1550,paint);
-        canvas.drawText(qty7.getText().toString(),900,1550,paint);
-        canvas.drawText(total7.getText().toString(),1000,1550,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb7.isShown()){
+            canvas.drawText("7.",40,1550,paint);
+            canvas.drawText("Mineral Water - NEW",200,1550,paint);
+            canvas.drawText("Slim Gallon",200,1600,paint);
+            canvas.drawText("₱225",700,1550,paint);
+            canvas.drawText(qty7.getText().toString(),900,1550,paint);
+            canvas.drawText(total7.getText().toString(),1000,1550,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
 
-        canvas.drawText("8.",40,1650,paint);
-        canvas.drawText("Alkaline Water - NEW",200,1650,paint);
-        canvas.drawText("Slim Gallon",200,1700,paint);
-        canvas.drawText("₱235",700,1650,paint);
-        canvas.drawText(qty8.getText().toString(),900,1650,paint);
-        canvas.drawText(total8.getText().toString(),1000,1650,paint);
-        paint.setTextAlign(Paint.Align.LEFT);
+        if(tb8.isShown()){
+            canvas.drawText("8.",40,1650,paint);
+            canvas.drawText("Alkaline Water - NEW",200,1650,paint);
+            canvas.drawText("Slim Gallon",200,1700,paint);
+            canvas.drawText("₱235",700,1650,paint);
+            canvas.drawText(qty8.getText().toString(),900,1650,paint);
+            canvas.drawText(total8.getText().toString(),1000,1650,paint);
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
+
 
         canvas.drawText("Total: ",850,1800,paint);
         canvas.drawText(overall.getText().toString(),1000,1800,paint);
@@ -321,6 +846,7 @@ public class GeneratePDFActivity extends AppCompatActivity {
                     }
                 });
     }
+    //Must change Price when having a maintenance
     private void Qty1Total(){
         List<HistoryModel> historyModels = new ArrayList<>();
         FirebaseDatabase.getInstance()

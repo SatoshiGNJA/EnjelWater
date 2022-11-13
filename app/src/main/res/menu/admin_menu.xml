@@ -13,6 +13,10 @@
             android:icon="@drawable/report"
             android:title="Transaction History" />
         <item
+            android:id="@+id/nav_product_price"
+            android:icon="@drawable/ic_baseline_list_alt_24"
+            android:title="Product and Price" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
             android:title="Logout" />
