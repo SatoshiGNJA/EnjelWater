@@ -5,8 +5,8 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:padding="30dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="30dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -24,8 +24,8 @@
                 android:id="@+id/imageViewNet"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                app:srcCompat="@drawable/edit_product" />
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/add" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -43,28 +43,28 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:layout_marginTop="160dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical">
-
-                <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
-                    android:textSize="15sp"
-                android:text="Product Name"/>
+                    android:text="Product Name"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/txtEditProductName"
+                    android:id="@+id/newProductName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/source_sans_pro"
@@ -79,19 +79,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="Product Unit Price"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                     android:layout_marginEnd="5dp"
-                    android:text="Product Unit Price"/>
+                    android:textSize="15sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,29 +100,27 @@
 
 
                     <TextView
-                        android:gravity="center_vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="2dp"
-                         android:layout_marginBottom="6dp"
+                        android:layout_marginBottom="6dp"
                         android:fontFamily="@font/source_sans_pro"
+                        android:gravity="center_vertical"
+                        android:text="₱"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:text="₱"/>
+                        android:textSize="20sp" />
+
                     <EditText
-                        android:layout_gravity="start"
-                        android:id="@+id/txtEditPrice"
+                        android:id="@+id/newProductPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:layout_gravity="start"
                         android:digits="1234567890"
                         android:fontFamily="@font/source_sans_pro"
                         android:hint="Price"
-
                         android:inputType="phone"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
-
 
 
                 </LinearLayout>
@@ -132,35 +130,34 @@
                 android:id="@+id/stockslayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
-                     android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/source_sans_pro"
+                    android:text="Product Stock"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:text="Product Stock"/>
+                    android:textSize="15sp" />
 
                 <EditText
-                    android:id="@+id/txtEditStocks"
+                    android:id="@+id/newProductStocks"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
+                    android:digits="1234567890"
                     android:fontFamily="@font/source_sans_pro"
-                    android:textSize="15sp"
                     android:hint="Stocks"
                     android:inputType="phone"
-                    android:digits="1234567890"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </LinearLayout>
-
 
 
             <View
@@ -176,9 +173,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
@@ -186,22 +183,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="CANCEL"
-                    android:layout_marginEnd="15dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btn_edit_confirm"
+                    android:id="@+id/btn_save_new_product"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:backgroundTint="@color/green"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="SAVE"
-                    android:layout_marginStart="15dp"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="bold" />

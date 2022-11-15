@@ -63,7 +63,7 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
                 .into(holder.imageView);
         holder.txtPrice.setText(new StringBuilder("₱").append(drinkModelList.get(position).getPrice()).append(".00"));
         holder.txtName.setText(new StringBuilder().append(drinkModelList.get(position).getName()));
-        holder.txtStock.setText(new StringBuilder("Stock(s):").append(drinkModelList.get(position).getStocks()));
+        holder.txtStock.setText(new StringBuilder("Stock: ").append(drinkModelList.get(position).getStocks()));
 
         if(drinkModelList.get(holder.getAdapterPosition()).getStocks()==null){
             holder.txtStock.setVisibility(View.GONE);

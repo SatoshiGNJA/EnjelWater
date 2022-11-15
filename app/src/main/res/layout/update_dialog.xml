@@ -37,6 +37,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="center"
                 android:text="Are you sure you want change your Password? "
@@ -51,7 +52,7 @@
                 android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/source_sans_pro"
                 android:gravity="center"
                 android:text="Note: The App will restart once you continue"
@@ -71,11 +72,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/note">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="New Password"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/new_password"
                     android:layout_width="match_parent"
@@ -90,11 +87,7 @@
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:text="Re-Type New Password"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/re_type_new_password"
                     android:layout_width="match_parent"

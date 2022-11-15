@@ -21,11 +21,21 @@
             android:layout_width="150dp"
             android:layout_height="150dp"/>
         <TextView
+            android:id="@+id/txtName"
+            android:text="Name of Drink"
+            android:fontFamily="@font/source_sans_pro"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
             android:id="@+id/txtPrice"
             android:text="Php20"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:fontFamily="@font/source_sans_pro"
             android:textStyle="bold"
+            android:textColor="#EF4813"
             android:layout_gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -34,19 +44,10 @@
             android:text="Stock"
             android:textSize="20sp"
             android:fontFamily="@font/source_sans_pro"
-            android:textStyle="bold"
             android:layout_gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/txtName"
-            android:text="Name of Drink"
-            android:fontFamily="@font/source_sans_pro"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_gravity="start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
 
     </LinearLayout>

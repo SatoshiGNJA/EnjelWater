@@ -4,8 +4,8 @@
     app:cardCornerRadius="10dp"
     app:cardElevation="12dp"
     android:layout_margin="8dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="180dp">
 
     <LinearLayout
         android:id="@+id/background"
@@ -13,79 +13,62 @@
         android:padding="16dp"
         android:weightSum="5"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView"
             android:src="@drawable/waterlogo_crop"
-            android:layout_width="50dp"
+            android:background="@android:color/transparent"
+            android:layout_width="100dp"
             android:elevation="10dp"
-            android:layout_weight="1"
-            android:layout_height="100dp"/>
+            android:layout_height="match_parent"/>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_weight="4"
-            android:weightSum="5"
-            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
-            
-            <RelativeLayout
-                android:layout_width="0dp"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:layout_marginStart="5dp"
-                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
+                   android:layout_marginStart="10dp"
+                     android:layout_marginBottom="5dp"
                     android:layout_gravity="start"
                     android:fontFamily="@font/source_sans_pro"
                     android:text="Name"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
 
-                <Button
-                    android:id="@+id/edit_price_product"
+                 <TextView
+                    android:id="@+id/txtStocks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:backgroundTint="@color/black"
-                    android:text="Edit"
-                    android:textColor="@color/white" />
-
+                    android:layout_marginStart="10dp"
+                     android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:gravity="end"
+                    android:text="Stocks:"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="end"
-                    android:text="Price: "
+                    android:text="Price:"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtStocks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/txtPrice"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:gravity="end"
-                    android:text="Stocks: "
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/key"
@@ -93,9 +76,35 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
 
+            </LinearLayout>
 
-            </RelativeLayout>
-            
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/delete_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@drawable/button_cancel"
+                    android:text="Delete"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+             <Button
+                    android:id="@+id/edit_price_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@drawable/button_print"
+                    android:text="Edit"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </LinearLayout>
     </LinearLayout>
 
