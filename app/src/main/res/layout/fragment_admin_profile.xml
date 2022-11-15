@@ -10,7 +10,7 @@
         android:id="@+id/txtAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_gravity="center"
         android:layout_marginTop="250dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/bungee"
@@ -38,7 +38,33 @@
             android:drawablePadding="10dp"
             android:fontFamily="@font/source_sans_pro"
             android:inputType="text"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/align_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/customborder"
+        android:hint="Email"
+        android:textAlignment="textStart">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/admin_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:background="@android:color/transparent"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:inputType="textEmailAddress"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -64,36 +90,33 @@
             android:drawableStart="@drawable/password"
             android:drawablePadding="10dp"
             android:fontFamily="@font/source_sans_pro"
+            android:enabled="false"
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp">
-
-        <ProgressBar
-            android:id="@+id/admin_Progressbar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/admin_btn"
-            android:layout_width="wrap_content"
+            android:id="@+id/admin_btn_username"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:text="Update"
-            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
             android:fontFamily="@font/source_sans_pro"
-            android:textStyle="bold"
+            android:text="Change Username"
+            android:textColor="@color/white"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:transitionName="button_tran"
             app:backgroundTint="@color/blue"
             app:cornerRadius="12dp"
@@ -101,6 +124,43 @@
             app:strokeWidth="1dp" />
 
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/admin_btn_Password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/source_sans_pro"
+            android:text="Change Password"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:transitionName="button_tran"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="1dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_admin_riders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Check Rider(s) Account"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/source_sans_pro"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:transitionName="button_tran"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="12dp"
+        app:strokeColor="@color/blue"
+        app:strokeWidth="1dp" />
 
 </LinearLayout>

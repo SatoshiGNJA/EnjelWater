@@ -66,7 +66,7 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
     ImageView btnBackSum;
     TextInputEditText DeliveryAdd;
     ICartLoadListener cartLoadListener;
-    DatabaseReference databaseReference,reff,reff2,reffUser;
+    DatabaseReference databaseReference,reff,reff2,reffUser,NewDrink;
     Button btnCheckOut;
     FirebaseAuth auth;
     FirebaseUser user;
@@ -80,6 +80,8 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
     Dialog dialog;
 
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    String stock5,stock6,stock7,stock8;
 
     @BindView(R.id.mainLayout3)
     RelativeLayout summaryML;
@@ -136,6 +138,21 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                     DeliveryAdd.setError(null);
                 }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        NewDrink = FirebaseDatabase.getInstance().getReference("NewDrink");
+        NewDrink.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                stock5 = snapshot.child("05").child("stocks").getValue(String.class);
+                stock6 = snapshot.child("06").child("stocks").getValue(String.class);
+                stock7 = snapshot.child("07").child("stocks").getValue(String.class);
+                stock8 = snapshot.child("08").child("stocks").getValue(String.class);
             }
 
             @Override
@@ -387,6 +404,9 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                     quantity5 = Integer.parseInt(snapshot.child("05").child("quantity").getValue().toString());
                                                     productModel.setName5(name5);
                                                     productModel.setQty5(quantity5);
+                                                    int st5 = Integer.parseInt(stock5);
+                                                    String UpdatedStock = String.valueOf(st5-quantity5);
+                                                    NewDrink.child("05").child("stocks").setValue(UpdatedStock);
                                                 }
                                                 if(snapshot.child("06").child("quantity").getValue()==null&&snapshot.child("06").child("name").getValue()==null){
                                                     reff2.getRef().child("name6").removeValue();
@@ -396,6 +416,9 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                     quantity6 = Integer.parseInt(snapshot.child("06").child("quantity").getValue().toString());
                                                     productModel.setName6(name6);
                                                     productModel.setQty6(quantity6);
+                                                    int st6 = Integer.parseInt(stock6);
+                                                    String UpdatedStock = String.valueOf(st6-quantity6);
+                                                    NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                                 }
                                                 if(snapshot.child("07").child("quantity").getValue()==null&&snapshot.child("07").child("name").getValue()==null){
                                                     reff2.getRef().child("name7").removeValue();
@@ -405,6 +428,9 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                     quantity7 = Integer.parseInt(snapshot.child("07").child("quantity").getValue().toString());
                                                     productModel.setName7(name7);
                                                     productModel.setQty7(quantity7);
+                                                    int st7 = Integer.parseInt(stock7);
+                                                    String UpdatedStock = String.valueOf(st7-quantity7);
+                                                    NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                                 }
                                                 if(snapshot.child("08").child("quantity").getValue()==null&&snapshot.child("08").child("name").getValue()==null){
                                                     reff2.getRef().child("name8").removeValue();
@@ -414,6 +440,9 @@ public class SummaryActivity extends AppCompatActivity implements ICartLoadListe
                                                     quantity8 = Integer.parseInt(snapshot.child("08").child("quantity").getValue().toString());
                                                     productModel.setName8(name8);
                                                     productModel.setQty8(quantity8);
+                                                    int st8 = Integer.parseInt(stock8);
+                                                    String UpdatedStock = String.valueOf(st8-quantity8);
+                                                    NewDrink.child("08").child("stocks").setValue(UpdatedStock);
                                                 }
 
 

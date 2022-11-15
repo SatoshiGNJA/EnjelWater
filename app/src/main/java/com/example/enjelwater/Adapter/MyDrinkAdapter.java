@@ -75,7 +75,9 @@ public class MyDrinkAdapter extends RecyclerView.Adapter<MyDrinkAdapter.MyDrinkV
         }
 
         holder.setListener((view, adapterPosition) -> {
-            if (drinkModelList.get(holder.getAdapterPosition()).getStocks().equals("0")){
+            if (drinkModelList.get(holder.getAdapterPosition()).getStocks() == null){
+                addToCart(drinkModelList.get(position));
+            }else if(drinkModelList.get(holder.getAdapterPosition()).getStocks().equals("0")){
                 Toast.makeText(context, "OUT OF STOCK!", Toast.LENGTH_SHORT).show();
             }else{
                 addToCart(drinkModelList.get(position));

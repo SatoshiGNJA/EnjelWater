@@ -52,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreference;
 
+    DatabaseReference reference;
+
+    String adminuser,admine,adminpass;
+
     public static final String fileName = "login";
     public static final String Username = "username";
     public static final String Password = "password";
@@ -76,30 +80,47 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        reference = FirebaseDatabase.getInstance().getReference();
 
-
-        sharedPreference = getSharedPreferences(fileName,Context.MODE_PRIVATE);
-
-        callSignUp.setOnClickListener(new View.OnClickListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,SignUpActivity.class);
-                Pair[] pairs = new Pair[7];
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                adminuser = snapshot.child("Admin").child("admin").child("username").getValue(String.class);
+                admine = snapshot.child("Admin").child("admin").child("email").getValue(String.class);
+                adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
+            }
 
-                pairs[0] = new Pair<View,String>(image,"logo_image");
-                pairs[1] = new Pair<View,String>(logoText,"logo_text");
-                pairs[2] = new Pair<View,String>(sloganText,"logo_desc");
-                pairs[3] = new Pair<View,String>(email,"email_tran");
-                pairs[4] = new Pair<View,String>(password,"password_tran");
-                pairs[5] = new Pair<View,String>(login_btn,"button_tran");
-                pairs[6] = new Pair<View,String>(callSignUp,"logo_signup_tran");
-
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this,pairs);
-                startActivity(intent,options.toBundle());
-
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+        sharedPreference = getSharedPreferences(fileName,Context.MODE_PRIVATE);
+
+
+
+
+                callSignUp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                        Pair[] pairs = new Pair[7];
+
+                        pairs[0] = new Pair<View, String>(image, "logo_image");
+                        pairs[1] = new Pair<View, String>(logoText, "logo_text");
+                        pairs[2] = new Pair<View, String>(sloganText, "logo_desc");
+                        pairs[3] = new Pair<View, String>(email, "email_tran");
+                        pairs[4] = new Pair<View, String>(password, "password_tran");
+                        pairs[5] = new Pair<View, String>(login_btn, "button_tran");
+                        pairs[6] = new Pair<View, String>(callSignUp, "logo_signup_tran");
+
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
+                        startActivity(intent, options.toBundle());
+
+
+                    }
+                });
 
         forgotbutt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,40 +282,52 @@ public class LoginActivity extends AppCompatActivity {
         String userEnteredUsername = email.getEditText().getText().toString().trim();
         String userEnteredPassword = password.getEditText().getText().toString().trim();
 
+
+                try {
+                    if((admine.equals(userEnteredUsername)||adminuser.equals(userEnteredUsername))&&adminpass.equals(userEnteredPassword)){
+                        mAuth.signInWithEmailAndPassword(admine,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    SharedPreferences.Editor editor = sharedPreference.edit();
+                                    editor.putString(Username,userEnteredUsername);
+                                    editor.putString(Password,userEnteredPassword);
+                                    editor.apply();
+                                    finish();
+                                    Intent i = new Intent(getApplicationContext(),AdminActivity.class);
+                                    i.putExtra("NewPassword", userEnteredPassword);
+                                    startActivity(i);
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }else{
+                        mAuth.signInWithEmailAndPassword(admine,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    SharedPreferences.Editor editor = sharedPreference.edit();
+                                    editor.putString(Username,userEnteredUsername);
+                                    editor.putString(Password,userEnteredPassword);
+                                    editor.apply();
+                                    finish();
+                                    Intent i = new Intent(getApplicationContext(),AdminActivity.class);
+                                    i.putExtra("NewPassword", userEnteredPassword);
+                                    startActivity(i);
+                                }else{
+                                    isUser();
+                                }
+                            }
+                        });
+                    }
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+
         login_btn.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
-
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String adminuser = snapshot.child("Admin").child("admin").child("username").getValue(String.class);
-                    String adminpass = snapshot.child("Admin").child("admin").child("password").getValue(String.class);
-
-                    if(adminuser.equals(userEnteredUsername)&&adminpass.equals(userEnteredPassword)){
-
-                        SharedPreferences.Editor editor = sharedPreference.edit();
-                        editor.putString(Username,userEnteredUsername);
-                        editor.putString(Password,userEnteredPassword);
-                        editor.apply();
-
-                        Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
-
-                        startActivity(intent);
-                        finish();
-                    }
-                    else{
-                        isUser();
-                    }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
         }
 
         private void checkEmailVerification(){

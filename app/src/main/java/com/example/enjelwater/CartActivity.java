@@ -62,6 +62,10 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
     @BindView(R.id.emptycarts)
     TextView cty;
 
+    String stock5,stock6,stock7,stock8;
+    int CartQTY5,CartQTY6,CartQTY7,CartQTY8;
+    DatabaseReference NewDrink,CartQTY;
+
     String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     ICartLoadListener cartLoadListener;
@@ -87,6 +91,53 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
 
         swipeRefreshLayout = findViewById(R.id.swipe_refresh);
 
+        NewDrink = FirebaseDatabase.getInstance().getReference("NewDrink");
+        NewDrink.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                stock5 = snapshot.child("05").child("stocks").getValue(String.class);
+                stock6 = snapshot.child("06").child("stocks").getValue(String.class);
+                stock7 = snapshot.child("07").child("stocks").getValue(String.class);
+                stock8 = snapshot.child("08").child("stocks").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        CartQTY = FirebaseDatabase.getInstance().getReference("Cart").child(currentuser);
+        CartQTY.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try{
+                    CartQTY5 = snapshot.child("05").child("quantity").getValue(Integer.class);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+                try{
+                    CartQTY6 = snapshot.child("06").child("quantity").getValue(Integer.class);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+                try{
+                    CartQTY7 = snapshot.child("07").child("quantity").getValue(Integer.class);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+                try{
+                    CartQTY8 = snapshot.child("08").child("quantity").getValue(Integer.class);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -96,7 +147,6 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
                 overridePendingTransition(0, 0);
             }
         });
-
 
         init();
         loadCartFromFirebase();
@@ -211,14 +261,21 @@ public class CartActivity extends AppCompatActivity implements ICartLoadListener
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-
         placeorders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                int st5 = Integer.parseInt(stock5);
+                int st6 = Integer.parseInt(stock6);
+                int st7 = Integer.parseInt(stock7);
+                int st8 = Integer.parseInt(stock8);
+                if(st5>=CartQTY5&&st6>=CartQTY6&&st7>=CartQTY7&&st8>=CartQTY8){
+                    Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }else{
+                    Toast.makeText(CartActivity.this, "Some of your Item has Reach it Limit Please Check your Orders!", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

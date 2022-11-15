@@ -9,21 +9,26 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:requestLegacyExternalStorage="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EnjelWater">
+        android:theme="@style/Theme.EnjelWater"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".RiderActivity"
+            android:parentActivityName=".AdminActivity"
+            android:label=""
+            android:theme="@style/Theme.EnjelWater.NoActionBar"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -31,15 +36,15 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <activity
             android:name=".GeneratePDFActivity"
-            android:parentActivityName=".AdminActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:exported="false"
-            android:label="">
-        </activity>
+            android:label=""
+            android:parentActivityName=".AdminActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
@@ -61,8 +66,8 @@
             android:exported="false" />
         <activity
             android:name=".SummaryActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".CartActivity"
             android:exported="false"
@@ -87,7 +92,8 @@
             android:exported="false"
             android:label=""
             android:launchMode="singleTop"
-            android:theme="@style/Theme.EnjelWater.NoActionBar" />
+            android:theme="@style/Theme.EnjelWater.NoActionBar"
+            android:usesCleartextTraffic="true" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false"

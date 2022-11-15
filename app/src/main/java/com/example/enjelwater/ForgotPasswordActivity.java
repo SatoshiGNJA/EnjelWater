@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -39,6 +41,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
 
+    DatabaseReference databaseReference;
+
     boolean isConnected = false;
     Dialog dialog;
     ConnectivityManager connectivityManager;
@@ -48,6 +52,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_forgot_password);
+
+        databaseReference= FirebaseDatabase.getInstance().getReference();
 
         forgotpassword = findViewById(R.id.forgotpassemail);
         image = findViewById(R.id.forgotImage);
@@ -63,7 +69,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isConnected){
-
                     String email = forgotpassword.getEditText().getText().toString().trim();
                     if(email.isEmpty()){
                         forgotpassword.setError("Field cannot be empty");
@@ -79,6 +84,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                     Toast.makeText(ForgotPasswordActivity.this,"Please check your email to reset Password!",Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(ForgotPasswordActivity.this,LoginActivity.class);
                                     Pair[] pairs = new Pair[4];
+
                                     pairs[0] = new Pair<View,String>(image,"logo_image");
                                     pairs[1] = new Pair<View,String>(forgotpassword,"email_tran");
                                     pairs[2] = new Pair<View,String>(resetPass,"button_tran");

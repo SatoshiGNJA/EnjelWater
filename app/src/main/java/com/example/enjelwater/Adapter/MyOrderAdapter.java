@@ -46,7 +46,7 @@ import butterknife.Unbinder;
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderHolder> {
 
     Calendar calendar = Calendar.getInstance();
-    DatabaseReference reff, reff2, reff3, reff4;
+    DatabaseReference reff, reff2, reff3, reff4, NewDrink;
     long maxid = 0;
     DeliverModel deliverModel;
     ProductModel productModel;
@@ -55,6 +55,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     private Context context;
     private List<ProductModel> productModelList;
     private IDeliverLoadListener iDeliverLoadListener;
+
+    String stock5,stock6,stock7,stock8;
 
 
     public MyOrderAdapter(Context context, List<ProductModel> productModelList, IDeliverLoadListener iDeliverLoadListener) {
@@ -85,6 +87,22 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                 if (snapshot.exists()) {
                     maxid = (snapshot.getChildrenCount());
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        NewDrink = FirebaseDatabase.getInstance().getReference("NewDrink");
+        NewDrink.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                stock5 = snapshot.child("05").child("stocks").getValue(String.class);
+                stock6 = snapshot.child("06").child("stocks").getValue(String.class);
+                stock7 = snapshot.child("07").child("stocks").getValue(String.class);
+                stock8 = snapshot.child("08").child("stocks").getValue(String.class);
             }
 
             @Override
@@ -610,33 +628,45 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                     deliverModel.setName4(name4);
                                                     deliverModel.setQty4(Integer.parseInt(qty4));
                                                 }
-                                                if (snapshot.child(key2).child("name5").getValue() == null) {
+                                                if(snapshot.child(key).child("name5").getValue()==null){
                                                     reff2.getRef().child("name5").removeValue();
                                                     reff2.getRef().child("qty5").removeValue();
-                                                } else {
+                                                }else{
                                                     deliverModel.setName5(name5);
                                                     deliverModel.setQty5(Integer.parseInt(qty5));
+                                                    int st5 = Integer.parseInt(stock5);
+                                                    String UpdatedStock = String.valueOf(st5+Integer.parseInt(qty5));
+                                                    NewDrink.child("05").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if (snapshot.child(key2).child("name6").getValue() == null) {
+                                                if(snapshot.child(key).child("name6").getValue()==null){
                                                     reff2.getRef().child("name6").removeValue();
                                                     reff2.getRef().child("qty6").removeValue();
-                                                } else {
+                                                }else{
                                                     deliverModel.setName6(name6);
                                                     deliverModel.setQty6(Integer.parseInt(qty6));
+                                                    int st6 = Integer.parseInt(stock6);
+                                                    String UpdatedStock = String.valueOf(st6+Integer.parseInt(qty6));
+                                                    NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if (snapshot.child(key2).child("name7").getValue() == null) {
+                                                if(snapshot.child(key).child("name7").getValue()==null){
                                                     reff2.getRef().child("name7").removeValue();
                                                     reff2.getRef().child("qty7").removeValue();
-                                                } else {
+                                                }else{
                                                     deliverModel.setName7(name7);
                                                     deliverModel.setQty7(Integer.parseInt(qty7));
+                                                    int st7 = Integer.parseInt(stock7);
+                                                    String UpdatedStock = String.valueOf(st7+Integer.parseInt(qty7));
+                                                    NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if (snapshot.child(key2).child("name8").getValue() == null) {
+                                                if(snapshot.child(key).child("name8").getValue()==null){
                                                     reff2.getRef().child("name8").removeValue();
                                                     reff2.getRef().child("qty8").removeValue();
-                                                } else {
+                                                }else{
                                                     deliverModel.setName8(name8);
                                                     deliverModel.setQty8(Integer.parseInt(qty8));
+                                                    int st8 = Integer.parseInt(stock8);
+                                                    String UpdatedStock = String.valueOf(st8+Integer.parseInt(qty8));
+                                                    NewDrink.child("08").child("stocks").setValue(UpdatedStock);
                                                 }
 
 

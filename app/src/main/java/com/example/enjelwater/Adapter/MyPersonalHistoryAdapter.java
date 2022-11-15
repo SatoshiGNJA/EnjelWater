@@ -228,7 +228,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         reff3 = FirebaseDatabase.getInstance().getReference();
 
         NewDrink = FirebaseDatabase.getInstance().getReference("NewDrink");
-        NewDrink.addListenerForSingleValueEvent(new ValueEventListener() {
+        NewDrink.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 stock5 = snapshot.child("05").child("stocks").getValue(String.class);
@@ -304,9 +304,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     }else{
                                         personalOrderModel.setName5(name5);
                                         personalOrderModel.setQty5(Integer.parseInt(qty5));
-                                        int st5 = Integer.parseInt(stock5);
-                                        String UpdatedStock = String.valueOf(st5-Integer.parseInt(qty5));
-                                        NewDrink.child("05").child("stocks").setValue(UpdatedStock);
                                     }
                                     if(snapshot.child("name6").getValue()==null){
                                         reff2.getRef().child("name6").removeValue();
@@ -314,9 +311,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     }else{
                                         personalOrderModel.setName6(name6);
                                         personalOrderModel.setQty6(Integer.parseInt(qty6));
-                                        int st6 = Integer.parseInt(stock6);
-                                        String UpdatedStock = String.valueOf(st6-Integer.parseInt(qty6));
-                                        NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                     }
                                     if(snapshot.child("name7").getValue()==null){
                                         reff2.getRef().child("name7").removeValue();
@@ -324,9 +318,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     }else{
                                         personalOrderModel.setName7(name7);
                                         personalOrderModel.setQty7(Integer.parseInt(qty7));
-                                        int st7 = Integer.parseInt(stock7);
-                                        String UpdatedStock = String.valueOf(st7-Integer.parseInt(qty7));
-                                        NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                     }
                                     if(snapshot.child("name8").getValue()==null){
                                         reff2.getRef().child("name8").removeValue();
@@ -334,9 +325,6 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     }else{
                                         personalOrderModel.setName8(name8);
                                         personalOrderModel.setQty8(Integer.parseInt(qty8));
-                                        int st8 = Integer.parseInt(stock8);
-                                        String UpdatedStock = String.valueOf(st8-Integer.parseInt(qty8));
-                                        NewDrink.child("08").child("stocks").setValue(UpdatedStock);
                                     }
 
 
@@ -524,6 +512,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             }else{
                                                 personalOrderModel.setName5(name5);
                                                 personalOrderModel.setQty5(Integer.parseInt(qty5));
+                                                int st5 = Integer.parseInt(stock5);
+                                                String UpdatedStock = String.valueOf(st5+Integer.parseInt(qty5));
+                                                NewDrink.child("05").child("stocks").setValue(UpdatedStock);
                                             }
                                             if(snapshot.child(key).child("name6").getValue()==null){
                                                 reff2.getRef().child("name6").removeValue();
@@ -531,6 +522,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             }else{
                                                 personalOrderModel.setName6(name6);
                                                 personalOrderModel.setQty6(Integer.parseInt(qty6));
+                                                int st6 = Integer.parseInt(stock6);
+                                                String UpdatedStock = String.valueOf(st6+Integer.parseInt(qty6));
+                                                NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                             }
                                             if(snapshot.child(key).child("name7").getValue()==null){
                                                 reff2.getRef().child("name7").removeValue();
@@ -538,6 +532,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             }else{
                                                 personalOrderModel.setName7(name7);
                                                 personalOrderModel.setQty7(Integer.parseInt(qty7));
+                                                int st7 = Integer.parseInt(stock7);
+                                                String UpdatedStock = String.valueOf(st7+Integer.parseInt(qty7));
+                                                NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                             }
                                             if(snapshot.child(key).child("name8").getValue()==null){
                                                 reff2.getRef().child("name8").removeValue();
@@ -545,6 +542,9 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                             }else{
                                                 personalOrderModel.setName8(name8);
                                                 personalOrderModel.setQty8(Integer.parseInt(qty8));
+                                                int st8 = Integer.parseInt(stock8);
+                                                String UpdatedStock = String.valueOf(st8+Integer.parseInt(qty8));
+                                                NewDrink.child("08").child("stocks").setValue(UpdatedStock);
                                             }
 
                                             personalOrderModel.setAddress(String.valueOf(snapshot.child(key).child("address").getValue()));

@@ -38,6 +38,7 @@ import com.example.enjelwater.Adapter.MyPriceMaintenanceAdapter;
 import com.example.enjelwater.Model.PersonalOrderModel;
 import com.example.enjelwater.databinding.ActivityAdminBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,7 +53,7 @@ import java.util.Calendar;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityAdminBinding binding;
-    DatabaseReference reff;
+    DatabaseReference reff,passupdate;
     private DrawerLayout drawerLayout;
     long maxid = 0;
 
@@ -107,6 +108,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
             }
         });
+        passupdate = FirebaseDatabase.getInstance().getReference();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Data");
         reference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -367,6 +369,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
+                FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                 NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 nMgr.cancelAll();
@@ -411,7 +414,12 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     protected void onResume() {
 
         onNewIntent(getIntent());
-
+        String newpassword = getIntent().getStringExtra("NewPassword");
+        if(newpassword==null){
+            System.out.println("Block");
+        }else{
+            passupdate.child("Admin").child("admin").child("password").setValue(newpassword);   
+        }
         super.onResume();
     }
     private String getTodaysDate() {
