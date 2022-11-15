@@ -13,9 +13,6 @@
         android:layout_height="match_parent"
         android:id="@+id/new_mainLayout2">
 
-
-
-
     <LinearLayout
         android:background="#A9EDFF"
         android:id="@+id/panel"

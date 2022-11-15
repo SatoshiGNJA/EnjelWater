@@ -230,8 +230,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void isUser() {
 
-
-
          String userEnteredUsername = email.getEditText().getText().toString().trim();
          String userEnteredPassword = password.getEditText().getText().toString().trim();
 
@@ -282,7 +280,6 @@ public class LoginActivity extends AppCompatActivity {
         String userEnteredUsername = email.getEditText().getText().toString().trim();
         String userEnteredPassword = password.getEditText().getText().toString().trim();
 
-
                 try {
                     if((admine.equals(userEnteredUsername)||adminuser.equals(userEnteredUsername))&&adminpass.equals(userEnteredPassword)){
                         mAuth.signInWithEmailAndPassword(admine,userEnteredPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -316,7 +313,7 @@ public class LoginActivity extends AppCompatActivity {
                                     i.putExtra("NewPassword", userEnteredPassword);
                                     startActivity(i);
                                 }else{
-                                    isUser();
+                                    isRider();
                                 }
                             }
                         });
@@ -328,6 +325,39 @@ public class LoginActivity extends AppCompatActivity {
 
         login_btn.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
+        }
+        private void isRider(){
+            String userEnteredUsername = email.getEditText().getText().toString().trim();
+            String userEnteredPassword = password.getEditText().getText().toString().trim();
+
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String rider1user = snapshot.child("Admin").child("riders").child("Rider1").child("username").getValue(String.class);
+                    String rider1pass = snapshot.child("Admin").child("riders").child("Rider1").child("password").getValue(String.class);
+                    String rider2user = snapshot.child("Admin").child("riders").child("Rider2").child("username").getValue(String.class);
+                    String rider2pass = snapshot.child("Admin").child("riders").child("Rider2").child("password").getValue(String.class);
+                    String rider3user = snapshot.child("Admin").child("riders").child("Rider3").child("username").getValue(String.class);
+                    String rider3pass = snapshot.child("Admin").child("riders").child("Rider3").child("password").getValue(String.class);
+
+                    if (rider1user.equals(userEnteredUsername)&&rider1pass.equals(userEnteredPassword)){
+                        Toast.makeText(LoginActivity.this, "Rider1 Login!", Toast.LENGTH_SHORT).show();
+                    }else if(rider2user.equals(userEnteredUsername)&&rider2pass.equals(userEnteredPassword)){
+                        Toast.makeText(LoginActivity.this, "Rider2 Login!", Toast.LENGTH_SHORT).show();
+                    }else if (rider3user.equals(userEnteredUsername)&&rider3pass.equals(userEnteredPassword)){
+                        Toast.makeText(LoginActivity.this, "Rider3 Login!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        isUser();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            login_btn.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         private void checkEmailVerification(){

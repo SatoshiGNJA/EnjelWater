@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19401709401709402" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/button_proceed.xml" value="0.316" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/button_text_color.xml" value="0.3311965811965812" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/customborder.xml" value="0.3311965811965812" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/drawable/gradient_background.xml" value="0.3311965811965812" />
@@ -81,6 +82,7 @@
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/remove_cart_dialog.xml" value="0.31794871794871793" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/remove_dialog.xml" value="0.31794871794871793" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/update_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/update_rider1.xml" value="0.31794871794871793" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/layout/update_username_dialog.xml" value="0.25" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/luqui/AndroidStudioProjects/EnjelWater/app/src/main/res/menu/admin_menu.xml" value="0.33" />

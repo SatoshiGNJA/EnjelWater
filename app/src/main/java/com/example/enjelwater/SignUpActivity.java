@@ -190,6 +190,9 @@ public class SignUpActivity extends AppCompatActivity {
         else if(!val.matches(passwordval)){
             regpassword.setError("Password is too weak");
             return false;
+        }else if(val.length()<=4) {
+            regpassword.setError("Password Too Short");
+            return false;
         }else if(!val.matches(retype)){
             regpassword.setError(null);
             regpassword.setErrorEnabled(false);

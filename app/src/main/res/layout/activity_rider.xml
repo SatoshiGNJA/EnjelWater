@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".RiderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <LinearLayout
         android:id="@+id/panel"
@@ -40,4 +47,298 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-</LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/Rider1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:text="Rider 1 Details:"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rider Name"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ridername1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rider Name"
+            app:errorIconDrawable="@null"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/UserRider1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rider Username"
+            app:errorIconDrawable="@null"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/PassRider1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            app:passwordToggleEnabled="true"
+            app:errorIconDrawable="@null"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_rider1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="12dp"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="1dp"
+            android:text="Edit Rider 1 Credentials"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/Rider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rider 2 Details:"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rider Name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ridername2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rider Name"
+                app:errorIconDrawable="@null">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/UserRider2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rider Username"
+                app:errorIconDrawable="@null">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:enabled="false"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PassRider2"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                app:errorIconDrawable="@null"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_rider2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="1dp"
+                android:layout_marginTop="20dp"
+                android:text="Edit Rider 2 Credentials" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/Rider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Rider 3 Details:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rider Name"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ridername3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rider Name"
+                app:errorIconDrawable="@null"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/UserRider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Rider Username"
+                app:errorIconDrawable="@null"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PassRider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                app:passwordToggleEnabled="true"
+                app:errorIconDrawable="@null"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_rider3"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="12dp"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="1dp"
+                android:text="Edit Rider 3 Credentials"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

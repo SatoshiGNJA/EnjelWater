@@ -154,6 +154,7 @@ public class AdminProfileFragment extends Fragment {
                 Button btnok = dialog.findViewById(R.id.btn_continue);
                 Button btnnotyet = dialog.findViewById(R.id.btn_no);
 
+
                 btnok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -181,6 +182,7 @@ public class AdminProfileFragment extends Fragment {
                                            dialog.dismiss();
                                        }else{
                                            newpass.setError("Password too Short!");
+                                           renewpass.setError(null);
                                        }
                                     }
                                 });
