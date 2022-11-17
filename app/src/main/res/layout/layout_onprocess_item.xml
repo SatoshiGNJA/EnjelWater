@@ -57,6 +57,15 @@
 
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/ordertime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="time"
+                android:textColor="@color/blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="wrap_content"
@@ -98,7 +107,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
@@ -106,6 +114,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
+
             </LinearLayout>
 
 
@@ -231,6 +240,30 @@
                 android:layout_height="1dp"
                 android:layout_marginBottom="0dp"
                 android:background="#5C5C5C" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Rider: "
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/ridername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:text="ridername"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
 
 
             <FrameLayout

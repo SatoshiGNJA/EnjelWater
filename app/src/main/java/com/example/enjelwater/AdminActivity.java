@@ -53,7 +53,7 @@ import java.util.Calendar;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityAdminBinding binding;
-    DatabaseReference reff,passupdate;
+    DatabaseReference reff,passupdate,deletepreviewsorders;
     private DrawerLayout drawerLayout;
     long maxid = 0;
 
@@ -109,6 +109,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             }
         });
         passupdate = FirebaseDatabase.getInstance().getReference();
+        deletepreviewsorders = FirebaseDatabase.getInstance().getReference();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Data");
         reference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -413,6 +414,20 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onResume() {
 
+        deletepreviewsorders.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                deletepreviewsorders.child("Orders").child(getYesterDate()).removeValue();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         onNewIntent(getIntent());
         String newpassword = getIntent().getStringExtra("NewPassword");
         if(newpassword==null){
@@ -464,6 +479,20 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         return "Jan";
 
+    }
+    private String getYesterDate() {
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeYesterdayDateString(day, month,year);
+
+    }
+    private String makeYesterdayDateString(int day, int month, int year) {
+
+        return day-1 + " " + getMonthFormat(month) + " " + year;
     }
     private void OnProcessNotification(){
         FirebaseDatabase.getInstance()

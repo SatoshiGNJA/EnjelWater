@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -32,7 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.nio.charset.Charset;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -72,6 +75,14 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
 
         deliverModel=new DeliverModel();
         dialog = new Dialog(context);
+
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+        dateTime = simpleDateFormat.format(calendar.getTime());
 
         reff3 = FirebaseDatabase.getInstance().getReference();
 
@@ -133,6 +144,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         holder.customer.setText(deliverModelList.get(position).getCustomerName());
         holder.phone.setText(deliverModelList.get(position).getPhonenum());
         holder.date.setText(deliverModelList.get(position).getOrderdate());
+        holder.rider.setText(deliverModelList.get(position).getRidername());
+        holder.time.setText(deliverModelList.get(position).getTime_in());
 
         String name1 = String.valueOf(new StringBuilder().append(deliverModelList.get(position).getName1()));
         String qty1 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty1()));
@@ -159,21 +172,29 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         String qty8 =  String.valueOf(new StringBuilder().append(deliverModelList.get(position).getQty8()));
 
         holder.btnprint.setOnClickListener(view -> {
-
             Intent intent = new Intent(context, MainActivity.class);
-            intent.putExtra("Name1", holder.txtN1.getText().toString());
-            intent.putExtra("Name2", holder.txtN2.getText().toString());
-            intent.putExtra("Name3", holder.txtN3.getText().toString());
-            intent.putExtra("Name4", holder.txtN4.getText().toString());
-            intent.putExtra("Name5", holder.txtN5.getText().toString());
-            intent.putExtra("Name6", holder.txtN6.getText().toString());
-            intent.putExtra("Name7", holder.txtN7.getText().toString());
-            intent.putExtra("Name8", holder.txtN8.getText().toString());
+            intent.putExtra("Name1", name1);
+            intent.putExtra("Name2", name2);
+            intent.putExtra("Name3", name3);
+            intent.putExtra("Name4", name4);
+            intent.putExtra("Name5", name5);
+            intent.putExtra("Name6", name6);
+            intent.putExtra("Name7", name7);
+            intent.putExtra("Name8", name8);
+            intent.putExtra("Qty1", Integer.parseInt(qty1));
+            intent.putExtra("Qty2", Integer.parseInt(qty2));
+            intent.putExtra("Qty3", Integer.parseInt(qty3));
+            intent.putExtra("Qty4", Integer.parseInt(qty4));
+            intent.putExtra("Qty5", Integer.parseInt(qty5));
+            intent.putExtra("Qty6", Integer.parseInt(qty6));
+            intent.putExtra("Qty7", Integer.parseInt(qty7));
+            intent.putExtra("Qty8", Integer.parseInt(qty8));
             intent.putExtra("CustomerN", holder.customer.getText().toString());
             intent.putExtra("PhoneNum", holder.phone.getText().toString());
             intent.putExtra("Address", holder.txtAddress.getText().toString());
             intent.putExtra("Total", holder.txtTotalOrderP.getText().toString());
             intent.putExtra("Date", holder.date.getText().toString());
+            intent.putExtra("Rider", holder.rider.getText().toString());
             context.startActivity(intent);
 
         });
@@ -278,6 +299,8 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         deliverModel.setCustomerName(holder.customer.getText().toString().trim());
                                         deliverModel.setPhonenum(holder.phone.getText().toString().trim());
                                         deliverModel.setStatus("Finish");
+                                        deliverModel.setTime_in(holder.time.getText().toString().trim());
+                                        deliverModel.setTime_out(dateTime);
                                         reffUsers.child("status").setValue("Finish");
                                         reff2.setValue(deliverModel);
                                         FirebaseDatabase.getInstance().getReference("Users")
@@ -368,6 +391,10 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
         TextView phone;
         @BindView(R.id.orderdate)
         TextView date;
+        @BindView(R.id.ridername)
+        TextView rider;
+        @BindView(R.id.ordertime)
+        TextView time;
 
         Unbinder unbinder;
 

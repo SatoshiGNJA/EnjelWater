@@ -25,4 +25,14 @@
         <item>Show Refill Gallon Water</item>
         <item>Show New Gallon Water</item>
     </string-array>
+    <string-array name="kindofwater">
+        <item>Select</item>
+        <item>Mineral</item>
+        <item>Alkaline</item>
+    </string-array>
+    <string-array name="producttype">
+        <item>Select</item>
+        <item>Refill Gallon</item>
+        <item>New Gallon</item>
+    </string-array>
 </resources>

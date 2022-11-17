@@ -1,5 +1,6 @@
 package com.example.enjelwater;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Set;
 
 @RequiresApi(api = Build.VERSION_CODES.S)
@@ -35,8 +42,12 @@ public class MainActivity extends AppCompatActivity {
     Button print;
 
     TextView n1, n2, n3, n4, n5, n6, n7, n8;
-    TextView custName, address, phone, total, orderdate;
+    TextView custName, address, phone, total, orderdate, rider;
     ImageView goback;
+
+    DatabaseReference pricereference;
+
+    int price1,price2,price3,price4,price5,price6,price7,price8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         goback = findViewById(R.id.returnback);
         print = findViewById(R.id.btn_print);
         orderdate = findViewById(R.id.orderdate);
+        rider = findViewById(R.id.rider);
+
+        pricereference = FirebaseDatabase.getInstance().getReference();
 
         String na1 = getIntent().getStringExtra("Name1");
         String na2 = getIntent().getStringExtra("Name2");
@@ -67,12 +81,21 @@ public class MainActivity extends AppCompatActivity {
         String na6 = getIntent().getStringExtra("Name6");
         String na7 = getIntent().getStringExtra("Name7");
         String na8 = getIntent().getStringExtra("Name8");
+        int qty1 = getIntent().getIntExtra("Qty2",1);
+        int qty2 = getIntent().getIntExtra("Qty2",1);
+        int qty3 = getIntent().getIntExtra("Qty3",1);
+        int qty4 = getIntent().getIntExtra("Qty4",1);
+        int qty5 = getIntent().getIntExtra("Qty5",1);
+        int qty6 = getIntent().getIntExtra("Qty6",1);
+        int qty7 = getIntent().getIntExtra("Qty7",1);
+        int qty8 = getIntent().getIntExtra("Qty8",1);
 
         String customer = getIntent().getStringExtra("CustomerN");
         String ph0ne = getIntent().getStringExtra("PhoneNum");
         String addr3ss = getIntent().getStringExtra("Address");
         String t0tal = getIntent().getStringExtra("Total");
         String date = getIntent().getStringExtra("Date");
+        String ridername = getIntent().getStringExtra("Rider");
 
         n1.setText(na1);
         n2.setText(na2);
@@ -87,44 +110,45 @@ public class MainActivity extends AppCompatActivity {
         address.setText(addr3ss);
         total.setText(t0tal);
         orderdate.setText(date);
+        rider.setText(ridername);
 
 
-        if (n1.getText().toString().equals("Name1: ")) {
+        if (n1.getText().toString().equals("null")) {
             n1.setVisibility(View.GONE);
         } else {
             n1.setText(na1);
         }
-        if (n2.getText().toString().equals("Name2: ")) {
+        if (n2.getText().toString().equals("null")) {
             n2.setVisibility(View.GONE);
         } else {
             n2.setText(na2);
         }
-        if (n3.getText().toString().equals("Name3: ")) {
+        if (n3.getText().toString().equals("null")) {
             n3.setVisibility(View.GONE);
         } else {
             n3.setText(na3);
         }
-        if (n4.getText().toString().equals("Name4: ")) {
+        if (n4.getText().toString().equals("null")) {
             n4.setVisibility(View.GONE);
         } else {
             n4.setText(na4);
         }
-        if (n5.getText().toString().equals("Name5: ")) {
+        if (n5.getText().toString().equals("null")) {
             n5.setVisibility(View.GONE);
         } else {
             n5.setText(na5);
         }
-        if (n6.getText().toString().equals("Name6: ")) {
+        if (n6.getText().toString().equals("null")) {
             n6.setVisibility(View.GONE);
         } else {
             n6.setText(na6);
         }
-        if (n7.getText().toString().equals("Name7: ")) {
+        if (n7.getText().toString().equals("null")) {
             n7.setVisibility(View.GONE);
         } else {
             n7.setText(na7);
         }
-        if (n8.getText().toString().equals("Name8: ")) {
+        if (n8.getText().toString().equals("null")) {
             n8.setVisibility(View.GONE);
         } else {
             n8.setText(na8);
@@ -158,6 +182,27 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        pricereference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+              price1 = Integer.parseInt(snapshot.child("Drink").child("01").child("price").getValue(String.class));
+              price2 = Integer.parseInt(snapshot.child("Drink").child("02").child("price").getValue(String.class));
+              price3 = Integer.parseInt(snapshot.child("Drink").child("03").child("price").getValue(String.class));
+              price4 = Integer.parseInt(snapshot.child("Drink").child("04").child("price").getValue(String.class));
+              price5 = Integer.parseInt(snapshot.child("NewDrink").child("05").child("price").getValue(String.class));
+              price6 = Integer.parseInt(snapshot.child("NewDrink").child("06").child("price").getValue(String.class));
+              price7 = Integer.parseInt(snapshot.child("NewDrink").child("07").child("price").getValue(String.class));
+              price8 = Integer.parseInt(snapshot.child("NewDrink").child("08").child("price").getValue(String.class));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,61 +214,65 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onConnected() {
 
-                            mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
                             // table format: 32 character width per line
                             String format = "%-15s%5s%6s%6s";
-                            mPrinter.printText("          ENJEL WATERS          \n");
-                            mPrinter.printText(" Block 52 Lot 1, Bristol Street \n");
-                            mPrinter.printText("   North Fairview, Quezon City  \n");
-                            mPrinter.printText("     09272574029/09194540889    \n");
-                            mPrinter.printText("DATE:"+ orderdate);
+                            mPrinter.setAlign(BluetoothPrinter.ALIGN_CENTER);
+                            mPrinter.printText("ENJEL WATERS\n");
+                            mPrinter.printText("Block 52 Lot 1, Bristol Street\n");
+                            mPrinter.printText("North Fairview, Quezon City\n");
+                            mPrinter.printText("09272574029/09194540889\n");
+                            mPrinter.printText(date);
                             mPrinter.printText("\n");
                             mPrinter.printText("\n");
+                            mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
                             mPrinter.printText("CUSTOMER NAME: \n" + customer + "\n");
                             mPrinter.printText("CELLPHONE NUMBER: \n" + ph0ne + "\n");
                             mPrinter.printText("ADDRESS: \n" + addr3ss + "\n");
                             mPrinter.printText(divider);
-                            if (n1.getText().toString().equals("Name1: ")) {
+                            if (!n1.isShown()) {
                                 n1.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na1 + "\n");
+                                mPrinter.printText("* " + na1 + " x Php"+qty1+" x "+price1+" = " + (qty1*price1) + "\n");
                             }
-                            if (n2.getText().toString().equals("Name2: ")) {
+                            if (!n1.isShown()) {
                                 n2.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na2 + "\n");
+                                mPrinter.printText("* " + na2 + " x Php"+qty2+" x "+price2+" = " + (qty2*price2) + "\n");
                             }
-                            if (n3.getText().toString().equals("Name3: ")) {
+                            if (!n3.isShown()) {
                                 n3.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na3 + "\n");
+                                mPrinter.printText("* " + na3 + " x Php"+qty3+" x "+price3+" = " + (qty3*price3) + "\n");
                             }
-                            if (n4.getText().toString().equals("Name4: ")) {
+                            if (!n4.isShown()) {
                                 n4.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na4 + "\n");
+                                mPrinter.printText("* " + na4 + " x Php"+qty4+" x "+price4+" = " + (qty4*price4) + "\n");
                             }
-                            if (n5.getText().toString().equals("Name5: ")) {
+                            if (!n5.isShown()) {
                                 n5.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na5 + "\n");
+                                mPrinter.printText("* " + na5 + " x Php"+qty5+" x "+price5+" = " + (qty5*price5) + "\n");
                             }
-                            if (n6.getText().toString().equals("Name6: ")) {
+                            if (!n6.isShown()) {
                                 n6.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na6 + "\n");
+                                mPrinter.printText("* " + na6 + " x Php"+qty6+" x "+price6+" = " + (qty6*price6) + "\n");
                             }
-                            if (n7.getText().toString().equals("Name7: ")) {
+                            if (!n7.isShown()) {
                                 n7.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na7 + "\n");
+                                mPrinter.printText("* " + na7 + " x Php"+qty7+" x "+price7+" = " + (qty7*price7) + "\n");
                             }
-                            if (n8.getText().toString().equals("Name8: ")) {
+                            if (!n8.isShown()) {
                                 n8.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na8 + "\n");
+                                mPrinter.printText("* " + na8 + " x Php"+qty8+" x "+price8+" = " + (qty8*price8) + "\n");
                             }
                             mPrinter.printText(divider);
+                            mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
+                            mPrinter.printText("RIDER:");
+                            mPrinter.printText("\n"+ridername+"\n");
                             mPrinter.printText("Total amount to be paid: " + t0tal);
                             mPrinter.addNewLine();
                             //mPrinter.printText(divider);

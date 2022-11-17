@@ -46,6 +46,9 @@ public class SplashActivity extends AppCompatActivity {
 
     public static final String fileName = "login";
     public static final String Username = "username";
+    public static final String Rider1 = "ridername1";
+    public static final String Rider2 = "ridername2";
+    public static final String Rider3 = "ridername3";
     public static final String Password = "password";
 
     @Override
@@ -106,6 +109,11 @@ public class SplashActivity extends AppCompatActivity {
                 sharedPreference = getSharedPreferences(fileName, Context.MODE_PRIVATE);
                 if(sharedPreference.contains(Username)){
                     Intent i = new Intent(getApplicationContext(),AdminActivity.class);
+                    startActivity(i);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();
+                }else if(sharedPreference.contains(Rider1)||sharedPreference.contains(Rider2)||sharedPreference.contains(Rider3)) {
+                    Intent i = new Intent(getApplicationContext(),AdminRiderActivity.class);
                     startActivity(i);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();

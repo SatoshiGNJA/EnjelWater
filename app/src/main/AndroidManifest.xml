@@ -23,11 +23,14 @@
         android:theme="@style/Theme.EnjelWater"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".RiderActivity"
-            android:parentActivityName=".AdminActivity"
-            android:label=""
-            android:theme="@style/Theme.EnjelWater.NoActionBar"
+            android:name=".AdminRiderActivity"
             android:exported="false" />
+        <activity
+            android:name=".RiderActivity"
+            android:exported="false"
+            android:label=""
+            android:parentActivityName=".AdminActivity"
+            android:theme="@style/Theme.EnjelWater.NoActionBar" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -44,7 +47,7 @@
             android:exported="false"
             android:label=""
             android:parentActivityName=".AdminActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />

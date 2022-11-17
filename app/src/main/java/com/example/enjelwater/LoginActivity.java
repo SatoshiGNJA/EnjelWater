@@ -58,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String fileName = "login";
     public static final String Username = "username";
+    public static final String Rider1 = "ridername1";
+    public static final String Rider2 = "ridername2";
+    public static final String Rider3 = "ridername3";
     public static final String Password = "password";
 
 
@@ -341,11 +344,29 @@ public class LoginActivity extends AppCompatActivity {
                     String rider3pass = snapshot.child("Admin").child("riders").child("Rider3").child("password").getValue(String.class);
 
                     if (rider1user.equals(userEnteredUsername)&&rider1pass.equals(userEnteredPassword)){
-                        Toast.makeText(LoginActivity.this, "Rider1 Login!", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreference.edit();
+                        editor.putString(Rider1,userEnteredUsername);
+                        editor.putString(Password,userEnteredPassword);
+                        editor.apply();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(),AdminRiderActivity.class);
+                        startActivity(intent);
                     }else if(rider2user.equals(userEnteredUsername)&&rider2pass.equals(userEnteredPassword)){
-                        Toast.makeText(LoginActivity.this, "Rider2 Login!", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreference.edit();
+                        editor.putString(Rider2,userEnteredUsername);
+                        editor.putString(Password,userEnteredPassword);
+                        editor.apply();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(),AdminRiderActivity.class);
+                        startActivity(intent);
                     }else if (rider3user.equals(userEnteredUsername)&&rider3pass.equals(userEnteredPassword)){
-                        Toast.makeText(LoginActivity.this, "Rider3 Login!", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreference.edit();
+                        editor.putString(Rider3,userEnteredUsername);
+                        editor.putString(Password,userEnteredPassword);
+                        editor.apply();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(),AdminRiderActivity.class);
+                        startActivity(intent);
                     }else{
                         isUser();
                     }

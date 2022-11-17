@@ -100,6 +100,8 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         holder.txtTotalOrderP.setText(new StringBuilder().append(String.format("%.2f",historyModelList.get(position).getTotalPrice())));
         holder.txtIDNUM.setText(new StringBuilder().append(historyModelList.get(position).getKey()));
         holder.txtPhone.setText(new StringBuilder().append(historyModelList.get(position).getPhonenum()));
+        holder.txtin.setText(new StringBuilder().append(historyModelList.get(position).getTime_in()));
+        holder.txtout.setText(new StringBuilder().append(historyModelList.get(position).getTime_out()));
         if(Objects.equals(historyModelList.get(position).getStatus(), "Finish")){
         }
         if(Objects.equals(historyModelList.get(position).getStatus(), "Cancel")){
@@ -142,7 +144,10 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         TextView txtCustomerN;
         @BindView(R.id.historyphone)
         TextView txtPhone;
-
+        @BindView(R.id.timein)
+        TextView txtin;
+        @BindView(R.id.timeout)
+        TextView txtout;
 
         Unbinder unbinder;
 

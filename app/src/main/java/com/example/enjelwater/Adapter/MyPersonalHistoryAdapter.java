@@ -36,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.greenrobot.eventbus.EventBus;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -77,6 +78,13 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
 
         personalOrderModel=new PersonalOrderModel();
         dialog=new Dialog(context);
+        String dateTime;
+        Calendar calendar;
+        SimpleDateFormat simpleDateFormat;
+
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("hh:mm aaa");
+        dateTime = simpleDateFormat.format(calendar.getTime());
 
 
         if(personalOrderModelList.get(position).getName1() == null){
@@ -136,6 +144,7 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         holder.txtIDNUM.setText(new StringBuilder().append(personalOrderModelList.get(position).getKey()));
         holder.txtCustomerName.setText(new StringBuilder().append(personalOrderModelList.get(position).getCustname()));
         holder.txtPhone.setText(new StringBuilder().append(personalOrderModelList.get(position).getPhonenum()));
+        holder.time.setText(new StringBuilder().append(personalOrderModelList.get(position).getTime_in()));
 
         String name1 = String.valueOf(new StringBuilder().append(personalOrderModelList.get(position).getName1()));
         String qty1 =  String.valueOf(new StringBuilder().append(personalOrderModelList.get(position).getQty1()));
@@ -332,6 +341,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
                                     personalOrderModel.setAddress(holder.txtAddress.getText().toString().trim());
                                     personalOrderModel.setStatus("Finish");
                                     personalOrderModel.setOrderdate(getTodaysDate());
+                                    personalOrderModel.setTime_in(holder.time.getText().toString().trim());
+                                    personalOrderModel.setTime_out(dateTime);
                                     personalOrderModel.setCustomerName(holder.txtCustomerName.getText().toString().trim());
                                     personalOrderModel.setPhonenum(holder.txtPhone.getText().toString().trim());
                                     reffUsers.child("status").setValue("Finish");
@@ -641,6 +652,8 @@ public class MyPersonalHistoryAdapter extends RecyclerView.Adapter<MyPersonalHis
         TextView txtCustomerName;
         @BindView(R.id.phonenome)
         TextView txtPhone;
+        @BindView(R.id.time)
+        TextView time;
 
 
         Unbinder unbinder;

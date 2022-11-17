@@ -46,6 +46,47 @@
             android:layout_marginTop="160dp"
             android:orientation="vertical"
             android:padding="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="Select What Type of Gallon"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <RadioGroup
+                android:id="@+id/radioimageselect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/add_round_gallon"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:background="@drawable/roundgallon" />
+                <RadioButton
+                    android:id="@+id/add_slim_gallon"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:background="@drawable/slimgallon" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="What kind of Water?"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro"
+                android:textAlignment="textStart" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,6 +167,14 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro"
+                android:textAlignment="textStart" />
+
+
             <LinearLayout
                 android:id="@+id/stockslayout"
                 android:layout_width="match_parent"
@@ -136,6 +185,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/productstock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="2dp"
@@ -177,6 +227,7 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
+
 
                 <Button
                     android:id="@+id/btn_notyet_edit"

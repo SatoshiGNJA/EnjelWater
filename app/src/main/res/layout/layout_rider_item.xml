@@ -6,53 +6,52 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="12dp">
+    app:cardElevation="5dp">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:alpha="0.4"
             android:src="@drawable/waterlogo_crop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#80FFFFFF"
+            android:backgroundTintMode="src_over"
             android:orientation="vertical"
-            android:weightSum="5">
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/timein"
+                    android:id="@+id/orderdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="in"
+                    android:text="date"
                     android:textColor="@color/blue"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/timeout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="out"
-                    android:textColor="@color/blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/ordertime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="time"
+                android:textColor="@color/blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="wrap_content"
@@ -63,17 +62,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/historycustname"
+                    android:id="@+id/txtcustnamedel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:text=""
@@ -81,24 +77,12 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="Status"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                 <TextView
-                    android:id="@+id/historyphone"
+                    android:id="@+id/txtphonedel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                     android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:text=""
                     android:textColor="@color/black"
@@ -111,17 +95,18 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/source_sans_pro"
+                    android:gravity="start"
                     android:text=""
                     android:textAllCaps="false"
                     android:textColor="@color/black"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
+
             <View
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="0dp"
                 android:background="#5C5C5C" />
 
@@ -134,181 +119,203 @@
                     android:id="@+id/txtName1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name1: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name2: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name3: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name4: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name5: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name6: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name7: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtName8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:gravity="start"
-                    android:paddingTop="5dp"
                     android:text="Name8: "
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="200dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:gravity="center"
-                    android:text="Total Price:"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/txtTotalOrderPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="XXXX"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/blue"
-                    android:textSize="15sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/idnum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/personalID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/uid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:visibility="gone" />
             </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="0dp"
+                android:background="#5C5C5C" />
+
+
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:gravity="center"
+                        android:text="Total Price:"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txtTotalOrderPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:gravity="start"
+                        android:text="XXXX"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/btnOrderReceived"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        android:backgroundTint="@color/green"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:text="Finish"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/idnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/personalID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="135dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:visibility="gone" />
         </LinearLayout>
     </FrameLayout>
 </androidx.cardview.widget.CardView>

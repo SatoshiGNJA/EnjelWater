@@ -223,6 +223,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
             TextView N1, N2, N3, N4, N5, N6, N7, N8, Cust, Address, phone;
+            RadioButton rb1,rb2,rb3;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
@@ -231,6 +232,9 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             N6 = dialog.findViewById(R.id.txtName6);
             N7 = dialog.findViewById(R.id.txtName7);
             N8 = dialog.findViewById(R.id.txtName8);
+            rb1 = dialog.findViewById(R.id.rb_rider1);
+            rb2 = dialog.findViewById(R.id.rb_rider2);
+            rb3 = dialog.findViewById(R.id.rb_rider3);
             Cust = dialog.findViewById(R.id.txtCustomerName);
             Address = dialog.findViewById(R.id.txtAddressDialog);
             phone = dialog.findViewById(R.id.txtPhonenumbb);
@@ -238,6 +242,50 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             Cust.setText(new StringBuilder().append(productModelList.get(position).getCustname()));
             Address.setText(new StringBuilder().append(productModelList.get(position).getAddress()));
             phone.setText(new StringBuilder().append(productModelList.get(position).getPhonenum()));
+
+            reff3.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String rider1 = snapshot.child("Admin").child("riders").child("Rider1").child("name").getValue(String.class);
+                    String rider2 = snapshot.child("Admin").child("riders").child("Rider2").child("name").getValue(String.class);
+                    String rider3 = snapshot.child("Admin").child("riders").child("Rider3").child("name").getValue(String.class);
+
+                    rb1.setText(rider1);
+                    rb2.setText(rider2);
+                    rb3.setText(rider3);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+            rb1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rb1.isChecked()){
+                        btnok.setEnabled(true);
+                    }
+                }
+            });
+            rb2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rb2.isChecked()){
+                        btnok.setEnabled(true);
+                    }
+                }
+            });
+            rb3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rb3.isChecked()){
+                        btnok.setEnabled(true);
+                    }
+                }
+            });
 
             if (productModelList.get(holder.getAdapterPosition()).getName1() == null) {
                 N1.setVisibility(View.GONE);
@@ -279,7 +327,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
             } else {
                 N8.setText(new StringBuilder().append(productModelList.get(holder.getAdapterPosition()).getName8()).append(" x").append(productModelList.get(position).getQty8()));
             }
-            btnok.setOnClickListener(view1 -> new CountDownTimer(3000, 1000) {
+
+                btnok.setOnClickListener(view1 -> new CountDownTimer(3000, 1000) {
                 @Override
                 public void onTick(long l) {
                     btnok.setVisibility(View.GONE);
@@ -360,8 +409,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                         deliverModel.setName8(name8);
                                         deliverModel.setQty8(Integer.parseInt(qty8));
                                     }
-
-
                                     deliverModel.setAddress(String.valueOf(snapshot.child(key2).child("address").getValue()));
                                     deliverModel.setTotalPrice(Float.parseFloat((snapshot.child(key2).child("totalPrice").getValue().toString())));
                                     deliverModel.setStatus("On-going Delivery");
@@ -371,6 +418,19 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                     deliverModel.setUID(holder.txtUID.getText().toString());
                                     deliverModel.setKey(holder.txtKey.getText().toString());
                                     deliverModel.setPhonenum(holder.txtPhone.getText().toString());
+                                    if(rb1.isChecked()){
+                                        deliverModel.setRidername(rb1.getText().toString());
+                                        deliverModel.setTime_in(holder.time.getText().toString());
+                                        reff3.child("Admin").child("riders").child("Rider1").child("DeliveryList").child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    }else if(rb2.isChecked()){
+                                        deliverModel.setRidername(rb2.getText().toString());
+                                        deliverModel.setTime_in(holder.time.getText().toString());
+                                        reff3.child("Admin").child("riders").child("Rider2").child("DeliveryList").child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    }else if(rb3.isChecked()){
+                                        deliverModel.setRidername(rb3.getText().toString());
+                                        deliverModel.setTime_in(holder.time.getText().toString());
+                                        reff3.child("Admin").child("riders").child("Rider3").child("DeliveryList").child(holder.txtKey.getText().toString()).setValue(deliverModel);
+                                    }
                                     reffUsers.child("status").setValue("On-going Delivery");
                                     reff3.child("Delivered").child(holder.txtKey.getText().toString()).setValue(deliverModel);
                                      FirebaseDatabase.getInstance().getReference("Users")
@@ -420,7 +480,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
 
             Button btnok = dialog.findViewById(R.id.btn_okay2);
             Button notyet = dialog.findViewById(R.id.btn_notyet);
-            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address, phone, count;
+            TextView N1, N2, N3, N4, N5, N6, N7, N8, Name, Address, phone;
             N1 = dialog.findViewById(R.id.txtName1);
             N2 = dialog.findViewById(R.id.txtName2);
             N3 = dialog.findViewById(R.id.txtName3);
