@@ -241,6 +241,8 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Select Rider:"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -258,20 +260,20 @@
 
                 <RadioButton
                     android:id="@+id/rb_rider1"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="Rider1"
                     android:layout_height="wrap_content" />
                 <RadioButton
                     android:id="@+id/rb_rider2"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:text="Rider2"
                     android:layout_height="wrap_content" />
                 <RadioButton
                     android:id="@+id/rb_rider3"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:text="Rider3"
                     android:layout_height="wrap_content" />
 

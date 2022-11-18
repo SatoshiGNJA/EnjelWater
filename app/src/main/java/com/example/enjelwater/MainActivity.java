@@ -226,57 +226,54 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.printText("\n");
                             mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
                             mPrinter.printText("CUSTOMER NAME: \n" + customer + "\n");
-                            mPrinter.printText("CELLPHONE NUMBER: \n" + ph0ne + "\n");
+                            mPrinter.printText("CELLPHONE NUMBER: " + ph0ne + "\n");
                             mPrinter.printText("ADDRESS: \n" + addr3ss + "\n");
                             mPrinter.printText(divider);
                             if (!n1.isShown()) {
                                 n1.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na1 + " x Php"+qty1+" x "+price1+" = " + (qty1*price1) + "\n");
+                                mPrinter.printText("* " + na1 + " "+qty1+" x PHP"+price1+" = " + (qty1*price1) + "\n");
                             }
                             if (!n1.isShown()) {
                                 n2.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na2 + " x Php"+qty2+" x "+price2+" = " + (qty2*price2) + "\n");
+                                mPrinter.printText("* " + na2 + " "+qty2+" x PHP"+price2+" = " + (qty2*price2) + "\n");
                             }
                             if (!n3.isShown()) {
                                 n3.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na3 + " x Php"+qty3+" x "+price3+" = " + (qty3*price3) + "\n");
+                                mPrinter.printText("* " + na3 + " "+qty3+" x PHP"+price3+" = " + (qty3*price3) + "\n");
                             }
                             if (!n4.isShown()) {
                                 n4.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na4 + " x Php"+qty4+" x "+price4+" = " + (qty4*price4) + "\n");
+                                mPrinter.printText("* " + na4 + " "+qty4+" x PHP"+price4+" = " + (qty4*price4) + "\n");
                             }
                             if (!n5.isShown()) {
                                 n5.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na5 + " x Php"+qty5+" x "+price5+" = " + (qty5*price5) + "\n");
+                                mPrinter.printText("* " + na5 + " "+qty5+" x PHP"+price5+" = " + (qty5*price5) + "\n");
                             }
                             if (!n6.isShown()) {
                                 n6.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na6 + " x Php"+qty6+" x "+price6+" = " + (qty6*price6) + "\n");
+                                mPrinter.printText("* " + na6 + " "+qty6+" x PHP"+price6+" = " + (qty6*price6) + "\n");
                             }
                             if (!n7.isShown()) {
                                 n7.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na7 + " x Php"+qty7+" x "+price7+" = " + (qty7*price7) + "\n");
+                                mPrinter.printText("* " + na7 + " "+qty7+" x PHP"+price7+" = " + (qty7*price7) + "\n");
                             }
                             if (!n8.isShown()) {
                                 n8.setVisibility(View.GONE);
                             } else {
-                                mPrinter.printText("* " + na8 + " x Php"+qty8+" x "+price8+" = " + (qty8*price8) + "\n");
+                                mPrinter.printText("* " + na8 + " "+qty8+" x PHP"+price8+" = " + (qty8*price8) + "\n");
                             }
                             mPrinter.printText(divider);
                             mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
-                            mPrinter.printText("RIDER:");
-                            mPrinter.printText("\n"+ridername+"\n");
-                            mPrinter.printText("Total amount to be paid: " + t0tal);
+                            mPrinter.printText("RIDER:"+ridername+"\n");
+                            mPrinter.printText("Total amount to be paid: PHP" + t0tal);
                             mPrinter.addNewLine();
-                            //mPrinter.printText(divider);
-
                             mPrinter.feedPaper();
                             mPrinter.finish();
                             finish();
