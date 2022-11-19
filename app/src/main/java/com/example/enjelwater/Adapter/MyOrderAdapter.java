@@ -51,7 +51,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
     DeliverModel deliverModel;
     ProductModel productModel;
     Dialog dialog;
-    String key;
     private Context context;
     private List<ProductModel> productModelList;
     private IDeliverLoadListener iDeliverLoadListener;
@@ -688,7 +687,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                     deliverModel.setName4(name4);
                                                     deliverModel.setQty4(Integer.parseInt(qty4));
                                                 }
-                                                if(snapshot.child(key).child("name5").getValue()==null){
+                                                if(snapshot.child(key2).child("name5").getValue()==null){
                                                     reff2.getRef().child("name5").removeValue();
                                                     reff2.getRef().child("qty5").removeValue();
                                                 }else{
@@ -698,7 +697,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                     String UpdatedStock = String.valueOf(st5+Integer.parseInt(qty5));
                                                     NewDrink.child("05").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if(snapshot.child(key).child("name6").getValue()==null){
+                                                if(snapshot.child(key2).child("name6").getValue()==null){
                                                     reff2.getRef().child("name6").removeValue();
                                                     reff2.getRef().child("qty6").removeValue();
                                                 }else{
@@ -708,7 +707,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                     String UpdatedStock = String.valueOf(st6+Integer.parseInt(qty6));
                                                     NewDrink.child("06").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if(snapshot.child(key).child("name7").getValue()==null){
+                                                if(snapshot.child(key2).child("name7").getValue()==null){
                                                     reff2.getRef().child("name7").removeValue();
                                                     reff2.getRef().child("qty7").removeValue();
                                                 }else{
@@ -718,7 +717,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyOrderH
                                                     String UpdatedStock = String.valueOf(st7+Integer.parseInt(qty7));
                                                     NewDrink.child("07").child("stocks").setValue(UpdatedStock);
                                                 }
-                                                if(snapshot.child(key).child("name8").getValue()==null){
+                                                if(snapshot.child(key2).child("name8").getValue()==null){
                                                     reff2.getRef().child("name8").removeValue();
                                                     reff2.getRef().child("qty8").removeValue();
                                                 }else{

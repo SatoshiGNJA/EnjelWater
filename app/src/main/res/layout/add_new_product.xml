@@ -99,7 +99,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
                     android:text="Product Name"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -107,13 +106,13 @@
                 <EditText
                     android:id="@+id/newProductName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
                     android:fontFamily="@font/source_sans_pro"
                     android:hint="Product Name"
-                    android:inputType="textMultiLine"
-                    android:scrollHorizontally="false"
+                    android:inputType="text"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

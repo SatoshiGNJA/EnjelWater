@@ -120,10 +120,25 @@ public class MyPriceMaintenanceAdapter extends RecyclerView.Adapter<MyPriceMaint
                     @Override
                     public void onClick(View view) {
 
-                        if(productname.getText().toString().trim().isEmpty()|price.getText().toString().trim().isEmpty()|stocks.getText().toString().trim().isEmpty()){
-                            productname.setError("Some of the Field is not Complete");
-                            stocks.setError("Some of the Field is not Complete");
-                            price.setError("Some of the Field is not Complete");
+                        if(productname.getText().toString().trim().isEmpty()&&price.getText().toString().trim().isEmpty()&&stocks.getText().toString().trim().isEmpty()){
+                            productname.setError("Must not be Empty");
+                            stocks.setError("Must not be Empty");
+                            price.setError("Must not be Empty");
+                        }else if(productname.getText().toString().trim().isEmpty()&&price.getText().toString().trim().isEmpty()){
+                            productname.setError("Must not be Empty");
+                            price.setError("Must not be Empty");
+                        }else if(price.getText().toString().trim().isEmpty()&&stocks.getText().toString().trim().isEmpty()){
+                            stocks.setError("Must not be Empty");
+                            price.setError("Must not be Empty");
+                        }else if(productname.getText().toString().trim().isEmpty()&&stocks.getText().toString().trim().isEmpty()){
+                            stocks.setError("Must not be Empty");
+                            productname.setError("Must not be Empty");
+                        }else if(productname.getText().toString().trim().isEmpty()){
+                            productname.setError("Must not be Empty");
+                        }else if(price.getText().toString().trim().isEmpty()){
+                            price.setError("Must not be Empty");
+                        }else if(stocks.getText().toString().trim().isEmpty()){
+                            stocks.setError("Must not be Empty");
                         }else{
                             productname.setError(null);
                             price.setError(null);
@@ -180,6 +195,67 @@ public class MyPriceMaintenanceAdapter extends RecyclerView.Adapter<MyPriceMaint
 
             }
         });
+        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.setContentView(R.layout.remove_product_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+
+                Button btnok = dialog.findViewById(R.id.btn_remove);
+                Button notyet = dialog.findViewById(R.id.btn_dont_remove);
+
+                btnok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("Drink");
+                        reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String key = snapshot.child(holder.txtKey.getText().toString()).child("key").getValue(String.class);
+
+                                if(key == null){
+                                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference("NewDrink");
+                                    reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                            reference2.child(holder.txtKey.getText().toString()).removeValue();
+                                            notifyDataSetChanged();
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }else{
+                                    reference2.child(holder.txtKey.getText().toString()).removeValue();
+                                    notifyDataSetChanged();
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        dialog.dismiss();
+                    }
+                });
+                notyet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+
+            }
+        });
 
     }
 
@@ -202,6 +278,8 @@ public class MyPriceMaintenanceAdapter extends RecyclerView.Adapter<MyPriceMaint
         TextView txtKey;
         @BindView(R.id.edit_price_product)
         Button btnEdit;
+        @BindView(R.id.delete_product)
+        Button btnRemove;
         @BindView(R.id.background)
         LinearLayout backgr;
 

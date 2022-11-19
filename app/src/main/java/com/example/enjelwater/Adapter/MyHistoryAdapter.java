@@ -102,10 +102,9 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         holder.txtPhone.setText(new StringBuilder().append(historyModelList.get(position).getPhonenum()));
         holder.txtin.setText(new StringBuilder().append(historyModelList.get(position).getTime_in()));
         holder.txtout.setText(new StringBuilder().append(historyModelList.get(position).getTime_out()));
-        if(Objects.equals(historyModelList.get(position).getStatus(), "Finish")){
-        }
-        if(Objects.equals(historyModelList.get(position).getStatus(), "Cancel")){
-            holder.txtStat.setTextColor(Color.parseColor("#FF0000"));
+        if(Objects.equals(historyModelList.get(position).getStatus(), "Cancelled")){
+            holder.txtout.setVisibility(View.GONE);
+            holder.text.setVisibility(View.GONE);
         }
 
     }
@@ -148,6 +147,8 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyHi
         TextView txtin;
         @BindView(R.id.timeout)
         TextView txtout;
+        @BindView(R.id.textView8)
+        TextView text;
 
         Unbinder unbinder;
 

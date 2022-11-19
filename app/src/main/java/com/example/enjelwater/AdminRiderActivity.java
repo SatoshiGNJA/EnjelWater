@@ -68,7 +68,7 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
 
     String ridernumber;
 
-    TextView ridername,date,totalsales;
+    TextView ridername,totalsales;
 
     String rider1,rider2,rider3;
 
@@ -99,122 +99,6 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
             }
         });
 
-        DatabaseReference riderreff = FirebaseDatabase.getInstance().getReference().child("Admin").child("riders");
-        riderreff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                rider1 = snapshot.child("Rider1").child("name").getValue(String.class);
-                rider2 = snapshot.child("Rider2").child("name").getValue(String.class);
-                rider3 = snapshot.child("Rider3").child("name").getValue(String.class);
-
-                if (ridername.getText().toString().equals(rider1)){
-                    reference.child("Rider1").child("DeliveryList").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(getIntent());
-                            overridePendingTransition(0, 0);
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }else if (ridername.getText().toString().equals(rider2)){
-                    reference.child("Rider2").child("DeliveryList").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(getIntent());
-                            overridePendingTransition(0, 0);
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }else if (ridername.getText().toString().equals(rider3)){
-                    reference.child("Rider3").child("DeliveryList").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(getIntent());
-                            overridePendingTransition(0, 0);
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -230,6 +114,7 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
             }
         });
         if(sharedPreferences.contains(Rider1)){
+
 
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -250,6 +135,7 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
 
         }else if(sharedPreferences.contains(Rider2)){
 
+
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -266,6 +152,7 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
                 }
             });
         }else if(sharedPreferences.contains(Rider3)){
+
 
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -399,14 +286,14 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
                 .getReference("Admin")
                 .child("riders").child(ridernumber).child("TotalSales")
                 .child(datetoday.getText().toString()).child("totalsales")
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
 
                             Double sales = snapshot.getValue(Double.class);
                             totalsales.setText("₱"+String.format("%.2f",sales));
-
+                            datetoday.setText(getTodaysDate());
                         }else{
 
                             totalsales.setText("₱0.00");

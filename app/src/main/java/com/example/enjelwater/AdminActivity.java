@@ -225,6 +225,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+                try{
+                    replaceFragment(new AdminProductPriceFragment());
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }
 
             @Override
@@ -256,6 +261,11 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+                try{
+                    replaceFragment(new AdminProductPriceFragment());
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }
 
             @Override
