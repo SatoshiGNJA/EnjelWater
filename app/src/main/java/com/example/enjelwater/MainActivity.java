@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                             mPrinter.printText(divider);
                             mPrinter.setAlign(BluetoothPrinter.ALIGN_LEFT);
                             mPrinter.printText("RIDER:"+ridername+"\n");
-                            mPrinter.printText("Total amount to be paid: PHP" + t0tal);
+                            mPrinter.printText("Total payment: PHP" + t0tal);
                             mPrinter.addNewLine();
                             mPrinter.feedPaper();
                             mPrinter.finish();
