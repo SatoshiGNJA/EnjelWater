@@ -293,7 +293,6 @@ public class AdminRiderActivity extends AppCompatActivity implements IRiderLoadL
 
                             Double sales = snapshot.getValue(Double.class);
                             totalsales.setText("₱"+String.format("%.2f",sales));
-                            datetoday.setText(getTodaysDate());
                         }else{
 
                             totalsales.setText("₱0.00");

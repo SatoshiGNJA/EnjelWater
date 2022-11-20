@@ -23,15 +23,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/header_pdf" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dates"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/filter"
-            android:fontFamily="@font/source_sans_pro"
-            android:textAlignment="textStart" />
 
         <TextView
             android:id="@+id/totals"
@@ -63,7 +54,7 @@
             android:id="@+id/table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner"
+            android:layout_below="@+id/layout"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
@@ -587,6 +578,40 @@
             android:text="Filter:"
             android:textColor="@color/black"
             android:textSize="20dp" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dates"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/filter"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/source_sans_pro"
+                android:textAlignment="textStart" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/source_sans_pro"
+                android:textAlignment="textStart" />
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/source_sans_pro"
+                android:textAlignment="textStart" />
+
+        </LinearLayout>
 
 
 

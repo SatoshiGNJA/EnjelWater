@@ -20,11 +20,19 @@
         <item>Cancel</item>
     </string-array>
     <string-array name="waterfilter">
-        <item>Show All</item>
+        <item>Show Mineral/Alkaline</item>
         <item>Show Mineral Water</item>
         <item>Show Alkaline Water</item>
-        <item>Show Refill Gallon Water</item>
-        <item>Show New Gallon Water</item>
+    </string-array>
+    <string-array name="watergallon">
+        <item>Show Round/Slim</item>
+        <item>Show Round</item>
+        <item>Show Slim</item>
+    </string-array>
+    <string-array name="waterrefornew">
+        <item>Show Refill/New</item>
+        <item>Show Refill</item>
+        <item>Show New</item>
     </string-array>
     <string-array name="kindofwater">
         <item>Select</item>

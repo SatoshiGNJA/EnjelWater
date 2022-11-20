@@ -214,6 +214,10 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                     @Override
                     public void onClick(View view) {
 
+                        DatabaseReference rideref = FirebaseDatabase.getInstance().getReference()
+                                .child("Admin")
+                                .child("riders");
+
                         DatabaseReference reffUsers = FirebaseDatabase.getInstance().getReference()
                                 .child("Users")
                                 .child(holder.txtUID.getText().toString())
@@ -302,6 +306,97 @@ public class MyOnProcessAdapter extends RecyclerView.Adapter<MyOnProcessAdapter.
                                         deliverModel.setTime_in(holder.time.getText().toString().trim());
                                         deliverModel.setTime_out(dateTime);
                                         reffUsers.child("status").setValue("Finish");
+                                        rideref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String Rider1 = snapshot.child("Rider1").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).child("key").getValue(String.class);
+                                                String Rider2 = snapshot.child("Rider2").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).child("key").getValue(String.class);
+                                                String Rider3 = snapshot.child("Rider3").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).child("key").getValue(String.class);
+
+
+                                                if(Rider1!=null){
+                                                    DatabaseReference TotalSales = FirebaseDatabase.getInstance().getReference("Admin")
+                                                            .child("riders").child("Rider1")
+                                                            .child("TotalSales")
+                                                            .child(holder.date.getText().toString())
+                                                            .child("totalsales");
+                                                    TotalSales.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if(snapshot.exists()){
+                                                                double total = Double.parseDouble(holder.txtTotalOrderP.getText().toString());
+                                                                double oldtotal = snapshot.getValue(Double.class);
+                                                                total = total + oldtotal;
+                                                                rideref.child("Rider1").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(total);
+                                                            }else{
+                                                                rideref.child("Rider1").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(Double.parseDouble(holder.txtTotalOrderP.getText().toString()));
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
+                                                    rideref.child("Rider1").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).removeValue();
+                                                }else if(Rider2!=null){
+                                                    DatabaseReference TotalSales = FirebaseDatabase.getInstance().getReference("Admin")
+                                                            .child("riders").child("Rider2")
+                                                            .child("TotalSales")
+                                                            .child(holder.date.getText().toString())
+                                                            .child("totalsales");
+                                                    TotalSales.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if(snapshot.exists()){
+                                                                double total = Double.parseDouble(holder.txtTotalOrderP.getText().toString());
+                                                                double oldtotal = snapshot.getValue(Double.class);
+                                                                total = total + oldtotal;
+                                                                rideref.child("Rider2").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(total);
+                                                            }else{
+                                                                rideref.child("Rider2").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(Double.parseDouble(holder.txtTotalOrderP.getText().toString()));
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
+                                                    rideref.child("Rider2").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).removeValue();
+                                                }else if(Rider3!=null){
+                                                    DatabaseReference TotalSales = FirebaseDatabase.getInstance().getReference("Admin")
+                                                            .child("riders").child("Rider3")
+                                                            .child("TotalSales")
+                                                            .child(holder.date.getText().toString())
+                                                            .child("totalsales");
+                                                    TotalSales.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if(snapshot.exists()){
+                                                                double total = Double.parseDouble(holder.txtTotalOrderP.getText().toString());
+                                                                double oldtotal = snapshot.getValue(Double.class);
+                                                                total = total + oldtotal;
+                                                                rideref.child("Rider3").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(total);
+                                                            }else{
+                                                                rideref.child("Rider3").child("TotalSales").child(holder.date.getText().toString()).child("totalsales").setValue(Double.parseDouble(holder.txtTotalOrderP.getText().toString()));
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
+                                                    rideref.child("Rider3").child("DeliveryList").child(holder.txtIDNUM.getText().toString()).removeValue();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
                                         reff2.setValue(deliverModel);
                                         FirebaseDatabase.getInstance().getReference("Users")
                                                         .child(holder.txtUID.getText().toString())
